@@ -1,26 +1,23 @@
 <?php
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+/**
+* User
+*/
+class User extends Eloquent {
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+	protected $table      = 'User';
+	protected $primaryKey = 'idUser';
 
-	use UserTrait, RemindableTrait;
+	public function messages(){
+		return $this->hasMany('Message');
+	}
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+	public function files(){
+		return $this->hasMany('File');
+	}
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password', 'remember_token');
+	public function group(){
+		return $this->belongsTo('Group');
+	}
 
 }
