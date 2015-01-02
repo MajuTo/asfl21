@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Coucou c'est thomas
+=======
+coucou c'est alexis.
+>>>>>>> 5de1a10ca90b88208048c190c5a90c55a7de2404
