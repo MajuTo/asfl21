@@ -1,0 +1,29 @@
+
+.error-label {color: red; font-style: italic;}
+
+.btn-pink {
+	color: #fff;
+  background-image: -webkit-linear-gradient(top, deeppink 0%, deeppink 100%);
+  background-image:      -o-linear-gradient(top, deeppink 0%, deeppink 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(deeppink), to(deeppink));
+  background-image:         linear-gradient(to bottom, deeppink 0%, deeppink 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ffaa1493', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: deeppink;
+}
+.btn-pink:hover,
+.btn-pink:focus {
+  background-color: deeppink;
+  background-position: 0 -15px;
+}
+.btn-pink:active,
+.btn-pink.active {
+  background-color: deeppink;
+  border-color: deeppink;
+}
+.btn-pink:disabled,
+.btn-pink[disabled] {
+  background-color: deeppink;
+  background-image: none;
+}
