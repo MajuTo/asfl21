@@ -27,3 +27,7 @@
   background-color: deeppink;
   background-image: none;
 }
+
+#admin_form {
+  text-align: left;
+}

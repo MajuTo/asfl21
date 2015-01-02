@@ -22,12 +22,12 @@ class HomeController extends BaseController {
 
 	public function home()
 	{
-		$this->layout->content = View::make('hello');
+		return View::make('hello');
 	}
 
 	public function contact()
 	{
-		$this->layout->content = View::make('contact');
+		return View::make('contact');
 	}
 
 	public function sendcontact()

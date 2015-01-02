@@ -19,6 +19,9 @@ Route::get('membres', ['as' => 'membres', 'uses' => 'HomeController@def']);
 Route::get('contact', ['as' => 'contact', 'uses' => 'HomeController@contact']);
 Route::post('contact', ['as' => 'sendcontact', 'uses' => 'HomeController@sendcontact']);
 
+Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
+Route::post('admin', ['as' => 'admin', 'uses' => 'AdminController@createMember']);
+
 
 /*
 

@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-		<!-- Page Title -->
+        <!-- Page Title -->
         <div class="page-title-container">
             <div class="container">
                 <div class="row">
