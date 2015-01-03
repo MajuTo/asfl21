@@ -6,7 +6,7 @@
 class AdminController extends BaseController{
     
     public function index(){
-        $groups = DB::table('Group')->lists('groupName', 'idGroup');
+        $groups = Group::lists('groupName', 'idGroup');
         return View::make('admin.index', array(
             'groups' => $groups
             ));
