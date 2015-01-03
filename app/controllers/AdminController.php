@@ -7,9 +7,9 @@ class AdminController extends BaseController{
     
     public function index(){
         $groups = Group::lists('groupName', 'idGroup');
-        return View::make('admin.index', array(
+        return View::make('admin/index', [
             'groups' => $groups
-            ));
+            ]);
     }
 
     public function createMember(){

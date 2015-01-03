@@ -17,10 +17,6 @@
 
         @yield('content')
 
-        @section('test')
-            <h1>eirjesriogjrseiogjesr g</h1>
-        @stop
-
         
 
         <!-- Footer -->
