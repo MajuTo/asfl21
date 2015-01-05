@@ -9,11 +9,11 @@ class Message extends Eloquent {
 	protected $primaryKey = 'idMessage';
 
 	public function category(){
-		return $this->belongsTo('Category');
+		return $this->belongsTo('Category', 'Category_idCategory', 'idCategory');
 	}
 
 	public function user(){
-		return $this->belongsTo('User');
+		return $this->belongsTo('User', 'User_idUser', 'idUser');
 	}
 
 }

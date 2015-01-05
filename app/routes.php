@@ -24,6 +24,9 @@ Route::post('contact', ['as' => 'sendcontact', 'uses' => 'HomeController@sendcon
 Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
 Route::post('admin', ['as' => 'admin', 'uses' => 'AdminController@createMember']);
 
+// RESTful route => see php artisan routes
+Route::resource('admin', 'AdminController');
+
 
 /*
 

@@ -9,7 +9,7 @@ class File extends Eloquent {
 	protected $primaryKey = 'idFile';
 
 	public function user(){
-		return $this->belongsTo('User');
+		return $this->belongsTo('User', 'User_idUser', 'idUser');
 	}
 
 }
