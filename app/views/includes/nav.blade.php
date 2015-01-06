@@ -35,7 +35,7 @@
 							<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>
 						</li>
 						<li>
-							<a href="{{ URL::route('admin') }}"><i class="fa fa-cog"></i><br>Admin</a>
+							<a href="{{ URL::route('admin.index') }}"><i class="fa fa-cog"></i><br>Admin</a>
 						</li>
 					</ul>
 				</div>
