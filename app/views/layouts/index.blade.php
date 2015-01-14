@@ -3,14 +3,13 @@
     <head>
         <!-- HEADER -->
         @include('includes.head')
-
     </head>
     <body>
         <!-- NAVIGATION -->
         @include('includes.nav')
 
         <!-- Flash messages -->
-        @include('includes.flash')
+        @include('includes.alert')
 
         <!-- BODY CONTENT -->
         @yield('content')

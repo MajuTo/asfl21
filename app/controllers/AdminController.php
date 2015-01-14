@@ -36,15 +36,11 @@ class AdminController extends \BaseController {
 	{
 		try {
 		    DB::table('User')->insertGetId(Input::except('_token'));
-		    Session::flash('success', true);
-		    Session::flash('class', 'alert alert-success');
-		    Session::flash('message', 'L\'adhérent a été créé');
-		    return Redirect::route('admin');
+            Alert::add("alert-success", "L'adhérent a bien été créé");
+		    return Redirect::to('admin');
 		} catch (Exception $e) {
-		    Session::flash('success', false);
-		    Session::flash('class', 'alert alert-danger');
-		    Session::flash('message', 'L\'adhérent n\'a pas été créé');
-		    return Redirect::route('admin');
+            Alert::add("alert-danger", "L'adhérent n'a pas pu être créé");
+            return Redirect::to('admin');
 		}
 	}
 
