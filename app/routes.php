@@ -14,7 +14,7 @@
 Route::when('*', 'csrf', ['post', 'put', 'delete']);
 
 Route::get('/', 'HomeController@home');
-Route::get('notre-metier', ['as' => 'notremetier', 'uses' => 'HomeController@home']);
+Route::get('notre-metier', ['as' => 'notremetier', 'uses' => 'HomeController@activities']);
 Route::get('nous-trouver', ['as' => 'noustrouver', 'uses' => 'HomeController@def']);
 Route::get('membres', ['as' => 'membres', 'uses' => 'HomeController@def']);
 

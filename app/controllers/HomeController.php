@@ -44,4 +44,9 @@ class HomeController extends BaseController {
 		$this->layout->content = View::make('default');
 	}
 
+	public function activities()
+	{
+		$this->layout->content = View::make('statics.activities');
+	}
+
 }
