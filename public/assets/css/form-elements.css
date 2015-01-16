@@ -1,5 +1,5 @@
 
-input[type="text"], 
+input[type="text"],
 textarea {
     margin: 0;
     padding: 0 6px;
@@ -16,7 +16,7 @@ textarea {
     -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
 }
 
-input[type="text"]:focus, 
+input[type="text"]:focus,
 textarea:focus {
 	outline: 0;
     border: 1px solid #bbb;
@@ -28,12 +28,13 @@ input[type="text"]:-ms-input-placeholder, textarea:-ms-input-placeholder { color
 input[type="text"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #ccc; }
 
 
-button.btn {
+input[type="submit"].btn, button.btn {
 	height: 30px;
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
-    background: #9d426b;
+    /* background: #9d426b; */
+    background: deeppink;
     border: 0;
     font-family: 'Open Sans', sans-serif;
     font-size: 13px;

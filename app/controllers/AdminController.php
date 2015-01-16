@@ -22,8 +22,8 @@ class AdminController extends \BaseController {
 	{
 		$groups = Group::lists('groupName', 'idGroup');
 		return View::make('admin.create', [
-		    'groups' => $groups
-		    ]);
+			'groups' => $groups
+			]);
 	}
 
 
@@ -34,13 +34,27 @@ class AdminController extends \BaseController {
 	 */
 	public function store()
 	{
+		$regles = array(
+			'name' => 'required',
+			'firstname' => 'required',
+			'username' => 'required',
+			'email' => 'required',
+			'phone' => 'required',
+			'mobile' => 'required',
+			'adress' => 'required',
+			'zipCode' => 'required',
+			'city' => 'required',
+		);
+
+		$validation = Validator::make(Input::all(), $regles);
+
 		try {
-		    DB::table('User')->insertGetId(Input::except('_token'));
-            Alert::add("alert-success", "L'adhérent a bien été créé");
-		    return Redirect::to('admin');
+			DB::table('User')->insertGetId(Input::except('_token'));
+			Alert::add("alert-success", "L'adhérent a bien été créé");
+			return Redirect::to('admin');
 		} catch (Exception $e) {
-            Alert::add("alert-danger", "L'adhérent n'a pas pu être créé");
-            return Redirect::to('admin');
+			Alert::add("alert-danger", "L'adhérent n'a pas pu être créé");
+			return Redirect::to('admin/create')->withErrors($validation)->withInput();
 		}
 	}
 
