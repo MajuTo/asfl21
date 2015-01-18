@@ -1,6 +1,6 @@
 <?php
 
-class AdminController extends \BaseController {
+class UserController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class AdminController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('admin.index');
+		//
 	}
 
 
@@ -20,7 +20,10 @@ class AdminController extends \BaseController {
 	 */
 	public function create()
 	{
-		// 
+		$groups = Group::lists('groupName', 'idGroup');
+		return View::make('user.create', [
+			'groups' => $groups
+			]);
 	}
 
 
@@ -31,7 +34,28 @@ class AdminController extends \BaseController {
 	 */
 	public function store()
 	{
-		// 
+		$regles = array(
+			'name'      => 'required',
+			'firstName' => 'required',
+			'username'  => 'required',
+			'email'     => 'required',
+			// 'phone'     => 'required',
+			// 'mobile'    => 'required',
+			'address'   => 'required',
+			'zipCode'   => 'required',
+			'city'      => 'required',
+		);
+
+		$validation = Validator::make(Input::all(), $regles);
+
+		if ($validation->fails()) {
+			Alert::add("alert-danger", "L'adhérent n'a pas pu être créé");
+			return Redirect::back()->withErrors($validation)->withInput();
+		}
+
+		User::create(Input::all());
+		Alert::add("alert-success", "L'adhérent a bien été créé");
+		return Redirect::route('admin.user.create');
 	}
 
 

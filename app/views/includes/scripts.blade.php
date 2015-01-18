@@ -11,3 +11,9 @@
 {{ HTML::script('http://maps.google.com/maps/api/js?sensor=true') }}
 {{ HTML::script('assets/js/jquery.ui.map.min.js') }}
 {{ HTML::script('assets/js/scripts.js') }}
+
+<script>
+    $(".alert").fadeTo(5000, 500).slideUp(500, function(){
+        $(".alert").alert('close');
+    });
+</script>

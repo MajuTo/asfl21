@@ -34,8 +34,14 @@
 						<li>
 							<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>
 						</li>
-						<li>
-							<a href="{{ URL::route('admin.index') }}"><i class="fa fa-cog"></i><br>Admin</a>
+						<li class="dropdown active">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
+								<i class="fa fa-cog"></i><br>Admin<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu dropdown-menu-left" role="menu">
+								<li class="active"><a href="{{ URL::route('admin.index') }}">Admin</a></li>
+								<li><a href="{{ URL::route('logout') }}">Logout</a></li>
+							</ul>
 						</li>
 					</ul>
 				</div>
