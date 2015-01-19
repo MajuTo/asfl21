@@ -20,7 +20,7 @@ class ChangeController extends \BaseController {
 	 */
 	public function create()
 	{
-		// 
+		//
 	}
 
 
@@ -31,7 +31,7 @@ class ChangeController extends \BaseController {
 	 */
 	public function store()
 	{
-		// 
+		//
 	}
 
 
@@ -94,7 +94,7 @@ class ChangeController extends \BaseController {
 			$user->loggedOnce = 1;
 			$user->save();
 			return Redirect::route('home');
-		} 
+		}
 
 		Alert::add("alert-danger", "Mot de passe non identique.");
 		return Redirect::back();

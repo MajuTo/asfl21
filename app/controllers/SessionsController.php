@@ -38,7 +38,7 @@ class SessionsController extends \BaseController {
         if ($validation->fails()) {
             return Redirect::back()->withErrors($validation)->withInput();
         }
-        
+
 
         // authentification
         $credentials = [
@@ -52,7 +52,7 @@ class SessionsController extends \BaseController {
         if ($attempt) {
             $user = User::where('username', $input['username'])->first();
             if ($user->loggedOnce == 0) {
-                return Redirect::route('change.edit', [$user->idUser]);
+                return Redirect::route('change.edit', [$user->id]);
             }
             return Redirect::intended();
         }

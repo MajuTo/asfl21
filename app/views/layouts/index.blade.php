@@ -25,7 +25,7 @@
 
         <!-- Custom scripts -->
         @yield('script')
-    
-        
+
+
     </body>
 </html>
