@@ -1,0 +1,112 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateUserTable extends Migration {
+
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create('Group', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('groupName');
+		});
+		Schema::create('User', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('name');
+			$table->string('firstname');
+			$table->string('username')->unique();
+			$table->string('password');
+			$table->boolean('loggedOnce');
+			$table->string('email');
+			$table->string('phone');
+			$table->string('mobile');
+			$table->string('fax');
+			$table->string('address');
+			$table->string('zipCode');
+			$table->string('city');
+			$table->rememberToken();
+			$table->timestamps();
+			$table->integer('group_id')->unsigned();
+		});
+		Schema::create('Category', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('categoryName');
+		});
+		Schema::create('Activity', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('activityName');
+			$table->text('activityDesc');
+		});
+		Schema::create('Message', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('title');
+			$table->text('content');
+			$table->timestamps();
+			$table->integer('category_id')->unsigned();
+			$table->integer('user_id')->unsigned();
+		});
+		Schema::create('File', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('fileName');
+			$table->string('path');
+			$table->timestamps();
+			$table->integer('user_id')->unsigned();
+		});
+		Schema::create('Partner', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('partnerName');
+			$table->string('logo');
+			$table->string('contact');
+			$table->timestamps();
+		});
+		Schema::create('Activity_User', function(Blueprint $table)
+		{
+			$table->integer('activity_id')->unsigned();
+			$table->integer('user_id')->unsigned();
+		});
+		Schema::table('User', function(Blueprint $table)
+		{
+			$table->foreign('group_id')->references('id')->on('Group');
+		});
+		Schema::table('Message', function(Blueprint $table)
+		{
+			$table->foreign('category_id')->references('id')->on('Category');
+			$table->foreign('user_id')->references('id')->on('User');
+		});
+		Schema::table('File', function(Blueprint $table)
+		{
+			$table->foreign('user_id')->references('id')->on('User');
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::drop('User');
+		Schema::drop('Group');
+		Schema::drop('Activity');
+		Schema::drop('Message');
+		Schema::drop('File');
+		Schema::drop('Partner');
+		Schema::drop('Category');
+		Schema::drop('Activity_User');
+	}
+
+}

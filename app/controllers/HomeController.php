@@ -46,7 +46,9 @@ class HomeController extends BaseController {
 
 	public function activities()
 	{
-		$this->layout->content = View::make('statics.activities');
+		$activities = Activity::with('users')->paginate(4);
+		$a = User::find(1);
+		return View::make('activities.index', ['activities' => $activities, 'a' => $a]);
 	}
 
 }

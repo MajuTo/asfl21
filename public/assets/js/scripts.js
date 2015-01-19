@@ -1,11 +1,20 @@
 
 jQuery(document).ready(function() {
-	
+
+    var url = window.location;
+// Will only work if string in href matches with location
+$('ul.nav a[href="'+ url +'"]').parent().addClass('active');
+
+// Will also work for relative and absolute hrefs
+$('ul.nav a').filter(function() {
+    return this.href == url;
+}).parent().addClass('active');
+
 	/*
 	    Wow
 	*/
 	new WOW().init();
-	
+
 	/*
 	    Slider
 	*/
@@ -15,7 +24,7 @@ jQuery(document).ready(function() {
         prevText: "",
         nextText: ""
     });
-	
+
 	/*
 	    Slider 2
 	*/
@@ -24,7 +33,7 @@ jQuery(document).ready(function() {
 	, "assets/img/slider/6.jpg"
 	, "assets/img/slider/7.jpg"
 	], {duration: 3000, fade: 750});
-	
+
 	/*
 	    Image popup (home latest work)
 	*/
@@ -47,7 +56,7 @@ jQuery(document).ready(function() {
 			}
 		}
 	});
-	
+
 	/*
 	    Flickr feed
 	*/
@@ -58,29 +67,29 @@ jQuery(document).ready(function() {
         },
         itemTemplate: '<a href="{{link}}" target="_blank" rel="nofollow"><img src="{{image_s}}" alt="{{title}}" /></a>'
     });
-	
+
 	/*
 	    Google maps
 	*/
 	var position = new google.maps.LatLng(45.067883, 7.687231);
     $('.map').gmap({'center': position,'zoom': 15, 'disableDefaultUI':true, 'callback': function() {
             var self = this;
-            self.addMarker({'position': this.get('map').getCenter() });	
+            self.addMarker({'position': this.get('map').getCenter() });
         }
     });
-    
+
     /*
 	    Subscription form
 	*/
 	$('.success-message').hide();
 	$('.error-message').hide();
-	
+
 	$('.footer-box-text-subscribe form').submit(function(e) {
 		e.preventDefault();
-		
+
 		var form = $(this);
 	    var postdata = form.serialize();
-	    
+
 	    $.ajax({
 	        type: 'POST',
 	        url: 'assets/subscribe.php',
@@ -103,7 +112,7 @@ jQuery(document).ready(function() {
 	        }
 	    });
 	});
-    
+
     /*
 	    Contact form
 	*/
@@ -114,13 +123,13 @@ jQuery(document).ready(function() {
     	var nameLabel = form.find('label[for="contact-name"]');
     	var emailLabel = form.find('label[for="contact-email"]');
     	var messageLabel = form.find('label[for="contact-message"]');
-    	
+
     	nameLabel.html('Name');
     	emailLabel.html('Email');
     	messageLabel.html('Message');
-        
+
         var postdata = form.serialize();
-        
+
         $.ajax({
             type: 'POST',
             url: 'assets/sendmail.php',
@@ -144,21 +153,21 @@ jQuery(document).ready(function() {
             }
         });
     });
-	
+
 });
 
 
 jQuery(window).load(function() {
-	
+
 	/*
 	    Portfolio
 	*/
 	$('.portfolio-masonry').masonry({
-		columnWidth: '.portfolio-box', 
+		columnWidth: '.portfolio-box',
 		itemSelector: '.portfolio-box',
 		transitionDuration: '0.5s'
 	});
-	
+
 	$('.portfolio-filters a').on('click', function(e){
 		e.preventDefault();
 		if(!$(this).hasClass('active')) {
@@ -179,10 +188,10 @@ jQuery(window).load(function() {
 	    	}
 		}
 	});
-	
+
 	$(window).on('resize', function(){ $('.portfolio-masonry').masonry(); });
-	
-	// image popup	
+
+	// image popup
 	$('.portfolio-box img').magnificPopup({
 		type: 'image',
 		gallery: {
@@ -197,7 +206,7 @@ jQuery(window).load(function() {
 			}
 		},
 		callbacks: {
-			elementParse: function(item) {				
+			elementParse: function(item) {
 				if(item.el.hasClass('portfolio-video')) {
 					item.type = 'iframe';
 					item.src = item.el.data('portfolio-video');
@@ -209,5 +218,5 @@ jQuery(window).load(function() {
 			}
 		}
 	});
-	
+
 });

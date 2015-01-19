@@ -13,14 +13,8 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="top-navbar-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown active">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
-								<i class="fa fa-home"></i><br>Accueil<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu dropdown-menu-left" role="menu">
-								<li class="active"><a href="{{ URL::to('/') }}">Accueil</a></li>
-								<li><a href="{{ URL::to('/') }}">Accueil 2</a></li>
-							</ul>
+						<li>
+							<a href="{{ URL::route('home') }}"><i class="fa fa-home"></i><br>Accueil</a>
 						</li>
 						<li>
 							<a href="{{ URL::route('notremetier') }}"><i class="fa fa-camera"></i><br>Notre métier</a>
@@ -34,7 +28,7 @@
 						<li>
 							<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>
 						</li>
-						<li class="dropdown active">
+						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 								<i class="fa fa-cog"></i><br>Admin<span class="caret"></span>
 							</a>

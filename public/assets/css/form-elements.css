@@ -1,5 +1,6 @@
 
 input[type="text"],
+input[type="password"],
 textarea {
     margin: 0;
     padding: 0 6px;
@@ -17,9 +18,10 @@ textarea {
 }
 
 input[type="text"]:focus,
+input[type="password"]:focus,
 textarea:focus {
 	outline: 0;
-    border: 1px solid #bbb;
+    border: 1px solid deeppink;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
@@ -29,7 +31,7 @@ input[type="text"]::-webkit-input-placeholder, textarea::-webkit-input-placehold
 
 
 input[type="submit"].btn, button.btn {
-	height: 30px;
+    height: 30px;
     margin: 0;
     padding: 0 20px;
     vertical-align: middle;
@@ -50,14 +52,15 @@ input[type="submit"].btn, button.btn {
 }
 
 button.btn:hover {
-	background: #5d5d5d;
-    border: 0;
+    background: pink;
+    border: 1px;
+    border-color: deeppink;
     color: #fff;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
 button.btn:active {
-	outline: 0;
+    outline: 0;
     background: #5d5d5d;
     border: 0;
     color: #fff;
@@ -67,7 +70,7 @@ button.btn:active {
 }
 
 button.btn:focus {
-	outline: 0;
+    outline: 0;
     background: #5d5d5d;
     border: 0;
     color: #fff;
