@@ -20,9 +20,11 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		$groups = Group::lists('groupName', 'idGroup');
+		$groups = Group::lists('groupName', 'id');
+		$user = new User();
 		return View::make('user.create', [
-			'groups' => $groups
+			'groups' => $groups,
+			'user' => $user
 			]);
 	}
 
@@ -36,11 +38,8 @@ class UserController extends \BaseController {
 	{
 		$regles = array(
 			'name'      => 'required',
-			'firstName' => 'required',
-			'username'  => 'required',
-			'email'     => 'required',
-			// 'phone'     => 'required',
-			// 'mobile'    => 'required',
+			'firstname' => 'required',
+			'email'     => 'required|unique:users',
 			'address'   => 'required',
 			'zipCode'   => 'required',
 			'city'      => 'required',
@@ -53,9 +52,40 @@ class UserController extends \BaseController {
 			return Redirect::back()->withErrors($validation)->withInput();
 		}
 
-		User::create(Input::all());
+		$user = new User(Input::all());
+		$pw = Str::random(8);
+
+		$user->username = $this->generateUsername($user->name, $user->firstname);
+		$user->password = Hash::make($pw);
+
+		//Sauvegarde
+		$user->save();
+
+		//Envoi mail
+		Mail::send('emails.inscription', ['user' => $user, 'pw' => $pw], function($m) use ($user)	{
+			$m->to($user->email)->subject('Surprise')->from('majuto@free.fr', 'Thomas');
+		});
+
 		Alert::add("alert-success", "L'adhérent a bien été créé");
 		return Redirect::route('admin.user.create');
+	}
+
+	/**
+	 * Generate a random username with 2 first letters of name and firstname and a random 4 digits number.
+	 * Verify if the generated username is not already in database
+	 */
+	private function generateUsername($name, $firstname)
+	{
+		$username = Str::lower(substr($name, 0, 2) . substr($firstname, 0, 2) . rand(1000, 9999));
+		try
+		{
+			User::where('username', '=', $username)->firstOrFail();
+			$this->generateUsername($name, $firstname);
+		}
+		catch(Exception $e)
+		{
+			return $username;
+		}
 	}
 
 

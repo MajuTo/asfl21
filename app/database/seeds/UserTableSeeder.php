@@ -8,7 +8,7 @@ class UserTableSeeder extends Seeder {
 
          User::create([
             'name'      => 'Alexis',
-            'firstName' => 'Richter',
+            'firstname' => 'RICHTER',
             'username'  => 'root',
             'password'  => Hash::make('root'),
             'email'     => 'admin@musaya.net',
@@ -18,7 +18,21 @@ class UserTableSeeder extends Seeder {
             'address'   => 'stairway to heaven, 42',
             'zipCode'   => '222',
             'city'      => 'Dijon',
-            'group_id' => 1
+            'group_id' => 3
+            ]);
+         User::create([
+            'name'      => 'Thomas',
+            'firstname' => 'RAY',
+            'username'  => 'rooot',
+            'password'  => Hash::make('root'),
+            'email'     => 'majuto@free.fr',
+            'phone'     => '123456789',
+            'mobile'    => '987654321',
+            'fax'       => '',
+            'address'   => 'stairway to heaven, 42',
+            'zipCode'   => '222',
+            'city'      => 'Dijon',
+            'group_id' => 3
             ]);
     }
 
