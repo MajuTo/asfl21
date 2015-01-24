@@ -16,8 +16,8 @@ class CreatePartnersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('partnerName');
-			$table->string('logo');
-			$table->string('contact');
+			$table->string('logo')->nullable();
+			$table->string('contact')->nullable();
 			$table->timestamps();
 		});
 	}

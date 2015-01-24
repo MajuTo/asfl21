@@ -19,18 +19,19 @@ class CreateUsersTable extends Migration {
 			$table->string('firstname');
 			$table->string('username')->unique();
 			$table->string('password');
-			$table->boolean('loggedOnce');
-			$table->string('email');
-			$table->string('phone');
-			$table->string('mobile');
-			$table->string('fax');
-			$table->string('address');
-			$table->string('zipCode');
-			$table->string('city');
+			$table->boolean('loggedOnce')->default(0);
+			$table->string('email')->unique();
+			$table->string('phone')->nullable();
+			$table->string('mobile')->nullable();
+			$table->string('fax')->nullable();
+			$table->string('address')->nullable();
+			$table->string('zipCode')->nullable();
+			$table->string('city')->nullable();
 			$table->rememberToken();
 			$table->timestamps();
 			$table->integer('group_id')->unsigned();
 		});
+
 		Schema::table('users', function(Blueprint $table)
 		{
 			$table->foreign('group_id')->references('id')->on('groups');

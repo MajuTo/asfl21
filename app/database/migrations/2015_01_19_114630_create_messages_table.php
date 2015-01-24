@@ -21,6 +21,7 @@ class CreateMessagesTable extends Migration {
 			$table->integer('category_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 		});
+		
 		Schema::table('messages', function(Blueprint $table)
 		{
 			$table->foreign('category_id')->references('id')->on('categories');

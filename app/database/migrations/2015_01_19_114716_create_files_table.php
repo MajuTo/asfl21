@@ -20,6 +20,7 @@ class CreateFilesTable extends Migration {
 			$table->timestamps();
 			$table->integer('user_id')->unsigned();
 		});
+		
 		Schema::table('files', function(Blueprint $table)
 		{
 			$table->foreign('user_id')->references('id')->on('users');

@@ -17,6 +17,7 @@ class CreateActivityUserTable extends Migration {
 			$table->integer('activity_id')->unsigned();
 			$table->integer('user_id')->unsigned();
 		});
+		
 		Schema::table('activity_user', function(Blueprint $table)
 		{
 			$table->foreign('activity_id')->references('id')->on('activities');
