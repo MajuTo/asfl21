@@ -24,7 +24,7 @@ class UserController extends \BaseController {
 		$user = new User();
 		return View::make('user.create', [
 			'groups' => $groups,
-			'user' => $user
+			'user'   => $user
 			]);
 	}
 
@@ -36,7 +36,7 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		$regles = array(
+		$rules = array(
 			'name'      => 'required',
 			'firstname' => 'required',
 			'email'     => 'required|unique:users',
@@ -45,7 +45,7 @@ class UserController extends \BaseController {
 			'city'      => 'required',
 		);
 
-		$validation = Validator::make(Input::all(), $regles);
+		$validation = Validator::make(Input::all(), $rules);
 
 		if ($validation->fails()) {
 			Alert::add("alert-danger", "L'adhérent n'a pas pu être créé");
@@ -63,7 +63,7 @@ class UserController extends \BaseController {
 
 		//Envoi mail
 		Mail::send('emails.inscription', ['user' => $user, 'pw' => $pw], function($m) use ($user)	{
-			$m->to($user->email)->subject('Surprise')->from('majuto@free.fr', 'Thomas');
+			$m->to($user->email)->subject('Surprise');
 		});
 
 		Alert::add("alert-success", "L'adhérent a bien été créé");
@@ -71,8 +71,8 @@ class UserController extends \BaseController {
 	}
 
 	/**
-	 * Generate a random username with 2 first letters of name and firstname and a random 4 digits number.
-	 * Verify if the generated username is not already in database
+	 * Generate a random username with the first two letters of the name and firstname and a random 4 digits number.
+	 * Verify if the generated username is not already in the database
 	 */
 	private function generateUsername($name, $firstname)
 	{

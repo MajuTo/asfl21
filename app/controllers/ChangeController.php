@@ -77,27 +77,22 @@ class ChangeController extends \BaseController {
 		$confirmation = Input::get('confirmation');
 
 		// validation form
-		$regles = [
-		    'password'      => 'required',
-		    'confirmation'  => 'required',
+		$rules = [
+			'password'              => 'required|confirmed',
+			'password_confirmation' => 'required',
 		];
 
-		$validation = Validator::make(Input::all(), $regles);
+		$validation = Validator::make(Input::all(), $rules);
 
 		if ($validation->fails()) {
 			return Redirect::back()->withErrors($validation);
 		}
 
 		// validation mdp
-		if ($password == $confirmation) {
-			$user->password = Hash::make($password);
-			$user->loggedOnce = 1;
-			$user->save();
-			return Redirect::route('home');
-		}
-
-		Alert::add("alert-danger", "Mot de passe non identique.");
-		return Redirect::back();
+		$user->password = Hash::make($password);
+		$user->loggedOnce = 1;
+		$user->save();
+		return Redirect::route('home');
 	}
 
 

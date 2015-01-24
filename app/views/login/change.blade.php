@@ -10,7 +10,7 @@
                 {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('change.update')) }}
                     {{ Form::token() }}
                     {{ BootForm::password('Mot de passe', 'password') }}
-                    {{ BootForm::password('Confirmation', 'confirmation') }}
+                    {{ BootForm::password('Confirmation', 'password_confirmation') }}
                     {{ BootForm::submit('Envoyer') }}
                 {{ BootForm::close() }}
             </div>

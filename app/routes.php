@@ -11,7 +11,7 @@
 |
 */
 
-Route::when('*', 'csrf', ['post', 'put', 'delete']);
+Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
 Route::get('notre-metier', ['as' => 'notremetier', 'uses' => 'HomeController@activities']);
@@ -33,7 +33,10 @@ Route::group([
     'before' => 'auth',
     ], function(){
         /* ADMIN */
-        Route::resource('admin', 'AdminController');
+        Route::group(['before' => 'admin'], function(){
+            Route::resource('admin', 'AdminController');
+        });
+        // Route::resource('admin', 'AdminController', ['before' => 'admin']);
 
         /* Change pwd after first login */
         Route::resource('change', 'ChangeController', ['only' => ['edit', 'update']]);
@@ -49,6 +52,11 @@ Route::group([
         );
     }
 );
+
+
+
+// to be deleted for production
+Route::get('tinker', ['as' => 'tinker', 'uses' => 'SessionsController@tinker']);
 
 
 

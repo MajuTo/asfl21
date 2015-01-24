@@ -76,7 +76,7 @@ class SessionsController extends \BaseController {
 
 
     /* TO BE DELETED AFTER DEV */
-    public function createUser() {
+    public function tinker() {
         User::create([
             'name'      => 'Alexis',
             'firstName' => 'Richter',
@@ -89,7 +89,7 @@ class SessionsController extends \BaseController {
             'address'   => 'stairway to heaven, 42',
             'zipCode'   => '222',
             'city'      => 'Dijon',
-            'Group_idGroup' => 1
+            'group_id' => 1
             ]);
 
         return 'Done';

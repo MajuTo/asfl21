@@ -5,17 +5,6 @@
 
             <h1>Création d'un adhérent</h1>
 
-        {{--  Bloc d'erreur groupé, décommente si tu veux voir a quoi ca ressemble, pas terrible imo --}}
-        {{--
-            @if ($errors->has())
-                <div class="alert alert-danger">
-                    @foreach ($errors->all() as $error)
-                        {{ $error }}<br>
-                    @endforeach
-                </div>
-            @endif
-        --}}
-
             <div class="col-sm-6">
                 {{ BootForm::openHorizontal(3, 9)->action(URL::route('user.store')) }}
                     {{ Form::token() }}
