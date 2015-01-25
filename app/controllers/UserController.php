@@ -109,7 +109,12 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+
+		if ($id != Auth::id()) {
+			return Redirect::Route('user.edit', [Auth::id()]);
+		}
+
+		return View::make('user.edit');
 	}
 
 
@@ -121,7 +126,41 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user         = User::find($id);
+
+		// validation form
+		$rules = array(
+			'address'  => 'required',
+			'zipCode'  => 'required',
+			'city'     => 'required',
+		);
+
+		$validation = Validator::make(Input::all(), $rules);
+
+		if ($validation->fails()) {
+			Alert::add("alert-danger", "Les modifications n'ont pas été enregistrées.");
+			return Redirect::back()->withErrors($validation);
+		}
+
+		$user->update(Input::all());
+		return Redirect::route('member.edit');
+	}
+
+	public function updatePseudo($id){
+		$user = User::find($id);
+
+		$rules = array(
+			'username' => 'required|unique:users',
+		);
+		$validation = Validator::make(Input::all(), $rules);
+
+		if ($validation->fails()) {
+			Alert::add("alert-danger", "Les modifications n'ont pas été enregistrées.");
+			return Redirect::back()->withErrors($validation);
+		}
+
+		$user->update(Input::all());
+		return Redirect::route('member.edit');
 	}
 
 

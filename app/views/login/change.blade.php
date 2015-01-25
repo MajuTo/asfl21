@@ -5,7 +5,7 @@
 
             <h1>Mot de Passe</h1>
             <h2>Bonjour {{ $user->username }}</h2>
-            <p>C'est la première fois que vous vous identifiez. Veuillez changer votre mot de passe.</p>
+            <p>Veuillez changer votre mot de passe.</p>
             <div class="col-sm-6">
                 {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('change.update')) }}
                     {{ Form::token() }}

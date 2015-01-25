@@ -16,7 +16,6 @@ Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
 Route::get('notre-metier', ['as' => 'notremetier', 'uses' => 'HomeController@activities']);
 Route::get('nous-trouver', ['as' => 'noustrouver', 'uses' => 'HomeController@def']);
-Route::get('membres', ['as' => 'membres', 'uses' => 'HomeController@def']);
 
 Route::get('contact', ['as' => 'contact', 'uses' => 'HomeController@contact']);
 Route::post('contact', ['as' => 'sendcontact', 'uses' => 'HomeController@sendcontact']);
@@ -32,24 +31,27 @@ Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store',
 Route::group([
     'before' => 'auth',
     ], function(){
+        
         /* ADMIN */
         Route::group(['before' => 'admin'], function(){
             Route::resource('admin', 'AdminController');
         });
-        // Route::resource('admin', 'AdminController', ['before' => 'admin']);
 
         /* Change pwd after first login */
         Route::resource('change', 'ChangeController', ['only' => ['edit', 'update']]);
         
         /* USER */
-        /* with prefix */
         Route::resource('user', 'UserController');
+        Route::put('updatePseudo/{pseudo}', ['as' => 'updatePseudo', 'uses' => 'UserController@updatePseudo']);
+        /* with prefix */
         Route::group([
             'prefix' => 'admin',
             ], function(){
                 Route::get('user/create', ['as' => 'admin.user.create', 'uses' => 'UserController@create']);
             }
         );
+
+        Route::resource('member', 'UserController');
     }
 );
 

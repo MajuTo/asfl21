@@ -23,20 +23,38 @@
 							<a href="{{ URL::route('noustrouver') }}"><i class="fa fa-camera"></i><br>Nous trouver</a>
 						</li>
 						<li>
-							<a href="{{ URL::route('membres') }}"><i class="fa fa-user"></i><br>Membres</a>
-						</li>
-						<li>
 							<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>
 						</li>
+
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
-								<i class="fa fa-cog"></i><br>Admin<span class="caret"></span>
+								<i class="fa fa-user"></i><br>Membres<span class="caret"></span>
 							</a>
-							<ul class="dropdown-menu dropdown-menu-left" role="menu">
-								<li class="active"><a href="{{ URL::route('admin.index') }}">Admin</a></li>
-								<li><a href="{{ URL::route('logout') }}">Logout</a></li>
-							</ul>
+							@if (Auth::guest())
+								<ul class="dropdown-menu dropdown-menu-left" role="menu">
+									<li><a href="{{ URL::route('login') }}">Login</a></li>
+								</ul>
+							@else 
+								<ul class="dropdown-menu dropdown-menu-left" role="menu">
+									<li><a href="{{ URL::route('member.edit', Auth::user()->id) }}">Mon Profil</a></li>
+									<li><a href="{{ URL::route('logout') }}">Logout</a></li>
+								</ul>
+							@endif
 						</li>
+
+						@if(!Auth::guest() and Auth::user()->group->groupName == 'admin')
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
+									<i class="fa fa-cog"></i><br>Admin<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-left" role="menu">
+									<li><a href="{{ URL::route('admin.index') }}">Admin</a></li>
+									<li><a href="{{ URL::route('logout') }}">Logout</a></li>
+								</ul>
+							</li>
+						@endif
+							
+
 					</ul>
 				</div>
 			</div>
