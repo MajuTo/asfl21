@@ -24,29 +24,15 @@
 	                    	nisl ut aliquip ex ea commodo consequat.
 	                    </p>
 
-	                    {{ Form::open(['route' => 'sendcontact', 'method' => 'post']) }}
-	                    	<div class="form-group">
-	                    		{{ Form::label('name', 'Votre nom', ['class' =>'form-label']) }}
-	                    		<span class="error-label">{{ $errors->first('name') }}</span>
-	                    		{{ Form::text('name', null, ['id' => 'name', 'class' => 'form-control', 'placeholder' => 'Entrez votre nom...']) }}
-	                        </div>
-	                    	<div class="form-group">
-	                    		{{ Form::label('email', 'Votre email', ['class' =>'form-label']) }}
-	                    		<span class="error-label">{{ $errors->first('email') }}</span>
-	                    		{{ Form::text('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'Entrez votre email...']) }}
-	                        </div>
-	                        <div class="form-group">
-	                    		{{ Form::label('subject', 'Votre sujet', ['class' =>'form-label']) }}
-	                    		<span class="error-label">{{ $errors->first('subject') }}</span>
-	                    		{{ Form::text('subject', null, ['id' => 'subject', 'class' => 'form-control', 'placeholder' => 'Entrez votre sujet...']) }}
-	                        </div>
-	                        <div class="form-group">
-	                    		{{ Form::label('message', 'Votre message', ['class' =>'form-label']) }}
-	                    		<span class="error-label">{{ $errors->first('message') }}</span>
-	                    		{{ Form::textarea('message', null, ['id' => 'message', 'class' => 'form-control', 'placeholder' => 'Entrez votre message...']) }}
-	                        </div>
-	                        {{ Form::submit('Envoyer', ['class' => 'btn btn-pink']) }}
-	                    {{ Form::close() }}
+	                    {{ BootForm::openHorizontal(3, 9)->action(URL::route('sendcontact')) }}
+		                    {{ Form::token() }}
+	                        {{ BootForm::text('Votre nom', 'name')->placeHolder('Votre nom ...')->required() }}
+	                        {{ BootForm::text('Votre email', 'email')->placeHolder('Votre email ...')->required() }}
+	                        {{ BootForm::text('Votre sujet', 'subject')->placeHolder('Votre sujet ...')->required() }}
+	                        {{ BootForm::textarea('Votre message', 'message')->placeHolder('Votre message ...')->required() }}
+	                        {{ BootForm::submit('Envoyer') }}
+	                    {{ BootForm::close() }}
+
 	                </div>
 	                <div class="col-sm-5 contact-address wow fadeInUp">
 	                    <h3>We Are Here</h3>
