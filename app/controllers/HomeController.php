@@ -10,7 +10,7 @@ class HomeController extends BaseController {
 
 	public function home()
 	{
-		return View::make('hello');
+		return View::make('statics.home');
 	}
 
 	public function contact()
@@ -46,9 +46,10 @@ class HomeController extends BaseController {
 
 	public function activities()
 	{
-		$activities = Activity::with('users')->paginate(4);
-		$a = User::find(1);
-		return View::make('activities.index', ['activities' => $activities, 'a' => $a]);
+		//$activities = Activity::with('users')->paginate(4);
+		//$a = User::find(1);
+		//return View::make('activities.index', ['activities' => $activities, 'a' => $a]);
+		return View::make('statics.activities');
 	}
 
 }

@@ -36,13 +36,17 @@
 								</ul>
 							@else 
 								<ul class="dropdown-menu dropdown-menu-left" role="menu">
-									<li><a href="{{ URL::route('member.edit', Auth::user()->id) }}">Mon Profil</a></li>
+									<li><a href="{{ URL::route('user.edit', Auth::user()->id) }}">Mon Profil</a></li>
+									<li><a href="{{ URL::route('member.index') }}">Tableau de Bord</a></li>
+									@if(!Auth::guest() and Auth::user()->group->id == 2)
+										<li><a href="{{ URL::route('admin.index') }}">Admin</a></li>
+									@endif
 									<li><a href="{{ URL::route('logout') }}">Logout</a></li>
 								</ul>
 							@endif
 						</li>
 
-						@if(!Auth::guest() and Auth::user()->group->groupName == 'admin')
+						@if(!Auth::guest() and Auth::user()->group->id == 2)
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
 									<i class="fa fa-cog"></i><br>Admin<span class="caret"></span>

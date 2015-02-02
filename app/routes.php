@@ -51,7 +51,7 @@ Route::group([
             }
         );
 
-        Route::resource('member', 'UserController');
+        Route::resource('member', 'MemberController');
     }
 );
 
