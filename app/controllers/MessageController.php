@@ -1,6 +1,6 @@
 <?php
 
-class MemberController extends \BaseController {
+class MessageController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -11,9 +11,7 @@ class MemberController extends \BaseController {
 	{
 		$aMessages = Category::find(1)->messages;
 		$mMessages = Category::find(2)->messages;
-		$messages = Message::orderBy('created_at','desc')->paginate(2);
 		return View::make('member.dashboard', [
-			'messages' => $messages,
 			'mMessages' => $mMessages,
 			'aMessages' => $aMessages
 			]);
@@ -38,7 +36,29 @@ class MemberController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$rules = array(
+			'title'   => 'required',
+			'content' => 'required'
+		);
+
+		$validation = Validator::make(Input::all(), $rules);
+
+		if ($validation->fails()) {
+			Alert::add("alert-danger", "Le message n'a pas pu être envoyé");
+			return Redirect::back()->withErrors($validation)->withInput();
+		}
+
+		$message = new Message();
+		$message->title = Input::get('title');
+		$message->content = Input::get('content');
+		$message->category_id = 2;
+		$message->user_id = Auth::id();
+
+		//Sauvegarde
+		$message->save();
+
+		Alert::add("alert-success", "Votre message a bien été envoyé");
+		return Redirect::route('member.index');
 	}
 
 

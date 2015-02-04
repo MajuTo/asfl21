@@ -12,7 +12,7 @@
 				<li>Liens utiles</li>
 				<li>Espace PRO</li>
 			</ul>
-			Ceci est une liste de lien dans sa tête, en gros notre menu j'imagine
+			Ceci est une liste de liens dans sa tête, en gros notre menu j'imagine
 		</p>
 	</div>
 </div>
