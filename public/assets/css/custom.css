@@ -68,9 +68,40 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-.btn {
+h1{
+    text-align: center;
+}
+
+a {
+    color: deeppink;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: #B420FF;
+}
+/* END GENERAL */
+
+/* FORMS */
+.form-control{
     border-radius: 0px;
 }
+ .form-control:focus{
+    border-color:deeppink;
+    outline:0;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(255,20,147,.6);
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(255,20,147,.6);
+}
+/* END FORMS */
+
+/* BUTTONS */
+ .btn,
+ .btn:focus,
+ .btn:active,
+ .btn:hover{
+    border-radius: 0px;
+ }
 
 .btn-default {
     color: #E7E7E7;
@@ -84,16 +115,76 @@ body {
     border-color: deeppink;
 }
 
-a {
-    color: deeppink;
+.btn-pink {
+  color: #fff;
+  background-image:         -webkit-linear-gradient(pink 0%, deeppink 100%);
+  background-image:         -o-linear-gradient(pink 0%, deeppink 100%);
+  background-image:         linear-gradient(pink 0%, deeppink 100%);
+  filter: progid:DXImage:;Transform.Microsoft.gradient(startColorstr='pink', endColorstr='deeppink', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+  background-repeat: repeat-x;
+  border-color: deeppink;
 }
 
-a:hover,
-a:focus,
-a:active {
-    color: #B420FF;
+.btn-pink:hover,
+.btn-pink:focus {
+  color: #fff;
+  background-color: deeppink;
+  background-position: 0 -15px;
 }
-/* END GENERAL */
+
+.btn-pink:active,
+.btn-pink.active {
+  color: #fff;
+  background-color: deeppink;
+  border-color: #245580;
+}
+
+.btn-pink:disabled,
+.btn-pink[disabled] {
+  color: #fff;
+  background-color: #265a88;
+  background-image: none;
+}
+/* END BUTTONS */
+
+/* PAGINATION */
+
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: deeppink;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: deeppink;
+  background-color: pink;
+  border-color: pink;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: #fff;
+  cursor: default;
+  background-color: deeppink;
+  border-color: deeppink;
+}
+/* END PAGINATION */
 
 
 /* FOOTER */
