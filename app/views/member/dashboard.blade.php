@@ -8,7 +8,7 @@
 	            {{ Form::token() }}
 	            {{ BootForm::text('Titre', 'title')->placeHolder('Titre...')->required() }}
 	            {{ BootForm::text('Message', 'content')->placeHolder('Message...')->required() }}
-	            {{ BootForm::submit('Envoyer', 'pull-right') }}
+	            {{ BootForm::submit('Envoyer', 'pull-right btn btn-pink') }}
 	        {{ BootForm::close() }}
 	    </div>
     	<div class="col-sm-12">

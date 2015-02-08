@@ -4,7 +4,7 @@
     <div class="row">
         <h1>Tableau de bord Admin</h1>
         <p>Bienvenue {{ Auth::user()->firstname }}</p>
-        <a href="{{ URL::route('admin.user.create') }}" ><button class="btn">Create</button></a>
+        <a href="{{ URL::route('admin.user.create') }}" ><button class="btn btn-pink">Create</button></a>
         <hr>
     </div>
     <div class="row">
