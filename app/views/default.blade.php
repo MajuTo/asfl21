@@ -196,3 +196,11 @@
 	        </div>
         </div>
 @stop
+
+@section('script')
+	<script>
+		$(document).ready(function(){
+			$('#nav-trouver').addClass('active');
+		});
+	</script>
+@stop

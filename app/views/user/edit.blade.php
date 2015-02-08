@@ -29,3 +29,11 @@
         </div>
     </div>
 @stop
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#nav-membre').addClass('active');
+            $('#nav-profil').addClass('active');
+        });
+    </script>
+@stop

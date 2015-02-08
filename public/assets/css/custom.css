@@ -1,19 +1,65 @@
 /* NAVIGATION */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+/* Colors
+    deeppink
+    #B420FF
+    #E7E7E7
+*/
 
 .navbar-default {
-    background-image: url('../img/FabricPlain0030_thumblarge.jpg');
-    background-repeat: repeat-x;
+    background-color: transparent;
+    font-family: 'Open Sans', sans-serif;
+    border: none;
+    font-size: 1.1em;
+}
+
+#menu {
+    border-bottom: 1px solid deeppink;
 }
 
 .navbar-default .navbar-brand {
-    color: deeppink;
     margin-top: 10px;
+    font-size: 3em;
+}
+
+.navbar-default .navbar-nav>li {
+    margin-bottom: 4px;
 }
 
 .navbar-default .navbar-nav>li>a {
-    /*color: deeppink;*/
+    border-top: 5px solid transparent;
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-    color: #B420FF;
+    
+    background-color: #E7E7E7;
+    border-top-color: deeppink;
 }
+
+.navbar-default .navbar-nav>.active>a {
+    border-top-color: #B420FF;
+}
+
+.navbar-default .navbar-nav>.focus>a {
+    background-color: #E7E7E7;
+    border-top-color: deeppink;
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus  {
+    border-top-color: deeppink;
+}
+
+.navbar-nav > li:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu>li>a:hover {
+    background-color: deeppink;
+}
+
+.dropdown-menu>.active>a {
+    background-color: #B420FF;
+}
+
+/* END NAVIGATION */
+

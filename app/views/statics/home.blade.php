@@ -17,3 +17,11 @@
 	</div>
 </div>
 @stop
+
+@section('script')
+	<script>
+		$(document).ready(function(){
+			$('#nav-accueil').addClass('active');
+		});
+	</script>
+@stop

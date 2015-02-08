@@ -35,3 +35,11 @@
     </div>
 </div>
 @stop
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#nav-membre').addClass('active');
+            $('#nav-admin').addClass('active');
+        });
+    </script>
+@stop

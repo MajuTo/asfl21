@@ -45,3 +45,11 @@
 	        </div>
         </div>
 @stop
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#nav-contact').addClass('active');
+        });
+    </script>
+@stop

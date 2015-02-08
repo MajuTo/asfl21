@@ -8,5 +8,11 @@
 </script>
 
 <script>
-    
+    $('.dropdown').mouseenter(function(){
+        $(this).addClass('focus');
+    });
+
+    $('.dropdown').mouseleave(function(){
+        $(this).removeClass('focus');
+    });
 </script>
