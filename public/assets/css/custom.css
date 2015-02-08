@@ -1,0 +1,19 @@
+/* NAVIGATION */
+
+.navbar-default {
+    background-image: url('../img/FabricPlain0030_thumblarge.jpg');
+    background-repeat: repeat-x;
+}
+
+.navbar-default .navbar-brand {
+    color: deeppink;
+    margin-top: 10px;
+}
+
+.navbar-default .navbar-nav>li>a {
+    /*color: deeppink;*/
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    color: #B420FF;
+}
