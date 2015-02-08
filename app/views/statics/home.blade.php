@@ -6,7 +6,7 @@
 			<h1>Association ASFL21</h1>
 			<p>En s'unissant en association, les sages femmes libérales de Côte d'Or souhaitent offrir une *mot_illisible* et un accompagnement personnalisé a chaque femme, couple et enfant. Bienvenue sur notre site.</p>
 			<p>
-				<ul>
+				<ul id="home-li">
 					<li><a href="{{ URL::route('notremetier') }}">Que me propose ma sage femme Libérale ?</a></li>
 					<li><a href="{{ URL::route('noustrouver') }}">Où la trouver ?</a></li>
 					<li><a href="#">Calendrier de grossesse</a></li>
