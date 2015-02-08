@@ -2,18 +2,20 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<h1>Association ASFL21</h1>
-		<p>En s'unissant en association, les sages femmes libérales de Côte d'Or souhaitent offrir une *mot_illisible* et un accompagnement personnalisé a chaque femme, couple et enfant. Bienvenue sur notre site.</p>
-		<p>
-			<ul>
-				<li>Que me propose ma sage femme Libérale ?</li>
-				<li>Où la trouver ?</li>
-				<li>Calendrier de grossesse</li>
-				<li>Liens utiles</li>
-				<li>Espace PRO</li>
-			</ul>
-			Ceci est une liste de liens dans sa tête, en gros notre menu j'imagine
-		</p>
+		<div class="col-sm-8">
+			<h1>Association ASFL21</h1>
+			<p>En s'unissant en association, les sages femmes libérales de Côte d'Or souhaitent offrir une *mot_illisible* et un accompagnement personnalisé a chaque femme, couple et enfant. Bienvenue sur notre site.</p>
+			<p>
+				<ul>
+					<li><a href="{{ URL::route('notremetier') }}">Que me propose ma sage femme Libérale ?</a></li>
+					<li><a href="{{ URL::route('noustrouver') }}">Où la trouver ?</a></li>
+					<li><a href="#">Calendrier de grossesse</a></li>
+					<li><a href="#">Liens utiles</a></li>
+					<li><a href="{{ URL::route('member.index') }}">Espace PRO</a></li>
+				</ul>
+				Ceci est une liste de liens dans sa tête, en gros notre menu j'imagine
+			</p>
+		</div>
 	</div>
 </div>
 @stop

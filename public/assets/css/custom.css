@@ -60,6 +60,64 @@
 .dropdown-menu>.active>a {
     background-color: #B420FF;
 }
-
 /* END NAVIGATION */
 
+
+/* GENERAL */
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.btn-default {
+    color: #E7E7E7;
+    background-color: deeppink;
+    border-color: deeppink;
+}
+
+.btn-default:hover {
+    color: #E7E7E7;
+    background-color: #B420FF;
+    border-color: deeppink;
+}
+
+a {
+    color: deeppink;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color: #B420FF;
+}
+/* END GENERAL */
+
+
+/* FOOTER */
+.footer {
+    margin-top: 15px;
+    padding-top: 5px;
+    border-top: 1px solid #E7E7E7;
+    font-size: 0.7em;
+}
+/* END FOOTER */
+
+/* PROFIL */
+#mod-mdp-link {
+    text-indent: 5em;
+}
+/* END PROFIL */
+
+/* CONTACT */
+#contact-map {
+    height: 460px;
+    width: 460px;
+}
+
+#nous-h3 {
+    margin-top: 0px;
+}
+/* END CONTACT */

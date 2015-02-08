@@ -3,10 +3,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ASFL21</title>
 
+<!-- GOOGLE MAP API -->
+<script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqJKkv1M-fhJ97dtL0CUV16QelltipJmE">
+</script>
 <!-- CSS -->
-{{ HTML::style('http://fonts.googleapis.com/css?family=Open+Sans:400italic,400') }}
-{{ HTML::style('http://fonts.googleapis.com/css?family=Droid+Sans') }}
-{{ HTML::style('http://fonts.googleapis.com/css?family=Lobster') }}
 {{ HTML::style('assets/bootstrap/css/bootstrap.min.css') }}
 {{ HTML::style('assets/font-awesome/css/font-awesome.min.css') }}
 {{ HTML::style('assets/css/custom.css') }}

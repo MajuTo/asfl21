@@ -15,7 +15,7 @@ class HomeController extends BaseController {
 
 	public function contact()
 	{
-		return View::make('contact');
+		return View::make('contact.index');
 	}
 
 	public function sendcontact()
