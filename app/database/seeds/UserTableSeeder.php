@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder {
             'address'   => 'stairway to heaven, 42',
             'zipCode'   => '222',
             'city'      => 'Dijon',
-            'group_id' => 3
+            'group_id' => 2
             ]);
          User::create([
             'name'      => 'RAY',

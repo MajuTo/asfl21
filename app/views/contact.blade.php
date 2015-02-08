@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
         <!-- Page Title -->
-        <div class="page-title-container">
+        <!-- <div class="page-title-container">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 wow fadeIn">
@@ -11,18 +11,18 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Contact Us -->
         <div class="contact-us-container">
         	<div class="container">
 	            <div class="row">
 	                <div class="col-sm-7 wow fadeInLeft">
-	                    <p>
-	                    	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
-	                    	Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper <a href="">suscipit lobortis</a> 
-	                    	nisl ut aliquip ex ea commodo consequat.
-	                    </p>
+	         <!--            <p>
+                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et. 
+                 Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper <a href="">suscipit lobortis</a> 
+                 nisl ut aliquip ex ea commodo consequat.
+             </p> -->
 
 	                    {{ BootForm::openHorizontal(3, 9)->action(URL::route('sendcontact')) }}
 		                    {{ Form::token() }}
