@@ -52,7 +52,7 @@ class SessionsController extends \BaseController {
         if ($attempt) {
             $user = User::where('username', $input['username'])->first();
             if ($user->loggedOnce == 0) {
-                return Redirect::route('change.edit', [$user->id]);
+                return Redirect::route('sessions.edit', [$user->id]);
             }
             return Redirect::intended();
         }
@@ -72,5 +72,56 @@ class SessionsController extends \BaseController {
         Auth::logout();
         return Redirect::route('home');
     }
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        if ($id != Auth::id()) {
+            return Redirect::Route('sessions.edit', [Auth::id()]);
+        }
+
+        $user = User::find(Auth::id());
+        return View::make('login.change', ['user' => $user]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update()
+    {
+        $user        = User::find(Auth::id());
+        $password    = Input::get('password');
+        $confirmation = Input::get('confirmation');
+
+        // validation form
+        $rules = [
+            'password'              => 'required|confirmed',
+            'password_confirmation' => 'required',
+        ];
+
+        $validation = Validator::make(Input::all(), $rules);
+
+        if ($validation->fails()) {
+            return Redirect::back()->withErrors($validation);
+        }
+
+        // validation mdp
+        $user->password = Hash::make($password);
+        $user->loggedOnce = 1;
+        $user->save();
+        return Redirect::route('home');
+    }
+
+    
 
 }

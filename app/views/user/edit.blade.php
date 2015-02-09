@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h3>Mot de passe</h3>
-                        <p id="mod-mdp-link">Modifier votre mot de passe <a href="{{ URL::route('change.edit') }}">ici</a>.</p>
+                        <p id="mod-mdp-link">Modifier votre mot de passe <a href="{{ URL::route('sessions.edit') }}">ici</a>.</p>
                     </div>
                 </div>
             </div>

@@ -14,12 +14,12 @@
 Route::when('*', 'csrf', ['post', 'put', 'patch', 'delete']);
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@home']);
+Route::get('notre-metier', ['as' => 'notremetier', 'uses' => 'NotreMetierController@index']);
+Route::get('nous-trouver', ['as' => 'noustrouver', 'uses' => 'NousTrouverController@index']);
 
-Route::get('notre-metier', ['as' => 'notremetier', 'uses' => 'HomeController@activities']);
-Route::get('nous-trouver', ['as' => 'noustrouver', 'uses' => 'HomeController@def']);
 
-Route::get('contact', ['as' => 'contact', 'uses' => 'HomeController@contact']);
-Route::post('contact', ['as' => 'sendcontact', 'uses' => 'HomeController@sendcontact']);
+Route::get('contact',  ['as' => 'contact', 'uses' => 'ContactController@index']);
+Route::post('contact', ['as' => 'sendcontact', 'uses' => 'ContactController@sendcontact']);
 
 
 // RESTful route => see php artisan routes
@@ -27,7 +27,7 @@ Route::post('contact', ['as' => 'sendcontact', 'uses' => 'HomeController@sendcon
 /* AUTHENTIFICATION */
 Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy']);
-Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy']]);
+Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy', 'edit', 'update']]);
 
 Route::group([
     'before' => 'auth',
@@ -39,7 +39,8 @@ Route::group([
         });
 
         /* Change pwd after first login */
-        Route::resource('change', 'ChangeController', ['only' => ['edit', 'update']]);
+        Route::get('sessions/{sessions}/edit', ['as' => 'sessions.edit', 'uses' => 'SessionsController@edit']);
+        Route::put('sessions/{sessions}', ['as' => 'sessions.update', 'uses' => 'SessionsController@update']);
         
         /* USER */
         Route::resource('user', 'UserController');

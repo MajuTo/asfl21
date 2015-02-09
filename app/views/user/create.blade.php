@@ -1,10 +1,12 @@
 @extends('layouts.index')
 @section('content')
     <div class="container">
-        <div class="row" id="admin_form">
-
-            <h1>Création d'un adhérent</h1>
-
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Création d'un adhérent</h1>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-6">
                 {{ BootForm::openHorizontal(3, 9)->action(URL::route('user.store')) }}
                     {{ Form::token() }}

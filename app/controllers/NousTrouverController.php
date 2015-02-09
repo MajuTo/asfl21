@@ -1,6 +1,6 @@
 <?php
 
-class ChangeController extends \BaseController {
+class NousTrouverController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,7 @@ class ChangeController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('default');
 	}
 
 
@@ -55,12 +55,7 @@ class ChangeController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		if ($id != Auth::id()) {
-			return Redirect::Route('change.edit', [Auth::id()]);
-		}
-
-		$user = User::find(Auth::id());
-		return View::make('login.change', ['user' => $user]);
+		//
 	}
 
 
@@ -70,29 +65,9 @@ class ChangeController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update()
+	public function update($id)
 	{
-		$user 		 = User::find(Auth::id());
-		$password    = Input::get('password');
-		$confirmation = Input::get('confirmation');
-
-		// validation form
-		$rules = [
-			'password'              => 'required|confirmed',
-			'password_confirmation' => 'required',
-		];
-
-		$validation = Validator::make(Input::all(), $rules);
-
-		if ($validation->fails()) {
-			return Redirect::back()->withErrors($validation);
-		}
-
-		// validation mdp
-		$user->password = Hash::make($password);
-		$user->loggedOnce = 1;
-		$user->save();
-		return Redirect::route('home');
+		//
 	}
 
 

@@ -2,7 +2,9 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>Que me propose ma sage femme libérale ?</h1>
+        <div class="col-sm-12">
+            <h1>Que me propose ma sage femme libérale ?</h1>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-4">
