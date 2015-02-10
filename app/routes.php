@@ -55,7 +55,8 @@ Route::group([
                     Route::get('user/create', ['as' => 'admin.user.create', 'uses' => 'UserController@create']);
                 }
             );
-            // GET|HEAD user/create              | user.create       | UserController@create         | auth
+
+            /* user.create */
             Route::get('user/create', ['as' => 'user.create', 'uses' => 'UserController@create']);
         });
     }

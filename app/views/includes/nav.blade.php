@@ -23,7 +23,7 @@
         	<a href="{{ URL::route('notremetier') }}"><i class="fa fa-camera"></i><br>Notre métier</a>
         </li>
         <li id="nav-trouver">
-        	<a href="{{ URL::route('noustrouver') }}"><i class="fa fa-camera"></i><br>Nous trouver</a>
+        	<a href="{{ URL::route('noustrouver') }}"><i class="fa fa-map-marker"></i><br>Nous trouver</a>
         </li>
         <li id="nav-contact">
         	<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>
