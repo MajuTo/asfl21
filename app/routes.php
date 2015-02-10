@@ -21,6 +21,7 @@ Route::get('nous-trouver', ['as' => 'noustrouver', 'uses' => 'NousTrouverControl
 Route::get('contact',  ['as' => 'contact', 'uses' => 'ContactController@index']);
 Route::post('contact', ['as' => 'sendcontact', 'uses' => 'ContactController@sendcontact']);
 
+Route::get('liens',  ['as' => 'link', 'uses' => 'LinkController@index']);
 
 // RESTful route => see php artisan routes
 
@@ -38,7 +39,7 @@ Route::group([
         Route::put('sessions/{sessions}', ['as' => 'sessions.update', 'uses' => 'SessionsController@update']);
         
         /* USER */
-        Route::resource('user', 'UserController');
+        Route::resource('user', 'UserController', ['only' => ['edit', 'update']]);
         Route::put('updatePseudo/{pseudo}', ['as' => 'updatePseudo', 'uses' => 'UserController@updatePseudo']);
 
         /* MESSAGE */
@@ -46,17 +47,19 @@ Route::group([
 
         /* ADMIN */
         Route::group(['before' => 'admin'], function(){
-            Route::resource('admin', 'AdminController');
+            
 
             /* user with prefix */
             Route::group([
                 'prefix' => 'admin',
                 ], function(){
-                    Route::get('user/create', ['as' => 'admin.user.create', 'uses' => 'UserController@create']);
+                    Route::get('/', ['as' => 'admin.index', 'uses' => 'UserController@index']); 
+                    Route::resource('link', 'LinkController');
+                    Route::resource('user', 'UserController');
+                    Route::resource('message', 'MessageController');
                 }
             );
             // GET|HEAD user/create              | user.create       | UserController@create         | auth
-            Route::get('user/create', ['as' => 'user.create', 'uses' => 'UserController@create']);
         });
     }
 );

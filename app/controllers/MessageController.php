@@ -9,10 +9,11 @@ class MessageController extends \BaseController {
 	 */
 	public function index()
 	{
+		$view = ($this->isAdminRequest()) ? 'admin.message.index' : 'message.index';
 		$aMessages = Category::find(1)->messages;
 		$mMessages = Category::find(2)->messages;
 		$messages = Message::orderBy('created_at','desc')->paginate(2);
-		return View::make('message.index', [
+		return View::make($view, [
 			'messages' => $messages,
 			'mMessages' => $mMessages,
 			'aMessages' => $aMessages
@@ -84,7 +85,11 @@ class MessageController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$view = ($this->isAdminRequest()) ? 'admin.message.edit' : 'message.edit';
+		$message = Message::find($id);
+		return View::make($view, [
+			'message' => $message
+			]);
 	}
 
 
@@ -96,7 +101,10 @@ class MessageController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$view = ($this->isAdminRequest()) ? 'admin.message.index' : 'message.index';
+		$message = Message::find($id);
+		$message->update(Input::all());
+		return Redirect::route($view);;
 	}
 
 
@@ -108,7 +116,8 @@ class MessageController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		Message::destroy($id);
+		return Redirect::route('admin.message.index');
 	}
 
 

@@ -9,7 +9,11 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$view = ($this->isAdminRequest()) ? 'admin.user.index' : 'user.index';
+		$users = User::paginate();
+		return View::make($view, [
+			'users' => $users
+			]);
 	}
 
 
@@ -22,7 +26,7 @@ class UserController extends \BaseController {
 	{
 		$groups = Group::lists('groupName', 'id');
 		$user = new User();
-		return View::make('user.create', [
+		return View::make('admin.user.create', [
 			'groups' => $groups,
 			'user'   => $user
 			]);
@@ -67,7 +71,7 @@ class UserController extends \BaseController {
 		});
 
 		Alert::add("alert-success", "L'adhérent a bien été créé");
-		return Redirect::route('admin.user.create');
+		return Redirect::route('admin.user.index');
 	}
 
 	/**
@@ -109,12 +113,17 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-
-		if ($id != Auth::id()) {
+		$user = User::find($id);
+		$groups = Group::lists('groupName', 'id');
+		$view = ($this->isAdminRequest()) ? 'admin.user.edit' : 'user.edit';
+		if ($id != Auth::id() && !$this->isAdminRequest()) {
 			return Redirect::Route('user.edit', [Auth::id()]);
 		}
 
-		return View::make('user.edit');
+		return View::make($view,[
+			'user' => $user,
+			'groups' => $groups
+			]);
 	}
 
 
