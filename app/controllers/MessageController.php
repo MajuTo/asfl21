@@ -11,7 +11,9 @@ class MessageController extends \BaseController {
 	{
 		$aMessages = Category::find(1)->messages;
 		$mMessages = Category::find(2)->messages;
-		return View::make('member.dashboard', [
+		$messages = Message::orderBy('created_at','desc')->paginate(2);
+		return View::make('message.index', [
+			'messages' => $messages,
 			'mMessages' => $mMessages,
 			'aMessages' => $aMessages
 			]);
@@ -58,7 +60,7 @@ class MessageController extends \BaseController {
 		$message->save();
 
 		Alert::add("alert-success", "Votre message a bien été envoyé");
-		return Redirect::route('member.index');
+		return Redirect::route('message.index');
 	}
 
 

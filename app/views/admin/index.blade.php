@@ -2,10 +2,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>Tableau de bord Admin</h1>
-        <p>Bienvenue {{ Auth::user()->firstname }}</p>
-        <a href="{{ URL::route('admin.user.create') }}" ><button class="btn btn-pink">Create</button></a>
-        <hr>
+        <div class="col-sm-12">
+            <h1>Tableau de bord Admin</h1>
+            <p>Bienvenue {{ Auth::user()->firstname }}</p>
+            <a href="{{ URL::route('admin.user.create') }}" ><button class="btn btn-pink">Create</button></a>
+            <hr>
+        </div>
     </div>
     <div class="row">
 	    <div class="col-sm-6">

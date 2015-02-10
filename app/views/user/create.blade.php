@@ -21,7 +21,7 @@
                     {{ BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal de l'adhérent...")->required() }}
                     {{ BootForm::text('Ville', 'city')->placeHolder("Ville de l'adhérent...")->required() }}
                     {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
-                    {{ BootForm::submit('Ajouter') }}
+                    {{ BootForm::submit('Ajouter', 'pull-right btn-pink') }}
                 {{ BootForm::close() }}
             </div>
         </div>

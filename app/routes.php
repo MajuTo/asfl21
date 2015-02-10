@@ -53,7 +53,7 @@ Route::group([
             }
         );
 
-        Route::resource('member', 'MemberController');
+        /* MESSAGE */
         Route::resource('message', 'MessageController');
     }
 );

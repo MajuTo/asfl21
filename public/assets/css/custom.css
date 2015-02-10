@@ -146,7 +146,6 @@ a:active {
   filter: progid:DXImage:;Transform.Microsoft.gradient(startColorstr='pink', endColorstr='deeppink', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
   background-repeat: repeat-x;
-  border-color: deeppink;
 }
 
 .btn-pink:hover,
@@ -245,6 +244,7 @@ a:active {
 /* ********************************************************** */
 /* CONTACT */
 #contact-map {
+    border: 1px solid grey;
     height: 460px;
     width: 460px;
 }

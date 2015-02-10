@@ -24,12 +24,12 @@ class ContactController extends \BaseController {
 		$validation = Validator::make(Input::all(), $regles);
 
 		if ($validation->fails()) {
-		  	return Redirect::to('contact')->withErrors($validation)->withInput();
+		  	return Redirect::to('contact.index')->withErrors($validation)->withInput();
 		} else {
 			Mail::send('emails.contact', ['inputs' => Input::all()], function($m)	{
 				$m->to('admin@musaya.net')->subject(Input::get('subject'))->from(Input::get('email'), Input::get('name'));
 			});
-			return View::make('contact,index');
+			return View::make('contact.index');
 		}
 	}
 

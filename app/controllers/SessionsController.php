@@ -28,12 +28,12 @@ class SessionsController extends \BaseController {
         $input = Input::all();
 
         // validation form
-        $regles = [
+        $rules = [
             'username'  => 'required',
             'password'  => 'required',
         ];
 
-        $validation = Validator::make(Input::all(), $regles);
+        $validation = Validator::make(Input::all(), $rules);
 
         if ($validation->fails()) {
             return Redirect::back()->withErrors($validation)->withInput();
@@ -54,7 +54,7 @@ class SessionsController extends \BaseController {
             if ($user->loggedOnce == 0) {
                 return Redirect::route('sessions.edit', [$user->id]);
             }
-            return Redirect::intended();
+            return Redirect::route('message.index');
         }
 
         Alert::add("alert-danger", "Identifiant ou mot de passe non valide.");
