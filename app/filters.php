@@ -93,7 +93,7 @@ Route::filter('csrf', function()
 /* Custom isAdmin? filter */
 Route::filter('admin', function(){
 	// if (!Auth::user()->group() == 'admin') {
-	if (!Auth::user()->group->groupName == 'admin') {
+	if (Auth::user()->group->id != 2) {
 		Alert::add("alert-danger", "Vous n'avez pas de droit d'administration.");
 		return Redirect::route('home');
 	}

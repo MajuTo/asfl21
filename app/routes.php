@@ -32,11 +32,6 @@ Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store',
 Route::group([
     'before' => 'auth',
     ], function(){
-        
-        /* ADMIN */
-        Route::group(['before' => 'admin'], function(){
-            Route::resource('admin', 'AdminController');
-        });
 
         /* Change pwd after first login */
         Route::get('sessions/{sessions}/edit', ['as' => 'sessions.edit', 'uses' => 'SessionsController@edit']);
@@ -45,15 +40,23 @@ Route::group([
         /* USER */
         Route::resource('user', 'UserController');
         Route::put('updatePseudo/{pseudo}', ['as' => 'updatePseudo', 'uses' => 'UserController@updatePseudo']);
-        /* with prefix */
-        Route::group([
-            'prefix' => 'admin',
-            ], function(){
-                Route::get('user/create', ['as' => 'admin.user.create', 'uses' => 'UserController@create']);
-            }
-        );
 
         /* MESSAGE */
         Route::resource('message', 'MessageController');
+
+        /* ADMIN */
+        Route::group(['before' => 'admin'], function(){
+            Route::resource('admin', 'AdminController');
+
+            /* user with prefix */
+            Route::group([
+                'prefix' => 'admin',
+                ], function(){
+                    Route::get('user/create', ['as' => 'admin.user.create', 'uses' => 'UserController@create']);
+                }
+            );
+            // GET|HEAD user/create              | user.create       | UserController@create         | auth
+            Route::get('user/create', ['as' => 'user.create', 'uses' => 'UserController@create']);
+        });
     }
 );
