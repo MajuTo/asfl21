@@ -124,12 +124,11 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 		$user = User::find($id);
-		//dd($user->activities->toArray());
 		$groups = Group::lists('groupName', 'id');
 		$activities = Activity::all();
 		$view = ($this->isAdminRequest()) ? 'admin.user.edit' : 'user.edit';
 		if ($id != Auth::id() && !$this->isAdminRequest()) {
-			return Redirect::Route('user.edit', [Auth::id()]);
+			return Redirect::route('user.edit', [Auth::id()]);
 		}
 
 		return View::make($view,[
@@ -207,6 +206,25 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+
+	/**
+	 * Toogle the state of user (active/inactive).
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function toggle($id)
+	{
+		$user = User::find($id);
+		if($user->active){
+			$user->active = 0;
+		}else{
+			$user->active = 1;
+		}
+		$user->save();
+		return Redirect::route('admin.user.index');
 	}
 
 

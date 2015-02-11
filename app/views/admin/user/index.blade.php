@@ -25,7 +25,15 @@
 					<td>{{ $user->group->groupName }}</td>
 					<td>
 						<a href="{{ URL::route('admin.user.edit', $user->id) }}"><button class="btn label label-warning">Editer</button></a>
-						<a href="#"><button class="btn label label-danger">Désactiver</button></a>
+						{{ BootForm::open()->put()->action(URL::route('admin.user.toggle', $user->id))->style('display: inline;') }}
+						    {{ Form::token() }}
+						    {{ BootForm::bind($user) }}
+						    @if($user->active)
+						    	{{ BootForm::submit('Désactiver', 'label-danger label') }}
+						    @else
+								{{ BootForm::submit('Activer', 'label-success label') }}
+						    @endif
+						{{ BootForm::close() }}
 					</td>
 				</tr>
 			@endforeach

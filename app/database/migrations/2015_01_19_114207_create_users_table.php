@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration {
 			$table->string('address')->nullable();
 			$table->string('zipCode')->nullable();
 			$table->string('city')->nullable();
+			$table->boolean('active')->default(1);
 			$table->rememberToken();
 			$table->timestamps();
 			$table->integer('group_id')->unsigned();
