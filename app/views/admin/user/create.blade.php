@@ -13,6 +13,9 @@
         {{ BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal de l'adhérent...")->required() }}
         {{ BootForm::text('Ville', 'city')->placeHolder("Ville de l'adhérent...")->required() }}
         {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
+        @foreach($activities as $act)
+            {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) }}
+        @endforeach
         {{ BootForm::submit('Ajouter', 'pull-right btn-pink') }}
     {{ BootForm::close() }}
 @stop

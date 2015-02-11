@@ -25,9 +25,12 @@ class UserController extends \BaseController {
 	public function create()
 	{
 		$groups = Group::lists('groupName', 'id');
+
+		$activities = Activity::all();
 		$user = new User();
 		return View::make('admin.user.create', [
 			'groups' => $groups,
+			'activities' => $activities,
 			'user'   => $user
 			]);
 	}
@@ -64,6 +67,13 @@ class UserController extends \BaseController {
 
 		//Sauvegarde
 		$user->save();
+
+		//Activities
+		$activities = [];
+		if(!empty(Input::get('activities'))){
+			$activities = Input::get('activities');
+		}
+		$user->activities()->sync($activities);
 
 		//Envoi mail
 		Mail::send('emails.inscription', ['user' => $user, 'pw' => $pw], function($m) use ($user)	{
@@ -114,7 +124,9 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 		$user = User::find($id);
+		//dd($user->activities->toArray());
 		$groups = Group::lists('groupName', 'id');
+		$activities = Activity::all();
 		$view = ($this->isAdminRequest()) ? 'admin.user.edit' : 'user.edit';
 		if ($id != Auth::id() && !$this->isAdminRequest()) {
 			return Redirect::Route('user.edit', [Auth::id()]);
@@ -122,7 +134,8 @@ class UserController extends \BaseController {
 
 		return View::make($view,[
 			'user' => $user,
-			'groups' => $groups
+			'groups' => $groups,
+			'activities' => $activities
 			]);
 	}
 
@@ -158,6 +171,11 @@ class UserController extends \BaseController {
 		}
 
 		$user->update(Input::all());
+		$activities = [];
+		if(!empty(Input::get('activities'))){
+			$activities = Input::get('activities');
+		}
+		$user->activities()->sync($activities);
 		Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
 		return Redirect::route($redirect);
 	}
