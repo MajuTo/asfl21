@@ -67,7 +67,7 @@ class UserController extends \BaseController {
 
 		//Envoi mail
 		Mail::send('emails.inscription', ['user' => $user, 'pw' => $pw], function($m) use ($user)	{
-			$m->to($user->email)->subject('Surprise');
+			$m->to($user->email)->subject('Inscription sur le site asfl21');
 		});
 
 		Alert::add("alert-success", "L'adhérent a bien été créé");
