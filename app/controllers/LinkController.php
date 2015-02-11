@@ -97,7 +97,7 @@ class LinkController extends \BaseController {
 	{
 		$rules = array(
 			'linkName'  => 'required',
-			'link' 		=> 'required|unique:links'
+			'link' 		=> 'required|unique:links,link,'.$id
 		);
 
 		$validation = Validator::make(Input::all(), $rules);
