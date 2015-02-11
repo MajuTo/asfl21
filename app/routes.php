@@ -59,7 +59,6 @@ Route::group([
                     Route::resource('message', 'MessageController');
                 }
             );
-            // GET|HEAD user/create              | user.create       | UserController@create         | auth
         });
     }
 );

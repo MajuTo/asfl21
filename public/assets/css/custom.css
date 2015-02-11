@@ -32,12 +32,12 @@
 }
 
 .navbar-default .navbar-nav>li>a:hover {
-    
-    background-color: #E7E7E7;
+    background-color: transparent;
     border-top-color: deeppink;
 }
 
 .navbar-default .navbar-nav>.active>a {
+    background-color: transparent;
     border-top-color: #B420FF;
 }
 
@@ -69,6 +69,11 @@
 
 /* ********************************************************** */
 /* GENERAL */
+body {
+  background-image: url('../img/skulls.png');
+  /*background-color: #E5F6FF;*/
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
 }
