@@ -5,6 +5,6 @@
         {{ BootForm::bind($link) }}
         {{ BootForm::text('Nom', 'linkName')->placeHolder("Nom du lien...")->required() }}
         {{ BootForm::text('Lien', 'link')->placeHolder("Lien...")->required() }}
-        {{ BootForm::submit('Ajouter', 'pull-right btn-pink') }}
+        {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
     {{ BootForm::close() }}
 @stop

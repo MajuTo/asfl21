@@ -135,13 +135,19 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$user         = User::find($id);
+		$redirect = ($this->isAdminRequest()) ? 'admin.user.index' : 'home';
+
+		$user = User::find($id);
 
 		// validation form
 		$rules = array(
-			'address'  => 'required',
-			'zipCode'  => 'required',
-			'city'     => 'required',
+			'name'      => 'required',
+			'firstname' => 'required',
+			'username'  => 'required|unique:users,username,'.$id,
+			'email'     => 'required|unique:users,email,'.$id,
+			'address'   => 'required',
+			'zipCode'   => 'required',
+			'city'      => 'required',
 		);
 
 		$validation = Validator::make(Input::all(), $rules);
@@ -152,7 +158,8 @@ class UserController extends \BaseController {
 		}
 
 		$user->update(Input::all());
-		return Redirect::route('member.edit');
+		Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
+		return Redirect::route($redirect);
 	}
 
 	public function updatePseudo($id){
@@ -169,7 +176,7 @@ class UserController extends \BaseController {
 		}
 
 		$user->update(Input::all());
-		return Redirect::route('member.edit');
+		return Redirect::route($redirect);
 	}
 
 

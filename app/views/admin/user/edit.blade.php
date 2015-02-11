@@ -5,6 +5,7 @@
         {{ BootForm::bind($user) }}
         {{ BootForm::text('Nom', 'name')->placeHolder("Nom de l'adhérent...")->required() }}
         {{ BootForm::text('Prénom', 'firstname')->placeHolder("Prénom de l'adhérent...")->required() }}
+        {{ BootForm::text('Identifiant', 'username')->placeHolder("Identifiant de l'adhérent...")->required() }}
         {{ BootForm::text('Email', 'email')->placeHolder("Email de l'adhérent ...")->required() }}
         {{ BootForm::text('Téléphone', 'phone')->placeHolder("Téléphone de l'adhérent...") }}
         {{ BootForm::text('Mobile', 'mobile')->placeHolder("Mobile de l'adhérent...") }}
