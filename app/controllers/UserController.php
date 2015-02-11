@@ -70,7 +70,7 @@ class UserController extends \BaseController {
 
 		//Activities
 		$activities = [];
-		if(!empty(Input::get('activities'))){
+		if(sizeof(Input::get('activities')) > 0){
 			$activities = Input::get('activities');
 		}
 		$user->activities()->sync($activities);
@@ -171,7 +171,7 @@ class UserController extends \BaseController {
 
 		$user->update(Input::all());
 		$activities = [];
-		if(!empty(Input::get('activities'))){
+		if(sizeof(Input::get('activities')) > 0){
 			$activities = Input::get('activities');
 		}
 		$user->activities()->sync($activities);
