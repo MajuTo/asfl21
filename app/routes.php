@@ -59,6 +59,12 @@ Route::group([
                     Route::resource('message', 'MessageController');
                 }
             );
+<<<<<<< HEAD
+=======
+
+            /* user.create */
+            Route::get('user/create', ['as' => 'user.create', 'uses' => 'UserController@create']);
+>>>>>>> origin/cleandev
         });
     }
 );
