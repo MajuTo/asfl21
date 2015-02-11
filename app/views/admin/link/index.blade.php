@@ -2,7 +2,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-sm-6">
-			<h2>Gestion des activités</h2>
+			<h2>Gestion des liens</h2>
 		</div>
 		<div class="col-sm-6">
 			<h2><a href="{{ URL::route('admin.link.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
