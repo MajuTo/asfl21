@@ -1,10 +1,10 @@
 @extends('layouts.index')
 @section('content')
-    <div class="container">
+    <div class="container content-container">
      
         <div class="row">
             <div class="col-sm-12">
-                <h1>Mon Profil</h1>
+                <h1 class="animate-page-title">Mon Profil</h1>
             </div>
         </div>
         <div class="row">
@@ -19,7 +19,7 @@
                     {{ BootForm::text('Adresse', 'address') }}
                     {{ BootForm::text('Code postal', 'zipCode') }}
                     {{ BootForm::text('Ville', 'city') }}
-                    {{ BootForm::submit('Modifier mes coordonnées') }}
+                    {{ BootForm::submit('Modifier mes coordonnées', 'pull-right btn-pink') }}
                 {{ BootForm::close() }}
             </div>
 
@@ -31,7 +31,7 @@
                             {{ Form::token() }}
                             {{ BootForm::bind(Auth::user()) }}
                             {{ BootForm::text('Pseudo', 'username') }}
-                            {{ BootForm::submit('Modifier mon pseudo') }}
+                            {{ BootForm::submit('Modifier mon pseudo', 'pull-right btn-pink') }}
                         {{ BootForm::close() }}
                     </div>
                 </div>

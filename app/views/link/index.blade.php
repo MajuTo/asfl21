@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-<div class="container">
+<div class="container content-container">
     <div class="row">
     	<div class="col-sm-12">
     	<h2>Liens utiles</h2>

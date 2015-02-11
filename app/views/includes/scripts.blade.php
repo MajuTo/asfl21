@@ -1,18 +1,23 @@
 {{ HTML::script('assets/js/jquery-1.11.1.min.js') }}
 {{ HTML::script('assets/bootstrap/js/bootstrap.min.js') }}
+<!-- GSAP -->
+{{ HTML::script('assets/greensock/TweenMax.min.js') }}
 
 <script>
-    $(".alert").fadeTo(5000, 500).slideUp(500, function(){
-        $(".alert").alert('close');
-    });
-</script>
+    $(document).ready(function(){
+        TweenMax.from('.animate-page-title', 2, {x: 760, opacity: 0});
 
-<script>
-    $('.dropdown').mouseenter(function(){
-        $(this).addClass('focus');
-    });
+        $(".alert").fadeTo(5000, 500).slideUp(500, function(){
+            $(".alert").alert('close');
+        });
 
-    $('.dropdown').mouseleave(function(){
-        $(this).removeClass('focus');
+        $('.dropdown').mouseenter(function(){
+            $(this).addClass('focus');
+        });
+
+        $('.dropdown').mouseleave(function(){
+            $(this).removeClass('focus');
+        });
+
     });
 </script>

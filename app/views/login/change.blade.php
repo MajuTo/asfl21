@@ -1,9 +1,9 @@
 @extends('layouts.index')
 @section('content')
-    <div class="container">
+    <div class="container content-container">
         <div class="row">
             <div class="col-sm-12">
-                <h1>Mot de Passe</h1>
+                <h1 class="animate-page-title">Mot de Passe</h1>
             </div>
         </div>
         <div class="row">

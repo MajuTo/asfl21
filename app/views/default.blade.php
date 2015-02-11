@@ -1,7 +1,7 @@
  @extends('layouts.index')
  @section('content')
 <!-- Presentation -->
-        <div class="presentation-container">
+        <div class="presentation-container content-container">
         	<div class="container">
         		<div class="row">
 	        		<div class="col-sm-12 wow fadeInLeftBig">
