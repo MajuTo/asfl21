@@ -57,6 +57,7 @@ Route::group([
                     Route::resource('link', 'LinkController');
                     Route::resource('user', 'UserController');
                     Route::resource('message', 'MessageController');
+                    Route::resource('activity', 'ActivityController');
                 }
             );
         });
