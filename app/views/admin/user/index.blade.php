@@ -1,7 +1,13 @@
 @extends('layouts.admin')
 @section('content')
-	<h2>Gestion des utilisateurs</h2>
-	<a href="{{ URL::route('admin.user.create') }}" ><button class="btn btn-pink pull-right">Nouveau</button></a>
+	<div class="row">
+		<div class="col-sm-6">
+			<h2>Gestion des utilisateurs</h2>
+		</div>
+		<div class="col-sm-6">
+			<h2><a href="{{ URL::route('admin.user.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+		</div>
+	</div>
 	<table class="table table-condensed table-hover">
 		<thead>
 			<td>#</td>
@@ -19,7 +25,15 @@
 					<td>{{ $user->group->groupName }}</td>
 					<td>
 						<a href="{{ URL::route('admin.user.edit', $user->id) }}"><button class="btn label label-warning">Editer</button></a>
-						<a href="#"><button class="btn label label-danger">Désactiver</button></a>
+						{{ BootForm::open()->put()->action(URL::route('admin.user.toggle', $user->id))->style('display: inline;') }}
+						    {{ Form::token() }}
+						    {{ BootForm::bind($user) }}
+						    @if($user->active)
+						    	{{ BootForm::submit('Désactiver', 'label-danger label') }}
+						    @else
+								{{ BootForm::submit('Activer', 'label-success label') }}
+						    @endif
+						{{ BootForm::close() }}
 					</td>
 				</tr>
 			@endforeach

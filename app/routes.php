@@ -56,7 +56,9 @@ Route::group([
                     Route::get('/', ['as' => 'admin.index', 'uses' => 'UserController@index']); 
                     Route::resource('link', 'LinkController');
                     Route::resource('user', 'UserController');
+                    Route::put('user/{user}/toggle', ['as' => 'admin.user.toggle', 'uses' => 'UserController@toggle']);
                     Route::resource('message', 'MessageController');
+                    Route::resource('activity', 'ActivityController');
                 }
             );
         });

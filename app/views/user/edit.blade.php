@@ -23,6 +23,13 @@
                 {{ BootForm::text('Adresse', 'address')->placeHolder("Adresse...")->required() }}
                 {{ BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal...")->required() }}
                 {{ BootForm::text('Ville', 'city')->placeHolder("Ville...")->required() }}
+                @foreach($activities as $act)
+                    @if($user->activities->contains($act->id))
+                        {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() }}
+                    @else
+                        {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) }}
+                    @endif
+                @endforeach
                 {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
             {{ BootForm::close() }}
         </div>
