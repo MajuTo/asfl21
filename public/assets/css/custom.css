@@ -1,11 +1,15 @@
-/* ********************************************************** */
-/* NAVIGATION */
+/* FONTS */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Dynalight);
+
 /* Colors
     deeppink
     #B420FF
     #E7E7E7
 */
+
+/* ********************************************************** */
+/* NAVIGATION */
 
 .navbar-default {
     background-color: transparent;
@@ -61,6 +65,17 @@
 .dropdown-menu>.active>a {
     background-color: #B420FF;
 }
+
+.navbar-brand {
+  font-family: 'Dynalight', cursive;
+  margin-bottom: 0;
+}
+
+#sub-brand {
+  font-family: 'Dynalight', cursive;
+  margin-top: -25px;
+  font-size: 1.6em;
+}
 /* END NAVIGATION */
 /* ********************************************************** */
 
@@ -70,8 +85,13 @@
 /* ********************************************************** */
 /* GENERAL */
 body {
-    /*background-image: url('../img/skulls.png');*/
+    background-image: url('../img/skulls.png');
     font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+  background: white;
 }
 
 h1 { 
@@ -79,15 +99,12 @@ h1 {
     font-size: 34px; 
     font-weight: 300; 
     line-height: 40px; 
-    margin: 0 0 16px; 
+    margin-top: 0px;
+    margin-bottom: 40px;
 }
 
 a {
     color: deeppink;
-}
-
-.content-container {
-  min-height: 450px;
 }
 
 a:hover,
@@ -220,11 +237,11 @@ a:active {
 /* ********************************************************** */
 /* FOOTER */
 .footer {
-    margin-top: 15px;
     padding-top: 5px;
     border-top: 1px solid #E7E7E7;
     font-size: 0.7em;
 }
+
 /* END FOOTER */
 /* ********************************************************** */
 
@@ -262,9 +279,9 @@ a:active {
 /* ********************************************************** */
 /* HOME */
 #home-li > li {list-style-type: none;}
-#test-image {
-  height: 300px;
-  width: 500px;
+#home-image {
+  max-height: 300px;
+  max-width: 500px;
   margin-top: 2%;
 }
 /*#home-li > li:before {

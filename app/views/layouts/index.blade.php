@@ -5,20 +5,22 @@
         @include('includes.head')
     </head>
     <body>
-        <!-- NAVIGATION -->
-        @include('includes.nav')
+        <div class="container">
+            <!-- NAVIGATION -->
+            @include('includes.nav')
 
-        <!-- Flash messages -->
-        @include('includes.alert')
+            <!-- Flash messages -->
+            @include('includes.alert')
 
-        <!-- BODY CONTENT -->
-        @yield('content')
+            <!-- BODY CONTENT -->
+            @yield('content')
+        </div>
 
 
-        <!-- FOOTER -->
-        <footer>
-            @include('includes.footer')
-        </footer>
+            <!-- FOOTER -->
+            <footer>
+                @include('includes.footer')
+            </footer>
 
         <!-- Javascipts -->
         @include('includes.scripts')

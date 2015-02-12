@@ -1,6 +1,6 @@
 <!-- NAVIGATION -->
 <nav class="navbar navbar-default">
-  <div class="container">
+  <!-- <div class="container"> -->
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
@@ -56,8 +56,9 @@
         </li>
       </ul>
 
+        <p class="pull-left hidden-sm hidden-xs" id="sub-brand"><sub><small>Association des Sages Femmes Libérales de Côte d'Or</small></sub></p>
     </div><!-- /.navbar-collapse -->
-  </div><!-- /.container -->
+  <!-- </div>/.container -->
 </nav>
 <!-- END NAVIGATION -->
 

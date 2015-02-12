@@ -2,7 +2,6 @@
 @section('content')
     <!-- Page Title -->
     <div class="content-container"> 
-    <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="animate-page-title"><i class="fa fa-envelope"></i> Contactez nous</h1>
@@ -12,10 +11,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Contact Us -->
-	<div class="container">
         <div class="row">
             <div class="col-sm-7">
                 {{ BootForm::openHorizontal(3, 9)->action(URL::route('sendcontact')) }}
@@ -35,7 +32,6 @@
                 <p>Tel: 06 49 63 43 59</p>
             </div>
         </div>
-    </div>
     </div>
 @stop
 

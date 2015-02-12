@@ -5,6 +5,7 @@
         @include('includes.head')
     </head>
     <body>
+        <div class="container">
         <!-- NAVIGATION -->
         @include('includes.nav')
 
@@ -12,7 +13,7 @@
         @include('includes.alert')
 
         <!-- BODY CONTENT -->
-        <div class="container content-container">
+        <div class="content-container">
             <div class="row">
                 <div class="col-sm-12">
                     <h1>Tableau de bord Admin</h1>
@@ -35,7 +36,7 @@
         <footer>
             @include('includes.footer')
         </footer>
-
+        </div>
         <!-- Javascipts -->
         @include('includes.scripts')
 

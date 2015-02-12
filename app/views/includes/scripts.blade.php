@@ -21,3 +21,17 @@
 
     });
 </script>
+
+<script>
+    //Initial load of page
+    $(document).ready(sizeContent);
+
+    //Every resize of window
+    $(window).resize(sizeContent);
+
+    //Dynamically assign height
+    function sizeContent() {
+        var newHeight = $(window).height() - 130 + "px";
+        $(".content-container").css("height", newHeight);
+    }
+</script>
