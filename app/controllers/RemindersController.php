@@ -19,7 +19,9 @@ class RemindersController extends BaseController {
 	 */
 	public function postRemind()
 	{
-		switch ($response = Password::remind(Input::only('email')))
+		switch ($response = Password::remind(Input::only('email'), function($message){
+			$message->subject('ASFL21 Réinitialisation du mot de passe');
+		}))
 		{
 			case Password::INVALID_USER:
 				Alert::add("alert-danger", 'Identifiant non valide.');
