@@ -32,6 +32,8 @@ Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store',
 
 /* REGISTRATION */
 Route::get('inscription/verification/{confirmation}', ['as' => 'confirmation', 'uses' => 'UserController@confirmation']);
+/* PASSWORD RECOVERY */
+Route::controller('password', 'RemindersController');
 
 Route::group([
     'before' => 'auth',

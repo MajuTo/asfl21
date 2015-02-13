@@ -12,6 +12,7 @@
                     {{ Form::token() }}
                     {{ BootForm::text('Pseudo', 'username') }}
                     {{ BootForm::password('Mot de passe', 'password') }}
+                    {{ link_to('/password/remind', 'Mot de passe oublié?', ['class' => 'pull-left']) }}
                     {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
                 {{ BootForm::close() }}
             </div>

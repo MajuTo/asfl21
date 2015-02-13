@@ -104,6 +104,7 @@ class UserController extends \BaseController {
 		}
 	}
 
+	/* Generates unique confirmation string for confirmation link */
 	private function generateConfirmation()
 	{
 		$confirmation = Str::random(12);
