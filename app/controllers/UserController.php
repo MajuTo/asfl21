@@ -60,10 +60,10 @@ class UserController extends \BaseController {
 		}
 
 		$user = new User(Input::all());
-		$pw = Str::random(8);
+		$confirmation = $this->generateConfirmation();
 
 		$user->username = $this->generateUsername($user->name, $user->firstname);
-		$user->password = Hash::make($pw);
+		$user->confirmation = $confirmation;
 
 		//Sauvegarde
 		$user->save();
@@ -76,13 +76,15 @@ class UserController extends \BaseController {
 		$user->activities()->sync($activities);
 
 		//Envoi mail
-		Mail::send('emails.inscription', ['user' => $user, 'pw' => $pw], function($m) use ($user)	{
-			$m->to($user->email)->subject('Inscription sur le site asfl21');
+		Mail::send('emails.inscription', ['user' => $user, 'confirmation' => $confirmation], function($m) use ($user)	{
+			$m->to($user->email)->subject('Inscription sur le site asfl21.fr');
 		});
 
 		Alert::add("alert-success", "L'adhérent a bien été créé");
 		return Redirect::route('admin.user.index');
 	}
+	
+
 
 	/**
 	 * Generate a random username with the first two letters of the name and firstname and a random 4 digits number.
@@ -102,6 +104,31 @@ class UserController extends \BaseController {
 		}
 	}
 
+	private function generateConfirmation()
+	{
+		$confirmation = Str::random(12);
+		if (User::where('confirmation', '=', $confirmation)->first()) {
+			$this->generateConfirmation();
+		} else {
+			return $confirmation;
+		}
+	}
+
+	public function confirmation($confirmation){
+		$user = User::where('confirmation', '=', $confirmation)->first();
+		if ($user && $user->confirmed == 0) {
+			// return View::make('user.confirmation.index', ['user' => $user]);
+			Auth::loginUsingId($user->id);
+			$user->confirmed = 1;
+			$user->save();
+
+			return Redirect::route('sessions.edit');
+		} else if ($user && $user->confirmed == 1) {
+			return View::make('user.confirmation.error');
+		} else {
+			return Redirect::route('home');
+		}
+	}
 
 	/**
 	 * Display the specified resource.
@@ -147,7 +174,7 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$redirect = ($this->isAdminRequest()) ? 'admin.user.index' : 'home';
+		$redirect = ($this->isAdminRequest()) ? 'admin.user.index' : 'user.edit';
 
 		$user = User::find($id);
 

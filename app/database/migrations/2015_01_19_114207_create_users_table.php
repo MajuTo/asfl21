@@ -28,6 +28,8 @@ class CreateUsersTable extends Migration {
 			$table->string('zipCode')->nullable();
 			$table->string('city')->nullable();
 			$table->boolean('active')->default(1);
+			$table->string('confirmation')->unique();
+			$table->boolean('confirmed')->default(0);
 			$table->rememberToken();
 			$table->timestamps();
 			$table->integer('group_id')->unsigned();

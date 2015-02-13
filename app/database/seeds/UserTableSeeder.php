@@ -18,6 +18,7 @@ class UserTableSeeder extends Seeder {
             'address'   => 'stairway to heaven, 42',
             'zipCode'   => '222',
             'city'      => 'Dijon',
+            'confirmation' => '1234789',
             'group_id' => 3
             ]);
          User::create([
@@ -32,6 +33,7 @@ class UserTableSeeder extends Seeder {
             'address'   => 'stairway to heaven, 42',
             'zipCode'   => '222',
             'city'      => 'Dijon',
+            'confirmation' => '123478',
             'group_id' => 3
             ]);
     }

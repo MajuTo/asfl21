@@ -30,6 +30,9 @@ Route::get('login', ['as' => 'login', 'uses' => 'SessionsController@create']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'SessionsController@destroy']);
 Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store', 'destroy', 'edit', 'update']]);
 
+/* REGISTRATION */
+Route::get('inscription/verification/{confirmation}', ['as' => 'confirmation', 'uses' => 'UserController@confirmation']);
+
 Route::group([
     'before' => 'auth',
     ], function(){

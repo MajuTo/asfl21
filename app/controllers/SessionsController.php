@@ -119,7 +119,7 @@ class SessionsController extends \BaseController {
         $user->password = Hash::make($password);
         $user->loggedOnce = 1;
         $user->save();
-        return Redirect::route('home');
+        return Redirect::route('user.edit');
     }
 
     
