@@ -105,7 +105,7 @@ class SessionsController extends \BaseController {
 
         // validation form
         $rules = [
-            'password'              => 'required|confirmed',
+            'password'              => 'required|confirmed|min:6',
             'password_confirmation' => 'required',
         ];
 
@@ -122,6 +122,6 @@ class SessionsController extends \BaseController {
         return Redirect::route('user.edit');
     }
 
-    
+
 
 }
