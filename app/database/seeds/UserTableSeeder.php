@@ -18,6 +18,8 @@ class UserTableSeeder extends Seeder {
             'address'   => 'stairway to heaven, 42',
             'zipCode'   => '222',
             'city'      => 'Dijon',
+            'lat'       => null,
+            'lng'       => null,
             'confirmation' => '1234789',
             'group_id' => 3
             ]);
@@ -33,6 +35,8 @@ class UserTableSeeder extends Seeder {
             'address'   => 'stairway to heaven, 42',
             'zipCode'   => '222',
             'city'      => 'Dijon',
+            'lat'       => null,
+            'lng'       => null,
             'confirmation' => '123478',
             'group_id' => 3
             ]);

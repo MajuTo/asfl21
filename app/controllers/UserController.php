@@ -65,6 +65,14 @@ class UserController extends \BaseController {
 		$user->username = $this->generateUsername($user->name, $user->firstname);
 		$user->confirmation = $confirmation;
 
+		$location = $this->geocode($user);
+		if ($location != null) {
+			$user->lat = $location['lat'];
+			$user->lng = $location['lng'];
+		} else {
+			Alert::add('alert-danger', "L'adresse que vous avez entrée, n'existe pas dans Google Maps.");
+		}
+
 		//Sauvegarde
 		$user->save();
 
@@ -129,6 +137,26 @@ class UserController extends \BaseController {
 		} else {
 			return Redirect::route('home');
 		}
+	}
+
+	public function geocode($user){
+		// a changer en prod... clé de dev.
+		$googleApiKey = 'AIzaSyAqJKkv1M-fhJ97dtL0CUV16QelltipJmE';
+		$parameters   = str_replace(' ', '+', $user->address . $user->zipCode . $user->city . "&key=" . $googleApiKey);
+		$googleMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $parameters;
+
+		$ch = curl_init($googleMapUrl);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	    $geolocation = json_decode(curl_exec($ch), true);
+
+	    if ($geolocation['status'] == 'OK') {
+	    	$lat = $geolocation['results'][0]['geometry']['location']['lat'];
+			$lng = $geolocation['results'][0]['geometry']['location']['lng'];
+		    return ['lat' => $lat, 'lng' => $lng];
+	    }
+
+	    return null;
+
 	}
 
 	/**
@@ -198,6 +226,18 @@ class UserController extends \BaseController {
 		}
 
 		$user->update(Input::all());
+		$location = $this->geocode($user);
+		if ($location == null) {
+			Alert::add('alert-danger', "L'adresse que vous avez entrée, n'existe pas dans Google Maps.");
+			$user->lat = null;
+			$user->lng = null;
+			$user->save();
+		} else {
+			$user->lat = $location['lat'];
+			$user->lng = $location['lng'];
+			$user->save();
+		}
+
 		$activities = [];
 		if(sizeof(Input::get('activities')) > 0){
 			$activities = Input::get('activities');

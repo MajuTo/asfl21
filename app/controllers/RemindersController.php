@@ -69,11 +69,11 @@ class RemindersController extends BaseController {
 			case Password::INVALID_PASSWORD:
 			case Password::INVALID_TOKEN:
 			case Password::INVALID_USER:
-				 Alert::add("alert-danger", 'Email non valide ou mot de passe trop court (minimum 6 characters) ou non identique.');
+				 Alert::add("alert-danger", 'Email non valide ou mot de passe trop court (minimum 6 charactères) ou non identique.');
 				return Redirect::back();
 
 			case Password::PASSWORD_RESET:
-				 Alert::add("alert-info", "Mot de passe réinitialisé, veuillez vous identifier.");
+				 Alert::add("alert-info", "Mot de passe réinitialisé. Vous pouvez vous identifier.");
 				return Redirect::to('/');
 		}
 	}
