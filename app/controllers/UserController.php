@@ -142,11 +142,28 @@ class UserController extends \BaseController {
 	public function geocode($user){
 		// a changer en prod... clé de dev.
 		$googleApiKey = 'AIzaSyAqJKkv1M-fhJ97dtL0CUV16QelltipJmE';
-		$parameters   = str_replace(' ', '+', $user->address . $user->zipCode . $user->city . "&key=" . $googleApiKey);
+		$parameters   = str_replace(' ', '+', $user->address . ' ' . $user->zipCode . ' ' . $user->city . "&key=" . $googleApiKey);
 		$googleMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $parameters;
 
 		$ch = curl_init($googleMapUrl);
 	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	    //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+		
+	    try{
+			$exec = curl_exec($ch);
+			if($exec == false){
+				throw new Exception(curl_error($ch), curl_errno($ch));
+			}
+	    }catch(Exception $e){
+	    	trigger_error(sprintf(
+		        'Curl failed with error #%d: %s',
+		        $e->getCode(), $e->getMessage()),
+		        E_USER_ERROR);
+	    }
+
+
+
 	    $geolocation = json_decode(curl_exec($ch), true);
 
 	    if ($geolocation['status'] == 'OK') {

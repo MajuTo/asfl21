@@ -10,11 +10,11 @@
 	    	<div class="col-sm-4 col-sm-offset-1">
 	        	{{ BootForm::text('Dernieres règles', 'date1')->placeHolder("Date des dernieres règles") }}
 	    	</div>
-	    	<div class="col-sm-4 col-sm-offset-1">
+	    	<div class="col-sm-4">
 	        	{{ BootForm::text('Date de conception', 'date2')->placeHolder("Date de conception") }}
 	    	</div>
 	    	<div class="col-sm-2">
-	        	{{ BootForm::submit('Valider', 'pull-right btn-pink') }}
+	        	{{ BootForm::submit('Valider', 'btn-pink') }}
 	       	</div>
 	    {{ BootForm::close() }}
 	</div>
