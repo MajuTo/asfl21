@@ -9,7 +9,10 @@ class NousTrouverController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('default');
+		$sagesfemmes = User::all();
+		return View::make('noustrouver.noustrouver',[
+			'sagesfemmes' => $sagesfemmes,
+			]);
 	}
 
 

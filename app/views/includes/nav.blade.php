@@ -20,19 +20,19 @@
         	<a href="{{ URL::route('home') }}"><i class="fa fa-home"></i><br>Accueil</a>
         </li>
         <li id="nav-metier">
-        	<a href="{{ URL::route('notremetier') }}"><i class="fa fa-camera"></i><br>Notre métier</a>
+        	<a href="{{ URL::route('notremetier') }}"><i class="fa fa-camera"></i><br>Notre Métier</a>
         </li>
         <li id="nav-trouver">
-        	<a href="{{ URL::route('noustrouver') }}"><i class="fa fa-map-marker"></i><br>Nous trouver</a>
-        </li>
-        <li id="nav-contact">
-        	<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>
+        	<a href="{{ URL::route('noustrouver') }}"><i class="fa fa-map-marker"></i><br>Nous Trouver</a>
         </li>
         <li id="nav-liens">
             <a href="{{ URL::route('link') }}"><i class="fa fa-external-link-square"></i><br>Liens Utiles</a>
         </li>
         <li id="nav-calendrier">
             <a href="{{ URL::route('contact') }}"><i class="fa fa-calendar"></i><br>Calendrier</a>
+        </li>
+        <li id="nav-contact">
+        	<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>
         </li>
 
         <li class="dropdown" id="nav-membre">
