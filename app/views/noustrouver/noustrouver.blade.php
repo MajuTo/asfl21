@@ -7,10 +7,20 @@
         </div>
     </div>
     <div class="row">
-       @foreach ($sagesfemmes as $key => $value) {
-           <p>{{ $key }}: {{ $value }}</p>
-       } 
-       @endforeach
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+         @foreach ($sagesfemmes as $key => $value) {
+             <p>{{ $key }}: {{ $value->name }}</p>
+             <p>{{ $key }}: {{ $value->firstname }}</p>
+             <p>{{ $key }}: {{ $value->lat }}</p>
+             <p>{{ $key }}: {{ $value->lng }}</p>
+         } 
+         @endforeach
+      </div>
+      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+        <div class="map_container">
+          <div class="map_canvas" id="map_canvas"></div>
+        </div>
+      </div>
     </div>
 </div>
 @stop
@@ -19,5 +29,25 @@
         $(document).ready(function(){
             $('#nav-trouver').addClass('active');
         });
+    </script>
+
+     <script type="text/javascript">
+        function initialize() {
+          var mapOptions = {
+            zoom: 12,
+            center: new google.maps.LatLng(47.313208, 5.058476)
+          }
+          var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+          @foreach ($sagesfemmes as $sf)
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng( {{ $sf->lat }}, {{ $sf->lng }}),
+                map: map,
+                title: '{{ $sf->name }}'
+            });
+          @endforeach
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 @stop

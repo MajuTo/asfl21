@@ -10,8 +10,16 @@ class NousTrouverController extends \BaseController {
 	public function index()
 	{
 		$sagesfemmes = User::all();
+
+		foreach ($sagesfemmes as $sf) {
+			$locations[] = array('lat' => $sf->lat, 'lng' => $sf->lng);
+		}
+
+		// dd($locations);
+
 		return View::make('noustrouver.noustrouver',[
 			'sagesfemmes' => $sagesfemmes,
+			'locations'   => $locations,
 			]);
 	}
 

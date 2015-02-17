@@ -11,7 +11,7 @@ class ActivityTableSeeder extends Seeder {
             'activityDesc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita beatae autem ad officiis sequi maiores numquam officia veniam debitis dignissimos amet quasi atque in, cum ipsa? Sint aspernatur, quasi minus?'
             ]);
          Activity::create([
-            'activityName'      => 'Préparation a la naissance',
+            'activityName'      => 'Préparation à la naissance',
             'activityDesc' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores culpa, fuga eos odio in dolorum accusantium sapiente blanditiis nam laborum neque, asperiores reiciendis nulla eveniet! Fuga beatae, eaque iste explicabo!'
             ]);
          Activity::create([
