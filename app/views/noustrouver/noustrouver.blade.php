@@ -40,11 +40,13 @@
           var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
           @foreach ($sagesfemmes as $sf)
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng( {{ $sf->lat }}, {{ $sf->lng }}),
-                map: map,
-                title: '{{ $sf->name }}'
-            });
+            @if ($sf->lat != null and $sf->lng != null)
+              var marker = new google.maps.Marker({
+                  position: new google.maps.LatLng( {{ $sf->lat }}, {{ $sf->lng }}),
+                  map: map,
+                  title: '{{ $sf->name }}'
+              });
+            @endif 
           @endforeach
         }
 
