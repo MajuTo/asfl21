@@ -91,7 +91,7 @@ class UserController extends \BaseController {
 		Alert::add("alert-success", "L'adhérent a bien été créé");
 		return Redirect::route('admin.user.index');
 	}
-	
+
 
 
 	/**
@@ -146,10 +146,10 @@ class UserController extends \BaseController {
 		$googleMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $parameters;
 
 		$ch = curl_init($googleMapUrl);
-	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	    //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		 //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
-		
+
 	    try{
 			$exec = curl_exec($ch);
 			if($exec == false){
@@ -223,8 +223,6 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$redirect = ($this->isAdminRequest()) ? 'admin.user.index' : 'user.edit';
-
 		$user = User::find($id);
 
 		// validation form
@@ -264,7 +262,11 @@ class UserController extends \BaseController {
 		}
 		$user->activities()->sync($activities);
 		Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
-		return Redirect::route($redirect);
+
+		if($this->isAdminRequest()){
+			return Redirect::route('admin.user.index');
+		}
+		return Redirect::route('user.show', Auth::user()->id);
 	}
 
 	public function updatePseudo($id){
