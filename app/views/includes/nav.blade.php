@@ -29,7 +29,7 @@
             <a href="{{ URL::route('link') }}"><i class="fa fa-external-link-square"></i><br>Liens Utiles</a>
         </li>
         <li id="nav-calendrier">
-            <a href="{{ URL::route('contact') }}"><i class="fa fa-calendar"></i><br>Calendrier</a>
+            <a href="{{ URL::route('calendrier.index') }}"><i class="fa fa-calendar"></i><br>Calendrier</a>
         </li>
         <li id="nav-contact">
         	<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>

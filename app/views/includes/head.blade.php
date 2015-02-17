@@ -11,6 +11,9 @@
 {{ HTML::style('assets/bootstrap/css/bootstrap.min.css') }}
 {{ HTML::style('assets/font-awesome/css/font-awesome.min.css') }}
 {{ HTML::style('assets/css/custom.css') }}
+	{{ HTML::style('vertical-timeline/css/reset.css') }}
+	{{ HTML::style('vertical-timeline/css/style.css') }}
+	{{ HTML::script('vertical-timeline/js/modernizr.js') }}
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

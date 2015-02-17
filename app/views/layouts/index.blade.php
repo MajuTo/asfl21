@@ -3,6 +3,7 @@
     <head>
         <!-- HEADER -->
         @include('includes.head')
+        @yield('css')
     </head>
     <body>
         <div class="container">
