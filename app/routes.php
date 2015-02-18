@@ -35,6 +35,7 @@ Route::get('inscription/verification/{confirmation}', ['as' => 'confirmation', '
 /* PASSWORD RECOVERY */
 Route::controller('password', 'RemindersController');
 Route::resource('user', 'UserController', ['only' => ['show']]);
+Route::post('user/{user}', ['as' => 'user.email', 'uses' => 'UserController@sendEmail']);
 Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show']]);
 
 Route::group([
@@ -47,7 +48,6 @@ Route::group([
         
         /* USER */
         Route::resource('user', 'UserController', ['only' => ['edit', 'update']]);
-        Route::put('updatePseudo/{pseudo}', ['as' => 'updatePseudo', 'uses' => 'UserController@updatePseudo']);
 
         /* MESSAGE */
         Route::resource('message', 'MessageController');
