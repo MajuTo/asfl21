@@ -2,6 +2,9 @@
 {{ HTML::script('assets/bootstrap/js/bootstrap.min.js') }}
 <!-- GSAP -->
 {{ HTML::script('assets/greensock/TweenMax.min.js') }}
+<!-- Vertical Timeline reset -->
+<!-- {{ HTML::script('assets/vertical-timeline/js/modernizr.js') }} -->
+
 
 <script>
     $(document).ready(function(){

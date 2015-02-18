@@ -29,9 +29,9 @@ class UserController extends \BaseController {
 		$activities = Activity::all();
 		$user = new User();
 		return View::make('admin.user.create', [
-			'groups' => $groups,
+			'groups'     => $groups,
 			'activities' => $activities,
-			'user'   => $user
+			'user'       => $user
 			]);
 	}
 
@@ -146,7 +146,7 @@ class UserController extends \BaseController {
 		$googleMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $parameters;
 
 		$ch = curl_init($googleMapUrl);
-		 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		 //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 
@@ -208,8 +208,8 @@ class UserController extends \BaseController {
 		}
 
 		return View::make($view,[
-			'user' => $user,
-			'groups' => $groups,
+			'user'       => $user,
+			'groups'     => $groups,
 			'activities' => $activities
 			]);
 	}
