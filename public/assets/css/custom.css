@@ -88,10 +88,12 @@ body {
     background-image: url('../img/skulls.png');
     font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
+    height: 100%;
 }
 
 .container {
   background: white;
+  position: relative;
 }
 
 h1 { 
