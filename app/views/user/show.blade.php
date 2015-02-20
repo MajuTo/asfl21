@@ -7,6 +7,7 @@
             <h1 class="animate-page-title">{{ $user->name . ' ' . $user->firstname }}</h1>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-6">
             <h3>Mes coordonnées</h3>
@@ -27,6 +28,20 @@
                     <dd>{{ $act->activityName }}</dd>
                 @endforeach
             </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Contactez moi</h3>
+            {{ BootForm::openHorizontal(3, 9)->action(URL::route('user.email', $user->id)) }}
+                {{ Form::token() }}
+                {{-- BootForm::bind($user) --}}
+                {{ BootForm::text('Votre nom', 'name')->placeHolder("Votre nom...")->required() }}
+                {{ BootForm::text('Email', 'email')->placeHolder("Votre email...")->required() }}
+                {{ BootForm::textarea('Message', 'message')->placeHolder("Votre message...")->required() }}
+                {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
+            {{ BootForm::close() }}
         </div>
     </div>
 </div>

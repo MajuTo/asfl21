@@ -147,7 +147,7 @@ class UserController extends \BaseController {
 
 		$ch = curl_init($googleMapUrl);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		 //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 
 	    try{
@@ -269,21 +269,34 @@ class UserController extends \BaseController {
 		return Redirect::route('user.show', Auth::user()->id);
 	}
 
-	public function updatePseudo($id){
+	/**
+	 * Envoi un email à l'utilisateur.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function sendEmail($id){
 		$user = User::find($id);
 
 		$rules = array(
-			'username' => 'required|unique:users',
+			'name' => 'required',
+			'email' => 'required',
+			'message' => 'required'
 		);
 		$validation = Validator::make(Input::all(), $rules);
 
 		if ($validation->fails()) {
-			Alert::add("alert-danger", "Les modifications n'ont pas été enregistrées.");
+			Alert::add("alert-danger", "Vous devez remplir tous les champs");
 			return Redirect::back()->withErrors($validation);
 		}
 
-		$user->update(Input::all());
-		return Redirect::route($redirect);
+		//Envoi mail
+		Mail::send('emails.usercontact', ['input' => Input::all()], function($m) use ($user)	{
+			$m->from(Input::get('email'), Input::get('name'));
+			$m->to($user->email)->subject('Contact depuis le site ASFL21');
+		});
+		Alert::add("alert-success", "Votre message a bien été envoyé");
+		return Redirect::route('user.show', $user->id);
 	}
 
 
