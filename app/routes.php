@@ -37,6 +37,10 @@ Route::controller('password', 'RemindersController');
 Route::resource('user', 'UserController', ['only' => ['show']]);
 Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show']]);
 
+/* AJAX */
+/* nous-trouver */
+Route::post('getSfByActivity', ['as' => 'getSfByActivity', 'uses' => 'NousTrouverController@getSfByActivity']);
+
 Route::group([
     'before' => 'auth',
     ], function(){

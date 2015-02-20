@@ -100,7 +100,7 @@
 @stop
 
 @section('script')
-	{{ HTML::script('assets/vertical-timeline/js/modernizr.js') }}
+	<!-- {{ HTML::script('assets/vertical-timeline/js/modernizr.js') }} -->
 
     <script>
         $(document).ready(function(){

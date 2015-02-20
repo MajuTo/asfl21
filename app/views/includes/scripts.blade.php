@@ -22,6 +22,15 @@
             $(this).removeClass('focus');
         });
 
+        // pass along the csfr token header on every AJAX request
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
+        });
+
     });
 </script>
 

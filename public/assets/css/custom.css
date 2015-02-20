@@ -296,12 +296,13 @@ a:active {
 /* ********************************************************** */
 /* TROUVER */
 
-.map_container{
+.map_container {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%; /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
 }
-.map_container .map_canvas{
+
+.map_container .map_canvas {
     position: absolute;
     top: 0;
     right: 0;
@@ -309,6 +310,26 @@ a:active {
     left: 0;
     margin: 0;
     padding: 0;
+}
+
+#table-sf {
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.activity-td-selected {
+  color: white;
+  background-color: deeppink;
+}
+
+.sf-tr-selected {
+  color: white;
+  background-color: deeppink;
+}
+
+.table-hover>tbody>tr:hover {
+  color: white;
+  background-color: deeppink;
 }
 /* END TROUVER */
 /* ********************************************************** */
