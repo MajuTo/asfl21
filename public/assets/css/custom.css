@@ -94,11 +94,11 @@ body {
   background: white;
 }
 
-h1 { 
+h1 {
     color: #F90B6D;
-    font-size: 34px; 
-    font-weight: 300; 
-    line-height: 40px; 
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 40px;
     margin-top: 0px;
     margin-bottom: 40px;
 }
@@ -111,6 +111,7 @@ a:hover,
 a:focus,
 a:active {
     color: #B420FF;
+    text-decoration: none;
 }
 /* END GENERAL */
 /* ********************************************************** */

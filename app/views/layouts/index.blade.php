@@ -15,19 +15,17 @@
 
             <!-- BODY CONTENT -->
             @yield('content')
-        </div>
 
 
             <!-- FOOTER -->
-            <footer>
-                @include('includes.footer')
-            </footer>
+            @include('includes.footer')
 
-        <!-- Javascipts -->
-        @include('includes.scripts')
+            <!-- Javascipts -->
+            @include('includes.scripts')
 
-        <!-- Custom scripts -->
-        @yield('script')
+            <!-- Custom scripts -->
+            @yield('script')
+        </div>
 
 
     </body>
