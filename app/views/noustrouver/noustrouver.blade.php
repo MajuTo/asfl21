@@ -12,7 +12,7 @@
           <table class="table table-hover table-condensed">
             <thead>
               <tr>
-                <th>Activités</th>
+                <th>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
               </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                <thead>
                  <tr>
                    <th>Sages</th>
-                   <th>Femmes</th>
+                   <th>Femmes <i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
                  </tr>
                </thead>
                <tbody id="listesf">
@@ -60,6 +60,11 @@
         $(document).ready(function(){
           // active navbar
           $('#nav-trouver').addClass('active');
+
+          // tooltip
+          $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+          })
 
           // get selected activities
           function getSelectedActivities(){
@@ -90,17 +95,20 @@
               data: {selectedActivities: selectedActivities},
               success: function(response){
                 $('tbody#listesf').html(response);
+                $('.sf-tr').addClass('hidden-select');
+                toggleMarkers();
               }
             });
+
           }
 
           function toggleMarkers(){
-            if ($('.sf-tr').hasClass('sf-tr-selected')) {
+            if ($('.sf-tr').hasClass('sf-tr-selected') || $('.sf-tr').hasClass('hidden-select')) {
               for(i=0; i<markers.length; i++){
                 markers[i].setVisible(false);
               }
 
-              $('.sf-tr-selected').each(function(){
+              $('.sf-tr-selected, .hidden-select').each(function(){
                 var sf = $(this).data('sf');
 
                 for(i=0; i<markers.length; i++){
@@ -109,9 +117,10 @@
                   };
                 }
               });
+
             } else {
               for(i=0; i<markers.length; i++){
-                markers[i].setVisible(true);
+                markers[i].setVisible(false);
               }
             }
           }

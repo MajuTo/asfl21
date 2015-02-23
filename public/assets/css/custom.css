@@ -300,6 +300,7 @@ a:active {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%; /* Ratio 16:9 ( 100%/16*9 = 56.25% ) */
+    height: 550px;
 }
 
 .map_container .map_canvas {
@@ -313,7 +314,6 @@ a:active {
 }
 
 #table-sf {
-  white-space: nowrap;
   overflow-x: hidden;
 }
 
@@ -328,8 +328,11 @@ a:active {
 }
 
 .table-hover>tbody>tr:hover {
-  color: white;
-  background-color: deeppink;
+  border-top: 2px solid deeppink;
+}
+
+.table-hover>tbody>tr>td:hover {
+  border-top: 2px solid deeppink;
 }
 
 #table-height {
@@ -337,5 +340,8 @@ a:active {
   overflow: auto;
 }
 
+#tooltip-sf {
+  margin-left: 17px;
+}
 /* END TROUVER */
 /* ********************************************************** */
