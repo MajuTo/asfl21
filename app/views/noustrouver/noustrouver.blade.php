@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="row">
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
         <div class="table-responsive">
           <table class="table table-hover table-condensed">
             <thead>
@@ -26,7 +26,7 @@
         </div>
       </div>
       <!-- AJAX liste des sf selon activité -->
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
            <div class="table-responsive" id="table-sf">
              <table class="table table-hover table-condensed">
                <thead>

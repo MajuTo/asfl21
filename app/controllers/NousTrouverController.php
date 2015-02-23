@@ -26,18 +26,28 @@ class NousTrouverController extends \BaseController {
 		if (isset($_POST['selectedActivities'])) {
 			$selectedActivities = $_POST['selectedActivities'];
 
-			/*$userByActivities = User::with('activities')->whereHas('activities', function($query) use($selectedActivities){
-				$query->whereIn('id', $selectedActivities);
-			})->get();*/	
-
-			$query = User::with('activities');
+			/*$query = User::with('activities');
 			foreach ($selectedActivities as $activity) {
 				$query->whereHas('activities', function($q) use($activity){
 					$q->where('id', $activity);
 				});
 			}
-
 			$userByActivities = $query->get();
+
+			select * from `users` where 
+			(select count(*) from `activities` inner join `activity_user` on `activities`.`id` = `activity_user`.`activity_id` where `activity_user`.`user_id` = `users`.`id` and `id` = '7') >= 1 
+			and (select count(*) from `activities` inner join `activity_user` on `activities`.`id` = `activity_user`.`activity_id` where `activity_user`.`user_id` = `users`.`id` and `id` = '3') >= 1 
+			and (select count(*) from `activities` inner join `activity_user` on `activities`.`id` = `activity_user`.`activity_id` where `activity_user`.`user_id` = `users`.`id` and `id` = '1') >= 1 
+			and (select count(*) from `activities` inner join `activity_user` on `activities`.`id` = `activity_user`.`activity_id` where `activity_user`.`user_id` = `users`.`id` and `id` = '2') >= 1*/
+
+			$userByActivities = User::with('activities')
+	            ->whereHas('activities', function($query) use($selectedActivities) {
+	                $query->selectRaw('count(distinct id)')->whereIn('id', $selectedActivities);
+	            }, '=', count($selectedActivities))->get();
+
+	        /*select * from `users` where (select count(distinct id) from `activities` 
+	        	inner join `activity_user` on `activities`.`id` = `activity_user`.`activity_id` 
+	        	where `activity_user`.`user_id` = `users`.`id` and `id` in ('3', '2', '8', '10')) = 4*/
 
 		} else {
 			$userByActivities = DB::table('users')->orderBy('name')->get();

@@ -7,10 +7,6 @@
 
     <script>
         $(document).ready(function(){
-          // active navbar
-          $('#nav-trouver').addClass('active');
-
-
           // get selected sf
           function getSelectedSf(){
             var selected_sf = [];

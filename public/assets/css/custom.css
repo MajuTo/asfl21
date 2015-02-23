@@ -321,17 +321,23 @@ a:active {
 
 .activity-td-selected {
   color: white;
-  background-color: deeppink;
+  background-color: #B420FF;
 }
 
 .sf-tr-selected {
   color: white;
-  background-color: deeppink;
+  background-color: #B420FF;
 }
 
 .table-hover>tbody>tr:hover {
   color: white;
   background-color: deeppink;
 }
+
+#table-height {
+  max-height: 600px;
+  overflow: auto;
+}
+
 /* END TROUVER */
 /* ********************************************************** */
