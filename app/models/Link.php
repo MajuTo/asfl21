@@ -5,6 +5,6 @@
 */
 class Link extends Eloquent {
 
-	protected $fillable	  = ['linkName', 'link'];
+	protected $fillable	  = ['linkName', 'link', 'address', 'zipCode', 'city', 'phone'];
 
 }

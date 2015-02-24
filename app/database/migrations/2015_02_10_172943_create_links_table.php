@@ -17,6 +17,10 @@ class CreateLinksTable extends Migration {
 			$table->increments('id');
 			$table->string('linkName');
 			$table->string('link')->unique();
+			$table->string('address')->nullable();
+			$table->string('zipCode')->nullable();
+			$table->string('city')->nullable();
+			$table->string('phone')->nullable();
 			$table->timestamps();
 		});
 	}

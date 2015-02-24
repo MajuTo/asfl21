@@ -4,9 +4,24 @@
     <div class="row">
     	<div class="col-sm-12">
     	<h2>Liens utiles</h2>
-	    	@foreach($links as $link)
-	    		<p>{{ $link->linkName . ' ' . $link->link }}</p>
-	    	@endforeach
+            <table class="table table-condensed">
+                <thead>
+                    <td>Nom</td>
+                    <td>Adresse</td>
+                    <td>Téléphone</td>
+                    <td>Lien</td>
+                </thead>
+                <tbody>
+    	    	@foreach($links as $link)
+                <tr>
+                    <td>{{ $link->linkName }}</td>
+                    <td>{{ $link->address . ' ' . $link->zipCode . ' ' . $link->city }}</td>
+                    <td>{{ $link->phone }}</td>
+    	    		<td><a href="{{ $link->link }}">Visiter leur site <i class="fa fa-arrow-right"></i></a></td>
+                </tr>
+    	    	@endforeach
+                </tbody>
+            </table>
 	    </div>
     </div>
 </div>
