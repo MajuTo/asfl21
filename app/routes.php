@@ -21,7 +21,8 @@ Route::get('nous-trouver', ['as' => 'noustrouver', 'uses' => 'NousTrouverControl
 Route::get('contact',  ['as' => 'contact', 'uses' => 'ContactController@index']);
 Route::post('contact', ['as' => 'sendcontact', 'uses' => 'ContactController@sendcontact']);
 
-Route::get('liens',  ['as' => 'link', 'uses' => 'LinkController@index']);
+Route::get('liens-utiles',  ['as' => 'link', 'uses' => 'LinkController@index']);
+Route::get('partenaires',  ['as' => 'partner', 'uses' => 'PartnerController@index']);
 
 // RESTful route => see php artisan routes
 
@@ -70,6 +71,7 @@ Route::group([
                     Route::put('user/{user}/toggle', ['as' => 'admin.user.toggle', 'uses' => 'UserController@toggle']);
                     Route::resource('message', 'MessageController');
                     Route::resource('activity', 'ActivityController');
+                    Route::resource('partner', 'PartnerController');
                 }
             );
         });
