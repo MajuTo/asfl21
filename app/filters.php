@@ -46,6 +46,10 @@ Route::filter('auth', function()
 			return Redirect::guest('login');
 		}
 	}
+	elseif (Auth::user() && !Auth::user()->loggedOnce && Route::getCurrentRoute()->getName() != 'sessions.edit')
+	{
+		return Redirect::route('sessions.edit', [Auth::id()]);
+	}
 });
 
 
