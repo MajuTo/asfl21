@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
         <div class="table-responsive">
-          <table class="table table-hover table-condensed">
+          <table class="table table-condensed">
             <thead>
               <tr>
                 <th>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
@@ -28,18 +28,16 @@
       <!-- AJAX liste des sf selon activité -->
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
            <div class="table-responsive" id="table-sf">
-             <table class="table table-hover table-condensed">
+             <table class="table table-condensed">
                <thead>
                  <tr>
-                   <th>Sages</th>
-                   <th>Femmes <i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
+                   <th>Sages Femmes <i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
                  </tr>
                </thead>
                <tbody id="listesf">
                    @foreach ($sagesfemmes as $sf) 
                      <tr class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">
-                       <td>{{{ Str::upper($sf->name) }}}</td>
-                       <td>{{{ Str::title($sf->firstname) }}}</td>
+                       <td>{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
                      </tr>
                    @endforeach
                </tbody>

@@ -1,7 +1,6 @@
 @foreach ($sagesfemmes as $sf) 
 <tr class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">
-   <td>{{{ Str::upper($sf->name) }}}</td>
-   <td>{{{ Str::title($sf->firstname) }}}</td>
+   <td>{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
 </tr>
 @endforeach
 
