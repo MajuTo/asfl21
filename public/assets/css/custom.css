@@ -133,8 +133,40 @@ a:active {
 /* END FORMS */
 /* ********************************************************** */
 
+/* ********************************************************** */
+/* ADMIN MENU */
 
+.nav-tabs.admin-menu {
+  border-bottom: 0px;
+}
+.nav-tabs.admin-menu > li > a {
+  border: none;
+  border-radius: 4px;
+}
+.nav-tabs.admin-menu > li > a:hover {
+  color: deeppink;
+  background-color: pink;
+  border-right: none;
+  border-bottom: none;
+  border-top: none;
+  border-left: 5px solid deeppink;
+}
 
+.nav-tabs.admin-menu > li.active > a,
+.nav-tabs.admin-menu > li.active > a:hover,
+.nav-tabs.admin-menu > li.active > a:focus {
+  cursor: pointer;
+  color: deeppink;
+  background-color: #fff;
+  border-right: none;
+  border-bottom: none;
+  border-top: none;
+  border-left: 5px solid deeppink;
+  border-bottom-color: transparent;
+} 
+
+/* END ADMIN MENU */
+/* ********************************************************** */
 
 /* ********************************************************** */
 /* BUTTONS */

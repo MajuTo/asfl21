@@ -10,7 +10,7 @@
 </script>
 
 <!-- CSS -->
-{{ HTML::style('assets/bootstrap/css/bootstrap.min.css') }}
+{{ HTML::style('assets/bootstrap/css/bootstrap.css') }}
 {{ HTML::style('assets/font-awesome/css/font-awesome.min.css') }}
 {{ HTML::style('assets/css/custom.css') }}
 <!-- {{ HTML::style('assets/vertical-timeline/css/reset.css') }}

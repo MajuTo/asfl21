@@ -34,6 +34,7 @@
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
             $('#nav-admin').addClass('active');
+            $('#nav-admin-messages').addClass('active');
         });
     </script>
 @stop
