@@ -266,7 +266,7 @@ class UserController extends \BaseController {
 		if($this->isAdminRequest()){
 			return Redirect::route('admin.user.index');
 		}
-		return Redirect::route('user.show', Auth::user()->id);
+		return Redirect::route('user.edit', Auth::user()->id);
 	}
 
 	/**

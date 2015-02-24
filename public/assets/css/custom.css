@@ -328,7 +328,7 @@ a:active {
   background-color: #B420FF;
 }
 
-.table>tbody>tr>td:hover {
+.sf-hov>tbody>tr>td:hover {
   background-color: none;
   border-top: 3px solid deeppink;
   font-weight: bold;

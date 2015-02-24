@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
         <div class="table-responsive">
-          <table class="table table-condensed">
+          <table class="table table-condensed sf-hov">
             <thead>
               <tr>
                 <th>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
@@ -28,7 +28,7 @@
       <!-- AJAX liste des sf selon activité -->
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
            <div class="table-responsive" id="table-sf">
-             <table class="table table-condensed">
+             <table class="table table-condensed sf-hov">
                <thead>
                  <tr>
                    <th>Sages Femmes <i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
