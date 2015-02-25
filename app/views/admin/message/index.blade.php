@@ -13,8 +13,8 @@
 			@foreach($messages as $message)
 				<tr>
 					<td>{{ $message->id }}</td>
-					<td>{{ $message->user->firstname . ' ' . $message->user->name }}</td>
-					<td>{{ $message->title }}</td>
+					<td>{{ Str::title($message->user->firstname) . ' ' . Str::upper($message->user->name) }}</td>
+					<td>{{ Str::title($message->title) }}</td>
 					<td>{{ $message->category->categoryName }}</td>
 					<td>
 						<a href="{{ URL::route('admin.message.edit', $message->id) }}"><button class="btn label label-warning">Editer</button></a>

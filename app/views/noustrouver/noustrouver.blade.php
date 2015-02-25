@@ -31,13 +31,15 @@
              <table class="table table-condensed sf-hov">
                <thead>
                  <tr>
-                   <th>Sages Femmes <i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
+                   <th>Sages Femmes</th>
+                     <th><i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
                  </tr>
                </thead>
                <tbody id="listesf">
                    @foreach ($sagesfemmes as $sf) 
-                     <tr class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">
-                       <td>{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
+                     <tr>
+                       <td class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
+                       <td><a href="{{ URL::route('user.show', $sf->id) }}"><i id="tooltip-sf" class="fa fa-envelope" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
                      </tr>
                    @endforeach
                </tbody>

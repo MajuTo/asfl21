@@ -20,9 +20,9 @@
 			@foreach($users as $user)
 				<tr>
 					<td>{{ $user->id }}</td>
-					<td>{{ $user->name }}</td>
-					<td>{{ $user->firstname }}</td>
-					<td>{{ $user->group->groupName }}</td>
+					<td>{{ Str::upper($user->name) }}</td>
+					<td>{{ Str::title($user->firstname) }}</td>
+					<td>{{ Str::title($user->group->groupName) }}</td>
 					<td>
 						<a href="{{ URL::route('admin.user.edit', $user->id) }}"><button class="btn label label-warning">Editer</button></a>
 						{{ BootForm::open()->put()->action(URL::route('admin.user.toggle', $user->id))->style('display: inline;') }}
