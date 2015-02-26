@@ -15,7 +15,7 @@ class CreatePartnersTable extends Migration {
 		Schema::create('partners', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('partnerName');
+			$table->string('partnerName')->unique();
 			$table->string('logo')->nullable();
 			$table->string('contact')->nullable();
 			$table->timestamps();

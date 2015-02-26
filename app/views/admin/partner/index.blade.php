@@ -21,7 +21,7 @@
 				<tr>
 					<td>{{ $partner->id }}</td>
 					<td>{{ $partner->partnerName }}</td>
-					<td>{{ $partner->logo }}</td>
+					<td>{{ ($partner->logo) ? HTML::image(asset($partner->logo), 'Logo de '.$partner->partnerName, ['class' => 'admin_logo_index']) : '' }}</td>
 					<td>{{ $partner->contact }}</td>
 					<td>
 						<a href="{{ URL::route('admin.partner.edit', $partner->id) }}"><button class="btn label label-warning">Editer</button></a>

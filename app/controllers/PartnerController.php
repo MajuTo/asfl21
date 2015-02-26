@@ -2,6 +2,8 @@
 
 class PartnerController extends \BaseController {
 
+	private $logo_path = "assets/img/partners/";
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -39,7 +41,8 @@ class PartnerController extends \BaseController {
 	public function store()
 	{
 		$rules = array(
-			'partnerName'  => 'required'
+			'partnerName'  => 'required|unique:partners',
+			'logo_file' => 'image'
 		);
 
 		$validation = Validator::make(Input::all(), $rules);
@@ -50,6 +53,15 @@ class PartnerController extends \BaseController {
 		}
 
 		$partner = new partner(Input::all());
+
+		$file = Input::file('logo_file');
+
+		if ($file && $file->isValid()){
+			$ext = $file->getClientOriginalExtension();
+			$filename = str_replace(' ', '',$partner->partnerName . '.' . $ext);
+		    $file->move($this->logo_path, $filename);
+		    $partner->logo = $this->logo_path . $filename;
+		}
 
 		//Sauvegarde
 		$partner->save();
@@ -95,7 +107,8 @@ class PartnerController extends \BaseController {
 	public function update($id)
 	{
 		$rules = array(
-			'partnerName'  => 'required'
+			'partnerName'  => 'required|unique:partners,partnerName,'.$id,
+			'logo_file' => 'image'
 		);
 
 		$validation = Validator::make(Input::all(), $rules);
@@ -106,6 +119,22 @@ class PartnerController extends \BaseController {
 		}
 
 		$partner = Partner::find($id);
+
+		if(Input::get('delete_logo')){
+			File::delete($partner->logo);
+			$partner->logo = '';
+		}
+
+		$file = Input::file('logo_file');
+		if ($file && $file->isValid()){
+			if($partner->logo){
+				File::delete($partner->logo);
+			}
+			$ext = $file->getClientOriginalExtension();
+			$filename = str_replace(' ', '',$partner->partnerName . '.' . $ext);
+		    $file->move($this->logo_path, $filename);
+		    $partner->logo = $this->logo_path . $filename;
+		}
 
 		//Sauvegarde
 		$partner->update(Input::all());
