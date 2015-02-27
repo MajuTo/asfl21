@@ -11,7 +11,7 @@ class NousTrouverController extends \BaseController {
 	{
 		$sagesfemmes = [];
 		$activities  = [];
-		$sagesfemmes = User::orderBy('name')->get();
+		$sagesfemmes = User::where('active', 1)->where('group_id', '!=', 3)->orderBy('name')->get();
 		$activities  = Activity::orderBy('activityName')->get();
 
 		return View::make('noustrouver.noustrouver',[
@@ -41,17 +41,21 @@ class NousTrouverController extends \BaseController {
 			and (select count(*) from `activities` inner join `activity_user` on `activities`.`id` = `activity_user`.`activity_id` where `activity_user`.`user_id` = `users`.`id` and `id` = '2') >= 1*/
 
 			$userByActivities = User::with('activities')
+				->where('active', 1)
 	            ->whereHas('activities', function($query) use($selectedActivities) {
 	                $query->selectRaw('count(distinct id)')->whereIn('id', $selectedActivities);
-	            }, '=', count($selectedActivities))->orderBy('name')->get();
+	            }, '=', count($selectedActivities))
+	            ->where('active', 1)
+	            ->where('group_id', '!=', 3)
+	            ->orderBy('name')->get();
 
 	        /*select * from `users` where (select count(distinct id) from `activities` 
 	        	inner join `activity_user` on `activities`.`id` = `activity_user`.`activity_id` 
 	        	where `activity_user`.`user_id` = `users`.`id` and `id` in ('3', '2', '8', '10')) = 4*/
 
 		} else {
-			$userByActivities = DB::table('users')->orderBy('name')->get();
-			// $userByActivities = User::all()->orderBy('name');
+			// $userByActivities = DB::table('users')->orderBy('name')->get();
+			$userByActivities = User::where('active', 1)->where('group_id', '!=', 3)->orderBy('name')->get();
 		}
 
 		return View::make('noustrouver.listesf', [
