@@ -52,7 +52,7 @@ class PartnerController extends \BaseController {
 			return Redirect::back()->withErrors($validation)->withInput();
 		}
 
-		$partner = new partner(Input::all());
+		$partner = new Partner(Input::all());
 
 		$file = Input::file('logo_file');
 
@@ -152,6 +152,10 @@ class PartnerController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		$partner = Partner::find($id);
+		if($partner->logo){
+			File::delete($partner->logo);
+		}
 		Partner::destroy($id);
 		return Redirect::route('admin.partner.index');
 	}
