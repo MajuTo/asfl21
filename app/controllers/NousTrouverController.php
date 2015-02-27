@@ -43,7 +43,7 @@ class NousTrouverController extends \BaseController {
 			$userByActivities = User::with('activities')
 	            ->whereHas('activities', function($query) use($selectedActivities) {
 	                $query->selectRaw('count(distinct id)')->whereIn('id', $selectedActivities);
-	            }, '=', count($selectedActivities))->get();
+	            }, '=', count($selectedActivities))->orderBy('name')->get();
 
 	        /*select * from `users` where (select count(distinct id) from `activities` 
 	        	inner join `activity_user` on `activities`.`id` = `activity_user`.`activity_id` 

@@ -95,7 +95,7 @@
               data: {selectedActivities: selectedActivities},
               success: function(response){
                 $('tbody#listesf').html(response);
-                $('.sf-tr').addClass('hidden-select');
+                // $('.sf-tr').addClass('hidden-select');
                 toggleMarkers();
               }
             });
@@ -108,11 +108,21 @@
                 markers[i].setVisible(false);
               }
 
-              $('.sf-tr-selected, .hidden-select').each(function(){
+              $('.sf-tr-selected').each(function(){
                 var sf = $(this).data('sf');
 
                 for(i=0; i<markers.length; i++){
-                  if ( sf == markers[i]['id']) {
+                  if ( sf == markers[i]['id'] ) {
+                    markers[i].setVisible(true)
+                  };
+                }
+              });
+
+              $('.hidden-select').each(function(){
+                var sf = $(this).data('sf');
+
+                for(i=0; i<markers.length; i++){
+                  if ( sf == markers[i]['id'] ) {
                     markers[i].setVisible(true)
                   };
                 }
@@ -120,7 +130,7 @@
 
             } else {
               for(i=0; i<markers.length; i++){
-                markers[i].setVisible(false);
+                markers[i].setVisible(true);
               }
             }
           }
