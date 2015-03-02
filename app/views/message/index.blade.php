@@ -24,7 +24,8 @@
 	    			{{ $message->content }}
 	    		</p>
 	    	@endforeach
-    		{{ $messages->links() }}
+    		{{ Paginator::setPageName('all'); }}
+    		{{ $messages->appends('am', Input::get('am',1))->appends('mm', Input::get('mm',1))->links(); }}
 	    </div>
     	<div class="col-sm-6">
     	<h2>Messages des membres</h2>
@@ -35,6 +36,8 @@
 	    			{{ $mMessage->content }}
 	    		</p>
 	    	@endforeach
+    		{{ Paginator::setPageName('mm'); }}
+    		{{ $mMessages->appends('all', Input::get('all',1))->appends('am', Input::get('am',1))->links(); }}
 	    </div>
     	<div class="col-sm-6">
     	<h2>Messages de l'association</h2>
@@ -45,6 +48,8 @@
 	    			{{ $aMessage->content }}
 	    		</p>
 	    	@endforeach
+    		{{ Paginator::setPageName('am'); }}
+    		{{ $aMessages->appends('all', Input::get('all',1))->appends('mm', Input::get('mm',1))->links(); }}
 	    </div>
     </div>
 </div>

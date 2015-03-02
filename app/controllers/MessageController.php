@@ -9,15 +9,27 @@ class MessageController extends \BaseController {
 	 */
 	public function index()
 	{
-		$view = ($this->isAdminRequest()) ? 'admin.message.index' : 'message.index';
-		$aMessages = Category::find(1)->messages;
-		$mMessages = Category::find(2)->messages;
-		$messages = Message::orderBy('created_at','desc')->paginate(2);
-		return View::make($view, [
-			'messages' => $messages,
-			'mMessages' => $mMessages,
-			'aMessages' => $aMessages
-			]);
+		if($this->isAdminRequest()){
+			$messages = Message::orderBy('created_at','desc')->paginate(10);
+			return View::make('admin.message.index', [
+				'messages' => $messages
+				]);
+		}else{
+			//Messages admin
+			Paginator::setPageName('am');
+			$aMessages = Message::where('category_id', '=', 1)->orderBy('created_at','desc')->paginate(2);
+			//Messages membres
+			Paginator::setPageName('mm');
+			$mMessages = Message::where('category_id', '=', 2)->orderBy('created_at','desc')->paginate(2);
+			//Tous les messages
+			Paginator::setPageName('all');
+			$messages = Message::orderBy('created_at','desc')->paginate(2);
+			return View::make('message.index', [
+				'messages' => $messages,
+				'mMessages' => $mMessages,
+				'aMessages' => $aMessages
+				]);
+		}
 	}
 
 
