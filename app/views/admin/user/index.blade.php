@@ -39,7 +39,7 @@
 			@endforeach
 		</tbody>
 	</table>
-	{{-- $users->links() --}}
+	{{ $users->links() }}
 @stop
 @section('script')
     <script>

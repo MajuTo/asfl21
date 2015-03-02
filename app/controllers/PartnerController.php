@@ -11,11 +11,17 @@ class PartnerController extends \BaseController {
 	 */
 	public function index()
 	{
-		$view = ($this->isAdminRequest()) ? 'admin.partner.index' : 'partner.index';
-		$partners = Partner::all();
-		return View::make($view, [
-			'partners' => $partners
-			]);
+		if($this->isAdminRequest()){
+			$partners = Partner::orderBy('partnerName')->paginate(10);
+			return View::make('admin.partner.index', [
+				'partners' => $partners
+				]);
+		}else{
+			$partners = Partner::all();
+			return View::make('partner.index', [
+				'partners' => $partners
+				]);
+		}
 	}
 
 

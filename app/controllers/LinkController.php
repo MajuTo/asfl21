@@ -9,11 +9,17 @@ class LinkController extends \BaseController {
 	 */
 	public function index()
 	{
-		$view = ($this->isAdminRequest()) ? 'admin.link.index' : 'link.index';
-		$links = Link::all();
-		return View::make($view, [
-			'links' => $links
-			]);
+		if($this->isAdminRequest()){
+			$links = Link::orderBy('linkName')->paginate(10);
+			return View::make('admin.link.index', [
+				'links' => $links
+				]);
+		}else{
+			$links = Link::all();
+			return View::make('link.index', [
+				'links' => $links
+				]);
+		}
 	}
 
 

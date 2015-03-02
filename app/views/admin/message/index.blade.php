@@ -28,6 +28,7 @@
 			@endforeach
 		</tbody>
 	</table>
+	{{ $messages->links() }}
 @stop
 @section('script')
     <script>

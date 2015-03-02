@@ -9,11 +9,17 @@ class ActivityController extends \BaseController {
 	 */
 	public function index()
 	{
-		$view = ($this->isAdminRequest()) ? 'admin.activity.index' : 'activity.index';
-		$activities = Activity::all();
-		return View::make($view,[
-			'activities' => $activities
-			]);
+		if($this->isAdminRequest()){
+			$activities = Activity::orderBy('activityName')->paginate(10);
+			return View::make('admin.activity.index',[
+				'activities' => $activities
+				]);
+		}else{
+			$activities = Activity::all();
+			return View::make('activity.index',[
+				'activities' => $activities
+				]);
+		}
 	}
 
 

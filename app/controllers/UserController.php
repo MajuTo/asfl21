@@ -9,11 +9,18 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		$view = ($this->isAdminRequest()) ? 'admin.user.index' : 'user.index';
-		$users = User::paginate();
-		return View::make($view, [
-			'users' => $users
-			]);
+		if($this->isAdminRequest()){
+			$users = User::orderBy('name')->orderBy('firstname')->paginate(10);
+			return View::make('admin.user.index', [
+				'users' => $users
+				]);
+		}else{
+			$users = User::paginate();
+			return View::make('user.index', [
+				'users' => $users
+				]);
+		}
+		
 	}
 
 

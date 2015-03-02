@@ -33,6 +33,7 @@
 			@endforeach
 		</tbody>
 	</table>
+	{{ $links->links() }}
 @stop
 @section('script')
     <script>

@@ -31,7 +31,7 @@
 			@endforeach
 		</tbody>
 	</table>
-	{{-- $users->links() --}}
+	{{ $activities->links() }}
 @stop
 @section('script')
     <script>

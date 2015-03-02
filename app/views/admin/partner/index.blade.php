@@ -35,6 +35,7 @@
 			@endforeach
 		</tbody>
 	</table>
+	{{ $partners->links() }}
 @stop
 @section('script')
     <script>
