@@ -1,8 +1,11 @@
 @extends('layouts.index')
+@section('css')
+    {{ HTML::style('assets/vertical-timeline/css/style.css') }}
+@stop
 @section('content')
 <div class="content-container">
     <div class="row">
-        {{ BootForm::open()->action(URL::route('calendrier.show'))->addClass('form-inline') }}
+        {{ BootForm::open()->action(URL::route('calendrier.store'))->addClass('form-inline') }}
             {{ Form::token() }}
             <div class="col-sm-4 col-sm-offset-1">
                 {{ BootForm::text('Dernieres règles', 'date1')->placeHolder("Date des dernieres règles") }}
@@ -15,10 +18,23 @@
             </div>
         {{ BootForm::close() }}
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-          
-    </div>
+    @if(isset($events))
+        <section id="cd-timeline" class="cd-container">
+            @foreach($events as $event)
+                <div class="cd-timeline-block">
+                    <div class="cd-timeline-img {{ $event['class'] }}">
+                        <span alt="Image"><i class="{{ $event['icon'] }}"></i></span>
+                    </div> <!-- cd-timeline-img -->
+
+                    <div class="cd-timeline-content">
+                        <h2>{{ $event['title'] }}</h2>
+                        <p>{{ $event['desc'] }}</p>
+                        <span class="cd-date">{{ $event['date'] }}</span>
+                    </div> <!-- cd-timeline-content -->
+                </div> <!-- cd-timeline-block -->
+            @endforeach
+        </section> <!-- cd-timeline -->
+    @endif
 </div>
 @stop
 

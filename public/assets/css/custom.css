@@ -340,6 +340,36 @@ a:active {
 
 
 /* ********************************************************** */
+/* CALENDRIER */
+.cd-timeline-content h2 {
+  margin: 2px 0px;
+}
+.cd-timeline-content p {
+  margin: 2px 0px !important;
+}
+.cd-timeline-img {
+  text-align: center;
+  line-height: 60px;
+}
+.cd-timeline-img span {
+  font-size: 2em;
+}
+.cd-timeline-img.medical {
+  background: #F72222;
+}
+.cd-timeline-img.administratif {
+  background: lightgreen;
+}
+.cd-timeline-content {
+    padding: 1em !important;
+}
+/* END CALENDRIER */
+/* ********************************************************** */
+
+
+
+
+/* ********************************************************** */
 /* TROUVER */
 
  .map_container {

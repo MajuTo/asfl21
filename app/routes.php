@@ -37,7 +37,7 @@ Route::get('inscription/verification/{confirmation}', ['as' => 'confirmation', '
 Route::controller('password', 'RemindersController');
 Route::resource('user', 'UserController', ['only' => ['show']]);
 Route::post('user/{user}', ['as' => 'user.email', 'uses' => 'UserController@sendEmail']);
-Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show']]);
+Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show', 'store']]);
 
 /* AJAX */
 /* nous-trouver */

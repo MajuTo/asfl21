@@ -5,7 +5,7 @@
 @section('content')
 <div class="content-container"> 
 	<div class="row">
-		{{ BootForm::open()->action(URL::route('calendrier.show'))->addClass('form-inline') }}
+		{{ BootForm::open()->action(URL::route('calendrier.store'))->addClass('form-inline') }}
 	        {{ Form::token() }}
 	    	<div class="col-sm-4 col-sm-offset-1">
 	        	{{ BootForm::text('Dernieres règles', 'date1')->placeHolder("Date des dernieres règles") }}
@@ -21,7 +21,7 @@
 	<section id="cd-timeline" class="cd-container">
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-picture">
-				<img src="assets/vertical-timeline/img/cd-icon-picture.svg" alt="Picture">
+				<img src="assets/vertical-timeline/img/cross1.png" alt="Picture">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
@@ -34,7 +34,7 @@
 
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-img cd-movie">
-				<img src="assets/vertical-timeline/img/cd-icon-movie.svg" alt="Movie">
+				<img src="assets/vertical-timeline/img/hospital16.svg" alt="Movie">
 			</div> <!-- cd-timeline-img -->
 
 			<div class="cd-timeline-content">
