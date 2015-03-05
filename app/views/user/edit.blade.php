@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <h3>Mes coordonnées</h3>
+            <div class="col-sm-9 col-sm-offset-3"><h3>Mes coordonnées</h3></div>
             {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('user.update', $user->id)) }}
                 {{ Form::token() }}
                 {{ BootForm::bind($user) }}
@@ -23,6 +23,9 @@
                 {{ BootForm::text('Adresse', 'address')->placeHolder("Adresse...")->required() }}
                 {{ BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal...")->required() }}
                 {{ BootForm::text('Ville', 'city')->placeHolder("Ville...")->required() }}
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-9 col-sm-offset-3"><h3>Mes activités</h3></div>
                 @foreach($activities as $act)
                     @if($user->activities->contains($act->id))
                         {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() }}
@@ -33,7 +36,7 @@
                 {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
             {{ BootForm::close() }}
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <h3>Mot de passe</h3>
             <p id="mod-mdp-link">Modifier votre mot de passe <a href="{{ URL::route('sessions.edit') }}">ici</a>.</p>
         </div>
