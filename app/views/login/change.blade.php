@@ -7,9 +7,15 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-12">
+                <h3>Bonjour {{ $user->firstname }}</h3>
+                @if(Auth::user()->loggedOnce)
+                    <p>Veuillez entrer votre nouveau mot de passe.</p>
+                @else
+                    <p>C'est la première fois que vous vous connectez sur le site après votre inscritption (ou réinitialisation de mot de passe), veuillez entrer un nouveau mot de passe.</p>
+                @endif
+            </div>
             <div class="col-sm-6">
-                <h3>Bonjour {{ $user->username }}</h3>
-                <p>Veuillez entrer votre nouveau mot de passe.</p>
                     {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('sessions.update')) }}
                         {{ Form::token() }}
                         {{ BootForm::password('Mot de passe', 'password') }}
