@@ -51,6 +51,11 @@ class SessionsController extends \BaseController {
 
         if ($attempt) {
             $user = User::where('username', $input['username'])->first();
+            if (!$user->active) {
+                Alert::add('alert-danger', "Votre compte est désactivé, vous ne pouvez pas vous identifier.");
+                Auth::logout();
+                return Redirect::route('home');
+            }
             if ($user->loggedOnce == 0) {
                 return Redirect::route('sessions.edit', [$user->id]);
             }
