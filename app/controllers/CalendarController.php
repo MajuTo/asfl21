@@ -36,7 +36,7 @@ class CalendarController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('calendar.index');
+		return View::make('calendar.index', ['events' => null]);
 	}
 
 
@@ -70,7 +70,7 @@ class CalendarController extends \BaseController {
 			$this->events[$key]['date'] = date('d-m-Y', $this->events[$key]['date']);
 		}
 
-		return View::make('calendar.test',[
+		return View::make('calendar.index',[
 			'events' => $this->events
 			]);
 
