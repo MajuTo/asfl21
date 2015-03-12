@@ -33,7 +33,7 @@ class UserController extends \BaseController {
 	{
 		$groups = Group::lists('groupName', 'id');
 
-		$activities = Activity::all();
+		$activities = Activity::orderBy('activityName', 'ASC')->get();
 		$user = new User();
 		return View::make('admin.user.create', [
 			'groups'     => $groups,
@@ -208,7 +208,7 @@ class UserController extends \BaseController {
 	{
 		$user = User::find($id);
 		$groups = Group::lists('groupName', 'id');
-		$activities = Activity::all();
+		$activities = Activity::orderBy('activityName', 'ASC')->get();
 		$view = ($this->isAdminRequest()) ? 'admin.user.edit' : 'user.edit';
 		if ($id != Auth::id() && !$this->isAdminRequest()) {
 			return Redirect::route('user.edit', [Auth::id()]);
