@@ -49,6 +49,15 @@
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
             $('#nav-profil').addClass('active');
+            $(':checkbox:not(:checked)').parent().addClass('notchecked');
+            $(':checkbox:checked').parent().addClass('checked');
+            $(':checkbox').on('change', function(){
+                if( $(this).parent().hasClass('checked') ){
+                    $(this).parent().removeClass('checked').addClass('notchecked');
+                }else{
+                    $(this).parent().removeClass('notchecked').addClass('checked');
+                }
+            });
         });
     </script>
 @stop

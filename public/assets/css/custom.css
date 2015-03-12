@@ -440,3 +440,27 @@ a:active {
 }
 /* END TROUVER */
 /* ********************************************************** */
+
+.checkbox input[type=checkbox]{
+  display: none;
+}
+
+label.checked {
+  font-weight: bold;
+}
+
+label.notchecked {
+  font-weight: normal;
+}
+
+label.checked::before {
+  padding-right: 5px;
+  font-family: "FontAwesome";
+  content: "\f046";
+}
+
+label.notchecked::before {
+  padding-right: 5px;
+  font-family: "FontAwesome";
+  content: "\f096";
+}
