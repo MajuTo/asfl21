@@ -49,6 +49,10 @@
       <!-- END AJAX liste des sf selon activite -->
       <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" id="gmap">
         <div class="map_container">
+          <div id="panel">
+                <input id="chezvous_textbox" type="textbox" placeholder="chez vous">
+                <input id="chezvous_button" type="button" value="go" onclick="codeAddress()">
+              </div>
           <div class="map_canvas" id="map_canvas"></div>
         </div>
       </div>
@@ -64,7 +68,14 @@
           // tooltip
           $(function () {
             $('[data-toggle="tooltip"]').tooltip()
-          })
+          });
+
+          // on google map 'chez vous' search
+          $('#chezvous_textbox').keyup(function(event){
+            if(event.keyCode == 13){
+              $('#chezvous_button').click();
+            }
+          });
 
           // get selected activities
           function getSelectedActivities(){
@@ -153,14 +164,21 @@
 
     <!-- GOOGLE MAPS -->
      <script type="text/javascript">
+      var marker; 
       var markers = [];
+      var map;
+      var geocoder;
 
         function initialize() {
+          geocoder = new google.maps.Geocoder();
+
           var mapOptions = {
             zoom: 12,
             center: new google.maps.LatLng(47.313208, 5.058476)
           }
-          var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+          map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
           var infowindow = new google.maps.InfoWindow();
 
           @foreach ($sagesfemmes as $sf)
@@ -210,7 +228,35 @@
           @endforeach
         }
 
+        function codeAddress() {
+          if (marker) {
+            marker.setMap(null);
+          };
+
+          var icon = {
+            url: "{{ asset('assets/img/arrow.png') }}"
+          }
+
+          var address = document.getElementById('chezvous_textbox').value;
+
+          geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              map.setCenter(results[0].geometry.location);
+              marker = new google.maps.Marker({
+                  map: map,
+                  position: results[0].geometry.location,
+                  title: address,
+                  icon: icon
+              });
+            } else {
+              alert('L\'adresse que vous avez entrée, n\'est pas valide.');
+            }
+          });
+        }
+
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
     <!-- END GOOGLE MAPS -->
 @stop
+
+{{-- 30 rue d'auxonne, 21000 dijon --}}
