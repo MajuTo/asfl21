@@ -39,6 +39,11 @@ Route::resource('user', 'UserController', ['only' => ['show']]);
 Route::post('user/{user}', ['as' => 'user.email', 'uses' => 'UserController@sendEmail']);
 Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show', 'store']]);
 
+/* MENTIONS LEGALES */
+Route::get('mentions', ['as' => 'mentions', 'uses' => function(){
+    return View::make('mentions');
+}]);
+
 /* AJAX */
 /* nous-trouver */
 Route::post('getSfByActivity', ['as' => 'getSfByActivity', 'uses' => 'NousTrouverController@getSfByActivity']);
