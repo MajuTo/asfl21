@@ -8,9 +8,6 @@
 	            {{ Form::token() }}
 	            {{ BootForm::text('Titre', 'title')->placeHolder('Titre...')->required() }}
 	            {{ BootForm::text('Message', 'content')->placeHolder('Message...')->required() }}
-	            @if(Auth::getUser()->group_id == 2 || Auth::getUser()->group_id == 3)
-	            	{{ BootForm::checkbox('Envoyer le message comme administrateur', 'admin-msg') }}
-	            @endif
 	            {{ BootForm::submit('Envoyer', 'pull-right btn btn-pink') }}
 	        {{ BootForm::close() }}
 	    </div>
@@ -46,15 +43,6 @@
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
             $('#nav-info').addClass('active');
-            $(':checkbox:not(:checked)').parent().addClass('notchecked');
-            $(':checkbox:checked').parent().addClass('checked');
-            $(':checkbox').on('change', function(){
-                if( $(this).parent().hasClass('checked') ){
-                    $(this).parent().removeClass('checked').addClass('notchecked');
-                }else{
-                    $(this).parent().removeClass('notchecked').addClass('checked');
-                }
-            });
         });
     </script>
 @stop
