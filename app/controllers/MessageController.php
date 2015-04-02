@@ -21,11 +21,7 @@ class MessageController extends \BaseController {
 			//Messages membres
 			Paginator::setPageName('mm');
 			$mMessages = Message::where('category_id', '=', 2)->orderBy('created_at','desc')->paginate(2);
-			//Tous les messages
-			Paginator::setPageName('all');
-			$messages = Message::orderBy('created_at','desc')->paginate(2);
 			return View::make('message.index', [
-				'messages' => $messages,
 				'mMessages' => $mMessages,
 				'aMessages' => $aMessages
 				]);

@@ -3,7 +3,7 @@
 <div class="content-container">
     <div class="row">
     	<div class="col-sm-12">
-    	<h2>Liens utiles</h2>
+    	<h1 class="animate-page-title">Liens utiles</h1>
             <table class="table table-condensed">
                 <thead>
                     <td>Nom</td>

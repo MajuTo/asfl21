@@ -11,45 +11,29 @@
 	            {{ BootForm::submit('Envoyer', 'pull-right btn btn-pink') }}
 	        {{ BootForm::close() }}
 	    </div>
-    	<div class="col-sm-12">
-    	<h2>Messages</h2>
-	    	@foreach($messages as $message)
-	    		<span class="pull-left">{{ $message->user->name . ' ' . $message->user->firstname . ' le ' .$message->created_at }}</span><br />
-	    		@if($message->category->id == 1)
-	    		<p class="bg-danger">
-	    		@else
-	    		<p class="bg-success">
-	    		@endif
-	    			<strong class="pull-left">{{ $message->title }}</strong><br />
-	    			{{ $message->content }}
-	    		</p>
-	    	@endforeach
-    		{{ Paginator::setPageName('all'); }}
-    		{{ $messages->appends('am', Input::get('am',1))->appends('mm', Input::get('mm',1))->links(); }}
-	    </div>
     	<div class="col-sm-6">
     	<h2>Messages des membres</h2>
 	    	@foreach($mMessages as $mMessage)
-	    		<span class="pull-left">{{ $mMessage->user->name . ' ' . $mMessage->user->firstname }}</span><br />
-	    		<p class="bg-success">
+	    		<span class="pull-left">{{ $mMessage->user->name . ' ' . $mMessage->user->firstname . ' ' . date('d/m/Y H:i:s', strtotime($mMessage->created_at)) }}</span><br />
+	    		<p>
 	    			<strong class="pull-left">{{ $mMessage->title }}</strong><br />
 	    			{{ $mMessage->content }}
 	    		</p>
 	    	@endforeach
     		{{ Paginator::setPageName('mm'); }}
-    		{{ $mMessages->appends('all', Input::get('all',1))->appends('am', Input::get('am',1))->links(); }}
+    		{{ $mMessages->appends('am', Input::get('am',1))->links(); }}
 	    </div>
     	<div class="col-sm-6">
     	<h2>Messages de l'association</h2>
 	    	@foreach($aMessages as $aMessage)
-	    		<span class="pull-left">{{ $aMessage->user->name . ' ' . $aMessage->user->firstname }}</span><br />
-	    		<p class="bg-danger">
+	    		<span class="pull-left">{{ $aMessage->user->name . ' ' . $aMessage->user->firstname . ' ' . date('d/m/Y H:i:s', strtotime($aMessage->created_at)) }}</span><br />
+	    		<p>
 	    			<strong class="pull-left">{{ $aMessage->title }}</strong><br />
 	    			{{ $aMessage->content }}
 	    		</p>
 	    	@endforeach
     		{{ Paginator::setPageName('am'); }}
-    		{{ $aMessages->appends('all', Input::get('all',1))->appends('mm', Input::get('mm',1))->links(); }}
+    		{{ $aMessages->appends('mm', Input::get('mm',1))->links(); }}
 	    </div>
     </div>
 </div>

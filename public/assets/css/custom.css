@@ -42,7 +42,7 @@
 
 .navbar-default .navbar-nav>.active>a {
     background-color: transparent;
-    border-top-color: #B420FF;
+    border-top-color: deeppink;
 }
 
 .navbar-default .navbar-nav>.focus>a {
@@ -63,7 +63,7 @@
 }
 
 .dropdown-menu>.active>a {
-    background-color: #B420FF;
+    background-color: deeppink;
 }
 
 .navbar-brand {
@@ -136,6 +136,13 @@ label.notchecked::before {
   padding-right: 5px;
   font-family: "FontAwesome";
   content: "\f096";
+}
+.img-notre-metier{
+  width: 400px;
+  margin: 10px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
 /* END GENERAL */
 /* ********************************************************** */
