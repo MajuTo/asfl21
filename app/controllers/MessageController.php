@@ -99,8 +99,10 @@ class MessageController extends \BaseController {
 	{
 		$view = ($this->isAdminRequest()) ? 'admin.message.edit' : 'message.edit';
 		$message = Message::find($id);
+		$categories = Category::lists('categoryName', 'id');
 		return View::make($view, [
-			'message' => $message
+			'message' => $message,
+			'categories'=> $categories
 			]);
 	}
 

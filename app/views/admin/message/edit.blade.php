@@ -5,6 +5,7 @@
         {{ BootForm::bind($message) }}
         {{ BootForm::text('Titre', 'title')->placeHolder('Titre...')->required() }}
         {{ BootForm::text('Message', 'content')->placeHolder('Message...')->required() }}
+        {{ BootForm::select('Catégorie', 'category_id')->options($categories) }}
         {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
     {{ BootForm::close() }}
 @stop
