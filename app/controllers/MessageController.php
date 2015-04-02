@@ -62,7 +62,11 @@ class MessageController extends \BaseController {
 		$message = new Message();
 		$message->title = Input::get('title');
 		$message->content = Input::get('content');
-		$message->category_id = 2;
+		if(Input::get('admin-msg')) {
+			$message->category_id = 1;
+		} else {	
+			$message->category_id = 2;
+		}
 		$message->user_id = Auth::id();
 
 		//Sauvegarde
