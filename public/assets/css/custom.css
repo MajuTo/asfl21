@@ -13,7 +13,7 @@
 
 .navbar-default {
     background-color: transparent;
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
     border: none;
     font-size: 1.1em;
 }
@@ -86,7 +86,7 @@
 /* GENERAL */
 body {
     background-image: url('../img/skulls.png');
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Ubuntu', 'Open Sans', sans-serif;
     overflow-x: hidden;
 }
 
@@ -385,15 +385,37 @@ label.notchecked::before {
 .cd-timeline-img span {
   font-size: 2em;
 }
-.cd-timeline-img.medical {
-  background: #F72222;
+.cd-timeline-img.calendar-administratif {
+  background: orange;
 }
-.cd-timeline-img.administratif {
+.cd-timeline-content.calendar-administratif {
+    background-color: orange;
+}
+.cd-timeline-img.calendar-consultation {
+  background: pink;
+}
+.cd-timeline-content.calendar-consultation {
+    background-color: pink;
+}
+.cd-timeline-img.calendar-hopital {
   background: lightgreen;
 }
-.cd-timeline-content {
-    padding: 1em !important;
+.cd-timeline-content.calendar-hopital {
+    background-color: lightgreen;
 }
+.cd-timeline-img.calendar-medical {
+  background: violet;
+}
+.cd-timeline-content.calendar-medical {
+    background-color: violet;
+}
+.cd-timeline-img.calendar-conception {
+  background: #db7093;
+}
+.cd-timeline-content.calendar-conception {
+    background-color: #db7093;
+}
+
 /* END CALENDRIER */
 /* ********************************************************** */
 

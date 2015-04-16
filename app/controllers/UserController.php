@@ -154,7 +154,7 @@ class UserController extends \BaseController {
 
 		$ch = curl_init($googleMapUrl);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 
 	    try{
@@ -250,6 +250,10 @@ class UserController extends \BaseController {
 			return Redirect::back()->withErrors($validation);
 		}
 
+		$user->hideEmail = 0;
+		$user->hidePhone = 0;
+		$user->hideFax = 0;
+		$user->hideMobile = 0;
 		$user->update(Input::all());
 		$location = $this->geocode($user);
 		if ($location == null) {
