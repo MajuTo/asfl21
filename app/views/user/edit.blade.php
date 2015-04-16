@@ -17,9 +17,29 @@
                 {{ BootForm::text('Prénom', 'firstname')->placeHolder("Prénom...")->required() }}
                 {{ BootForm::text('Identifiant', 'username')->placeHolder("Identifiant...")->required() }}
                 {{ BootForm::text('Email', 'email')->placeHolder("Email...")->required() }}
+                @if($user->hideEmail)
+                    {{ BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail')->check() }}
+                @else
+                    {{ BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail') }}
+                @endif
                 {{ BootForm::text('Téléphone', 'phone')->placeHolder("Téléphone...") }}
+                @if($user->hidePhone)
+                    {{ BootForm::checkbox('Ne pas montrer mon téléphone', 'hidePhone')->check() }}
+                @else
+                    {{ BootForm::checkbox('Ne pas montrer mon téléphone', 'hidePhone') }}
+                @endif
                 {{ BootForm::text('Mobile', 'mobile')->placeHolder("Mobile...") }}
+                @if($user->hideMobile)
+                    {{ BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile')->check() }}
+                @else
+                    {{ BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile') }}
+                @endif
                 {{ BootForm::text('Fax', 'fax')->placeHolder("Fax...") }}
+                @if($user->hideFax)
+                    {{ BootForm::checkbox('Ne pas montrer mon fax', 'hideFax')->check() }}
+                @else
+                    {{ BootForm::checkbox('Ne pas montrer mon fax', 'hideFax') }}
+                @endif
                 {{ BootForm::text('Adresse', 'address')->placeHolder("Adresse...")->required() }}
                 {{ BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal...")->required() }}
                 {{ BootForm::text('Ville', 'city')->placeHolder("Ville...")->required() }}

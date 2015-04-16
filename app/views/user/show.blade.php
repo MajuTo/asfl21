@@ -17,8 +17,15 @@
                 <dt>Adresse</dt><dd>{{ $user->address }}</dd>
                 <dt>Code Postal</dt><dd>{{ $user->zipCode }}</dd>
                 <dt>Ville</dt><dd>{{ $user->city }}</dd>
-                <dt>Téléphone</dt><dd>{{ $user->phone }}</dd>
-                <dt>E-mail</dt><dd>{{ $user->email }}</dd>
+                @if($user->phone && !$user->hidePhone)
+                    <dt>Téléphone</dt><dd>{{ $user->phone }}</dd>
+                @endif
+                @if($user->mobile && !$user->hideMobile)
+                <dt>Mobile</dt><dd>{{ $user->mobile }}</dd>
+                @endif
+                @if($user->fax && !$user->hideFax)
+                <dt>Fax</dt><dd>{{ $user->fax }}</dd>
+                @endif
             </dl>
         </div>
         <div class="col-sm-6">
@@ -30,7 +37,8 @@
             </dl>
         </div>
     </div>
-
+    
+    @if($user->email && !$user->hideEmail)
     <div class="row">
         <div class="col-sm-6">
             <h3>Contactez moi</h3>
@@ -44,6 +52,7 @@
             {{ BootForm::close() }}
         </div>
     </div>
+    @endif
 </div>
 @stop
 
