@@ -21,7 +21,6 @@
                     {{ BootForm::text('Votre email*', 'email')->placeHolder('Votre email ...')->required() }}
                     {{ BootForm::text('Votre sujet*', 'subject')->placeHolder('Votre sujet ...')->required() }}
                     {{ BootForm::textarea('Votre message*', 'message')->placeHolder('Votre message ...')->required() }}
-                    {{ BootForm::checkbox('Je suis un professionnel', 'pro') }}
                     {{ BootForm::submit('Envoyer', 'pull-right btn btn-pink') }}
                 {{ BootForm::close() }}
 
@@ -40,15 +39,6 @@
     <script>
         $(document).ready(function(){
             $('#nav-contact').addClass('active');
-        });
-        $(':checkbox:not(:checked)').parent().addClass('notchecked');
-        $(':checkbox:checked').parent().addClass('checked');
-        $(':checkbox').on('change', function(){
-            if( $(this).parent().hasClass('checked') ){
-                $(this).parent().removeClass('checked').addClass('notchecked');
-            }else{
-                $(this).parent().removeClass('notchecked').addClass('checked');
-            }
         });
     </script>
 

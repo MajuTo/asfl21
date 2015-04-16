@@ -38,7 +38,7 @@
                         <span alt="Image"><i class="{{ $event['icon'] }}"></i></span>
                     </div> <!-- cd-timeline-img -->
 
-                    <div class="cd-timeline-content {{ $event['class'] }}">
+                    <div class="cd-timeline-content">
                         <h2>{{ $event['title'] }}</h2>
                         <p>{{ $event['desc'] }}</p>
                         <span class="cd-date">{{ $event['date'] }}</span>

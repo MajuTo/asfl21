@@ -15,7 +15,7 @@ class ContactController extends \BaseController {
 	public function sendcontact()
 	{
 		$regles = array(
-			'name' => 'required',
+			'name' => 'required|min:5|max:20',
 			'email' => 'required|email',
 			'subject' => 'required|max:250',
 			'message' => 'required|max:250'
@@ -26,10 +26,8 @@ class ContactController extends \BaseController {
 		if ($validation->fails()) {
 		  	return Redirect::to('contact.index')->withErrors($validation)->withInput();
 		} else {
-			$subject = (Input::get('pro')) ? '[PRO] ' : '';
-			$subject .= Input::get('subject');
-			Mail::send('emails.contact', ['inputs' => Input::all()], function($m) use ($subject){
-				$m->to('majuto@free.fr')->subject($subject)->from(Input::get('email'), Input::get('name'));
+			Mail::send('emails.contact', ['inputs' => Input::all()], function($m)	{
+				$m->to('admin@musaya.net')->subject(Input::get('subject'))->from(Input::get('email'), Input::get('name'));
 			});
 			return View::make('contact.index');
 		}

@@ -21,13 +21,9 @@ class CreateUsersTable extends Migration {
 			$table->string('password');
 			$table->boolean('loggedOnce')->default(0);
 			$table->string('email')->unique();
-			$table->boolean('hideEmail')->default(0);
 			$table->string('phone')->nullable();
-			$table->boolean('hidePhone')->default(0);
 			$table->string('mobile')->nullable();
-			$table->boolean('hideMobile')->default(0);
 			$table->string('fax')->nullable();
-			$table->boolean('hideFax')->default(0);
 			$table->string('address')->nullable();
 			$table->string('zipCode')->nullable();
 			$table->string('city')->nullable();

@@ -13,7 +13,6 @@
 {{ HTML::style('assets/bootstrap/css/bootstrap.css') }}
 {{ HTML::style('assets/font-awesome/css/font-awesome.min.css') }}
 {{ HTML::style('assets/css/custom.css') }}
-{{ HTML::style('http://fonts.googleapis.com/css?family=Ubuntu') }}
 <!-- {{ HTML::style('assets/vertical-timeline/css/reset.css') }}
 {{ HTML::style('assets/vertical-timeline/css/style.css') }} -->
 
