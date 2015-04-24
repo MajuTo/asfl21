@@ -9,8 +9,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ URL::route('home') }}">ASFL21</a>
     </div>
+      {{ HTML::image(asset('/assets/img/logo.png'), 'logo', ['class' => 'logo']) }}
+      <a class="navbar-brand" href="{{ URL::route('home') }}">ASFL21</a>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="menu">

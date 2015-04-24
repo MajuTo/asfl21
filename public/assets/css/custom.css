@@ -94,6 +94,12 @@ body {
   background: white;
 }
 
+.logo {
+  height: 70px;
+  float: left;
+  margin: 5px;
+}
+
 h1 {
     color: #F90B6D;
     font-size: 34px;
