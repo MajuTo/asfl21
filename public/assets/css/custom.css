@@ -378,6 +378,9 @@ label.notchecked::before {
 
 /* ********************************************************** */
 /* CALENDRIER */
+.cd-timeline-content {
+  border: 2px solid lightgrey;
+}
 .cd-timeline-content h2 {
   margin: 2px 0px;
 }
