@@ -209,7 +209,9 @@
                         '<h4>Adresse</h4>'+
                           '<p>{{{ $sf->address }}}</br>'+
                           '{{{ $sf->zipCode }}} {{{ $sf->city }}}</br>'+
-                          'tel: {{{ $sf->phone }}}'+
+                        @if($sf->phone && !$sf->hidePhone)
+                            'tel: {{{ $sf->phone }}}'+
+                        @endif
                           "<p>Contact: <a href=\"{{ URL::route('user.show', $sf->id) }}\">"+
                           '{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</a> '+
                           '</div>'+
@@ -217,6 +219,8 @@
                     '</div>'+
                     '</div>'+
                     '</div>';
+
+
 
 
               google.maps.event.addListener(marker{{ $sf->id }}, 'click', function() {
