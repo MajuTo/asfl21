@@ -14,7 +14,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	// Eventuellement a changer pour prod
 	// besoin pour tinker => SessionsController@createUser
-	protected $fillable	  = ['name', 'firstname', 'username', 'password', 'email', 'hideEmail', 'phone', 'hidePhone', 'mobile', 'hideMobile', 'fax', 'hideFax', 'address', 'zipCode', 'city', 'group_id'];
+	protected $fillable	  = ['name', 'firstname', 'username', 'password', 'email', 'hideEmail', 'phone', 'hidePhone', 'mobile', 'hideMobile', 'fax', 'hideFax', 'description', 'address', 'zipCode', 'city', 'group_id'];
 
 	public function messages(){
 		return $this->hasMany('Message');

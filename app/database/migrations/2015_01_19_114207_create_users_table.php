@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration {
 			$table->string('address')->nullable();
 			$table->string('zipCode')->nullable();
 			$table->string('city')->nullable();
+			$table->text('description')->default('');
 			$table->decimal('lat', 14, 10)->nullable();
 			$table->decimal('lng', 14, 10)->nullable();
 			$table->boolean('active')->default(1);

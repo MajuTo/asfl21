@@ -30,11 +30,11 @@
         </div>
         <div class="col-sm-6">
             <h3>Mes activités</h3>
-            <dl class="dl-horizontal">
+            <ul class="dl-horizontal">
                 @foreach($user->activities as $act)
-                    <dd>{{ $act->activityName }}</dd>
+                    <li>{{ $act->activityName }}</li>
                 @endforeach
-            </dl>
+            </ul>
         </div>
     </div>
     
@@ -50,6 +50,10 @@
                 {{ BootForm::textarea('Message', 'message')->placeHolder("Votre message...")->required() }}
                 {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
             {{ BootForm::close() }}
+        </div>
+        <div class="col-sm-6">
+            <h3>Description des activités</h3>
+            {{ $user->description }}
         </div>
     </div>
     @endif
