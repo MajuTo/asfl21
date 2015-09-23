@@ -8,8 +8,18 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-6">
-			<p>En s'unissant en association, les sages femmes libérales de Côte d'Or souhaitent offrir une information et un accompagnement personnalisé à chaque femme, couple et enfant.</p> 
-			<p>Bienvenue sur notre site.</p>
+			<p>
+			Parce que l'on peut avoir besoin d'une Sage-femme à chaque période de la vie.
+			</p>
+			<p>
+			Parce qu'être accompagnée et guidée dans sa féminité et sa maternité est essentiel.
+			</p>
+			<p>
+			Parce qu'on ne sait pas toujours ce qui s'offre à nous.
+			</p>
+			<p>
+			Les sages-femmes libérales de la Côte-d'Or ont souhaité s'unir en une association pour proposer à chaque femme, couple et enfant une information claire et un accompagnement adapté à chacun
+			</p>
 			<p>
 				<ul id="home-li">
 					<li><a href="{{ URL::route('notremetier') }}"><i class="fa fa-long-arrow-right"></i> Que me propose ma sage femme Libérale ?</a></li>
