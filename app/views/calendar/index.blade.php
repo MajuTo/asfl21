@@ -27,7 +27,7 @@
     @if(!$events)
     <div class="row">
         <div class="col-sm-12">
-		    <p class="text-center">Texte de description de comment utiliser le calendrier</p>
+		    <p class="text-center">Ce calendrier vous permettra d'avoir des repères tout au long de votre grossesse. Entrez la date de vos dernières règles ou du début de votre grossesse, vous obtiendrez ensuite les dates importantes de vos consultations,examens médicaux, et droits.</p>
         </div>
 	</div>
     @else
