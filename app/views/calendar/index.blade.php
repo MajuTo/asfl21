@@ -12,10 +12,10 @@
     		{{ BootForm::open()->action(URL::route('calendrier.store'))->addClass('form-inline') }}
     	        {{ Form::token() }}
     	    	<div class="col-sm-4 col-sm-offset-1">
-    	        	{{ BootForm::text('Dernieres règles : ', 'date1', null, ['id' => 'date1'])->placeHolder("Date des dernieres règles")->addClass('datedropper') }}
+    	        	{{ BootForm::text('', 'date1', null, ['id' => 'date1'])->placeHolder("Date des dernieres règles")->addClass('datedropper') }}
     	    	</div>
     	    	<div class="col-sm-4">
-    	        	{{ BootForm::text('Date de conception : ', 'date2', null, ['id' => 'date2'])->placeHolder("Date de conception")->addClass('datedropper') }}
+    	        	{{ BootForm::text('', 'date2', null, ['id' => 'date2'])->placeHolder("Date de conception")->addClass('datedropper') }}
     	    	</div>
     	    	<div class="col-sm-2">
     	        	{{ BootForm::submit('Valider', 'btn-pink') }}
