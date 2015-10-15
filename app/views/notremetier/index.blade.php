@@ -46,7 +46,7 @@
         <div class="col-sm-6">
             <h3>Et après ??</h3>
             <ul>
-                <li><span data-toggle="tooltip" data-placement="right" data-original-title="La Sage-femme ausculte Maman et bébé dans les jours qui suivent  la sortie de la maternité">Suivi post-natal à domicile</span></li>
+                <li><span data-toggle="tooltip" data-placement="right" data-original-title="La Sage-femme ausculte Maman et bébé dans les jours qui suivent  la sortie de la maternité">Visite post-natale</span></li>
                 <li><span data-toggle="tooltip" data-placement="right" data-original-title="la sage-femme réalise et prescrit tous les examens nécessaires au suivi gynécologique normal (frottis, prescription de pilule, pose et retrait de stérilet ou d’implant…)">Suivi gynécologique</span></li>
                 <li><span data-toggle="tooltip" data-placement="right" data-original-title="Accompagnement du couple dans la vie intime">Sexologie</span></li>
                 <li><span data-toggle="tooltip" data-placement="right" data-original-title="Approche ostéopathique pour maman et bébé">Osthéopathie</span></li>
