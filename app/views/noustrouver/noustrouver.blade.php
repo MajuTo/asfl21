@@ -106,7 +106,6 @@
               data: {selectedActivities: selectedActivities},
               success: function(response){
                 $('tbody#listesf').html(response);
-                // $('.sf-tr').addClass('hidden-select');
                 toggleMarkers();
               }
             });
