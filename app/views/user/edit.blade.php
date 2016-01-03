@@ -22,12 +22,6 @@
                     @else
                         {{ BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail') }}
                     @endif
-                    {{ BootForm::text('Téléphone', 'phone')->placeHolder("Téléphone...") }}
-                    @if($user->hidePhone)
-                        {{ BootForm::checkbox('Ne pas montrer mon téléphone', 'hidePhone')->check() }}
-                    @else
-                        {{ BootForm::checkbox('Ne pas montrer mon téléphone', 'hidePhone') }}
-                    @endif
                     {{ BootForm::text('Mobile', 'mobile')->placeHolder("Mobile...") }}
                     @if($user->hideMobile)
                         {{ BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile')->check() }}
@@ -40,9 +34,6 @@
                     @else
                         {{ BootForm::checkbox('Ne pas montrer mon fax', 'hideFax') }}
                     @endif
-                    {{ BootForm::text('Adresse', 'address')->placeHolder("Adresse...")->required() }}
-                    {{ BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal...")->required() }}
-                    {{ BootForm::text('Ville', 'city')->placeHolder("Ville...")->required() }}
                     {{ BootForm::textarea('Description de vos activités', 'description')->placeHolder("Entrez ici une description des activités que vous proposez...") }}
             </div>
             <div class="col-sm-6">
@@ -60,8 +51,15 @@
             </div>
         {{ BootForm::close() }}
         <div class="col-sm-12">
+        <div class="col-sm-4">
             <h3>Mot de passe</h3>
             <p id="mod-mdp-link">Modifier votre mot de passe <a href="{{ URL::route('sessions.edit') }}">ici</a>.</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Mes Adresses</h3>
+            <p id="mod-mdp-link">Gérer mes adresses <a href="{{ URL::route('adresse.index') }}">ici</a>.</p>
+        </div>
+        <div class="col-sm-4"></div>
         </div>
     </div>
 </div>

@@ -113,38 +113,61 @@
 
           }
 
-          function toggleMarkers(){
-            if ($('.sf-tr').hasClass('sf-tr-selected') || $('.sf-tr').hasClass('hidden-select')) {
-              for(i=0; i<markers.length; i++){
-                markers[i].setVisible(false);
-              }
-
-              $('.sf-tr-selected').each(function(){
-                var sf = $(this).data('sf');
-
-                for(i=0; i<markers.length; i++){
-                  if ( sf == markers[i]['id'] ) {
-                    markers[i].setVisible(true)
-                  };
-                }
-              });
-
-              $('.hidden-select').each(function(){
-                var sf = $(this).data('sf');
-
-                for(i=0; i<markers.length; i++){
-                  if ( sf == markers[i]['id'] ) {
-                    markers[i].setVisible(true)
-                  };
-                }
-              });
-
-            } else {
-              for(i=0; i<markers.length; i++){
-                markers[i].setVisible(true);
-              }
+          // Cache tous les markers de la Google Map
+          function hideAllMarkers(){
+            for(i=0; i<markers.length; i++){
+              markers[i].setVisible(false)
             }
           }
+
+          // Affiche tous les markers
+          function showAllMarkers(){
+            for(i=0; i<markers.length; i++){
+              markers[i].setVisible(true)
+            }
+          }
+
+          // Affiche les sages femmes selectionnées 
+          function showSelectedSf(){
+            $('.sf-tr-selected').each(function(){
+              var sf = $(this).data('sf');
+
+              for(i=0; i<markers.length; i++){
+                if ( sf == markers[i]['id'].split('_')[0] ) {
+                  markers[i].setVisible(true)
+                };
+              }
+            });
+          }
+
+          // Affiche toutes les sages femmes des activités selectionnées
+          function showAllSfByActivities() {
+            $('.sf-tr').each(function(){
+              var sf = $(this).data('sf');
+
+              for(i=0; i<markers.length; i++){
+                if ( sf == markers[i]['id'].split('_')[0] ) {
+                  markers[i].setVisible(true)
+                };
+              }
+            });
+          }
+
+          function toggleMarkers(){
+            
+            // Par défaut on cache tous les markers, et plus loin on n'affiche que ceux qui doivent l'être
+            hideAllMarkers();
+
+            if( $('.sf-tr-selected').length > 0 ){ // Si au moins une sage femme est selectionnée
+              showSelectedSf();
+            } else { // Si aucune sage femme n'est selectionnée
+              if( $('.activity-td-selected').length > 0 ){ // Si au moins une activité est selectionnée
+                showAllSfByActivities();
+              } else { // Si rien n'est selectionné, ni sf ni activité
+                showAllMarkers();
+              }
+            }
+          } // Fin ToggleMarkers
 
           // select and unselect activities 
           $('.activity-td').on('click', function(){
@@ -154,11 +177,13 @@
             printSfByActivity();            
           });
 
-          $('.sf-tr').on('click', function(){
+          // On bind le click sur le #table-sf car il n'est pas rechargé en Ajax
+          // et on dit a quel élément de ce table on associe le click (suis je clair ?)
+          // Du coup, plus besoin de js dans la vue chargée en Ajax
+          $('#table-sf').on('click', '.sf-tr', function(){
             $(this).toggleClass('sf-tr-selected');
             toggleMarkers();
           });
-
         });
     </script>
 
@@ -173,7 +198,7 @@
           geocoder = new google.maps.Geocoder();
 
           var mapOptions = {
-            zoom: 12,
+            zoom: 9,
             center: new google.maps.LatLng(47.313208, 5.058476)
           }
 
@@ -182,54 +207,59 @@
           var infowindow = new google.maps.InfoWindow();
 
           @foreach ($sagesfemmes as $sf)
-            @if ($sf->lat != null and $sf->lng != null)
+            @foreach ($sf->addresses as $address)
               
-              var marker{{ $sf->id }} = new google.maps.Marker({
-                  position: new google.maps.LatLng( {{ $sf->lat }}, {{ $sf->lng }}),
-                  id: {{$sf-> id}},
-                  map: map,
-                  title: '{{ Str::upper($sf->name) }}, {{ Str::title($sf->firstname) }}'
-              });
-              markers.push(marker{{ $sf->id }});
-
-              var contentString{{ $sf->id }} = 
-                    '<div class="container-fluid">'+
-                    '<div class="row">'+
-                    '<h3>{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</h3>'+
-                      '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">'+
-                        '<h4>Activités</h4>'+
-                        '<ul>'+
-                        @foreach($sf->activities as $activity)
-                          '<li>{{{ $activity->activityName }}}</li>'+
-                        @endforeach
-                        '</ul>'+
-                      '</div>'+
-                      '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">'+
-                        '<div class="text-right">'+
-                        '<h4>Adresse</h4>'+
-                          '<p>{{{ $sf->address }}}</br>'+
-                          '{{{ $sf->zipCode }}} {{{ $sf->city }}}</br>'+
-                        @if($sf->phone && !$sf->hidePhone)
-                            'tel: {{{ $sf->phone }}}'+
-                        @endif
-                          "<p>Contact: <a href=\"{{ URL::route('user.show', $sf->id) }}\">"+
-                          '{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</a> '+
-                          '</div>'+
-                      '</div>'+
-                    '</div>'+
-                    '</div>'+
-                    '</div>';
-
-
-
-
-              google.maps.event.addListener(marker{{ $sf->id }}, 'click', function() {
-                  infowindow.setContent(contentString{{ $sf->id }});
-                  infowindow.open(map,marker{{ $sf->id }});
+              @if ($address->lat != null and $address->lng != null)
+                
+                var marker{{ $sf->id }}_{{$address->id}} = new google.maps.Marker({
+                    position: new google.maps.LatLng( {{ $address->lat }}, {{ $address->lng }}),
+                    id: {{$sf->id}} + '_' + {{$address->id}},
+                    map: map,
+                    title: '{{ Str::upper($sf->name) }}, {{ Str::title($sf->firstname) }}',
+                    optimized: false
                 });
+                markers.push(marker{{ $sf->id }}_{{$address->id}});
 
-            @endif 
+                var contentString{{ $sf->id }}_{{$address->id}} = 
+                      '<div class="container-fluid">'+
+                      '<div class="row">'+
+                      '<h3>{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</h3>'+
+                        '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">'+
+                          '<h4>Activités</h4>'+
+                          '<ul>'+
+                          @foreach($sf->activities as $activity)
+                            '<li>{{{ $activity->activityName }}}</li>'+
+                          @endforeach
+                          '</ul>'+
+                        '</div>'+
+                        '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">'+
+                          '<div class="text-right">'+
+                          '<h4>Adresse</h4>'+
+                            '<p>{{{ $address->address }}}</br>'+
+                            '{{{ $address->zipCode }}} {{{ $address->city }}}</br>'+
+                          @if($address->phone && !$address->hidePhone)
+                              'tel: {{{ $address->phone }}}'+
+                          @endif
+                            "<p>Contact: <a href=\"{{ URL::route('user.show', $sf->id) }}\">"+
+                            '{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</a> '+
+                            '</div>'+
+                        '</div>'+
+                      '</div>'+
+                      '</div>'+
+                      '</div>';
+
+
+
+
+                google.maps.event.addListener(marker{{ $sf->id }}_{{$address->id}}, 'click', function() {
+                    infowindow.setContent(contentString{{ $sf->id }}_{{$address->id}});
+                    infowindow.open(map,marker{{ $sf->id }}_{{$address->id}});
+                  });
+
+              @endif
+            @endforeach 
           @endforeach
+          console.log(markers);
         }
 
         function codeAddress() {
@@ -262,5 +292,3 @@
     </script>
     <!-- END GOOGLE MAPS -->
 @stop
-
-{{-- 30 rue d'auxonne, 21000 dijon --}}

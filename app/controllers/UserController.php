@@ -54,9 +54,6 @@ class UserController extends \BaseController {
 			'name'      => 'required',
 			'firstname' => 'required',
 			'email'     => 'required|unique:users',
-			'address'   => 'required',
-			'zipCode'   => 'required',
-			'city'      => 'required',
 		);
 
 		$validation = Validator::make(Input::all(), $rules);
@@ -72,13 +69,7 @@ class UserController extends \BaseController {
 		$user->username = $this->generateUsername($user->name, $user->firstname);
 		$user->confirmation = $confirmation;
 
-		$location = $this->geocode($user);
-		if ($location != null) {
-			$user->lat = $location['lat'];
-			$user->lng = $location['lng'];
-		} else {
-			Alert::add('alert-danger', "L'adresse que vous avez entrée, n'existe pas dans Google Maps.");
-		}
+	
 
 		//Sauvegarde
 		$user->save();
@@ -146,42 +137,7 @@ class UserController extends \BaseController {
 		}
 	}
 
-	public function geocode($user){
-		// a changer en prod... clé de dev.
-		$googleApiKey = 'AIzaSyAqJKkv1M-fhJ97dtL0CUV16QelltipJmE';
-		$parameters   = str_replace(' ', '+', $user->address . ' ' . $user->zipCode . ' ' . $user->city . "&key=" . $googleApiKey);
-		$googleMapUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $parameters;
-
-		$ch = curl_init($googleMapUrl);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-
-	    try{
-			$exec = curl_exec($ch);
-			if($exec == false){
-				throw new Exception(curl_error($ch), curl_errno($ch));
-			}
-	    }catch(Exception $e){
-	    	trigger_error(sprintf(
-		        'Curl failed with error #%d: %s',
-		        $e->getCode(), $e->getMessage()),
-		        E_USER_ERROR);
-	    }
-
-
-
-	    $geolocation = json_decode(curl_exec($ch), true);
-
-	    if ($geolocation['status'] == 'OK') {
-	    	$lat = $geolocation['results'][0]['geometry']['location']['lat'];
-			$lng = $geolocation['results'][0]['geometry']['location']['lng'];
-		    return ['lat' => $lat, 'lng' => $lng];
-	    }
-
-	    return null;
-
-	}
+	
 
 	/**
 	 * Display the specified resource.
@@ -192,8 +148,10 @@ class UserController extends \BaseController {
 	public function show($id)
 	{
 		$user = User::find($id);
+		$address = Address::where('user_id', '=', $id)->get();
 		return View::make('user.show', [
-			'user' => $user
+			'user' 		=> $user,
+			'address'  	=> $address
 			]);
 	}
 
@@ -238,9 +196,6 @@ class UserController extends \BaseController {
 			'firstname' => 'required',
 			'username'  => 'required|unique:users,username,'.$id,
 			'email'     => 'required|unique:users,email,'.$id,
-			'address'   => 'required',
-			'zipCode'   => 'required',
-			'city'      => 'required',
 		);
 
 		$validation = Validator::make(Input::all(), $rules);
@@ -251,21 +206,9 @@ class UserController extends \BaseController {
 		}
 
 		$user->hideEmail = 0;
-		$user->hidePhone = 0;
 		$user->hideFax = 0;
 		$user->hideMobile = 0;
 		$user->update(Input::all());
-		$location = $this->geocode($user);
-		if ($location == null) {
-			Alert::add('alert-danger', "L'adresse que vous avez entrée, n'existe pas dans Google Maps.");
-			$user->lat = null;
-			$user->lng = null;
-			$user->save();
-		} else {
-			$user->lat = $location['lat'];
-			$user->lng = $location['lng'];
-			$user->save();
-		}
 
 		$activities = [];
 		if(sizeof(Input::get('activities')) > 0){

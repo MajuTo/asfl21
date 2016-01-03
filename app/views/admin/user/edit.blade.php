@@ -14,12 +14,6 @@
             @else
                 {{ BootForm::checkbox('Email privé', 'hideEmail') }}
             @endif
-            {{ BootForm::text('Téléphone', 'phone')->placeHolder("Téléphone de l'adhérent...") }}
-            @if($user->hidePhone)
-                {{ BootForm::checkbox('Téléphone privé', 'hidePhone')->check() }}
-            @else
-                {{ BootForm::checkbox('Téléphone privé', 'hidePhone') }}
-            @endif
             {{ BootForm::text('Mobile', 'mobile')->placeHolder("Mobile de l'adhérent...") }}
             @if($user->hideMobile)
                 {{ BootForm::checkbox('Mobile privé', 'hideMobile')->check() }}
@@ -32,9 +26,6 @@
             @else
                 {{ BootForm::checkbox('Fax privé', 'hideFax') }}
             @endif
-            {{ BootForm::text('Adresse', 'address')->placeHolder("Adresse de l'adhérent...")->required() }}
-            {{ BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal de l'adhérent...")->required() }}
-            {{ BootForm::text('Ville', 'city')->placeHolder("Ville de l'adhérent...")->required() }}
             {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
     </div>
     <div class="col-sm-6">

@@ -35,9 +35,11 @@ Route::resource('sessions', 'SessionsController', ['only' => ['create', 'store',
 Route::get('inscription/verification/{confirmation}', ['as' => 'confirmation', 'uses' => 'UserController@confirmation']);
 /* PASSWORD RECOVERY */
 Route::controller('password', 'RemindersController');
+
 Route::resource('user', 'UserController', ['only' => ['show']]);
 Route::post('user/{user}', ['as' => 'user.email', 'uses' => 'UserController@sendEmail']);
 Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show', 'store']]);
+Route::resource('adresse', 'AddressController');
 
 /* MENTIONS LEGALES */
 Route::get('mentions', ['as' => 'mentions', 'uses' => function(){

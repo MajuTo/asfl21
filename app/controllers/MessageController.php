@@ -118,7 +118,7 @@ class MessageController extends \BaseController {
 		$view = ($this->isAdminRequest()) ? 'admin.message.index' : 'message.index';
 		$message = Message::find($id);
 		$message->update(Input::all());
-		return Redirect::route($view);;
+		return Redirect::route($view);
 	}
 
 

@@ -14,15 +14,25 @@
             <dl class="dl-horizontal">
                 <dt>Nom</dt><dd>{{ $user->name }}</dd>
                 <dt>Prénom</dt><dd>{{ $user->firstname }}</dd>
-                <dt>Adresse</dt><dd>{{ $user->address }}</dd>
-                <dt>Code Postal</dt><dd>{{ $user->zipCode }}</dd>
-                <dt>Ville</dt><dd>{{ $user->city }}</dd>
+                @if($user->mobile && !$user->hideMobile)
+                    <dt>Mobile</dt><dd>{{ $user->mobile }}</dd>
+                @endif
+
+                @foreach($address as $add)
+                <br>
+                    <dt>{{ $add->name }}</dt><dd></dd>
+                    <dt>Adresse</dt><dd>{{ $add->address }}</dd>
+                    <dt>Code Postal</dt><dd>{{ $add->zipCode }}</dd>
+                    <dt>Ville</dt><dd>{{ $add->city }}</dd> 
+                    @if($add->phone && !$add->hidePhone)
+                        <dt>Téléphone Fixe</dt><dd>{{ $add->phone }}</dd>  
+                    @endif
+                @endforeach
+
                 @if($user->phone && !$user->hidePhone)
                     <dt>Téléphone</dt><dd>{{ $user->phone }}</dd>
                 @endif
-                @if($user->mobile && !$user->hideMobile)
-                <dt>Mobile</dt><dd>{{ $user->mobile }}</dd>
-                @endif
+                
                 @if($user->fax && !$user->hideFax)
                 <dt>Fax</dt><dd>{{ $user->fax }}</dd>
                 @endif
