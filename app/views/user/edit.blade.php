@@ -1,20 +1,13 @@
-@extends('layouts.index')
+@extends('layouts.admin')
 @section('content')
-<div class="content-container">
- 
-    <div class="row">
-        <div class="col-sm-12">
-            <h1 class="animate-page-title">Mon Profil</h1>
-        </div>
-    </div>
-    <div class="row">
+<div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <ul class="nav nav-pills nav-justified">
 
-                <li class="active"><a href="#profil" data-toggle="tab">Mon profil</a></li>
-                <li><a href="#adresses" data-toggle="tab">Mes adresses</a></li>
-                <li><a href="#activites" data-toggle="tab">Mes activités</a></li>
-                <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li>
+                <li class="active"><a href="#profil" data-toggle="tab">Profil</a></li>
+                <li><a href="#adresses" data-toggle="tab">Adresses</a></li>
+                <li><a href="#activites" data-toggle="tab">Activités</a></li>
+                <!-- <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li> -->
 
             </ul>
         </div>
@@ -23,9 +16,9 @@
 
         <!-- Div de l'onglet profil -->
         <div role="tabpanel" class="row tab-pane fade in active" id="profil">
-            {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('user.update', $user->id)) }}
+            {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('admin.user.update', $user->id)) }}
                 <div class="col-sm-8 col-sm-offset-2">
-                    <div class="col-sm-9 col-sm-offset-3"><h3>Mes coordonnées</h3></div>
+                    <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
                         {{ Form::token() }}
                         {{ BootForm::bind($user) }}
                         {{ BootForm::text('Nom', 'name')->placeHolder("Nom...")->required() }}
@@ -33,17 +26,18 @@
                         {{ BootForm::text('Identifiant', 'username')->placeHolder("Identifiant...")->required() }}
                         {{ BootForm::text('Email', 'email')->placeHolder("Email...")->required() }}
                         @if($user->hideEmail)
-                            {{ BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail')->check() }}
+                            {{ BootForm::checkbox('Cacher l\'email (Cache le formulaire de contact)', 'hideEmail')->check() }}
                         @else
-                            {{ BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail') }}
+                            {{ BootForm::checkbox('Cacher l\' email (Cache le formulaire de contact)', 'hideEmail') }}
                         @endif
                         {{ BootForm::text('Mobile', 'mobile')->placeHolder("Mobile...") }}
                         @if($user->hideMobile)
-                            {{ BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile')->check() }}
+                            {{ BootForm::checkbox('Cacher le mobile', 'hideMobile')->check() }}
                         @else
-                            {{ BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile') }}
+                            {{ BootForm::checkbox('Cacher le mobile', 'hideMobile') }}
                         @endif
-                        {{ BootForm::textarea('Description de vos activités', 'description')->placeHolder("Entrez ici une description des activités que vous proposez...") }}
+                        {{ BootForm::textarea('Description des activités', 'description')->placeHolder("Entrez ici une description des activités...") }}
+                        {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
                         {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
                 </div>
             {{ BootForm::close() }}
@@ -52,11 +46,8 @@
         <!-- Div de l'onglet adresses -->
         <div role="tabpanel" class="tab-pane fade" id="adresses">
             <div class="row">
-                <div class="col-sm-4 col-sm-offset-2">
-                    <h2>Mes Adresses</h2>
-                </div>
-                <div class="col-sm-4">
-                    <h2><a href="{{ URL::route('adresse.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+                <div class="col-sm-4 col-sm-offset-7">
+                    <h2><a href="{{ URL::route('admin.adresse.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
                 </div>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
@@ -74,8 +65,8 @@
                                 <td>{{ Str::title($address->address) }}, {{ $address->zipCode }}, {{ Str::title($address->city) }}</td>
                                 <td>{{ $address->phone }}</td>
                                 <td>
-                                    <a href="{{ URL::route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-                                    {{ BootForm::open()->delete()->action(URL::route('adresse.destroy', $address->id))->style('display: inline;') }}
+                                    <a href="{{ URL::route('admin.adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
+                                    {{ BootForm::open()->delete()->action(URL::route('admin.adresse.destroy', $address->id))->style('display: inline;') }}
                                         {{ Form::token() }}
                                         {{ BootForm::bind($address) }}
                                         {{ BootForm::submit('Supprimer', 'label-danger label') }}
@@ -91,8 +82,8 @@
         <!-- Div de l'onglet activités -->
         <div role="tabpanel" class="tab-pane fade" id="activites">
           <div class="col-sm-6 col-sm-offset-3">
-              <div class="col-sm-12 text-center"><h3>Mes activités</h3></div>
-              {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('user.updateActivities', $user->id)) }}
+              <div class="col-sm-12 text-center"><h3>Activités de {{ $user->firstname }}</h3></div>
+              {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('admin.user.updateActivities', $user->id)) }}
                   {{ Form::token() }}
                   {{ BootForm::bind($user) }}
                   @foreach($activities as $act)
@@ -108,8 +99,8 @@
         </div>
         
         <!-- Div de l'onglet mot de passe -->
-        <div role="tabpanel" class="tab-pane fade" id="motdepasse">
-            <div class="col-sm-6 col-sm-offset-3">
+        <!-- <div role="tabpanel" class="tab-pane fade" id="motdepasse">
+            <div class="col-sm-6 col-sm-offset-3" style="display:none;">
                 <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
                     {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('sessions.update')) }}
                       {{ Form::token() }}
@@ -118,17 +109,16 @@
                       {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
                     {{ BootForm::close() }}
             </div>
-        </div>
+        </div> -->
 
     </div> <!-- Fin div tab-content -->
-</div>
 @stop
-
 @section('script')
     <script>
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
-            $('#nav-profil').addClass('active');
+            $('#nav-admin').addClass('active');
+            $('#nav-admin-users').addClass('active');
             $(':checkbox:not(:checked)').parent().addClass('notchecked');
             $(':checkbox:checked').parent().addClass('checked');
             $(':checkbox').on('change', function(){
