@@ -10,7 +10,6 @@ class AddressController extends \BaseController {
 	public function index()
 	{
 		$addresses = Address::where('user_id', '=', Auth::id())->get();
-		// dd($addresses);
 		return View::make('address.index', [
 			'addresses' => $addresses
 			]);
@@ -25,7 +24,12 @@ class AddressController extends \BaseController {
 	public function create()
 	{
 		$address = new Address();
-		return View::make('address.create', [
+		if($this->isAdminRequest()){
+			$view = 'admin.address.create';
+		} else {
+			$view = 'address.create';
+		}
+		return View::make($view, [
 			'address'   => $address
 			]);
 	}
@@ -53,21 +57,25 @@ class AddressController extends \BaseController {
 		}
 
 		$address = new Address(Input::all());
-		$address->user_id = Auth::id();
+		if($this->isAdminRequest()){
+			$address->user_id = $user->id;
+		} else {
+			$address->user_id = Auth::id();
+		}
 
 		$location = $this->geocode($address);
 		if ($location != null) {
 			$address->lat = $location['lat'];
 			$address->lng = $location['lng'];
 		} else {
-			Alert::add('alert-warning', "L'adresse que vous avez entrée, n'existe pas dans Google Maps.");
+			Alert::add('alert-warning', "Cette adresse n'existe pas dans Google Maps.");
 		}
 		
 		//Sauvegarde
 		$address->save();
 
 		Alert::add("alert-success", "L'adresse a bien été créée");
-		return Redirect::route('adresse.index');
+		return Redirect::route('user.edit', Auth::id());
 	}
 
 	/**
@@ -91,8 +99,18 @@ class AddressController extends \BaseController {
 	public function edit($id)
 	{
 		$address = Address::find($id);
-		return View::make('address.edit', [
-			'address' => $address
+		$user = User::find($address->user_id);
+		if($this->isAdminRequest()){
+			$admin = true;
+			$view = 'admin.address.edit';
+		} else {
+			$admin = false;
+			$view = 'address.edit';
+		}
+		return View::make($view, [
+			'address' => $address,
+			'user' => $user,
+			'admin' => $admin
 			]);
 	}
 
@@ -119,12 +137,20 @@ class AddressController extends \BaseController {
 			return Redirect::back()->withErrors($validation)->withInput();
 		}
 		$address = Address::find($id);
+		$user_id = $address->user_id;
 		$address->hidePhone = 0;
+		$address->hideFax = 0;
 		$address->update(Input::all());
+
+		if($this->isAdminRequest()){
+			$address->user_id = $user_id;
+		} else {
+			$address->user_id = Auth::id();
+		}
 
 		$location = $this->geocode($address);
 		if ($location == null) {
-			Alert::add('alert-warning', "L'adresse que vous avez entrée, n'existe pas dans Google Maps.");
+			Alert::add('alert-warning', "Cette adresse n'existe pas dans Google Maps.");
 			$address->lat = null;
 			$address->lng = null;
 			$address->save();
@@ -135,7 +161,12 @@ class AddressController extends \BaseController {
 		}
 
 		Alert::add("alert-success", "L'adresse a bien été enregistrée");
-		return Redirect::route('adresse.index');;
+
+		if($this->isAdminRequest()){
+			return Redirect::route('admin.user.index');
+		} else {
+			return Redirect::route('user.edit', Auth::user()->id);
+		}
 	}
 
 
@@ -147,8 +178,13 @@ class AddressController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		$user_id = User::find( Address::find($id)->user_id )->id;
 		Address::destroy($id);
-		return Redirect::route('adresse.index');
+		if($this->isAdminRequest()){
+			return Redirect::route('admin.user.edit', $user_id);
+		} else {
+			return Redirect::route('user.edit', Auth::user()->id);
+		}
 	}
 
 	public function geocode($address){

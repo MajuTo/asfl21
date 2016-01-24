@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 class UserController extends \BaseController {
 
@@ -165,6 +165,8 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 		$user = User::find($id);
+		$user_id = ($this->isAdminRequest()) ? $id : Auth::id();
+		$addresses = Address::where('user_id', '=', $user_id)->get();
 		$groups = Group::lists('groupName', 'id');
 		$activities = Activity::orderBy('activityName', 'ASC')->get();
 		$view = ($this->isAdminRequest()) ? 'admin.user.edit' : 'user.edit';
@@ -174,6 +176,7 @@ class UserController extends \BaseController {
 
 		return View::make($view,[
 			'user'       => $user,
+			'addresses'	 => $addresses,
 			'groups'     => $groups,
 			'activities' => $activities
 			]);
@@ -188,7 +191,11 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$user = User::find($id);
+		if ( !$this->isAdminRequest() ) {
+			$user = User::find(Auth::id());
+		} else {
+			$user = User::find($id);
+		}
 
 		// validation form
 		$rules = array(
@@ -206,9 +213,33 @@ class UserController extends \BaseController {
 		}
 
 		$user->hideEmail = 0;
-		$user->hideFax = 0;
 		$user->hideMobile = 0;
 		$user->update(Input::all());
+
+		Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
+
+		if($this->isAdminRequest()){
+			//Activities
+			/*$activities = [];
+			if(sizeof(Input::get('activities')) > 0){
+				$activities = Input::get('activities');
+			}
+			$user->activities()->sync($activities);*/
+			return Redirect::route('admin.user.index');
+		}
+		return Redirect::route('user.edit', Auth::user()->id);
+	}
+
+
+	/**
+	 * Update user's activities.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function updateActivities($id)
+	{
+		$user = User::find($id);
 
 		$activities = [];
 		if(sizeof(Input::get('activities')) > 0){
@@ -217,7 +248,7 @@ class UserController extends \BaseController {
 		$user->activities()->sync($activities);
 		Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
 
-		if($this->isAdminRequest()){
+		if( $this->isAdminRequest() ){
 			return Redirect::route('admin.user.index');
 		}
 		return Redirect::route('user.edit', Auth::user()->id);

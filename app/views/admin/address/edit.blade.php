@@ -1,7 +1,15 @@
-@extends('layouts.index')
+@extends('layouts.admin')
 @section('content')
-    <div class="col-sm-8 col-sm-offset-2">
-        {{ BootForm::openHorizontal(2, 10)->action(URL::route('adresse.store')) }}
+<div class="content-container">
+    <div class="col-sm-6 col-sm-offset-4">
+        <h3>Modification d'une adresse de {{ $user->firstname }}</h3>
+    </div>
+    <div class="col-sm-9 col-sm-offset-1">
+        @if($admin)
+            {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('admin.adresse.update', $address->id)) }}
+        @else
+            {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('adresse.update', $address->id)) }}
+        @endif
             {{ Form::token() }}
             {{ BootForm::bind($address) }}
             {{ BootForm::text('Nom', 'name')->placeHolder("Nom de l'adresse...")->required() }}
@@ -14,18 +22,24 @@
             @else
                 {{ BootForm::checkbox('Téléphone privé', 'hidePhone') }}
             @endif
-            {{ BootForm::textarea('Description', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)") }}
-
-            {{ BootForm::submit('Ajouter', 'pull-right btn-pink') }}
-
+            {{ BootForm::text('Fax', 'fax')->placeHolder("Fax...") }}
+            @if($address->hideFax)
+                {{ BootForm::checkbox('Ne pas montrer mon fax', 'hideFax')->check() }}
+            @else
+                {{ BootForm::checkbox('Ne pas montrer mon fax', 'hideFax') }}
+            @endif
+            {{ BootForm::textarea('Informations supplémentaires', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)") }}
+            {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
         {{ BootForm::close() }}
     </div>
+</div>
 @stop
 @section('script')
     <script>
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
-            $('#nav-profil').addClass('active');
+            $('#nav-admin').addClass('active');
+            $('#nav-admin-users').addClass('active');
             $(':checkbox:not(:checked)').parent().addClass('notchecked');
             $(':checkbox:checked').parent().addClass('checked');
             $(':checkbox').on('change', function(){

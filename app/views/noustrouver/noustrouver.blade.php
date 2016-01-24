@@ -50,7 +50,7 @@
       <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" id="gmap">
         <div class="map_container">
           <div id="panel">
-                <input id="chezvous_textbox" type="textbox" placeholder="chez vous">
+                <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
                 <input id="chezvous_button" type="button" value="go" onclick="codeAddress()">
               </div>
           <div class="map_canvas" id="map_canvas"></div>
@@ -214,7 +214,7 @@
                     position: new google.maps.LatLng( {{ $address->lat }}, {{ $address->lng }}),
                     id: {{$sf->id}} + '_' + {{$address->id}},
                     map: map,
-                    title: '{{ Str::upper($sf->name) }}, {{ Str::title($sf->firstname) }}',
+                    title: '{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}',
                     optimized: false
                 });
                 markers.push(marker{{ $sf->id }}_{{$address->id}});
@@ -236,9 +236,12 @@
                           '<h4>Adresse</h4>'+
                             '<p>{{{ $address->address }}}</br>'+
                             '{{{ $address->zipCode }}} {{{ $address->city }}}</br>'+
-                          @if($address->phone && !$address->hidePhone)
-                              'tel: {{{ $address->phone }}}'+
-                          @endif
+                            @if($address->phone && !$address->hidePhone)
+                                'tel: {{{ $address->phone }}}<br />'+
+                            @endif
+                            @if($address->fax && !$address->hideFax)
+                                'fax: {{{ $address->fax }}}'+
+                            @endif
                             "<p>Contact: <a href=\"{{ URL::route('user.show', $sf->id) }}\">"+
                             '{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</a> '+
                             '</div>'+

@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.admin')
 @section('content')
     <div class="col-sm-8 col-sm-offset-2">
         {{ BootForm::openHorizontal(2, 10)->action(URL::route('adresse.store')) }}

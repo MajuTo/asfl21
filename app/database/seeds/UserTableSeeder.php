@@ -13,7 +13,6 @@ class UserTableSeeder extends Seeder {
             'password'  => Hash::make('root'),
             'email'     => 'admin@musaya.net',
             'mobile'    => '987654321',
-            'fax'       => '',
             'confirmation' => '1234789',
             'group_id' => 3
             ]);
@@ -24,7 +23,6 @@ class UserTableSeeder extends Seeder {
             'password'  => Hash::make('root'),
             'email'     => 'majuto@free.fr',
             'mobile'    => '987654321',
-            'fax'       => '',
             'confirmation' => '123478',
             'group_id' => 3
             ]);

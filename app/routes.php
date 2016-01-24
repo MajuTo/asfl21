@@ -60,6 +60,7 @@ Route::group([
         
         /* USER */
         Route::resource('user', 'UserController', ['only' => ['edit', 'update']]);
+        Route::put('user/activities/{user}', ['as' => 'user.updateActivities', 'uses' => 'UserController@updateActivities']);
 
         /* MESSAGE */
         Route::resource('message', 'MessageController');
@@ -75,7 +76,9 @@ Route::group([
                     Route::get('/', ['as' => 'admin.index', 'uses' => 'UserController@index']); 
                     Route::resource('link', 'LinkController');
                     Route::resource('user', 'UserController');
+                    Route::resource('adresse', 'AddressController');
                     Route::put('user/{user}/toggle', ['as' => 'admin.user.toggle', 'uses' => 'UserController@toggle']);
+                    Route::put('user/activities/{user}', ['as' => 'admin.user.updateActivities', 'uses' => 'UserController@updateActivities']);
                     Route::resource('message', 'MessageController');
                     Route::resource('activity', 'ActivityController');
                     Route::resource('partner', 'PartnerController');

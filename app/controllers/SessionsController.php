@@ -117,6 +117,7 @@ class SessionsController extends \BaseController {
         $validation = Validator::make(Input::all(), $rules);
 
         if ($validation->fails()) {
+            Alert::add("alert-danger", "Votre nouveau mot de passe n'a pas été enregistré");
             return Redirect::back()->withErrors($validation);
         }
 
@@ -124,7 +125,9 @@ class SessionsController extends \BaseController {
         $user->password = Hash::make($password);
         $user->loggedOnce = 1;
         $user->save();
-        return Redirect::route('user.edit');
+
+        Alert::add("alert-success", "Votre nouveau mot de passe a bien été enregistré");
+        return Redirect::route('user.edit', Auth::user()->id);
     }
 
 

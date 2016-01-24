@@ -1,45 +1,117 @@
 @extends('layouts.admin')
 @section('content')
 <div class="row">
-    <div class="col-sm-6">
-        {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('admin.user.update', $user->id)) }}
-            {{ Form::token() }}
-            {{ BootForm::bind($user) }}
-            {{ BootForm::text('Nom', 'name')->placeHolder("Nom de l'adhérent...")->required() }}
-            {{ BootForm::text('Prénom', 'firstname')->placeHolder("Prénom de l'adhérent...")->required() }}
-            {{ BootForm::text('Identifiant', 'username')->placeHolder("Identifiant de l'adhérent...")->required() }}
-            {{ BootForm::text('Email', 'email')->placeHolder("Email de l'adhérent ...")->required() }}
-            @if($user->hideEmail)
-                {{ BootForm::checkbox('Email privé', 'hideEmail')->check() }}
-            @else
-                {{ BootForm::checkbox('Email privé', 'hideEmail') }}
-            @endif
-            {{ BootForm::text('Mobile', 'mobile')->placeHolder("Mobile de l'adhérent...") }}
-            @if($user->hideMobile)
-                {{ BootForm::checkbox('Mobile privé', 'hideMobile')->check() }}
-            @else
-                {{ BootForm::checkbox('Mobile privé', 'hideMobile') }}
-            @endif
-            {{ BootForm::text('Fax', 'fax')->placeHolder("Fax de l'adhérent...") }}
-            @if($user->hideFax)
-                {{ BootForm::checkbox('Fax privé', 'hideFax')->check() }}
-            @else
-                {{ BootForm::checkbox('Fax privé', 'hideFax') }}
-            @endif
-            {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
+        <div class="col-sm-8 col-sm-offset-2">
+            <ul class="nav nav-pills nav-justified">
+
+                <li class="active"><a href="#profil" data-toggle="tab">Profil</a></li>
+                <li><a href="#adresses" data-toggle="tab">Adresses</a></li>
+                <li><a href="#activites" data-toggle="tab">Activités</a></li>
+                <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li>
+
+            </ul>
+        </div>
     </div>
-    <div class="col-sm-6">
-        @foreach($activities as $act)
-            @if($user->activities->contains($act->id))
-                {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() }}
-            @else
-                {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) }}
-            @endif
-        @endforeach
-            {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
-        {{ BootForm::close() }}
-    </div>
-</div>
+    <div class="row tab-content">
+
+        <!-- Div de l'onglet profil -->
+        <div role="tabpanel" class="row tab-pane fade in active" id="profil">
+            {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('admin.user.update', $user->id)) }}
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
+                        {{ Form::token() }}
+                        {{ BootForm::bind($user) }}
+                        {{ BootForm::text('Nom', 'name')->placeHolder("Nom...")->required() }}
+                        {{ BootForm::text('Prénom', 'firstname')->placeHolder("Prénom...")->required() }}
+                        {{ BootForm::text('Identifiant', 'username')->placeHolder("Identifiant...")->required() }}
+                        {{ BootForm::text('Email', 'email')->placeHolder("Email...")->required() }}
+                        @if($user->hideEmail)
+                            {{ BootForm::checkbox('Cacher l\'email (Cache le formulaire de contact)', 'hideEmail')->check() }}
+                        @else
+                            {{ BootForm::checkbox('Cacher l\' email (Cache le formulaire de contact)', 'hideEmail') }}
+                        @endif
+                        {{ BootForm::text('Mobile', 'mobile')->placeHolder("Mobile...") }}
+                        @if($user->hideMobile)
+                            {{ BootForm::checkbox('Cacher le mobile', 'hideMobile')->check() }}
+                        @else
+                            {{ BootForm::checkbox('Cacher le mobile', 'hideMobile') }}
+                        @endif
+                        {{ BootForm::textarea('Description des activités', 'description')->placeHolder("Entrez ici une description des activités...") }}
+                        {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
+                        {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
+                </div>
+            {{ BootForm::close() }}
+        </div>
+
+        <!-- Div de l'onglet adresses -->
+        <div role="tabpanel" class="tab-pane fade" id="adresses">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-7">
+                    <h2><a href="{{ URL::route('admin.adresse.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+                </div>
+            </div>
+            <div class="col-sm-10 col-sm-offset-1">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <td>Nom</td>
+                        <td>Adresse</td>
+                        <td>Téléphone</td>
+                        <td>Actions</td>
+                    </thead>
+                    <tbody>
+                        @foreach($addresses as $address)
+                            <tr>
+                                <td>{{ $address->name }}</td>
+                                <td>{{ Str::title($address->address) }}, {{ $address->zipCode }}, {{ Str::title($address->city) }}</td>
+                                <td>{{ $address->phone }}</td>
+                                <td>
+                                    <a href="{{ URL::route('admin.adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
+                                    {{ BootForm::open()->delete()->action(URL::route('admin.adresse.destroy', $address->id))->style('display: inline;') }}
+                                        {{ Form::token() }}
+                                        {{ BootForm::bind($address) }}
+                                        {{ BootForm::submit('Supprimer', 'label-danger label') }}
+                                    {{ BootForm::close() }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Div de l'onglet activités -->
+        <div role="tabpanel" class="tab-pane fade" id="activites">
+          <div class="col-sm-6 col-sm-offset-3">
+              <div class="col-sm-12 text-center"><h3>Activités de {{ $user->firstname }}</h3></div>
+              {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('admin.user.updateActivities', $user->id)) }}
+                  {{ Form::token() }}
+                  {{ BootForm::bind($user) }}
+                  @foreach($activities as $act)
+                      @if($user->activities->contains($act->id))
+                          {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() }}
+                      @else
+                          {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) }}
+                      @endif
+                  @endforeach
+                  {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
+              {{ BootForm::close() }}
+          </div>
+        </div>
+        
+        <!-- Div de l'onglet mot de passe -->
+        <div role="tabpanel" class="tab-pane fade" id="motdepasse">
+            <div class="col-sm-6 col-sm-offset-3" style="display:none;">
+                <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
+                    {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('sessions.update')) }}
+                      {{ Form::token() }}
+                      {{ BootForm::password('Mot de passe', 'password') }}
+                      {{ BootForm::password('Confirmation', 'password_confirmation') }}
+                      {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
+                    {{ BootForm::close() }}
+            </div>
+        </div>
+
+    </div> <!-- Fin div tab-content -->
 @stop
 @section('script')
     <script>

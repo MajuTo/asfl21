@@ -26,6 +26,9 @@
                     <dt>Ville</dt><dd>{{ $add->city }}</dd> 
                     @if($add->phone && !$add->hidePhone)
                         <dt>Téléphone Fixe</dt><dd>{{ $add->phone }}</dd>  
+                    @endif 
+                    @if($add->fax && !$add->hideFax)
+                        <dt>Fax : </dt><dd>{{ $add->fax }}</dd>  
                     @endif
                 @endforeach
 

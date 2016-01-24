@@ -24,8 +24,6 @@ class CreateUsersTable extends Migration {
 			$table->boolean('hideEmail')->default(0);
 			$table->string('mobile')->nullable();
 			$table->boolean('hideMobile')->default(0);
-			$table->string('fax')->nullable();
-			$table->boolean('hideFax')->default(0);
 			$table->text('description')->default('');
 			$table->boolean('active')->default(1);
 			$table->string('confirmation')->unique();

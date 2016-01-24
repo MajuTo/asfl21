@@ -21,6 +21,8 @@ class CreateAddressesTable extends Migration {
 			$table->string('city')->nullable();
 			$table->string('phone')->nullable();
 			$table->boolean('hidePhone')->default(0);
+			$table->string('fax')->nullable();
+			$table->boolean('hideFax')->default(0);
 			$table->text('description')->nullable();
 			$table->decimal('lat', 14, 10)->nullable();
 			$table->decimal('lng', 14, 10)->nullable();

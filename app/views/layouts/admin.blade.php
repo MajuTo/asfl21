@@ -15,7 +15,6 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h1>Tableau de bord Admin</h1>
-                        <p>Bienvenue {{ Auth::user()->firstname }}</p>
                         <hr>
                     </div>
                 </div>
