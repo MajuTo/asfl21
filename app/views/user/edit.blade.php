@@ -1,13 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.index')
 @section('content')
-<div class="row">
+<div class="content-container">
+    <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <ul class="nav nav-pills nav-justified">
 
                 <li class="active"><a href="#profil" data-toggle="tab">Profil</a></li>
                 <li><a href="#adresses" data-toggle="tab">Adresses</a></li>
                 <li><a href="#activites" data-toggle="tab">Activités</a></li>
-                <!-- <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li> -->
+                <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li>
 
             </ul>
         </div>
@@ -99,7 +100,7 @@
         </div>
         
         <!-- Div de l'onglet mot de passe -->
-        <!-- <div role="tabpanel" class="tab-pane fade" id="motdepasse">
+        <div role="tabpanel" class="tab-pane fade" id="motdepasse">
             <div class="col-sm-6 col-sm-offset-3" style="display:none;">
                 <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
                     {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('sessions.update')) }}
@@ -109,16 +110,16 @@
                       {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
                     {{ BootForm::close() }}
             </div>
-        </div> -->
+        </div>
 
     </div> <!-- Fin div tab-content -->
+</div> <!-- Fin content-container -->
 @stop
 @section('script')
     <script>
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
-            $('#nav-admin').addClass('active');
-            $('#nav-admin-users').addClass('active');
+            $('#nav-profil').addClass('active');
             $(':checkbox:not(:checked)').parent().addClass('notchecked');
             $(':checkbox:checked').parent().addClass('checked');
             $(':checkbox').on('change', function(){

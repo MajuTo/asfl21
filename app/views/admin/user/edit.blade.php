@@ -7,7 +7,7 @@
                 <li class="active"><a href="#profil" data-toggle="tab">Profil</a></li>
                 <li><a href="#adresses" data-toggle="tab">Adresses</a></li>
                 <li><a href="#activites" data-toggle="tab">Activités</a></li>
-                <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li>
+                <!-- <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li> -->
 
             </ul>
         </div>
@@ -99,7 +99,7 @@
         </div>
         
         <!-- Div de l'onglet mot de passe -->
-        <div role="tabpanel" class="tab-pane fade" id="motdepasse">
+        <!-- <div role="tabpanel" class="tab-pane fade" id="motdepasse">
             <div class="col-sm-6 col-sm-offset-3" style="display:none;">
                 <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
                     {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('sessions.update')) }}
@@ -109,7 +109,7 @@
                       {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
                     {{ BootForm::close() }}
             </div>
-        </div>
+        </div> -->
 
     </div> <!-- Fin div tab-content -->
 @stop
