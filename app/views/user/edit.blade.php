@@ -101,7 +101,7 @@
         
         <!-- Div de l'onglet mot de passe -->
         <div role="tabpanel" class="tab-pane fade" id="motdepasse">
-            <div class="col-sm-6 col-sm-offset-3" style="display:none;">
+            <div class="col-sm-6 col-sm-offset-3">
                 <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
                     {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('sessions.update')) }}
                       {{ Form::token() }}
