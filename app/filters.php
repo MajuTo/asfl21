@@ -46,6 +46,10 @@ Route::filter('auth', function()
 			return Redirect::guest('login');
 		}
 	}
+	elseif (Auth::user() && !Auth::user()->loggedOnce && Route::getCurrentRoute()->getName() != 'sessions.edit' && Route::getCurrentRoute()->getName() != 'sessions.update')
+	{
+		return Redirect::route('sessions.edit', [Auth::id()]);
+	}
 });
 
 
@@ -83,8 +87,20 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
-	if (Session::token() !== Input::get('_token'))
+	// needed for ajax request
+	$token = Request::ajax() ? Request::header('X-CSRF-Token') : Input::get('_token');
+	if (Session::token() !== $token)
 	{
 		throw new Illuminate\Session\TokenMismatchException;
+	}
+});
+
+
+/* Custom isAdmin? filter */
+Route::filter('admin', function(){
+	// if (!Auth::user()->group() == 'admin') {
+	if (Auth::user()->group->id != 2 && Auth::user()->group->id != 3) {
+		Alert::add("alert-danger", "Vous n'avez pas de droit d'administration.");
+		return Redirect::route('home');
 	}
 });

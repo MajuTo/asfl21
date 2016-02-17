@@ -15,4 +15,14 @@ class BaseController extends Controller {
 		}
 	}
 
+	/**
+	 * Check if the request is prefixed by admin.
+	 *
+	 * @return boolean
+	 */
+	protected function isAdminRequest()
+    {
+        return (Route::getCurrentRoute()->getPrefix() == '/admin');
+    }
+
 }
