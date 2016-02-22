@@ -1,0 +1,142 @@
+@import url(http://fonts.googleapis.com/css?family=Dynalight);
+
+/* ** GENERAL ** */
+body {
+  background: url('../img/pregnant-collection/pregnant-woman-1196132_1920.jpg') no-repeat bottom center;
+}
+
+.container-fluid {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+h1 {
+    color: #F90B6D;
+    font-family: "Dynalight", sans-serif;
+    font-size: 2.5em;
+}
+/* ** END GENERAL ** */
+
+/* ** Beautiful Checkboxes ** */
+.checkbox input[type=checkbox]{
+  display: none;
+}
+
+label.checked {
+  font-weight: bold;
+}
+
+label.notchecked {
+  font-weight: normal;
+}
+
+label.checked::before {
+  padding-right: 5px;
+  font-family: "FontAwesome";
+  content: "\f046";
+}
+
+label.notchecked::before {
+  padding-right: 5px;
+  font-family: "FontAwesome";
+  content: "\f096";
+}
+/* ** End Beautiful Checkboxes ** */
+
+/* ** NAVIGACTION ** */
+.logo {
+  height: 70px;
+  float: left;
+  margin: 5px;
+}
+
+.navbar-default {
+    background-color: transparent;
+    border: none;
+    font-size: 1.1em;
+}
+
+.navbar-brand {
+  font-family: 'Dynalight', sans-serif;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+#sub-brand {
+  position: fixed;
+  top: 40px;
+  left: 65px;
+  font-family: 'Dynalight', sans-serif;
+  font-size: 1.6em;
+}
+
+
+
+
+
+
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #FFF;
+  background-color: deeppink;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+  text-decoration: none;
+  color: deeppink;
+  background-color: rgba(255, 20, 147, 0.4);
+}
+
+
+#menu {
+    border-bottom: 1px solid deeppink;
+}
+
+.navbar-default .navbar-brand {
+    margin-top: 10px;
+    font-size: 3em;
+}
+
+.navbar-default .navbar-nav>li {
+    margin-bottom: 4px;
+}
+
+.navbar-default .navbar-nav>li>a {
+    border-top: 5px solid transparent;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+    background-color: transparent;
+    border-top-color: deeppink;
+}
+
+.navbar-default .navbar-nav>.active>a {
+    background-color: transparent;
+    border-top-color: deeppink;
+}
+
+.navbar-default .navbar-nav>.focus>a {
+    background-color: #E7E7E7;
+    border-top-color: deeppink;
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus  {
+    border-top-color: deeppink;
+}
+
+.navbar-nav > li:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu>li>a:hover {
+    background-color: deeppink;
+}
+
+.dropdown-menu>.active>a {
+    background-color: deeppink;
+}
+
+
+/* ** END NAVIGATION ** */
+
+/* ** TESTING ** */

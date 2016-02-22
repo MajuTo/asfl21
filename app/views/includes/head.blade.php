@@ -2,7 +2,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="_token" content="{{ csrf_token() }}" />
-<title>ASFL21</title>
+<title>Association des Sages Femmes Libérales de Côte d'Or</title>
 
 <!-- GOOGLE MAP API -->
 <script type="text/javascript"
@@ -12,7 +12,7 @@
 <!-- CSS -->
 {{ HTML::style('assets/bootstrap/css/bootstrap.min.css') }}
 {{ HTML::style('assets/font-awesome/css/font-awesome.min.css') }}
-{{ HTML::style('assets/css/custom.css') }}
+<!-- {{ HTML::style('assets/css/custom.css') }} -->
 {{ HTML::style('assets/css/new-design.css') }}
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

@@ -1,9 +1,9 @@
 @extends('layouts.index')
 @section('content')
-<div class="content-container">
+<div class="content-container"> <!-- js full height -->
 	<div class="row">
 		<div class="col-sm-12">
-			<h1 class="animate-page-title">Association des Sages Femmes Libérales de Côte d'Or</h1>
+			<h1>Association des Sages Femmes Libérales de Côte d'Or</h1>
 		</div>
 	</div>
 	<div class="row">
@@ -31,7 +31,7 @@
 			</p>
 		</div>
 		<div class="col-sm-6">
-			<img class="img-responsive img-rounded hidden-sm hidden-xs" id="home-image" src="{{ asset('assets/img/feet-619534_1280.jpg') }}">
+			<!-- <img class="img-responsive img-rounded hidden-sm hidden-xs" id="home-image" src="{{ asset('assets/img/feet-619534_1280.jpg') }}"> -->
 		</div>
 	</div>
 </div>
