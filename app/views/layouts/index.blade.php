@@ -6,27 +6,29 @@
         @yield('css')
     </head>
     <body>
-        <div class="container-fluid">
-            <!-- NAVIGATION -->
+        <!-- NAVIGATION -->
+        <div class="container-fluid" id="nav-container">
             @include('includes.nav')
+        </div>
 
-            <!-- Flash messages -->
-            @include('includes.alert')
+        <!-- Flash messages -->
+        @include('includes.alert')
 
-            <!-- BODY CONTENT -->
+        <!-- BODY CONTENT -->
+        <div class="container" id="content-container">
             @yield('content')
-
-
-            <!-- FOOTER -->
-            @include('includes.footer')
-
-            <!-- Javascipts -->
-            @include('includes.scripts')
-
-            <!-- Custom scripts -->
-            @yield('script')
         </div>
 
 
+        <!-- FOOTER -->
+        <div class="container-fluid" id="footer-container">
+            @include('includes.footer')
+        </div>
+
+        <!-- Javascipts -->
+        @include('includes.scripts')
+
+        <!-- Custom scripts -->
+        @yield('script')
     </body>
 </html>

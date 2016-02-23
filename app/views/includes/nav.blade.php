@@ -1,4 +1,5 @@
 <!-- NAVIGATION -->
+<div class="container-fluid">
 <nav class="navbar navbar-default">
   <!-- <div class="container"> -->
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -59,7 +60,7 @@
 
         <p class="pull-left hidden-sm hidden-xs" id="sub-brand"><sub><small>Association des Sages Femmes Libérales de Côte d'Or</small></sub></p>
     </div><!-- /.navbar-collapse -->
-  <!-- </div>/.container -->
 </nav>
+</div><!-- </div>/.container -->
 <!-- END NAVIGATION -->
 

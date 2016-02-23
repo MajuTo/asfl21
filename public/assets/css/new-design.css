@@ -1,21 +1,23 @@
 @import url(http://fonts.googleapis.com/css?family=Dynalight);
 
+/* ** Colors ** */
+/* 
+  http://paletton.com/palette.php?uid=15b0u0kw0tDfTzunVuZCMn%2BMtiR 
+*/
+
 /* ** GENERAL ** */
 body {
   background: url('../img/pregnant-collection/pregnant-woman-1196132_1920.jpg') no-repeat bottom center;
 }
 
-.container-fluid {
-  margin-left: 50px;
-  margin-right: 50px;
-}
-
 h1 {
-    color: #F90B6D;
+    color: #BF0068;
     font-family: "Dynalight", sans-serif;
     font-size: 2.5em;
 }
 /* ** END GENERAL ** */
+
+
 
 /* ** Beautiful Checkboxes ** */
 .checkbox input[type=checkbox]{
@@ -43,7 +45,14 @@ label.notchecked::before {
 }
 /* ** End Beautiful Checkboxes ** */
 
+
+
 /* ** NAVIGACTION ** */
+#nav-container {
+  margin-left: 30px;  
+  margin-right: 30px;
+}
+
 .logo {
   height: 70px;
   float: left;
@@ -63,13 +72,20 @@ label.notchecked::before {
 }
 
 #sub-brand {
-  position: fixed;
-  top: 40px;
-  left: 65px;
   font-family: 'Dynalight', sans-serif;
   font-size: 1.6em;
+  margin-left: -160px;
+  margin-top: 35px;
 }
 
+#menu {
+    border-bottom: 1px solid #6B089D;
+}
+
+#home-picture-col {
+  padding-right: 0;
+  margin-right: 0;
+}
 
 
 
@@ -78,19 +94,17 @@ label.notchecked::before {
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   color: #FFF;
-  background-color: deeppink;
+  background-color: #BF0068;
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
   text-decoration: none;
-  color: deeppink;
+  color: #BF0068;
   background-color: rgba(255, 20, 147, 0.4);
 }
 
 
-#menu {
-    border-bottom: 1px solid deeppink;
-}
+
 
 .navbar-default .navbar-brand {
     margin-top: 10px;
@@ -107,21 +121,21 @@ label.notchecked::before {
 
 .navbar-default .navbar-nav>li>a:hover {
     background-color: transparent;
-    border-top-color: deeppink;
+    border-top-color: #BF0068;
 }
 
 .navbar-default .navbar-nav>.active>a {
     background-color: transparent;
-    border-top-color: deeppink;
+    border-top-color: #BF0068;
 }
 
 .navbar-default .navbar-nav>.focus>a {
     background-color: #E7E7E7;
-    border-top-color: deeppink;
+    border-top-color: #BF0068;
 }
 
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus  {
-    border-top-color: deeppink;
+    border-top-color: #BF0068;
 }
 
 .navbar-nav > li:hover > .dropdown-menu {
@@ -129,14 +143,28 @@ label.notchecked::before {
 }
 
 .dropdown-menu>li>a:hover {
-    background-color: deeppink;
+    background-color: #BF0068;
 }
 
 .dropdown-menu>.active>a {
-    background-color: deeppink;
+    background-color: #BF0068;
 }
-
-
 /* ** END NAVIGATION ** */
+
+
+/* ** HOME ** */
+
+
+/* ** END HOME ** */
+
+
+
+
+/* ** FOOTER ** */
+#footer {
+  background-color: rgba(122, 0, 67, .5);
+}
+/* ** END FOOTER ** */
+
 
 /* ** TESTING ** */

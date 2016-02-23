@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="_token" content="{{ csrf_token() }}" />
 <title>Association des Sages Femmes Libérales de Côte d'Or</title>
+<link rel="icon" type="image/png" href="../assets/img/favicon-child.png"> <!-- does this work? -->
 
 <!-- GOOGLE MAP API -->
 <script type="text/javascript"

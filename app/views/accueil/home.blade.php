@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-<div class="content-container"> <!-- js full height -->
+<div class="container">
 	<div class="row">
 		<div class="col-sm-12">
 			<h1>Association des Sages Femmes Libérales de Côte d'Or</h1>
@@ -18,7 +18,7 @@
 			Parce qu'on ne sait pas toujours ce qui s'offre à nous.
 			</p>
 			<p>
-			Les sages-femmes libérales de la Côte-d'Or ont souhaité s'unir en une association pour proposer à chaque femme, couple et enfant une information claire et un accompagnement adapté à chacun
+			Les sages-femmes libérales de la Côte-d'Or ont souhaité s'unir en une association pour proposer à chaque femme, couple et enfant une information claire et un accompagnement adapté à chacun.
 			</p>
 			<p>
 				<ul id="home-li">
@@ -30,9 +30,9 @@
 				</ul>
 			</p>
 		</div>
-		<div class="col-sm-6">
-			<!-- <img class="img-responsive img-rounded hidden-sm hidden-xs" id="home-image" src="{{ asset('assets/img/feet-619534_1280.jpg') }}"> -->
-		</div>
+		<!-- <div class="col-sm-6">
+			<img class="img-responsive img-rounded hidden-sm hidden-xs" id="home-image" src="{{ asset('assets/img/feet-619534_1280.jpg') }}">
+		</div> -->
 	</div>
 </div>
 @stop
