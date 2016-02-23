@@ -4,6 +4,8 @@
 /* ** Colors ** */
 /* 
   http://paletton.com/palette.php?uid=15b0u0kw0tDfTzunVuZCMn%2BMtiR 
+  background: url('../img/pregnant-collection/pregnant-looking-up.jpg') no-repeat bottom center;
+
 */
 
 /* ** GENERAL ** */
@@ -11,15 +13,13 @@ body {
   font-family: "Lora", serif;
   font-weight: 400;
   font-size: 1.6em;
+  // background: url('../img/pregnant-collection/pregnant-looking-up.jpg') no-repeat bottom center;
+  // background: url('../img/pregnant-collection/belly-painting-409794_1920.jpg') no-repeat bottom right;
 }
 
 .container-fluid {
   margin-left: 50px;  
   margin-right: 50px;
-}
-
-#all-container {
-  box-shadow: 0 0 1px 2px black; 
 }
 
 h1 {
@@ -173,10 +173,6 @@ label.notchecked::before {
   box-shadow: 1px 1px 3px black;
   margin-bottom: 5px;
   background-color: rgba(255, 255, 255, .65);
-}
-
-#accueil-first-row {
-  background: url('../img/pregnant-collection/pregnant-looking-up.jpg') no-repeat bottom center;
 }
 /* ** END HOME ** */
 

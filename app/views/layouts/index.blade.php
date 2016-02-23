@@ -6,9 +6,8 @@
         @yield('css')
     </head>
     <body>
-        <div class="all-container">
         <!-- NAVIGATION -->
-        <div class="container-fluid" id="nav-container">
+        <div class="container" id="nav-container">
             @include('includes.nav')
         </div>
 
@@ -16,15 +15,14 @@
         @include('includes.alert')
 
         <!-- BODY CONTENT -->
-        <div class="container-fluid" id="content-container">
+        <div class="container" id="content-container">
             @yield('content')
         </div>
 
 
         <!-- FOOTER -->
-        <div class="container-fluid" id="footer-container">
+        <div class="container" id="footer-container">
             @include('includes.footer')
-        </div>
         </div>
 
         <!-- Javascipts -->
