@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Dynalight);
 @import url(https://fonts.googleapis.com/css?family=Lora:400,400italic,700);
+@import url(https://fonts.googleapis.com/css?family=Courgette|Handlee);
 
 /* ** Colors ** */
 /* 
@@ -21,7 +22,7 @@ body {
 
 h1 {
     color: #BF0068;
-    font-family: "Dynalight", sans-serif;
+    font-family: "Handlee", sans-serif;
     font-size: 2.5em;
     text-align: center;
     margin-bottom: 25px;
@@ -156,7 +157,7 @@ label.notchecked::before {
 
 /* ** HOME ** */
 #accueil-text {
-  margin-left: 20%;
+  margin-left: 15%;
   margin-top: 25px;
 }
 
@@ -172,30 +173,30 @@ label.notchecked::before {
 
 #accueil-text p:nth-child(1) {
   margin-top: 25px;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 #accueil-text p:nth-child(2) {
-  margin-left: 20px;
-}
-
-#accueil-text p:nth-child(3) {
   margin-left: 30px;
 }
 
+#accueil-text p:nth-child(3) {
+  margin-left: 60px;
+}
+
 #accueil-text p:nth-child(4) {
-  margin-left: 40px;
+  margin-left: 90px;
   margin-bottom: 0;
 }
 
 #accueil-text p:nth-child(5) {
-  margin-left: 85px;
+  margin-left: 135px;
   margin-bottom: 0;
   margin-top:0;
 }
 
 #accueil-text p:nth-child(6) {
-  margin-left: 90px;
+  margin-left: 140px;
   margin-top:0;
   margin-bottom: 25px;
 }
@@ -250,8 +251,35 @@ label.notchecked::before {
   right: 10%;
 }
 /* End Carousel */
-
 /* ** END HOME ** */
+
+/* ** NOTRE METIER ** */
+#notremetier h2 {
+  margin-bottom: 20px;
+}
+
+#notremetier ul {
+  list-style-type: none;
+}
+
+#notremetier ul li {
+  margin: 2px;
+}
+
+#notremetier ul li:hover {
+  font-size: 1.3em;
+  cursor: pointer;
+  color: #6B089D;
+}
+
+#notremetier .row {
+  margin-bottom: 50px;
+}
+
+#notremetier img {
+  box-shadow: 1px 1px 5px #6B089D;
+}
+/* ** END NOTRE METIER ** */
 
 
 
@@ -271,3 +299,6 @@ footer {
 
 
 /* ** TESTING ** */
+.tooltip-body {
+  display: none;
+}
