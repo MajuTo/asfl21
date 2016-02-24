@@ -41,9 +41,7 @@
     function sizeContent() {
         var bodyHeight = $(window).height();
         var contentHeight = bodyHeight - 135 + "px";
-        var rowHeight = bodyHeight - 250 + "px";
         // $("body").css("min-height", bodyHeight);
         $("#content-container").css("min-height", contentHeight);
-        $("#accueil-first-row").css("height", rowHeight);
     }
 </script>
