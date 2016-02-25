@@ -5,6 +5,7 @@
 /* ** Colors ** */
 /* 
   http://paletton.com/palette.php?uid=15b0u0kw0tDfTzunVuZCMn%2BMtiR 
+  http://paletton.com/palette.php?uid=35o0u0kk1wA4YREduG5qaumvYpC
 */
 
 /* ** GENERAL ** */
@@ -21,7 +22,7 @@ body {
 }
 
 h1 {
-    color: #BF0068;
+    color: #B5003A;
     font-family: "Handlee", sans-serif;
     font-size: 2.5em;
     text-align: center;
@@ -253,9 +254,19 @@ label.notchecked::before {
 /* End Carousel */
 /* ** END HOME ** */
 
+
+
 /* ** NOTRE METIER ** */
 #notremetier h2 {
   margin-bottom: 20px;
+}
+
+#notremetier .row {
+  margin-bottom: 50px;
+}
+
+#notremetier img {
+  box-shadow: 1px 1px 5px #B5003A;
 }
 
 #notremetier ul {
@@ -266,18 +277,30 @@ label.notchecked::before {
   margin: 2px;
 }
 
-#notremetier ul li:hover {
-  font-size: 1.3em;
+.info {
+  color: #B5003A ;
+  font-size: 1.1em;
+}
+
+.info:hover {
+  color: #e35583;
   cursor: pointer;
-  color: #6B089D;
 }
 
-#notremetier .row {
-  margin-bottom: 50px;
+.pulsing-circle {
+    margin-right: 5px;
+    -webkit-animation: info-catcher-pulse .8s infinite alternate;
+    animation: info-catcher-pulse .8s infinite alternate;
 }
 
-#notremetier img {
-  box-shadow: 1px 1px 5px #6B089D;
+@-webkit-keyframes info-catcher-pulse {
+    from { -webkit-transform: scale3d(0.5,0.5,1); }
+    to { -webkit-transform: scale3d(1,1,1); }
+}
+
+@keyframes info-catcher-pulse {
+    from { -webkit-transform: scale3d(0.5,0.5,1); transform: scale3d(0.5,0.5,1); }
+    to { -webkit-transform: scale3d(1,1,1); transform: scale3d(1,1,1); }
 }
 /* ** END NOTRE METIER ** */
 
@@ -287,7 +310,7 @@ label.notchecked::before {
 
 /* ** FOOTER ** */
 footer {
-  // margin-top: 25px;  
+  margin-top: 25px;  
   padding-top: 5px;
   border-top: 1px solid #E7E7E7;
   font-size: 0.7em;
@@ -299,6 +322,65 @@ footer {
 
 
 /* ** TESTING ** */
-.tooltip-body {
-  display: none;
+.whoooshh {
+  position: fixed;
+  right: -100%;
+  top: 15%;
+  z-index: -999;
+  opacity: 0;
+  -webkit-transition: all 2s ease-out;
+  -o-transition: all 2s ease-out;
+  transition: all 2s ease-out;
+}
+
+.whoooshh-active {
+  left: 0;
+  right: 0;
+  z-index: 999;
+  opacity: 1;
+}
+
+.whoooshh-close {
+  font-family: "Handlee", cursive;
+  font-size: 1.5em;
+  color: #B5003A;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+#notremetier .metier-content {
+  height: 150px;
+  overflow: hidden;
+  margin: 20px;
+  background: #e35583;
+  box-shadow: 0 0 1px #B5003A;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+#notremetier .metier-content h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+
+#notremetier .content-head {
+  text-align: center;
+}
+
+#notremetier .content-body p{
+  text-align: justify;
+  font-family: "Handlee", cursive;
+}
+
+#notremetier .row .whoooshh-row {
+  margin-bottom: 0;
+  background: rgba(181, 0, 58, .9);
+}
+
+#notremetier #preparation {
+  height: 325px;
 }
