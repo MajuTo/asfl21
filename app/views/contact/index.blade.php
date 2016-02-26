@@ -4,7 +4,7 @@
     <div class="content-container"> 
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="animate-page-title"><i class="fa fa-envelope"></i> Contactez nous</h1>
+                <h1>Contactez nous</h1>
                 <div class="row">
                     <div class="col-sm-6"><p>Remplissez le formulaire pour nous contacter</p></div>
                     <div class="col-sm-6"><h3 class="text-right" id="nous-h3"s>Nous sommes ici</h3></div>

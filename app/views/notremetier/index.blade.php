@@ -1,6 +1,7 @@
 @extends('layouts.index')
 @section('content')
 <section id="notremetier">
+    <span id="all"></span>
     <div class="row">
         <div class="col-sm-12">
             <h1>Que me propose ma sage femme libérale ?</h1>
@@ -95,7 +96,7 @@
                     <div class="metier-content">
                         <h4 class="content-head">Visite post-accouchement à domicile</h4>
                         <div class="content-body">
-                            <p>tilisation de l’homéopathie pour soulager certains maux de la grossesse, préparer l'accouchement et améliorer les suites de la naissance</p>
+                            <p>Utilisation de l’homéopathie pour soulager certains maux de la grossesse, préparer l'accouchement et améliorer les suites de la naissance</p>
                         </div>
                     </div>    
                 </div>
@@ -186,7 +187,11 @@
     <script>
         $(document).ready(function(){
             $('#nav-metier').addClass('active');
+
             $('.info').click(function(event) {
+                $('.whoooshh').removeClass('whoooshh-active');
+                // $('#all').addClass('all');
+
                 var thiswhooosh = '#whoooshh-' + $(this).attr('id').split('-')[1];
                 $(thiswhooosh).addClass('whoooshh-active');
             });
