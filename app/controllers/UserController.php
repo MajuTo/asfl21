@@ -76,6 +76,7 @@ class UserController extends \BaseController {
 
 		//Activities
 		$activities = [];
+	
 		if(sizeof(Input::get('activities')) > 0){
 			$activities = Input::get('activities');
 		}
@@ -255,7 +256,7 @@ class UserController extends \BaseController {
 	}
 
 	/**
-	 * Envoi un email à l'utilisateur.
+	 * Envoi un email à l'utilisateur depuis l'inteface de contact
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -282,6 +283,31 @@ class UserController extends \BaseController {
 		});
 		Alert::add("alert-success", "Votre message a bien été envoyé");
 		return Redirect::route('user.show', $user->id);
+	}
+
+	/**
+	 * Envoi un email à l'utilisateur.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function sendAgain($id){
+		$user = User::find($id);
+
+		$confirmation = $this->generateConfirmation();
+
+		$user->confirmation = $confirmation;
+
+		//Sauvegarde
+		$user->save();
+
+		//Envoi mail
+		Mail::send('emails.inscription', ['user' => $user, 'confirmation' => $confirmation], function($m) use ($user)	{
+			$m->to($user->email)->subject('Inscription sur le site asfl21.fr');
+		});
+
+		Alert::add("alert-success", "L'email a bien été envoyé à " . $user->firstname . " " . $user->name);
+		return Redirect::route('admin.user.index');
 	}
 
 

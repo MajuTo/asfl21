@@ -3,7 +3,6 @@
 	<h2>Gestion des messages</h2>
 	<table class="table table-condensed table-hover">
 		<thead>
-			<td>#</td>
 			<td>Auteur</td>
 			<td>Titre</td>
 			<td>Groupe</td>
@@ -12,7 +11,6 @@
 		<tbody>
 			@foreach($messages as $message)
 				<tr>
-					<td>{{ $message->id }}</td>
 					<td>{{ Str::title($message->user->firstname) . ' ' . Str::upper($message->user->name) }}</td>
 					<td>{{ Str::title($message->title) }}</td>
 					<td>{{ $message->category->categoryName }}</td>
