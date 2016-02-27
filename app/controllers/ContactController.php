@@ -29,7 +29,7 @@ class ContactController extends \BaseController {
 			$subject = (Input::get('pro')) ? '[PRO] ' : '';
 			$subject .= Input::get('subject');
 			Mail::send('emails.contact', ['inputs' => Input::all()], function($m) use ($subject){
-				$m->to('majuto@free.fr')->subject($subject)->from(Input::get('email'), Input::get('name'));
+				$m->to('contact@asfl21.fr')->subject($subject)->from(Input::get('email'), Input::get('name'));
 			});
 			return View::make('contact.index');
 		}
