@@ -1,12 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=Dynalight);
-@import url(https://fonts.googleapis.com/css?family=Lora:400,400italic,700);
-@import url(https://fonts.googleapis.com/css?family=Courgette|Handlee);
+@import url(https://fonts.googleapis.com/css?family=Lora:400,400italic,700|Handlee);
 
 /* ** Colors ** */
 /* 
-  http://paletton.com/palette.php?uid=15b0u0kw0tDfTzunVuZCMn%2BMtiR 
   http://paletton.com/palette.php?uid=35o0u0kk1wA4YREduG5qaumvYpC
 */
+
 
 /* ** GENERAL ** */
 body {
@@ -27,6 +25,17 @@ h1 {
     font-size: 2.5em;
     text-align: center;
     margin-bottom: 25px;
+}
+
+a {
+  color: #B5003A;
+}
+
+a:hover,
+a:active,
+a:focus {
+  color: #E35582;
+  text-decoration: none;
 }
 /* ** END GENERAL ** */
 
@@ -60,7 +69,7 @@ label.notchecked::before {
 
 
 
-/* ** NAVIGACTION ** */
+/* ** NAVIG-ACTION ** */
 .logo {
   height: 70px;
   float: left;
@@ -74,13 +83,14 @@ label.notchecked::before {
 }
 
 .navbar-brand {
-  font-family: 'Dynalight', sans-serif;
+  font-family: 'Handlee', sans-serif;
   margin-bottom: 0;
   padding-left: 0;
+  font-size: 1em;
 }
 
 #sub-brand {
-  font-family: 'Dynalight', sans-serif;
+  font-family: 'Handlee', sans-serif;
   font-size: 1.6em;
   margin-left: -160px;
   margin-top: 35px;
@@ -89,6 +99,8 @@ label.notchecked::before {
 #menu {
     border-bottom: 1px solid #6B089D;
 }
+
+
 
 
 
@@ -107,11 +119,6 @@ label.notchecked::before {
 
 
 
-
-.navbar-default .navbar-brand {
-    margin-top: 10px;
-    font-size: 3em;
-}
 
 .navbar-default .navbar-nav>li {
     margin-bottom: 4px;
@@ -231,12 +238,13 @@ label.notchecked::before {
 }
 
 #carousel-two {
-  background: url('../img/pregnant-collection/belly-painting-africa-1140.jpg') no-repeat center center;
+  background: url('../img/pregnant-collection/pregnant-couple-1140.jpg') no-repeat center center;
 }
 
 #carousel-three {
-  background: url('../img/pregnant-collection/pregnant-couple-1140.jpg') no-repeat center center;
+  background: url('../img/pregnant-collection/belly-painting-africa-1140.jpg') no-repeat center center;
 }
+
 
 #carousel-ctrl-right,
 #carousel-ctrl-left {
@@ -308,7 +316,7 @@ label.notchecked::before {
   left: -100%;
   right: 100%;
   top: 15%;
-  z-index: -999;
+  /*z-index: -999;*/
   opacity: 0;
   -webkit-transition: all 1s ease-out;
   -o-transition: all 1s ease-out;
@@ -328,6 +336,20 @@ label.notchecked::before {
   color: #B5003A;
   margin-right: 25px;
   cursor: pointer;
+}
+
+.whoooshh-close:hover {
+  color: #E35582;
+}
+
+#notremetier .overlay {
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(247, 208, 221, .5);
 }
 
 #notremetier .metier-content {
@@ -388,14 +410,19 @@ footer {
 
 
 /* ** TESTING ** */
-.all {
-  position: fixed;
-  z-index: 500;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  /*background-color: #ec89a9;*/
-  /*background-color: rgba(111, 112, 112, .5);*/
-  /*background-image: url("http://www.transparenttextures.com/patterns/crisp-paper-ruffles.png");*/
+ .map_container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; Ratio 16:9 ( 100%/16*9 = 56.25% )
+    height: 550px;
 }
+
+.map_container .map_canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+} 

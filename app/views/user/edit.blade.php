@@ -66,8 +66,8 @@
                                 <td>{{ Str::title($address->address) }}, {{ $address->zipCode }}, {{ Str::title($address->city) }}</td>
                                 <td>{{ $address->phone }}</td>
                                 <td>
-                                    <a href="{{ URL::route('admin.adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-                                    {{ BootForm::open()->delete()->action(URL::route('admin.adresse.destroy', $address->id))->style('display: inline;') }}
+                                    <a href="{{ URL::route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
+                                    {{ BootForm::open()->delete()->action(URL::route('adresse.destroy', $address->id))->style('display: inline;') }}
                                         {{ Form::token() }}
                                         {{ BootForm::bind($address) }}
                                         {{ BootForm::submit('Supprimer', 'label-danger label') }}

@@ -53,22 +53,6 @@
 			<p><strong>chaque femme, couple et enfant</strong> une information claire et un accompagnement adapté à chacun.</p>
 		</div>
 	</div>
-<!-- 	<
-	div class="row">
-		<div class="col-sm-6">
-			<ul id="home-li pull-right">
-				<li><a href="{{ URL::route('notremetier') }}"><i class="fa fa-long-arrow-right"></i> Que me propose ma sage femme Libérale ?</a></li>
-				<li><a href="{{ URL::route('noustrouver') }}"><i class="fa fa-long-arrow-right"></i> Où la trouver ?</a></li>
-				<li><a href="#"><i class="fa fa-long-arrow-right"></i> Calendrier de grossesse</a></li>
-				<li><a href="#"><i class="fa fa-long-arrow-right"></i> Liens utiles</a></li>
-				<li><a href="{{ URL::route('message.index') }}"><i class="fa fa-long-arrow-right"></i> Espace PRO</a></li>
-			</ul>
-		</div>
-		<div class="col-sm-6">
-			<img class="img-responsive img-rounded" id="feet" src="{{ asset('assets/img/pregnant-collection/feet-619534_1280.jpg') }}" alt="pieds de bébé">
-		</div>
-	</div>
--->
 </section>
 @stop
 

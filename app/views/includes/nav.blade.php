@@ -11,7 +11,7 @@
       </button>
     </div>
       {{ HTML::image(asset('/assets/img/logo.png'), 'logo', ['class' => 'logo']) }}
-      <a class="navbar-brand" href="{{ URL::route('home') }}">ASFL21</a>
+      <a class="navbar-brand text-center" href="{{ URL::route('home') }}">Association des Sages Femmes Libérales <br>  de Côte d'Or</a>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="menu">
@@ -21,7 +21,7 @@
         	<a href="{{ URL::route('home') }}"><i class="fa fa-home"></i><br>Accueil</a>
         </li>
         <li id="nav-metier">
-        	<a href="{{ URL::route('notremetier') }}"><i class="fa fa-camera"></i><br>Notre Métier</a>
+        	<a href="{{ URL::route('notremetier') }}"><i class="fa fa-user-md"></i><br>Notre Métier</a>
         </li>
         <li id="nav-trouver">
         	<a href="{{ URL::route('noustrouver') }}"><i class="fa fa-map-marker"></i><br>Nous Trouver</a>
@@ -37,17 +37,18 @@
         </li>
 
         <li class="dropdown" id="nav-membre">
-        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
-        		<i class="fa fa-user"></i><br>Membres<span class="caret"></span>
-        	</a>
-        	@if (Auth::guest())
+            @if (Auth::guest())
+                <a href="{{ URL::route('login') }}"><i class="fa fa-users"></i><br>Espace pro</a>
+                <!-- <ul class="dropdown-menu dropdown-menu-left" role="menu"> -->
+                    <!-- <li id="nav-login"><a href="{{ URL::route('login') }}">Login</a></li> -->
+                <!-- </ul> -->
+            @else 
+            	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
+            		<i class="fa fa-users"></i><br>Espace pro<span class="caret"></span>
+            	</a>
         		<ul class="dropdown-menu dropdown-menu-left" role="menu">
-        			<li id="nav-login"><a href="{{ URL::route('login') }}">Login</a></li>
-        		</ul>
-        	@else 
-        		<ul class="dropdown-menu dropdown-menu-left" role="menu">
-        			<li id="nav-profil"><a href="{{ URL::route('user.edit', Auth::user()->id) }}">Mon Profil</a></li>
         			<li id="nav-info"><a href="{{ URL::route('message.index') }}">Message</a></li>
+                    <li id="nav-profil"><a href="{{ URL::route('user.edit', Auth::user()->id) }}">Mon Profil</a></li>
         			@if(!Auth::guest() and Auth::user()->group->id == 2 or Auth::user()->group->id == 3)
         				<li id="nav-admin"><a href="{{ URL::route('admin.index') }}">Admin</a></li>
         			@endif
@@ -57,7 +58,7 @@
         </li>
       </ul>
 
-        <p class="pull-left hidden-sm hidden-xs" id="sub-brand"><sub><small>Association des Sages Femmes Libérales de Côte d'Or</small></sub></p>
+        <!-- <p class="pull-left hidden-sm hidden-xs" id="sub-brand"><sub><small>Association des Sages Femmes Libérales de Côte d'Or</small></sub></p> -->
     </div><!-- /.navbar-collapse -->
 </nav>
 <!-- END NAVIGATION -->

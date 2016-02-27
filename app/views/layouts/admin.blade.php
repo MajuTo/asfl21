@@ -11,7 +11,7 @@
             <!-- Flash messages -->
             @include('includes.alert')
             <!-- BODY CONTENT -->
-            <div class="content-container">
+            <div id="content-container">
                 <div class="row">
                     <div class="col-sm-12">
                         <h1>Tableau de bord Admin</h1>

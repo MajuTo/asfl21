@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
 <section id="notremetier">
-    <span id="all"></span>
+    <span id="overlay"></span>
     <div class="row">
         <div class="col-sm-12">
             <h1>Que me propose ma sage femme libérale ?</h1>
@@ -24,7 +24,7 @@
             </ul>
         </div>
         <span class="whoooshh" id="whoooshh-grossesse">
-            <div class="whoooshh-close text-right">Fermer</div>
+            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content" id="prenatale">
@@ -90,7 +90,7 @@
             <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
         </div>
         <span class="whoooshh" id="whoooshh-accouchement">
-            <div class="whoooshh-close text-right">Fermer</div>
+            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -136,7 +136,7 @@
             </ul>
         </div>
         <span class="whoooshh" id="whoooshh-ensuite">
-            <div class="whoooshh-close text-right">Fermer</div>
+            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -190,15 +190,16 @@
 
             $('.info').click(function(event) {
                 $('.whoooshh').removeClass('whoooshh-active');
-                // $('#all').addClass('all');
+                $('#overlay').addClass('overlay');
 
                 var thiswhooosh = '#whoooshh-' + $(this).attr('id').split('-')[1];
                 $(thiswhooosh).addClass('whoooshh-active');
             });
 
             $('.whoooshh-close').click(function(event) {
-                var thiswhooosh = '#' + $(this).parent().attr('id');
+                var thiswhooosh = '#' + $(this).parents('.whoooshh').attr('id');
                 $(thiswhooosh).removeClass('whoooshh-active');
+                $('#overlay').removeClass('overlay');
             });
         });
     </script>
