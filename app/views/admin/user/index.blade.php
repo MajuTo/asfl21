@@ -10,7 +10,6 @@
 	</div>
 	<table class="table table-condensed table-hover">
 		<thead>
-			<td>#</td>
 			<td>Nom</td>
 			<td>Prénom</td>
 			<td>Groupe</td>
@@ -19,7 +18,6 @@
 		<tbody>
 			@foreach($users as $user)
 				<tr>
-					<td>{{ $user->id }}</td>
 					<td>{{ Str::upper($user->name) }}</td>
 					<td>{{ Str::title($user->firstname) }}</td>
 					<td>{{ Str::title($user->group->groupName) }}</td>
@@ -34,6 +32,9 @@
 								{{ BootForm::submit('Activer', 'label-success label') }}
 						    @endif
 						{{ BootForm::close() }}
+						@if(!$user->loggedOnce)
+							<a href="{{ URL::route('admin.user.sendagain', $user->id) }}"><button class="btn label label-primary">Renvoyer le mail</button></a>
+						@endif
 					</td>
 				</tr>
 			@endforeach

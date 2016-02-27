@@ -10,7 +10,6 @@
 	</div>
 	<table class="table table-condensed table-hover">
 		<thead>
-			<td>#</td>
 			<td>Nom</td>
 			<td>Logo</td>
 			<td>Contact</td>
@@ -19,7 +18,6 @@
 		<tbody>
 			@foreach($partners as $partner)
 				<tr>
-					<td>{{ $partner->id }}</td>
 					<td>{{ $partner->partnerName }}</td>
 					<td>{{ ($partner->logo) ? HTML::image(asset($partner->logo), 'Logo de '.$partner->partnerName, ['class' => 'admin_logo_index']) : '' }}</td>
 					<td>{{ $partner->contact }}</td>

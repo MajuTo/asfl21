@@ -66,8 +66,8 @@
                                 <td>{{ Str::title($address->address) }}, {{ $address->zipCode }}, {{ Str::title($address->city) }}</td>
                                 <td>{{ $address->phone }}</td>
                                 <td>
-                                    <a href="{{ URL::route('admin.adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-                                    {{ BootForm::open()->delete()->action(URL::route('admin.adresse.destroy', $address->id))->style('display: inline;') }}
+                                    <a href="{{ URL::route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
+                                    {{ BootForm::open()->delete()->action(URL::route('adresse.destroy', $address->id))->style('display: inline;') }}
                                         {{ Form::token() }}
                                         {{ BootForm::bind($address) }}
                                         {{ BootForm::submit('Supprimer', 'label-danger label') }}
@@ -84,7 +84,7 @@
         <div role="tabpanel" class="tab-pane fade" id="activites">
           <div class="col-sm-6 col-sm-offset-3">
               <div class="col-sm-12 text-center"><h3>Activités de {{ $user->firstname }}</h3></div>
-              {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('admin.user.updateActivities', $user->id)) }}
+              {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('user.updateActivities', $user->id)) }}
                   {{ Form::token() }}
                   {{ BootForm::bind($user) }}
                   @foreach($activities as $act)

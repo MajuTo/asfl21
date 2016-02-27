@@ -79,6 +79,7 @@ Route::group([
                     Route::resource('adresse', 'AddressController');
                     Route::put('user/{user}/toggle', ['as' => 'admin.user.toggle', 'uses' => 'UserController@toggle']);
                     Route::put('user/activities/{user}', ['as' => 'admin.user.updateActivities', 'uses' => 'UserController@updateActivities']);
+                    Route::get('user/sendagain/{user}', ['as' => 'admin.user.sendagain', 'uses' => 'UserController@sendAgain']);
                     Route::resource('message', 'MessageController');
                     Route::resource('activity', 'ActivityController');
                     Route::resource('partner', 'PartnerController');
