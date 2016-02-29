@@ -38,7 +38,6 @@
                             {{ BootForm::checkbox('Cacher le mobile', 'hideMobile') }}
                         @endif
                         {{ BootForm::textarea('Description des activités', 'description')->placeHolder("Entrez ici une description des activités...") }}
-                        {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
                         {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
                 </div>
             {{ BootForm::close() }}
