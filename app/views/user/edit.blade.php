@@ -17,7 +17,7 @@
 
         <!-- Div de l'onglet profil -->
         <div role="tabpanel" class="row tab-pane fade in active" id="profil">
-            {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('admin.user.update', $user->id)) }}
+            {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('user.update', $user->id)) }}
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
                         {{ Form::token() }}
@@ -47,7 +47,7 @@
         <div role="tabpanel" class="tab-pane fade" id="adresses">
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-7">
-                    <h2><a href="{{ URL::route('admin.adresse.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+                    <h2><a href="{{ URL::route('adresse.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
                 </div>
             </div>
             <div class="col-sm-10 col-sm-offset-1">
