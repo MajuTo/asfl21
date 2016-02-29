@@ -36,7 +36,8 @@ Route::get('inscription/verification/{confirmation}', ['as' => 'confirmation', '
 /* PASSWORD RECOVERY */
 Route::controller('password', 'RemindersController');
 
-Route::resource('user', 'UserController', ['only' => ['show']]);
+// Route::resource('user', 'UserController', ['only' => ['show']]);
+Route::get('sage-femme/{id}/{name}', ['as' => 'user.show', 'uses' => 'UserController@show']);
 Route::post('user/{user}', ['as' => 'user.email', 'uses' => 'UserController@sendEmail']);
 Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show', 'store']]);
 Route::resource('adresse', 'AddressController');

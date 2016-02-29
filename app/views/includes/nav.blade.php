@@ -47,7 +47,7 @@
             		<i class="fa fa-users"></i><br>Espace pro<span class="caret"></span>
             	</a>
         		<ul class="dropdown-menu dropdown-menu-left" role="menu">
-        			<li id="nav-info"><a href="{{ URL::route('message.index') }}">Message</a></li>
+                    <li id="nav-info"><a href="{{ URL::route('message.index') }}">Message</a></li>
                     <li id="nav-profil"><a href="{{ URL::route('user.edit', Auth::user()->id) }}">Mon Profil</a></li>
         			@if(!Auth::guest() and Auth::user()->group->id == 2 or Auth::user()->group->id == 3)
         				<li id="nav-admin"><a href="{{ URL::route('admin.index') }}">Admin</a></li>

@@ -1,10 +1,12 @@
+@section('title')
+    <title>ASFL21, Contactez {{ strtoupper($user->name) . ' ' . ucfirst($user->firstname) }}</title>
+@stop
 @extends('layouts.index')
 @section('content')
-<div class="content-container">
- 
+<section id="user-show">
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="animate-page-title">{{ $user->name . ' ' . $user->firstname }}</h1>
+            <h1>{{ strtoupper($user->name) . ' ' . ucfirst($user->firstname) }}</h1>
         </div>
     </div>
 
@@ -12,8 +14,8 @@
         <div class="col-sm-6">
             <h3>Mes coordonnées</h3>
             <dl class="dl-horizontal">
-                <dt>Nom</dt><dd>{{ $user->name }}</dd>
-                <dt>Prénom</dt><dd>{{ $user->firstname }}</dd>
+                <dt>Nom</dt><dd>{{ strtoupper($user->name) }}</dd>
+                <dt>Prénom</dt><dd>{{ ucfirst($user->firstname) }}</dd>
                 @if($user->mobile && !$user->hideMobile)
                     <dt>Mobile</dt><dd>{{ $user->mobile }}</dd>
                 @endif
@@ -65,12 +67,18 @@
             {{ BootForm::close() }}
         </div>
         <div class="col-sm-6">
-            <h3>Description des activités</h3>
-            {{ $user->description }}
+            @if($user->description)
+                <h3>Plus de détail</h3>
+                <div id="user-description">
+                    {{ $user->description }}
+                </div>
+            @else
+                <img class="img-responsive img-rounded" id="contact-img" src="{{ asset('assets/img/pregnant-collection/belly-painting-france_1920.jpg') }}" alt="femme enceinte belly painting france">
+            @endif
         </div>
     </div>
     @endif
-</div>
+</section>
 @stop
 
 @section('script')

@@ -1,13 +1,15 @@
+@section('title')
+    <title>ASFL21, Calendrier de grossesse</title>
+@stop
 @extends('layouts.index')
 @section('css')
 	{{ HTML::style('assets/vertical-timeline/css/style.css') }}
 	{{ HTML::style('assets/datedropper/datedropper.css') }}
 @stop
 @section('content')
-<div class="content-container"> 
 	<div class="row">
         <div class="col-sm-12">
-            <h1 class="animate-page-title">Calendrier de grossesse</h1>
+            <h1>Calendrier de grossesse</h1>
             <hr>
     		{{ BootForm::open()->action(URL::route('calendrier.store'))->addClass('form-inline') }}
     	        {{ Form::token() }}
@@ -47,7 +49,6 @@
             @endforeach
         </section> <!-- cd-timeline -->
     @endif
-</div>
 @stop
 
 @section('script')

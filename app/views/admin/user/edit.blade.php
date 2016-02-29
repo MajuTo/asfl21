@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+<script src="//cdn.ckeditor.com/4.5.7/basic/ckeditor.js"></script>
 <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <ul class="nav nav-pills nav-justified">
@@ -8,7 +9,7 @@
                 <li><a href="#adresses" data-toggle="tab">Adresses</a></li>
                 <li><a href="#activites" data-toggle="tab">Activités</a></li>
                 <!-- <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li> -->
-
+                
             </ul>
         </div>
     </div>
@@ -26,17 +27,22 @@
                         {{ BootForm::text('Identifiant', 'username')->placeHolder("Identifiant...")->required() }}
                         {{ BootForm::text('Email', 'email')->placeHolder("Email...")->required() }}
                         @if($user->hideEmail)
-                            {{ BootForm::checkbox('Cacher l\'email (Cache le formulaire de contact)', 'hideEmail')->check() }}
+                            {{ BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail')->check() }}
                         @else
-                            {{ BootForm::checkbox('Cacher l\' email (Cache le formulaire de contact)', 'hideEmail') }}
+                            {{ BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail') }}
                         @endif
                         {{ BootForm::text('Mobile', 'mobile')->placeHolder("Mobile...") }}
                         @if($user->hideMobile)
-                            {{ BootForm::checkbox('Cacher le mobile', 'hideMobile')->check() }}
+                            {{ BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile')->check() }}
                         @else
-                            {{ BootForm::checkbox('Cacher le mobile', 'hideMobile') }}
+                            {{ BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile') }}
                         @endif
-                        {{ BootForm::textarea('Description des activités', 'description')->placeHolder("Entrez ici une description des activités...") }}
+                        {{ BootForm::textarea('Plus de détail', 'description')->placeHolder("Dites en un peu plus sur vous même et/ou vos activités...")->id('editor1') }}
+                            <script>
+                                // Replace the <textarea id="editor1"> with a CKEditor
+                                // instance, using default configuration.
+                                CKEDITOR.replace( 'editor1' );
+                            </script>
                         {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
                         {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
                 </div>

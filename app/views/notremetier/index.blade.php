@@ -1,3 +1,6 @@
+@section('title')
+    <title>ASFL21, Les activités d'une sage-femme</title>
+@stop
 @extends('layouts.index')
 @section('content')
 <section id="notremetier">

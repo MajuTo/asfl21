@@ -1,3 +1,6 @@
+@section('title')
+	<title>Association des Sages Femmes Libérales de Côte d'Or</title>
+@stop
 @extends('layouts.index')
 @section('content')
 <section id="accueil">

@@ -1,63 +1,65 @@
+@section('title')
+    <title>ASFL21, Où trouver une sage-femme en côte d'or</title>
+@stop
 @extends('layouts.index')
 @section('content')
-<div class="content-container">
-    <div class="row">
-        <div class="col-sm-12">
-            <h1 class="animate-page-title">Trouver une sage femme libérale</h1>
-        </div>
+  <div class="row">
+      <div class="col-sm-12">
+          <h1>Trouver une sage femme libérale</h1>
+          <p class="text-center" id="noustrouver-subtext">Sélectionnez les activités qui vous intéresses, puis la ou les sages-femmes qui éffectuent ces activités. Pour plus d'information sur une sage-femme en particulier, cliquer sur <i class="fa fa-external-link"></i> à droite du nom de la sage-femme ou directement sur la map.</p>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
+      <div class="table-responsive">
+        <table class="table table-condensed sf-hov">
+          <thead>
+            <tr>
+              <th>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              @foreach ($activities as $activity)
+                <td class="activity-td" data-activity="{{ $activity->id }}" id="{{ $activity->id }}">{{ Str::title($activity->activityName) }}</td>
+                </tr>
+              @endforeach
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="row">
+    <!-- AJAX liste des sf selon activité -->
       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
-        <div class="table-responsive">
-          <table class="table table-condensed sf-hov">
-            <thead>
-              <tr>
-                <th>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                @foreach ($activities as $activity)
-                  <td class="activity-td" data-activity="{{ $activity->id }}" id="{{ $activity->id }}">{{ Str::title($activity->activityName) }}</td>
-                  </tr>
-                @endforeach
-            </tbody>
-          </table>
-        </div>
+         <div class="table-responsive" id="table-sf">
+           <table class="table table-condensed sf-hov">
+             <thead>
+               <tr>
+                 <th>Sages Femmes</th>
+                   <th><i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
+               </tr>
+             </thead>
+             <tbody id="listesf">
+                 @foreach ($sagesfemmes as $sf) 
+                   <tr>
+                     <td class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
+                     <td><a href="{{ URL::route('user.show', [$sf->id, strtoupper($sf->name) . '_' . ucfirst($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
+                   </tr>
+                 @endforeach
+             </tbody>
+           </table>
+         </div>
       </div>
-      <!-- AJAX liste des sf selon activité -->
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
-           <div class="table-responsive" id="table-sf">
-             <table class="table table-condensed sf-hov">
-               <thead>
-                 <tr>
-                   <th>Sages Femmes</th>
-                     <th><i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
-                 </tr>
-               </thead>
-               <tbody id="listesf">
-                   @foreach ($sagesfemmes as $sf) 
-                     <tr>
-                       <td class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
-                       <td><a href="{{ URL::route('user.show', $sf->id) }}"><i id="tooltip-sf" class="fa fa-envelope" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
-                     </tr>
-                   @endforeach
-               </tbody>
-             </table>
-           </div>
-        </div>
-      <!-- END AJAX liste des sf selon activite -->
-      <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" id="gmap">
-        <div class="map_container">
-          <div id="panel">
-                <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
-                <input id="chezvous_button" type="button" value="go" onclick="codeAddress()">
-              </div>
-          <div class="map_canvas" id="map_canvas"></div>
-        </div>
+    <!-- END AJAX liste des sf selon activite -->
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" id="gmap">
+      <div class="map_container">
+        <div id="panel">
+              <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
+              <input id="chezvous_button" type="button" value="go" onclick="codeAddress()">
+            </div>
+        <div class="map_canvas" id="map_canvas"></div>
       </div>
     </div>
-</div>
+  </div>
 @stop
 @section('script')
     <script>
@@ -242,7 +244,7 @@
                             @if($address->fax && !$address->hideFax)
                                 'fax: {{{ $address->fax }}}'+
                             @endif
-                            "<p>Contact: <a href=\"{{ URL::route('user.show', $sf->id) }}\">"+
+                            "<p>Contact: <a href=\"{{ URL::route('user.show', [$sf->id, strtoupper($sf->name) . '_' . ucfirst($sf->firstname)]) }}\" target=\"_blank\">"+
                             '{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</a> '+
                             '</div>'+
                         '</div>'+

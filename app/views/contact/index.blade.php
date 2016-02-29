@@ -1,3 +1,6 @@
+@section('title')
+    <title>ASFL21, Contactez l'Association des Sages-Femmes Libérales de Côte d'Or</title>
+@stop
 @extends('layouts.index')
 @section('content')
     <!-- Page Title -->
@@ -6,8 +9,7 @@
             <div class="col-sm-12">
                 <h1>Contactez nous</h1>
                 <div class="row">
-                    <div class="col-sm-6"><p>Remplissez le formulaire pour nous contacter</p></div>
-                    <div class="col-sm-6"><h3 class="text-right" id="nous-h3"s>Nous sommes ici</h3></div>
+                    <p id="contact-add">Association des Sages-Femmes Libérales de Côte d'Or, &nbsp; <span class="numbers">32 Bis bd Université, 21000 DIJON</span>, &nbsp; Tel: <span class="numbers">06 49 63 43 59</span></p>
                 </div>
             </div>
         </div>
@@ -28,9 +30,6 @@
             </div>
             <div class="col-sm-5">
                 <div class="map" id="contact-map"></div>
-                <h3>Adresse</h3>
-                <p>32 Bis bd Université,<br> 21000 DIJON</p>
-                <p>Tel: 06 49 63 43 59</p>
             </div>
         </div>
     </div>

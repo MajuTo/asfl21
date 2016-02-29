@@ -1,6 +1,8 @@
+@section('title')
+    <title>ASFL21, Les partenaires de l'assocation des sages-femmes de côte d'or</title>
+@stop
 @extends('layouts.index')
 @section('content')
-<div class="content-container">
     <div class="row">
     	<div class="col-sm-12">
     	<h1 class="animate-page-title">Nos partenaires</h1 class="animate-page-title">
@@ -18,5 +20,4 @@
             </table>
 	    </div>
     </div>
-</div>
 @stop

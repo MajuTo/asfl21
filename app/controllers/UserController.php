@@ -149,6 +149,7 @@ class UserController extends \BaseController {
 	{
 		$user = User::find($id);
 		$address = Address::where('user_id', '=', $id)->get();
+
 		return View::make('user.show', [
 			'user' 		=> $user,
 			'address'  	=> $address

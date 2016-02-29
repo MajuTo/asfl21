@@ -1,13 +1,15 @@
+@section('title')
+    <title>ASFL21, Liens Utiles de l'association des sages-femmes libérales de côte d'or</title>
+@stop
 @extends('layouts.index')
 @section('content')
-<div class="content-container">
     <div class="row">
         <div class="col-sm-6">
             <img class="img-responsive img-rounded" src="{{ asset('assets/img/pregnant-collection/pregant-little-girl.jpg') }}" alt="femme enceinte avec petite fille">
         </div>
     	<div class="col-sm-6">
     	<h1>Liens utiles</h1>
-            <table class="table table-condensed">
+            <table class="table table-condensed" id="liensutile-table">
                 <thead>
                     <td>Nom</td>
                     <td>Adresse</td>
@@ -27,7 +29,6 @@
             </table>
 	    </div>
     </div>
-</div>
 @stop
 @section('script')
     <script>

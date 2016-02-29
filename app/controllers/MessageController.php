@@ -17,10 +17,10 @@ class MessageController extends \BaseController {
 		}else{
 			//Messages admin
 			Paginator::setPageName('am');
-			$aMessages = Message::where('category_id', '=', 1)->orderBy('created_at','desc')->paginate(2);
+			$aMessages = Message::where('category_id', '=', 1)->orderBy('created_at','desc')->paginate(10);
 			//Messages membres
 			Paginator::setPageName('mm');
-			$mMessages = Message::where('category_id', '=', 2)->orderBy('created_at','desc')->paginate(2);
+			$mMessages = Message::where('category_id', '=', 2)->orderBy('created_at','desc')->paginate(10);
 			return View::make('message.index', [
 				'mMessages' => $mMessages,
 				'aMessages' => $aMessages
