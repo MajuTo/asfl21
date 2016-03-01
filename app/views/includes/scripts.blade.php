@@ -40,7 +40,7 @@
     //Dynamically assign height
     function sizeContent() {
         var windowHeight = $(window).height();
-        var contentHeight = windowHeight - 150 + "px";
+        var contentHeight = windowHeight - 160 + "px";
             
         $("#content-container").css("min-height", contentHeight);
     }

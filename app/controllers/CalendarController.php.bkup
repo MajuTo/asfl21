@@ -269,17 +269,15 @@ class CalendarController extends \BaseController {
 		foreach ($this->events as $key => $event) {
 			$d = clone($date);
 			if($event['week']){
-				$this->events[$key]['date'] = "du " . $d->addWeeks($this->events[$key]['date'])->format('Y-m-d') . " au " . $d->addWeeks(1)->format('Y-m-d');
+				$this->events[$key]['date'] = "du " . $d->addWeeks($this->events[$key]['date'])->format('d/m/Y') . " au " . $d->addWeeks(1)->format('d/m/Y');
 			} else {
-				$this->events[$key]['date'] = $d->addWeeks($this->events[$key]['date'])->format('Y-m-d');
+				$this->events[$key]['date'] = $d->addWeeks($this->events[$key]['date'])->format('d / m / Y');
 			}			
 		}
 
 		return View::make('calendar.index',[
-			'events' => $this->events,
-			'testing'=> json_encode($this->events)
+			'events' => $this->events
 			]);
-
 	}
 
 
