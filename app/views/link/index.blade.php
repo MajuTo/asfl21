@@ -3,6 +3,7 @@
 @stop
 @extends('layouts.index')
 @section('content')
+<section id="liensutile">
     <div class="row">
         <div class="col-sm-6">
             <img class="img-responsive img-rounded" src="{{ asset('assets/img/pregnant-collection/pregant-little-girl.jpg') }}" alt="femme enceinte avec petite fille">
@@ -29,6 +30,7 @@
             </table>
 	    </div>
     </div>
+</section>
 @stop
 @section('script')
     <script>

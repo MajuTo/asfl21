@@ -4,7 +4,11 @@
 @extends('layouts.index')
 @section('content')
 <section id="accueil">
-	
+	<div class="row">
+		<div class="col-sm-12">
+			<h1 id="accueil-h1">Association des Sages Femmes Libérales de Côte d'Or</h1>
+		</div>
+	</div>
 
 	<!-- CAROUSEL -->
 	<div id="carousel-home" class="carousel slide" data-ride="carousel" data-interval="8000">
@@ -39,12 +43,6 @@
 	  </a>
 	</div>
 	<!-- END CAROUSEL -->
-
-	<div class="row">
-		<div class="col-sm-12">
-			<h1 id="accueil-h1">Association des Sages Femmes Libérales de Côte d'Or</h1>
-		</div>
-	</div>
 
 	<!-- ACCUEIL TEXT -->
 	<div class="row">

@@ -3,6 +3,7 @@
 @stop
 @extends('layouts.index')
 @section('content')
+<section id="espacepro">
     <div class="row">
         <div class="col-sm-12">
             <h1 class="animate-page-title">Identification</h1>
@@ -26,4 +27,12 @@
             </div>
         </div>
     </div>
+</section>
+@stop
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#nav-login').addClass('active');
+        });
+    </script>
 @stop

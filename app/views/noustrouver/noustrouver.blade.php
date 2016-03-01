@@ -3,14 +3,15 @@
 @stop
 @extends('layouts.index')
 @section('content')
+<section id="noustrouver">
   <div class="row">
-      <div class="col-sm-12">
+      <div class="col-xs-12">
           <h1>Trouver une sage femme libérale</h1>
           <p class="text-center" id="noustrouver-subtext">Sélectionnez les activités qui vous intéresses, puis la ou les sages-femmes qui éffectuent ces activités. Pour plus d'information sur une sage-femme en particulier, cliquer sur <i class="fa fa-external-link"></i> à droite du nom de la sage-femme ou directement sur la map.</p>
       </div>
   </div>
   <div class="row">
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
+    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
       <div class="table-responsive">
         <table class="table table-condensed sf-hov">
           <thead>
@@ -29,7 +30,7 @@
       </div>
     </div>
     <!-- AJAX liste des sf selon activité -->
-      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" id="table-height">
+      <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
          <div class="table-responsive" id="table-sf">
            <table class="table table-condensed sf-hov">
              <thead>
@@ -50,7 +51,7 @@
          </div>
       </div>
     <!-- END AJAX liste des sf selon activite -->
-    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" id="gmap">
+    <div class="col-sm-8 col-md-8 col-lg-8" id="gmap">
       <div class="map_container">
         <div id="panel">
               <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
@@ -60,6 +61,7 @@
       </div>
     </div>
   </div>
+</section>
 @stop
 @section('script')
     <script>

@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 img-col">
             <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Pendant_la_grossesse.jpg') }}" alt="pendant la grossesse">
         </div>
         <div class="col-sm-6">
@@ -89,7 +89,7 @@
                 <li class="info" id="info-accouchement"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
             </ul>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 img-col">
             <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
         </div>
         <span class="whoooshh" id="whoooshh-accouchement">
@@ -124,7 +124,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 img-col">
             <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Et_apres.jpg') }}" alt="et ensuite ?">
         </div>
         <div class="col-sm-6">

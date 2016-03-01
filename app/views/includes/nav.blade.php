@@ -1,22 +1,18 @@
-<!-- NAVIGATION -->
-<nav class="navbar navbar-default">
-  <!-- <div class="container"> -->
+<nav class="navbar navbar-default text-center" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+        <i class="fa fa-bars"></i>
       </button>
     </div>
-      {{ HTML::image(asset('/assets/img/logo.png'), 'logo', ['class' => 'logo']) }}
-      <a class="navbar-brand text-center" href="{{ URL::route('home') }}">Association des Sages Femmes Libérales <br>  de Côte d'Or</a>
+      <a href="{{ URL::route('home') }}">
+          {{ HTML::image(asset('/assets/img/logo.png'), 'logo', ['class' => 'logo']) }}
+      </a>
+      <span class="navbar-brand text-center">Association des Sages Femmes Libérales <br>  de Côte d'Or</span>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="menu">
-
-      <ul class="nav navbar-nav navbar-right text-center">
+      <ul class="nav navbar-nav navbar-right ">
         <li id="nav-accueil">
         	<a href="{{ URL::route('home') }}"><i class="fa fa-home"></i><br>Accueil</a>
         </li>
@@ -35,30 +31,26 @@
         <li id="nav-contact">
         	<a href="{{ URL::route('contact') }}"><i class="fa fa-envelope"></i><br>Contact</a>
         </li>
-
-        <li class="dropdown" id="nav-membre">
-            @if (Auth::guest())
+        @if (Auth::guest())
+            <li id="nav-login">
                 <a href="{{ URL::route('login') }}"><i class="fa fa-users"></i><br>Espace pro</a>
-                <!-- <ul class="dropdown-menu dropdown-menu-left" role="menu"> -->
-                    <!-- <li id="nav-login"><a href="{{ URL::route('login') }}">Login</a></li> -->
-                <!-- </ul> -->
-            @else 
-            	<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
-            		<i class="fa fa-users"></i><br>Espace pro<span class="caret"></span>
-            	</a>
-        		<ul class="dropdown-menu dropdown-menu-left" role="menu">
+            </li>
+        @else 
+            <li class="dropdown" id="nav-membre">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
+                    <i class="fa fa-users"></i><br>Espace pro<span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-left" role="menu">
                     <li id="nav-info"><a href="{{ URL::route('message.index') }}">Message</a></li>
                     <li id="nav-profil"><a href="{{ URL::route('user.edit', Auth::user()->id) }}">Mon Profil</a></li>
-        			@if(!Auth::guest() and Auth::user()->group->id == 2 or Auth::user()->group->id == 3)
-        				<li id="nav-admin"><a href="{{ URL::route('admin.index') }}">Admin</a></li>
-        			@endif
-        			<li id="nav-logout"><a href="{{ URL::route('logout') }}">Logout</a></li>
-        		</ul>
-        	@endif
-        </li>
+                    @if(!Auth::guest() and Auth::user()->group->id == 2 or Auth::user()->group->id == 3)
+                        <li id="nav-admin"><a href="{{ URL::route('admin.index') }}">Admin</a></li>
+                    @endif
+                    <li id="nav-logout"><a href="{{ URL::route('logout') }}">Logout</a></li>
+                </ul>
+            </li>
+        @endif        
       </ul>
-
-        <!-- <p class="pull-left hidden-sm hidden-xs" id="sub-brand"><sub><small>Association des Sages Femmes Libérales de Côte d'Or</small></sub></p> -->
     </div><!-- /.navbar-collapse -->
 </nav>
 <!-- END NAVIGATION -->

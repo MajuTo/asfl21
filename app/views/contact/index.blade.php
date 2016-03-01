@@ -16,7 +16,7 @@
 
     <!-- Contact Us -->
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-7" id="contact-add-form">
                 {{ BootForm::openHorizontal(3, 9)->action(URL::route('sendcontact')) }}
                     {{ Form::token() }}
                     {{ BootForm::text('Votre nom*', 'name')->placeHolder('Votre nom ...')->required() }}
