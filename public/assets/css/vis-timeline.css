@@ -1,0 +1,35 @@
+.vis-item {
+    font-size: 1em;
+    color: #fff;
+}
+
+.vis-item-conception {
+    background-color: #E35582;
+    border-color: #B5003A;
+}
+
+.vis-item-consultation {
+    background-color: #42B27F;
+    border-color: #008D4D;
+}
+
+.vis-item-medical {
+    color: #000;
+    background-color: #DEF75C;
+    border-color: #A6C600;
+}
+
+.vis-item-administratif {
+    background-color: #525BB2;
+    border-color: #131F8D;
+}
+
+.vis-item-hopital {
+    background-color: #3DA294;
+    border-color: #3DA294;
+}
+
+.vis-item.vis-selected {
+    background-color: #B5003A;
+    border-color: #E35582;
+}

@@ -5,6 +5,22 @@ use Carbon\Carbon;
 class CalendarController extends \BaseController {
 
 	// 1 jour = 86400 secondes
+	private $groups 	= [
+			['id' 		=> 0,
+			'content'	=> 'conception'],
+
+			['id' 		=> 1,
+			'content'	=> 'consultation'],
+
+			['id' 		=> 2,
+			'content'	=> 'medical'],
+
+			['id' 		=> 3,
+			'content'	=> 'administratif'],
+
+			['id' 		=> 4,
+			'content'	=> 'hopital']
+	];
 
 	private $events = [
 		0 => [
@@ -12,192 +28,240 @@ class CalendarController extends \BaseController {
 			'title' => 'Conception',
 			'desc'  => '',
 			'icon'  => 'fa fa-venus-mars',
-			'class' => 'calendar-conception',
-			'week'	=> false
+			'group' => 0, //'conception',
+			'week'	=> false,
+			'start'	=> null,
+			'end'	=> null
 		],
 		1 => [
 			'date'  => 6,
 			'title' => 'Consultation précoce du début de grossesse',
 			'desc'  => '',
 			'icon'  => 'fa fa-stethoscope',
-			'class' => 'calendar-consultation',
-			'week'	=> true
+			'group' => 1, //'consultation',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		2 => [
 			'date'  => 10,
 			'title' => '1ère échographie',
 			'desc'  => 'Datation de la grossesse',
 			'icon'  => 'fa fa-user-md',
-			'class' => 'calendar-medical',
-			'week'	=> true
+			'group' => 2, //'medical',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		3 => [
 			'date'  => 10,
 			'title' => 'Éventuel dépistage de la trisomie 21',
 			'desc'  => '',
 			'icon'  => 'fa fa-user-md',
-			'class' => 'calendar-medical',
-			'week'	=> true
+			'group' => 2, //'medical',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		4 => [
 			'date'  => 11,
 			'title' => 'Consultation du 3ème mois',
 			'desc'  => '',
 			'icon'  => 'fa fa-stethoscope',
-			'class' => 'calendar-consultation',
-			'week'	=> true
+			'group' => 1, //'consultation',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		5 => [
 			'date'  => 11,
 			'title' => 'Déclaration de grossesse',
 			'desc'  => '',
 			'icon'  => 'fa fa-calendar',
-			'class' => 'calendar-administratif',
-			'week'	=> true
+			'group' => 3, //'administratif',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		6 => [
 			'date'  => 14,
 			'title' => 'Éventuel dépistage (tardif) de la trisomie 21',
 			'desc'  => '',
 			'icon'  => 'fa fa-user-md',
-			'class' => 'calendar-medical',
-			'week'	=> true
+			'group' => 2, //'medical',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		7 => [
 			'date'  => 15,
 			'title' => 'Entretien pré-natal avec la sage femme pour la préparation à la naissance',
 			'desc'  => '',
 			'icon'  => 'fa fa-stethoscope',
-			'class' => 'calendar-consultation',
-			'week'	=> true
+			'group' => 1, //'consultation',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		8 => [
 			'date'  => 16,
 			'title' => 'Reconnaissance anticipée du père',
 			'desc'  => '',
 			'icon'  => 'fa fa-calendar',
-			'class' => 'calendar-administratif',
-			'week'	=> true
+			'group' => 3, //'administratif',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		9 => [
 			'date'  => 16,
 			'title' => 'Consultation du 4ème mois',
 			'desc'  => '',
 			'icon'  => 'fa fa-stethoscope',
-			'class' => 'calendar-consultation',
-			'week'	=> true
+			'group' => 1, //'consultation',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		10 => [
 			'date'  => 18,
 			'title' => 'Début de prise en charge 100% médical',
 			'desc'  => '',
 			'icon'  => 'fa fa-calendar',
-			'class' => 'calendar-administratif',
-			'week'	=> true
+			'group' => 3, //'administratif',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		11 => [
 			'date'  => 20,
 			'title' => 'Consultation 5ème mois',
 			'desc'  => '',
 			'icon'  => 'fa fa-stethoscope',
-			'class' => 'calendar-consultation',
-			'week'	=> true
+			'group' => 1, //'consultation',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		12 => [
 			'date'  => 20,
 			'title' => '2ème échographie, échographie morphologique',
 			'desc'  => '',
 			'icon'  => 'fa fa-user-md',
-			'class' => 'calendar-medical',
-			'week'	=> true
+			'group' => 2, //'medical',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		13 => [
 			'date'  => 23,
 			'title' => 'Biologie du 6ème mois',
 			'desc'  => '',
 			'icon'  => 'fa fa-user-md',
-			'class' => 'calendar-medical',
-			'week'	=> true
+			'group' => 2, //'medical',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		14 => [
 			'date'  => 24,
 			'title' => 'Consultation 6ème mois',
 			'desc'  => '',
 			'icon'  => 'fa fa-stethoscope',
-			'class' => 'calendar-consultation',
-			'week'	=> true
+			'group' => 1, //'consultation',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		15 => [
 			'date'  => 29,
 			'title' => 'Consultation 7ème mois (Hopital)',
 			'desc'  => '',
 			'icon'  => 'fa fa-h-square',
-			'class' => 'calendar-hopital',
-			'week'	=> true
+			'group' => 4, //'hopital',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		16 => [
 			'date'  => 30,
 			'title' => '3ème échographie',
 			'desc'  => '',
 			'icon'  => 'fa fa-stethoscope',
-			'class' => 'calendar-consultation',
-			'week'	=> true
+			'group' => 1, //'consultation',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		17 => [
 			'date'  => 32,
 			'title' => 'Consultation 8ème mois',
 			'desc'  => '',
 			'icon'  => 'fa fa-h-square',
-			'class' => 'calendar-hopital',
-			'week'	=> true
+			'group' => 4, //'hopital',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		18 => [
 			'date'  => 32,
 			'title' => 'Début éventuel de congés pathologique',
 			'desc'  => '',
 			'icon'  => 'fa fa-calendar',
-			'class' => 'calendar-administratif',
-			'week'	=> true
+			'group' => 3, //'administratif',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		19 => [
 			'date'  => 33,
 			'title' => 'Consultation anesthésiste (dans la maternité choisie)',
 			'desc'  => '',
 			'icon'  => 'fa fa-h-square',
-			'class' => 'calendar-hopital',
-			'week'	=> true
+			'group' => 4, //'hopital',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		20 => [
 			'date'  => 33,
 			'title' => 'Début de congés maternité officiel',
 			'desc'  => '',
 			'icon'  => 'fa fa-calendar',
-			'class' => 'calendar-administratif',
-			'week'	=> true
+			'group' => 3, //'administratif',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		21 => [
 			'date'  => 33,
 			'title' => 'Réalisation de prélèvement vaginal',
 			'desc'  => '',
 			'icon'  => 'fa fa-user-md',
-			'class' => 'calendar-medical',
-			'week'	=> true
+			'group' => 2, //'medical',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		22 => [
 			'date'  => 36,
 			'title' => 'Consultation 9ème mois',
 			'desc'  => '',
 			'icon'  => 'fa fa-h-square',
-			'class' => 'calendar-hopital',
-			'week'	=> true
+			'group' => 4, //'hopital',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 		23 => [
 			'date'  => 39,
 			'title' => 'Date présumée de l\'accouchement',
 			'desc'  => '',
 			'icon'  => 'fa fa-h-square',
-			'class' => 'calendar-hopital',
-			'week'	=> true
+			'group' => 4, //'hopital',
+			'week'	=> true,
+			'start'	=> null,
+			'end'	=> null
 		],
 	];
 
@@ -209,7 +273,11 @@ class CalendarController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('calendar.index', ['events' => null]);
+		return View::make('calendar.index', [
+			'events' => null,
+			'testing'=> null,
+			'groups' => null,
+			]);
 	}
 
 
@@ -257,9 +325,13 @@ class CalendarController extends \BaseController {
 	 */
 	public function store()
 	{
+		$jourj = '';
 		$date = '';
 		$d = '';
+
 		setlocale (LC_TIME, 'fr_FR.utf8','fra');
+		// Carbon::setLocale('fra');
+
 		if(Input::get('date1')){
 			$date = Carbon::createFromTimestamp(strtotime(Input::get('date1')))->addDays(14);
 		}elseif(Input::get('date2')){
@@ -268,16 +340,22 @@ class CalendarController extends \BaseController {
 
 		foreach ($this->events as $key => $event) {
 			$d = clone($date);
+
 			if($event['week']){
-				$this->events[$key]['date'] = "du " . $d->addWeeks($this->events[$key]['date'])->format('Y-m-d') . " au " . $d->addWeeks(1)->format('Y-m-d');
+				$this->events[$key]['start'] = $d->addWeeks($this->events[$key]['date'])->format('Y-m-d');
+				$this->events[$key]['end'] 	 = $d->addWeeks(1)->format('Y-m-d');
 			} else {
-				$this->events[$key]['date'] = $d->addWeeks($this->events[$key]['date'])->format('Y-m-d');
+				$this->events[$key]['start'] = $d->addWeeks($this->events[$key]['date'])->format('Y-m-d');
 			}			
 		}
 
+		$jourj = Carbon::createFromFormat('Y-m-d', $this->events[23]['end'])->diffInDays(Carbon::now());
+
 		return View::make('calendar.index',[
 			'events' => $this->events,
-			'testing'=> json_encode($this->events)
+			'testing'=> json_encode($this->events),
+			'groups' => json_encode($this->groups),
+			'jourj'	 => $jourj
 			]);
 
 	}
