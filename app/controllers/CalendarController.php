@@ -275,8 +275,8 @@ class CalendarController extends \BaseController {
 	{
 		return View::make('calendar.index', [
 			'events' => null,
-			'testing'=> null,
-			'groups' => null,
+			'json_events'=> null,
+			'json_groups' => null,
 			]);
 	}
 
@@ -353,8 +353,8 @@ class CalendarController extends \BaseController {
 
 		return View::make('calendar.index',[
 			'events' => $this->events,
-			'testing'=> json_encode($this->events),
-			'groups' => json_encode($this->groups),
+			'json_events'=> json_encode($this->events),
+			'json_groups' => json_encode($this->groups),
 			'jourj'	 => $jourj
 			]);
 

@@ -9,27 +9,41 @@
 }
 
 .vis-item-consultation {
-    background-color: #42B27F;
-    border-color: #008D4D;
+    background-color: #4DCD4D;
+    border-color: #00A300;
 }
 
 .vis-item-medical {
-    color: #000;
-    background-color: #DEF75C;
-    border-color: #A6C600;
+    // color: #000;
+    background-color: #FFB45F;
+    border-color: #CC6C00;
 }
 
 .vis-item-administratif {
-    background-color: #525BB2;
-    border-color: #131F8D;
+    background-color: #505DB0;
+    border-color: #12238C;
 }
 
 .vis-item-hopital {
     background-color: #3DA294;
-    border-color: #3DA294;
+    border-color: #00806E;
 }
 
 .vis-item.vis-selected {
     background-color: #B5003A;
     border-color: #E35582;
+}
+
+.vis-item.vis-line {
+    // color: green;
+    // border-left-width: 10px;
+}
+
+.vis-item-conception:hover,
+.vis-item-consultation:hover,
+.vis-item-medical:hover,
+.vis-item-administratif:hover,
+.vis-item-hopital:hover {
+    background-color: blue;
+    border-color: blue;
 }
