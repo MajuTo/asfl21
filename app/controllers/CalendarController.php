@@ -19,7 +19,10 @@ class CalendarController extends \BaseController {
 			'content'	=> 'administratif'],
 
 			['id' 		=> 4,
-			'content'	=> 'hopital']
+			'content'	=> 'hopital'],
+
+            ['id'       => 5,
+            'content'   => 'naissance']
 	];
 
 	private $events = [
@@ -257,8 +260,8 @@ class CalendarController extends \BaseController {
 			'date'  => 39,
 			'title' => 'Date présumée de l\'accouchement',
 			'desc'  => '',
-			'icon'  => 'fa fa-h-square',
-			'group' => 4, //'hopital',
+			'icon'  => 'fa fa-gift',
+			'group' => 5, //'naissance',
 			'week'	=> true,
 			'start'	=> null,
 			'end'	=> null
@@ -274,9 +277,11 @@ class CalendarController extends \BaseController {
 	public function index()
 	{
 		return View::make('calendar.index', [
-			'events' => null,
-			'json_events'=> null,
-			'json_groups' => null,
+            'events'      => null,
+            'json_events' => null,
+            'json_groups' => null,
+            'start_limit' => null,
+            'end_limit'   => null
 			]);
 	}
 
@@ -349,13 +354,18 @@ class CalendarController extends \BaseController {
 			}			
 		}
 
-		$jourj = Carbon::createFromFormat('Y-m-d', $this->events[23]['end'])->diffInDays(Carbon::now());
+        $jourj       = Carbon::createFromFormat('Y-m-d', $this->events[23]['end'])->diffInDays(Carbon::now());
+        $start_limit = Carbon::createFromFormat('Y-m-d', $this->events[0]['start'])->subMonth()->format('Y-m-d');
+        $end_limit   = Carbon::createFromFormat('Y-m-d', $this->events[23]['end'])->addMonth()->format('Y-m-d');
+
 
 		return View::make('calendar.index',[
-			'events' => $this->events,
-			'json_events'=> json_encode($this->events),
-			'json_groups' => json_encode($this->groups),
-			'jourj'	 => $jourj
+			'events'      => $this->events,
+			'jourj'       => $jourj,
+            'start_limit' => json_encode($start_limit),
+            'end_limit'   => json_encode($end_limit),
+            'json_events' => json_encode($this->events),
+            'json_groups' => json_encode($this->groups)
 			]);
 
 	}

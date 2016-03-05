@@ -1,9 +1,11 @@
-.vis-item {
-    font-size: 1em;
+.vis-item .vis-item-content {
+    padding: 0;
     color: #fff;
+    text-align: justify;
 }
 
-.vis-item-conception {
+.vis-item-conception,
+.vis-item-naissance {
     background-color: #E35582;
     border-color: #B5003A;
 }
@@ -14,7 +16,6 @@
 }
 
 .vis-item-medical {
-    // color: #000;
     background-color: #FFB45F;
     border-color: #CC6C00;
 }
@@ -29,21 +30,39 @@
     border-color: #00806E;
 }
 
-.vis-item.vis-selected {
-    background-color: #B5003A;
-    border-color: #E35582;
+.time-icon {
+    font-size: 1.5em;
+    float: left;
+    margin: 10px;
 }
 
-.vis-item.vis-line {
-    // color: green;
-    // border-left-width: 10px;
+.info-minus {
+    height: 0;
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
 }
 
-.vis-item-conception:hover,
-.vis-item-consultation:hover,
-.vis-item-medical:hover,
-.vis-item-administratif:hover,
-.vis-item-hopital:hover {
-    background-color: blue;
-    border-color: blue;
+.info-plus {
+    position: relative;
+    font-size: 1em;
+    height: auto;
+    width: auto;
+    opacity: 1;
+    padding-top: 5px;
+    padding-right: 5px;
+    z-index: 999;
+    // left: -1000px;
+}
+
+#visualization {
+    position: relative;
+}
+
+#testing {
+    position: absolute;
+    color: red;
+    z-index: 999;
+    top: 5%;
+    left: 50%;
 }
