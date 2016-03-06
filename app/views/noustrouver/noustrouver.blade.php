@@ -11,45 +11,35 @@
       </div>
   </div>
   <div class="row">
-    <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
-      <div class="table-responsive">
-        <table class="table table-condensed sf-hov">
-          <thead>
-            <tr>
-              <th>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              @foreach ($activities as $activity)
-                <td class="activity-td" data-activity="{{ $activity->id }}" id="{{ $activity->id }}">{{ Str::title($activity->activityName) }}</td>
-                </tr>
-              @endforeach
-          </tbody>
-        </table>
-      </div>
+    <div class="col-xs-12" id="act-divs">
+      <fieldset>
+        <legend>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></legend>
+      </fieldset>
+        @foreach ($activities as $activity)
+          <div class="tag">
+    <input type="checkbox" />
+    <label for="">{{ Str::title($activity->activityName) }}</label>
+    <i class="fa fa-plus"></i>
+    <i class="fa fa-check"></i> 
+  </div>
+        @endforeach
     </div>
     <!-- AJAX liste des sf selon activité -->
-      <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
-         <div class="table-responsive" id="table-sf">
-           <table class="table table-condensed sf-hov">
-             <thead>
-               <tr>
-                 <th>Sages Femmes</th>
-                   <th><i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
-               </tr>
-             </thead>
-             <tbody id="listesf">
-                 @foreach ($sagesfemmes as $sf) 
-                   <tr>
-                     <td class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
-                     <td><a href="{{ URL::route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
-                   </tr>
-                 @endforeach
-             </tbody>
-           </table>
-         </div>
-      </div>
+    <div class="col-xs-12" id="sf-divs">
+      <fieldset>
+        <legend>Sages Femmes <i id="tooltip-sf" class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></legend>
+        @foreach ($sagesfemmes as $sf) 
+           <div class="sf-tr" style=""; data-sf="{{ $sf->id }}" id="{{ $sf->id }}">
+            <span>{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</span>
+            <span>
+              <a href="{{ URL::route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank">
+                <i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i>
+              </a>
+            </span>
+           </div>
+        @endforeach
+     </fieldset>
+    </div>
     <!-- END AJAX liste des sf selon activite -->
     <div class="col-sm-8 col-md-8 col-lg-8" id="gmap">
       <div class="map_container">
