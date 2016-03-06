@@ -4,15 +4,45 @@
     text-align: justify;
 }
 
-.vis-item-conception,
-.vis-item-naissance {
+.vis-item:hover {
     background-color: #E35582;
     border-color: #B5003A;
 }
 
+.vis-item.vis-selected {
+    background-color: #B5003A;
+    border-color: #E35582;
+}
+
+.vis-label.group-conception,
+.vis-label.group-naissance,
+.vis-label.group-consultation,
+.vis-label.group-medical,
+.vis-label.group-administratif,
+.vis-label.group-hopital {
+    color: #fff;
+    font-family: 'Handlee', cursive;
+    font-size: 1.1em;
+}
+
+.vis-item-conception,
+.vis-item-naissance {
+    background-color: #A140A8;
+    border-color: #7C0185;
+}
+
+.vis-label.group-conception,
+.vis-label.group-naissance {
+    background-color: #A140A8;
+}
+
 .vis-item-consultation {
-    background-color: #4DCD4D;
-    border-color: #00A300;
+    background-color: #80DD53;
+    border-color: #39B100;
+}
+
+.vis-label.group-consultation {
+    background-color: #80DD53;
 }
 
 .vis-item-medical {
@@ -20,14 +50,26 @@
     border-color: #CC6C00;
 }
 
+.vis-label.group-medical {
+    background-color: #FFB45F;
+}
+
 .vis-item-administratif {
-    background-color: #505DB0;
-    border-color: #12238C;
+    background-color: #5654B4;
+    border-color: #17158F;
+}
+
+.vis-label.group-administratif {
+    background-color: #5654B4;
 }
 
 .vis-item-hopital {
     background-color: #3DA294;
     border-color: #00806E;
+}
+
+.vis-label.group-hopital {
+    background-color: #3DA294;
 }
 
 .time-icon {
@@ -44,25 +86,33 @@
 }
 
 .info-plus {
-    position: relative;
-    font-size: 1em;
+    font-size: 1.1em;
     height: auto;
     width: auto;
     opacity: 1;
-    padding-top: 5px;
-    padding-right: 5px;
-    z-index: 999;
-    // left: -1000px;
 }
 
 #visualization {
     position: relative;
 }
 
-#testing {
+.span-minus {
     position: absolute;
-    color: red;
+    color: #fff;
+    background-color: #E35582;
     z-index: 999;
-    top: 5%;
-    left: 50%;
+    top: 2%;
+    left: 38%;
+    opacity: 0;
+}
+
+.span-plus {
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #000;
+    padding: 10px;
+    opacity: 1;
+}
+
+.info-content {
+    font-family: "Handlee", cursive;
 }

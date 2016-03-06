@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-        <h3><button class="btn btn-pink" id="envoi">Envoyer un message</button></h3>
+        <h3><button class="btn btn-pink" id="envoi">Ecrire un message</button></h3>
             <div class="messagerie-form hide-form">
                 {{ BootForm::openHorizontal(1, 11)->action(URL::route('message.store')) }}
                 {{ Form::token() }}
@@ -76,7 +76,7 @@
                     $('#envoi').text('Fermer le formulaire');
                 } else {
                     $('.messagerie-form').addClass('hide-form');
-                    $('#envoi').text('Envoyer un message');    
+                    $('#envoi').text('Ecrire un message');    
                 }
             });
         });

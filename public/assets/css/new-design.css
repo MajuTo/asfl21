@@ -656,6 +656,195 @@ label.notchecked::before {
 /* ***************** */
 
 
+/* **************** */
+/* ** CALENDRIER ** */
+#jourj{
+  font-size: 4.5em;
+  font-family: "Handlee", cursive;
+  color: #E35582;
+  text-shadow:#ccc 0 1px 0, 
+              #c9c9c9 0 2px 0, 
+              #bbb 0 3px 0, 
+              #b9b9b9 0 4px 0, 
+              #aaa 0 5px 0;
+}
+
+#ani-j{
+  position: relative;
+  opacity: 0;
+  animation-name: fromtop;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+@-webkit-keyframes fromtop {
+  0%    { top: -100px; opacity: 0; }
+  50%   { top: -50px; opacity: .5; }
+  75%   { top: 5px; opacity: .75; }
+  100%  { top: 0; opacity: 1;}
+}
+@-o-keyframes fromtop {
+  0%    { top: -100px; opacity: 0; }
+  50%   { top: -50px; opacity: .5; }
+  75%   { top: 5px; opacity: .75; }
+  100%  { top: 0; opacity: 1;}
+}
+@-moz-keyframes fromtop {
+  0%    { top: -100px; opacity: 0; }
+  50%   { top: -50px; opacity: .5; }
+  75%   { top: 5px; opacity: .75; }
+  100%  { top: 0; opacity: 1;}
+}
+@keyframes fromtop {
+  0%    { top: -100px; opacity: 0; }
+  50%   { top: -50px; opacity: .5; }
+  75%   { top: 5px; opacity: .75; }
+  100%  { top: 0; opacity: 1;}
+}
+
+.ani-minus{
+  position: relative;
+  opacity: 0;
+  animation-name: fromright;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+@-webkit-keyframes fromright {
+  0%    { right: -50%; opacity: 0; }
+  5%    { opacity: .25; }
+  75%   { right: 1%; opacity: .75; }
+  100%  { right: 0; opacity: 1;}
+}
+@-o-keyframes fromright {
+  0%    { right: -50%; opacity: 0; }
+  5%    { opacity: .25; }
+  75%   { right: 1%; opacity: .75; }
+  100%  { right: 0; opacity: 1;}
+}
+@-moz-keyframes fromright {
+  0%    { right: -50%; opacity: 0; }
+  5%    { opacity: .25; }
+  75%   { right: 1%; opacity: .75; }
+  100%  { right: 0; opacity: 1;}
+}
+@keyframes fromright {
+  0%    { right: -50%; opacity: 0; }
+  5%    { opacity: .25; }
+  75%   { right: 1%; opacity: .75; }
+  100%  { right: 0; opacity: 1;}
+}
+
+#ani-nbr{
+  position: relative;
+  opacity: 0;
+  font-size: 0em;
+  animation-name: toglow;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;  
+}
+@-webkit-keyframes toglow {
+  0%    { font-size: 0em; opacity: 0; }
+  5%    { font-size: .05em; opacity: .05; }
+  25%   { font-size: .25em; opacity: .25; }
+  75%   { font-size: .75em; opacity: .75; }
+  100%  { font-size: 1em; opacity: 1; }
+}
+@-o-keyframes toglow {
+  0%    { font-size: 0em; opacity: 0; }
+  5%    { font-size: .05em; opacity: .05; }
+  25%   { font-size: .25em; opacity: .25; }
+  75%   { font-size: .75em; opacity: .75; }
+  100%  { font-size: 1em; opacity: 1; }
+}
+@-moz-keyframes toglow {
+  0%    { font-size: 0em; opacity: 0; }
+  5%    { font-size: .05em; opacity: .05; }
+  25%   { font-size: .25em; opacity: .25; }
+  75%   { font-size: .75em; opacity: .75; }
+  100%  { font-size: 1em; opacity: 1; }
+}
+@keyframes toglow {
+  0%    { font-size: 0em; opacity: 0; }
+  5%    { font-size: .05em; opacity: .05; }
+  25%   { font-size: .25em; opacity: .25; }
+  75%   { font-size: .75em; opacity: .75; }
+  100%  { font-size: 1em; opacity: 1; }
+}
+
+#legend {
+  margin-top: 15px;
+  padding-bottom: 1px;
+  list-style-type: none;
+  border-left: 1px solid #B5003A;
+  margin-left: 30px;
+  padding-left: 15px;
+}
+
+.legend-div {
+  margin: 20px;
+}
+
+.conception,
+.naissance,
+.consultation,
+.medical,
+.administratif,
+.hopital {
+  text-align: center;
+  width:40px;
+  border: 1px solid;
+  color: #fff;
+  padding: 5px;
+  border-radius: 2px;
+  float: left;
+  margin-right: 15px;
+}
+
+.conception,
+.naissance {
+    background-color: #A140A8;
+    border-color: #7C0185;
+}
+
+.consultation {
+    background-color: #80DD53;
+    border-color: #39B100;
+}
+
+.medical {
+    background-color: #FFB45F;
+    border-color: #CC6C00;
+}
+
+.administratif {
+    background-color: #5654B4;
+    border-color: #17158F;
+}
+
+.hopital {
+    background-color: #3DA294;
+    border-color: #00806E;
+}
+
+#list-div {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+#mylist {
+  margin-top: 15px;
+  color: #989C97;
+}
+/* ** END CALENDRIER ** */
+/* ******************** */
+
 
 
 /* ************ */

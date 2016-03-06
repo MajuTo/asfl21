@@ -40,9 +40,25 @@
     @else
         <!-- TESTING NEW TIMELINE -->
         <div class="row">
-            <h2 class="text-center">J - {{ $jourj }}</h2>
-            <div id="visualization"><span id="testing">TESTING?</span></div>
-            
+            <div class="text-center" id="jourj"><span id="ani-j">J</span> <span class="hide-element ani-minus">-</span> <span id="ani-nbr">{{ $jourj }}</span></div>
+            <button id="group-toggle" class="btn btn-pink no-group">Montrer les groupes</button>
+            <div id="visualization"><span id="show-more" class="span-minus"></span></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="legend">
+                    <div class="legend-div"><span class="conception"><i class="fa fa-venus-mars"></i></span> Conception</div>
+                    <div class="legend-div"><span class="consultation"><i class="fa fa-stethoscope"></i></span> Consultation</div>
+                    <div class="legend-div"><span class="medical"><i class="fa fa-user-md"></i></span> Médical</div>
+                    <div class="legend-div"><span class="administratif"><i class="fa fa-calendar"></i></span> Administratif</div>
+                    <div class="legend-div"><span class="naissance"><i class="fa fa-gift"></i></span> Naissance</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="list-div"> 
+                    <ul id="mylist"></ul>
+                </div>
+            </div>
         </div>
         <!-- END TESTING -->
     @endif
@@ -76,8 +92,8 @@
                 id: i,
                 content:    "<i class='" + event[i]['icon'] + " time-icon'></i> " +
                             "<div id=\"content" + i + "\" class=\"text-left info-minus\">" + 
-                                timestring +
-                                "<span>" + event[i]['title'] + "</span>" +
+                                "<div>" + "<i class='" + event[i]['icon'] + "'></i><em> " + timestring + "</em></div>" +
+                                "<div class=\"info-content\"><strong>" + event[i]['title'] + "</strong></div>" +
                             "</div>",
                 group: event[i]['group'],
                 start: event[i]['start'],
@@ -95,7 +111,8 @@
             groupset.push({
                 id: j,
                 content: grouping[j]['content'],
-                value: grouping[j]['id']
+                value: grouping[j]['id'],
+                className: 'group-' + grouping[j]['content']
             });
         }
 
@@ -108,6 +125,7 @@
             zoomMax: 1000 * 60 * 60 * 24 * 31 * 12,
             zoomable: false,
             moveable: false,
+            multiselect: true,
             locales: {
                 user_locale: {
                     current: 'current',
@@ -121,19 +139,46 @@
         var timeline = new vis.Timeline(containerTimeline, items, options);
         // var timeline = new vis.Timeline(containerTimeline, items, groups, options);
 
+        $('#group-toggle').click(function() {
+            console.log(timeline);
+            if( $('#group-toggle').hasClass('no-group')){
+                $('#group-toggle').removeClass('no-group');
+                $('#group-toggle').text('Cacher les groupes');
+                timeline.setGroups(groups);
+            } else {
+                $('#group-toggle').addClass('no-group');
+                $('#group-toggle').text('Montrer les groupes');    
+                timeline.setGroups();
+            }
+        });
 
+        // Timeline Eventlistener
+        timeline.on('select', function (properties) {
+            $('#mylist > li').remove();
+            var selected = timeline.getSelection().sort(function(a, b){return a-b});
+            $.each(selected, function(key, value){
+                if (value != 'undefined') {
+                    $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
+                }
+            }); 
+        });
 
         /* EFFECTS */
         $('.vis-item').mouseenter(function(event) {
+            console.log('can oy see me?');
             var element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-            $('#' + element).addClass('info-plus');
+            // $('#' + element).addClass('info-plus');
             $(this).css('z-index', '999');
-            $('#testing').append($(this).children('.vis-item-content').children(':nth-child(2)').text());
+            $('#show-more').html($(this).children('.vis-item-content').children(':nth-child(2)').clone());
+            $('#show-more').addClass('span-plus');
+            $('#show-more #' + element).addClass('info-plus');
         });
 
         $('.vis-item').mouseleave(function(event) {
             var element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-            $('#' + element).removeClass('info-plus');
+            $('#show-more').children(':first-child').remove();
+            $('#show-more').removeClass('span-plus');
+            // $('#' + element).removeClass('info-plus');
             $(this).css('z-index', '0');
         });
       })
