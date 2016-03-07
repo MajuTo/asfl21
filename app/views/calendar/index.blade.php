@@ -91,18 +91,18 @@
 
             // timeline
             if (event[i]['end']) {
-                var timestring = "<span>Du " + event[i]['start'] + " au " + event[i]['end'] + "</span><br>";
-                var timestring = "<span>Du " + startDateString + " au " + endDateString + "</span><br>";
+                var timestring = "<span>Du " + event[i]['start'] + " au " + event[i]['end'] + "</span>";
+                var timestring = "<span>Du " + startDateString + " au " + endDateString + "</span>";
             } else {
-                var timestring = "<span>Le " + event[i]['start'] + "</span><br>";
-                var timestring = "<span>Le " + startDateString + "</span><br>";
+                var timestring = "<span>Le " + event[i]['start'] + "</span>";
+                var timestring = "<span>Le " + startDateString + "</span>";
             }
 
             dataset.push({
                 id: i,
                 content:    "<i class='" + event[i]['icon'] + " time-icon'></i> " +
                             "<div id=\"content" + i + "\" class=\"text-left info-minus\">" + 
-                                "<div>" + "<i class='" + event[i]['icon'] + "'></i><em> " + timestring + "</em></div>" +
+                                "<div style='padding-right: 20px'>" + "<i class='" + event[i]['icon'] + "'></i><em> " + timestring + "</em></div>" +
                                 "<div class=\"info-content\"><strong>" + event[i]['title'] + "</strong></div>" +
                             "</div>",
                 group: event[i]['group'],
