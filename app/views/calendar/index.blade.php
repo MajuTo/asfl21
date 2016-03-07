@@ -49,6 +49,7 @@
                     <div class="legend-div"><span class="consultation"><i class="fa fa-stethoscope"></i></span> Consultation</div>
                     <div class="legend-div"><span class="medical"><i class="fa fa-user-md"></i></span> Médical</div>
                     <div class="legend-div"><span class="administratif"><i class="fa fa-calendar"></i></span> Administratif</div>
+                    <div class="legend-div"><span class="hopital"><i class="fa fa-h-square"></i></span> Hopital</div>
                     <div class="legend-div"><span class="naissance"><i class="fa fa-gift"></i></span> Naissance</div>
                 </div>
             </div>
@@ -102,7 +103,7 @@
                 id: i,
                 content:    "<i class='" + event[i]['icon'] + " time-icon'></i> " +
                             "<div id=\"content" + i + "\" class=\"text-left info-minus\">" + 
-                                "<div style='padding-right: 20px'>" + "<i class='" + event[i]['icon'] + "'></i><em> " + timestring + "</em></div>" +
+                                "<div style='padding-right: 5px'>" + "<i class='" + event[i]['icon'] + "'></i><em> " + timestring + "</em></div>" +
                                 "<div class=\"info-content\"><strong>" + event[i]['title'] + "</strong></div>" +
                             "</div>",
                 group: event[i]['group'],
