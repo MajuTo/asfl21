@@ -11,37 +11,43 @@
       </div>
   </div>
   <div class="row">
-    <div class="col-xs-12" id="act-divs">
+    <div class="col-xs-5">
       <fieldset>
         <legend>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></legend>
       </fieldset>
+      <div id="act-divs">
         @foreach ($activities as $activity)
-          <div class="tag">
-    <input type="checkbox" />
-    <label for="">{{ Str::title($activity->activityName) }}</label>
-    <i class="fa fa-plus"></i>
-    <i class="fa fa-check"></i> 
-  </div>
+          <div class="tag act-name" data-activity="{{ $activity->id }}" id="{{ $activity->id }}">
+            <div>
+              {{ Str::title($activity->activityName) }}
+            </div>
+          </div>
         @endforeach
+      </div>
     </div>
     <!-- AJAX liste des sf selon activité -->
-    <div class="col-xs-12" id="sf-divs">
+    <div class="col-xs-7">
       <fieldset>
-        <legend>Sages Femmes <i id="tooltip-sf" class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></legend>
-        @foreach ($sagesfemmes as $sf) 
-           <div class="sf-tr" style=""; data-sf="{{ $sf->id }}" id="{{ $sf->id }}">
-            <span>{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</span>
-            <span>
-              <a href="{{ URL::route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank">
-                <i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i>
-              </a>
-            </span>
-           </div>
-        @endforeach
+        <legend>Sages Femmes <i id="tooltip-sf" class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i>
+        </legend>
+        <div id="sf-divs">
+          @foreach ($sagesfemmes as $sf) 
+             <div class="tag">
+              <div class="sf-name" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">
+                {{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}
+              </div>
+              <div class="contact-link">
+                <a href="{{ URL::route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank">
+                  <i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="top" title="Contact"></i>
+                </a>
+              </div>
+             </div>
+          @endforeach
+          </div>
      </fieldset>
     </div>
     <!-- END AJAX liste des sf selon activite -->
-    <div class="col-sm-8 col-md-8 col-lg-8" id="gmap">
+    <div class="col-sm-12" id="gmap">
       <div class="map_container">
         <div id="panel">
               <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
@@ -74,7 +80,7 @@
           // get selected activities
           function getSelectedActivities(){
             var selected_id = [];
-            $.each($('.activity-td-selected'), function(){
+            $.each($('.act-name.active'), function(){
               selected_id.push($(this).attr('id'));
             })
             return selected_id;
@@ -83,7 +89,7 @@
           // get selected sf
           function getSelectedSf(){
             var selected_sf = [];
-            $.each($('.sf-tr-selected'), function(){
+            $.each($('.sf-name.active'), function(){
               selected_sf.push($(this).attr('id'));
             })
             return selected_sf;
@@ -99,7 +105,7 @@
               type: 'POST',
               data: {selectedActivities: selectedActivities},
               success: function(response){
-                $('tbody#listesf').html(response);
+                $('#sf-divs').html(response);
                 toggleMarkers();
               }
             });
@@ -122,7 +128,7 @@
 
           // Affiche les sages femmes selectionnées 
           function showSelectedSf(){
-            $('.sf-tr-selected').each(function(){
+            $('.sf-name.active').each(function(){
               var sf = $(this).data('sf');
 
               for(i=0; i<markers.length; i++){
@@ -135,7 +141,7 @@
 
           // Affiche toutes les sages femmes des activités selectionnées
           function showAllSfByActivities() {
-            $('.sf-tr').each(function(){
+            $('.sf-name').each(function(){
               var sf = $(this).data('sf');
 
               for(i=0; i<markers.length; i++){
@@ -151,10 +157,10 @@
             // Par défaut on cache tous les markers, et plus loin on n'affiche que ceux qui doivent l'être
             hideAllMarkers();
 
-            if( $('.sf-tr-selected').length > 0 ){ // Si au moins une sage femme est selectionnée
+            if( $('.sf-name.active').length > 0 ){ // Si au moins une sage femme est selectionnée
               showSelectedSf();
             } else { // Si aucune sage femme n'est selectionnée
-              if( $('.activity-td-selected').length > 0 ){ // Si au moins une activité est selectionnée
+              if( $('.act-name.active').length > 0 ){ // Si au moins une activité est selectionnée
                 showAllSfByActivities();
               } else { // Si rien n'est selectionné, ni sf ni activité
                 showAllMarkers();
@@ -163,9 +169,9 @@
           } // Fin ToggleMarkers
 
           // select and unselect activities 
-          $('.activity-td').on('click', function(){
-            $(this).toggleClass('activity-td-selected');
-            $('.sf-tr').removeClass('sf-tr-selected');
+          $('.act-name').on('click', function(){
+            $(this).toggleClass('active');
+            $('.sf-name').removeClass('active');
             toggleMarkers();
             printSfByActivity();            
           });
@@ -173,8 +179,8 @@
           // On bind le click sur le #table-sf car il n'est pas rechargé en Ajax
           // et on dit a quel élément de ce table on associe le click (suis je clair ?)
           // Du coup, plus besoin de js dans la vue chargée en Ajax
-          $('#table-sf').on('click', '.sf-tr', function(){
-            $(this).toggleClass('sf-tr-selected');
+          $('#sf-divs').on('click', '.sf-name', function(){
+            $(this).toggleClass('active');
             toggleMarkers();
           });
         });

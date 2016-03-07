@@ -10,7 +10,7 @@
         <div class="col-sm-12">
         <h3><button class="btn btn-pink" id="envoi">Ecrire un message</button></h3>
             <div class="messagerie-form hide-form">
-                {{ BootForm::openHorizontal(1, 11)->action(URL::route('message.store')) }}
+                {{ BootForm::openHorizontal(2, 10)->action(URL::route('message.store')) }}
                 {{ Form::token() }}
                 {{ BootForm::text('Titre', 'title')->placeHolder('Titre...')->required() }}
                 {{ BootForm::textarea('Message <span class="textarea-subtext">(Ecrivez votre message ici...)</span>', 'content')->placeHolder("Ecrivez votre message ici...")->id('editor3')->required() }}
