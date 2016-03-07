@@ -673,32 +673,32 @@ label.notchecked::before {
   position: relative;
   opacity: 0;
   animation-name: fromtop;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-iteration-count: 1;
-  animation-timing-function: ease-out;
+  animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
 @-webkit-keyframes fromtop {
   0%    { top: -100px; opacity: 0; }
-  50%   { top: -50px; opacity: .5; }
+  50%   { top: 0px; opacity: .5; }
   75%   { top: 5px; opacity: .75; }
   100%  { top: 0; opacity: 1;}
 }
 @-o-keyframes fromtop {
   0%    { top: -100px; opacity: 0; }
-  50%   { top: -50px; opacity: .5; }
+  50%   { top: 0px; opacity: .5; }
   75%   { top: 5px; opacity: .75; }
   100%  { top: 0; opacity: 1;}
 }
 @-moz-keyframes fromtop {
   0%    { top: -100px; opacity: 0; }
-  50%   { top: -50px; opacity: .5; }
+  50%   { top: 0px; opacity: .5; }
   75%   { top: 5px; opacity: .75; }
   100%  { top: 0; opacity: 1;}
 }
 @keyframes fromtop {
   0%    { top: -100px; opacity: 0; }
-  50%   { top: -50px; opacity: .5; }
+  50%   { top: 0px; opacity: .5; }
   75%   { top: 5px; opacity: .75; }
   100%  { top: 0; opacity: 1;}
 }
@@ -710,7 +710,7 @@ label.notchecked::before {
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-timing-function: ease-out;
-  animation-delay: 2s;
+  animation-delay: 1s;
   animation-fill-mode: forwards;
 }
 @-webkit-keyframes fromright {
@@ -746,7 +746,7 @@ label.notchecked::before {
   animation-duration: 1.5s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
-  animation-delay: 3s;
+  animation-delay: 2s;
   animation-fill-mode: forwards;  
 }
 @-webkit-keyframes toglow {
@@ -955,6 +955,12 @@ footer {
   }
 
   #notremetier .img-col {
+    display: none;
+  }
+
+
+  /* calendrier */
+  #legend {
     display: none;
   }
 

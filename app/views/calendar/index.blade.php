@@ -5,11 +5,9 @@
 @section('css')
 	{{ HTML::style('assets/datedropper/datedropper.css') }}
     
-    <!-- TESTING -->
+    <!-- timeline -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.min.css">
     {{ HTML::style('assets/css/vis-timeline.css')}}
-    <!-- END TESTING -->
-
 @stop
 @section('content')
 	<div class="row">
@@ -38,7 +36,7 @@
         </div>
     </div>
     @else
-        <!-- TESTING NEW TIMELINE -->
+        <!-- NEW TIMELINE -->
         <div class="row">
             <div class="text-center" id="jourj"><span id="ani-j">J</span> <span class="hide-element ani-minus">-</span> <span id="ani-nbr">{{ $jourj }}</span></div>
             <button id="group-toggle" class="btn btn-pink no-group">Montrer les groupes</button>
@@ -56,17 +54,19 @@
             </div>
             <div class="col-sm-6">
                 <div id="list-div"> 
-                    <ul id="mylist"></ul>
+                    <p id="explication" class="text-justify"><small><em>Pour plus d'information, passer la souris sur un élément du calendrier. Vous pouvez séléctionner un élément en cliquant dessus. Pour séléctionner un deuxième élément, cliquer longuement (rester appuyer). Ainsi, vous pouvez créer une liste personnalisée de dates.</em></small></p>
+                    <ul id="mylist">
+                    </ul>
                 </div>
             </div>
         </div>
-        <!-- END TESTING -->
+        <!-- END TIMELINE -->
     @endif
 @stop
 
 @section('script')
 
-    <!-- TESTING -->
+    <!-- TIMELINE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
@@ -80,12 +80,22 @@
         // var end_limit   = {{$end_limit}};
 
         /* TIMELINE */
+        // Dynamically create dataset
         for (var i = 0; i < event.length; i++) {
+            var startDate       = new Date(event[i]['start']);
+            var startDateString = ('0' + startDate.getDate()).slice(-2) + '.' + ('0' + (startDate.getMonth()+1)).slice(-2) + '.' + startDate.getFullYear() ;
+            if (event[i]['end']){
+                var endDate   = new Date(event[i]['end']);
+                var endDateString = ('0' + endDate.getDate()).slice(-2) + '.' + ('0' + (endDate.getMonth()+1)).slice(-2) + '.' + endDate.getFullYear();
+            }
+
             // timeline
             if (event[i]['end']) {
                 var timestring = "<span>Du " + event[i]['start'] + " au " + event[i]['end'] + "</span><br>";
+                var timestring = "<span>Du " + startDateString + " au " + endDateString + "</span><br>";
             } else {
                 var timestring = "<span>Le " + event[i]['start'] + "</span><br>";
+                var timestring = "<span>Le " + startDateString + "</span><br>";
             }
 
             dataset.push({
@@ -119,7 +129,7 @@
         var groups  = new vis.DataSet(groupset);
         var items   = new vis.DataSet(dataset);
 
-        // Configuration for the Timeline
+        // Option Configuration for the Timeline
         var options = {
             zoomMin: 1000 * 60 * 60 * 24 * 5,
             zoomMax: 1000 * 60 * 60 * 24 * 31 * 12,
@@ -137,10 +147,9 @@
 
         // Create a Timeline
         var timeline = new vis.Timeline(containerTimeline, items, options);
-        // var timeline = new vis.Timeline(containerTimeline, items, groups, options);
 
+        // Toggle Order by group on click
         $('#group-toggle').click(function() {
-            console.log(timeline);
             if( $('#group-toggle').hasClass('no-group')){
                 $('#group-toggle').removeClass('no-group');
                 $('#group-toggle').text('Cacher les groupes');
@@ -152,10 +161,15 @@
             }
         });
 
-        // Timeline Eventlistener
+        // Timeline Eventlistener (on select, create personalized list)
         timeline.on('select', function (properties) {
             $('#mylist > li').remove();
             var selected = timeline.getSelection().sort(function(a, b){return a-b});
+            if (selected.length > 0) {
+                $('#explication').hide();
+            } else {
+                $('#explication').show();
+            }
             $.each(selected, function(key, value){
                 if (value != 'undefined') {
                     $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
@@ -164,10 +178,9 @@
         });
 
         /* EFFECTS */
+        // On hover, show more text in top-center of timeline 
         $('.vis-item').mouseenter(function(event) {
-            console.log('can oy see me?');
             var element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-            // $('#' + element).addClass('info-plus');
             $(this).css('z-index', '999');
             $('#show-more').html($(this).children('.vis-item-content').children(':nth-child(2)').clone());
             $('#show-more').addClass('span-plus');
@@ -178,12 +191,11 @@
             var element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
             $('#show-more').children(':first-child').remove();
             $('#show-more').removeClass('span-plus');
-            // $('#' + element).removeClass('info-plus');
             $(this).css('z-index', '0');
         });
       })
     </script>
-    <!-- END TESTING -->
+    <!-- END TIMELINE -->
 
 
     {{ HTML::script('assets/datedropper/datedropper.min.js') }}
