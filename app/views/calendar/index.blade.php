@@ -68,6 +68,7 @@
 @section('script')
 
     <!-- TIMELINE -->
+    {{ HTML::script('assets/js/moment-with-locales.min.js') }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
@@ -92,10 +93,10 @@
 
             // timeline
             if (event[i]['end']) {
-                var timestring = "<span>Du " + event[i]['start'] + " au " + event[i]['end'] + "</span>";
+                // var timestring = "<span>Du " + event[i]['start'] + " au " + event[i]['end'] + "</span>";
                 var timestring = "<span>Du " + startDateString + " au " + endDateString + "</span>";
             } else {
-                var timestring = "<span>Le " + event[i]['start'] + "</span>";
+                // var timestring = "<span>Le " + event[i]['start'] + "</span>";
                 var timestring = "<span>Le " + startDateString + "</span>";
             }
 
@@ -137,13 +138,7 @@
             zoomable: false,
             moveable: false,
             multiselect: true,
-            locales: {
-                user_locale: {
-                    current: 'current',
-                    time: 'time'
-                }
-            },
-            locale: 'user_locale'
+            locale: 'fr'
         };
 
         // Create a Timeline
@@ -194,6 +189,7 @@
             $('#show-more').removeClass('span-plus');
             $(this).css('z-index', '0');
         });
+
       })
     </script>
     <!-- END TIMELINE -->
