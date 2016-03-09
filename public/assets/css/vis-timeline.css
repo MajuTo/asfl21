@@ -19,7 +19,7 @@
 .vis-label.group-consultation,
 .vis-label.group-medical,
 .vis-label.group-administratif,
-.vis-label.group-hopital {
+.vis-label.group-maternite {
     color: #fff;
     font-family: 'Handlee', cursive;
     font-size: 1.1em;
@@ -63,12 +63,12 @@
     background-color: #5654B4;
 }
 
-.vis-item-hopital {
+.vis-item-maternite {
     background-color: #3DA294;
     border-color: #00806E;
 }
 
-.vis-label.group-hopital {
+.vis-label.group-maternite {
     background-color: #3DA294;
 }
 

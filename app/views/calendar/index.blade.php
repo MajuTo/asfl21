@@ -49,7 +49,7 @@
                     <div class="legend-div"><span class="consultation"><i class="fa fa-stethoscope"></i></span> Consultation</div>
                     <div class="legend-div"><span class="medical"><i class="fa fa-user-md"></i></span> Médical</div>
                     <div class="legend-div"><span class="administratif"><i class="fa fa-calendar"></i></span> Administratif</div>
-                    <div class="legend-div"><span class="hopital"><i class="fa fa-h-square"></i></span> Hopital</div>
+                    <div class="legend-div"><span class="maternite"><i class="fa fa-h-square"></i></span> Maternité</div>
                     <div class="legend-div"><span class="naissance"><i class="fa fa-gift"></i></span> Naissance</div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
         for (var j = 0; j < grouping.length; j++) {
             groupset.push({
                 id: j,
-                content: grouping[j]['content'],
+                content: grouping[j]['content'].charAt(0).toUpperCase() + grouping[j]['content'].slice(1),
                 value: grouping[j]['id'],
                 className: 'group-' + grouping[j]['content']
             });

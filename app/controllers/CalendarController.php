@@ -19,7 +19,7 @@ class CalendarController extends \BaseController {
 			'content'	=> 'administratif'],
 
 			['id' 		=> 4,
-			'content'	=> 'hopital'],
+			'content'	=> 'maternite'],
 
             ['id'       => 5,
             'content'   => 'naissance']

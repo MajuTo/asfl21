@@ -243,6 +243,43 @@ label.notchecked::before {
 
 
 
+/* ********************************************************** */
+/* ADMIN MENU */
+
+.nav-tabs.admin-menu {
+  border-bottom: 0px;
+}
+.nav-tabs.admin-menu > li > a {
+  border: none;
+  border-radius: 4px;
+}
+.nav-tabs.admin-menu > li > a:hover {
+  color: #B5003A;
+  background-color: pink;
+  border-right: none;
+  border-bottom: none;
+  border-top: none;
+  border-left: 5px solid #B5003A;
+}
+
+.nav-tabs.admin-menu > li.active > a,
+.nav-tabs.admin-menu > li.active > a:hover,
+.nav-tabs.admin-menu > li.active > a:focus {
+  cursor: pointer;
+  color: #B5003A;
+  background-color: #fff;
+  border-right: none;
+  border-bottom: none;
+  border-top: none;
+  border-left: 5px solid #B5003A;
+  border-bottom-color: transparent;
+} 
+
+/* END ADMIN MENU */
+/* ********************************************************** */
+
+
+
 
 /* ********** */
 /* ** HOME ** */
@@ -796,7 +833,7 @@ label.notchecked::before {
 .consultation,
 .medical,
 .administratif,
-.hopital {
+.maternite {
   text-align: center;
   width:40px;
   border: 1px solid;
@@ -828,7 +865,7 @@ label.notchecked::before {
     border-color: #17158F;
 }
 
-.hopital {
+.maternite {
     background-color: #3DA294;
     border-color: #00806E;
 }
