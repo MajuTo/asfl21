@@ -122,7 +122,8 @@
         for (var j = 0; j < grouping.length; j++) {
             groupset.push({
                 id: j,
-                content: grouping[j]['content'].charAt(0).toUpperCase() + grouping[j]['content'].slice(1),
+                //content: grouping[j]['content'].charAt(0).toUpperCase() + grouping[j]['content'].slice(1),
+                content: grouping[j]['title'],
                 value: grouping[j]['id'],
                 className: 'group-' + grouping[j]['content']
             });
