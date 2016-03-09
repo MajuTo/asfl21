@@ -11,51 +11,55 @@
       </div>
   </div>
   <div class="row">
-    <div class="col-xs-5">
+    <!-- Activities list -->
+    <div class="col-xs-12 col-sm-12">
       <fieldset>
         <legend>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></legend>
-      </fieldset>
-      <div id="act-divs">
-        @foreach ($activities as $activity)
-          <div class="tag act-name" data-activity="{{ $activity->id }}" id="{{ $activity->id }}">
-            <div>
-              {{ Str::title($activity->activityName) }}
+        <div id="act-divs">
+          @foreach ($activities as $activity)
+            <div class="tag act-name" data-activity="{{ $activity->id }}" id="{{ $activity->id }}">
+              <span>
+                {{ Str::title($activity->activityName) }}
+              </span>
             </div>
-          </div>
-        @endforeach
-      </div>
+          @endforeach
+        </div>
+      </fieldset>
     </div>
+    <!-- END Activities list -->
     <!-- AJAX liste des sf selon activité -->
-    <div class="col-xs-7">
+    <div class="col-xs-12 col-sm-3">
       <fieldset>
         <legend>Sages Femmes <i id="tooltip-sf" class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i>
         </legend>
         <div id="sf-divs">
           @foreach ($sagesfemmes as $sf) 
              <div class="tag">
-              <div class="sf-name" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">
+              <span class="sf-name" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">
                 {{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}
-              </div>
-              <div class="contact-link">
+              </span>
+              <span class="contact-link">
                 <a href="{{ URL::route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank">
                   <i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="top" title="Contact"></i>
                 </a>
-              </div>
+              </span>
              </div>
           @endforeach
           </div>
      </fieldset>
     </div>
     <!-- END AJAX liste des sf selon activite -->
-    <div class="col-sm-12" id="gmap">
+    <!-- GOOGLE MAP -->
+    <div class="col-sm-9" id="gmap">
       <div class="map_container">
         <div id="panel">
-              <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
-              <input id="chezvous_button" type="button" value="go" onclick="codeAddress()">
-            </div>
+          <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
+          <input id="chezvous_button" type="button" value="go" onclick="codeAddress()">
+        </div>
         <div class="map_canvas" id="map_canvas"></div>
       </div>
     </div>
+    <!-- END GOOGLE MAP -->
   </div>
 </section>
 @stop

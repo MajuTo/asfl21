@@ -849,11 +849,13 @@ footer {
   border-radius: 3px;
   cursor: pointer;
   border-color : rgba(227, 85, 130, .5);
+  overflow: hidden;
 }
 
-.tag > div{
-  padding: 2px 5px;
-  display: inline-block;
+.tag > span{
+  padding: 13px 6px;
+  font-size: 0.9em;
+  /*display: inline-block;*/
 }
 
 .act-name:hover,
@@ -863,6 +865,9 @@ footer {
 
 .contact-link:hover {
   background-color: #B5003A;
+}
+
+.contact-link:hover a{
   color : #FFF;
 }
 
