@@ -28,7 +28,7 @@
     </div>
     <!-- END Activities list -->
     <!-- AJAX liste des sf selon activité -->
-    <div class="col-xs-12 col-sm-3">
+    <div class="col-xs-12 col-sm-12">
       <fieldset>
         <legend>Sages Femmes <i id="tooltip-sf" class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i>
         </legend>
@@ -50,7 +50,7 @@
     </div>
     <!-- END AJAX liste des sf selon activite -->
     <!-- GOOGLE MAP -->
-    <div class="col-sm-9" id="gmap">
+    <div class="col-sm-12" id="gmap">
       <div class="map_container">
         <div id="panel">
           <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
@@ -265,7 +265,6 @@
               @endif
             @endforeach 
           @endforeach
-          console.log(markers);
         }
 
         function codeAddress() {

@@ -853,9 +853,10 @@ footer {
 }
 
 .tag > span{
-  padding: 13px 6px;
+  padding: 2px 5px;
   font-size: 0.9em;
-  /*display: inline-block;*/
+  display: block;
+  float: left;
 }
 
 .act-name:hover,
@@ -877,3 +878,4 @@ footer {
   color : #FFF;
   border-color: #B5003A;
 }
+
