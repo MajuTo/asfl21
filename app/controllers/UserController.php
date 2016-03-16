@@ -171,6 +171,9 @@ class UserController extends \BaseController {
 		$groups = Group::lists('groupName', 'id');
 		$activities = Activity::orderBy('activityName', 'ASC')->get();
 		$view = ($this->isAdminRequest()) ? 'admin.user.edit' : 'user.edit';
+		if( $this->isAdminRequest() ) {
+			Session::set('user_id', $id);
+		}
 		if ($id != Auth::id() && !$this->isAdminRequest()) {
 			return Redirect::route('user.edit', [Auth::id()]);
 		}

@@ -58,7 +58,7 @@ class AddressController extends \BaseController {
 
 		$address = new Address(Input::all());
 		if($this->isAdminRequest()){
-			$address->user_id = $user->id;
+			$address->user_id = Session::get('user_id');
 		} else {
 			$address->user_id = Auth::id();
 		}
@@ -75,7 +75,12 @@ class AddressController extends \BaseController {
 		$address->save();
 
 		Alert::add("alert-success", "L'adresse a bien été créée");
-		return Redirect::route('user.edit', Auth::id());
+
+		if($this->isAdminRequest()){
+			return Redirect::route('admin.user.edit', $address->user_id);
+		} else {
+			return Redirect::route('user.edit', Auth::id());
+		}
 	}
 
 	/**

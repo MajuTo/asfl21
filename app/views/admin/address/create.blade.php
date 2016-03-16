@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="col-sm-8 col-sm-offset-2">
-        {{ BootForm::openHorizontal(2, 10)->action(URL::route('adresse.store')) }}
+        {{ BootForm::openHorizontal(2, 10)->action(URL::route('admin.adresse.store')) }}
             {{ Form::token() }}
             {{ BootForm::bind($address) }}
             {{ BootForm::text('Nom', 'name')->placeHolder("Nom de l'adresse...")->required() }}
@@ -25,7 +25,8 @@
     <script>
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
-            $('#nav-profil').addClass('active');
+            $('#nav-admin').addClass('active');
+            $('#nav-admin-users').addClass('active');
             $(':checkbox:not(:checked)').parent().addClass('notchecked');
             $(':checkbox:checked').parent().addClass('checked');
             $(':checkbox').on('change', function(){

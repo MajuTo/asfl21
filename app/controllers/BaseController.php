@@ -2,6 +2,12 @@
 
 class BaseController extends Controller {
 
+	public function __construct() {
+		if ( !in_array( Route::currentRouteName(), ['admin.adresse.create', 'admin.adresse.store'] ) ) {
+			Session::forget('user_id');
+		}
+	}
+
 	/**
 	 * Setup the layout used by the controller.
 	 *
