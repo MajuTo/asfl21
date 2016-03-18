@@ -7,22 +7,28 @@ class CalendarController extends \BaseController {
 	// 1 jour = 86400 secondes
 	private $groups 	= [
 			['id' 		=> 0,
-			'content'	=> 'conception'],
+			'content'	=> 'conception',
+			'title'		=> 'Conception'],
 
 			['id' 		=> 1,
-			'content'	=> 'consultation'],
+			'content'	=> 'consultation',
+			'title'		=> 'Consultation'],
 
 			['id' 		=> 2,
-			'content'	=> 'medical'],
+			'content'	=> 'medical',
+			'title'		=> 'Médical'],
 
 			['id' 		=> 3,
-			'content'	=> 'administratif'],
+			'content'	=> 'administratif',
+			'title'		=> 'Administratif'],
 
 			['id' 		=> 4,
-			'content'	=> 'hopital'],
+			'content'	=> 'maternite',
+			'title'		=> 'Maternité'],
 
             ['id'       => 5,
-            'content'   => 'naissance']
+            'content'   => 'naissance',
+            'title'		=> 'Naissance']
 	];
 
 	private $events = [
@@ -178,7 +184,7 @@ class CalendarController extends \BaseController {
 		],
 		15 => [
 			'date'  => 29,
-			'title' => 'Consultation 7ème mois (Hopital)',
+			'title' => 'Consultation 7ème mois (Maternité)',
 			'desc'  => '',
 			'icon'  => 'fa fa-h-square',
 			'group' => 4, //'hopital',

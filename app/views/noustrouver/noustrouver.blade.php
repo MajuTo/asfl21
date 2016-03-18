@@ -265,7 +265,6 @@
               @endif
             @endforeach 
           @endforeach
-          console.log(markers);
         }
 
         function codeAddress() {
