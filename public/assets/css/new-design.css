@@ -1,4 +1,4 @@
-/* @import url(https://fonts.googleapis.com/css?family=Lora|Handlee); */
+@import url(https://fonts.googleapis.com/css?family=Lora|Handlee);
 
 /* ** Colors ** */
 /* 
@@ -914,9 +914,6 @@ footer {
     font-size: .7em;
   }
 
-  #contact-map {
-    display: none;
-  }
 }
 
 
@@ -945,6 +942,18 @@ footer {
   .whoooshh h4 {
     font-size: 1.3em;
   }
+
+  /* contact */
+  #contact-map {
+    display: none;
+  }
+  
+  #contact-add-form {
+    border-left: 1px solid #B5003A;
+    margin-bottom: 20px;
+    padding: 20px;
+    margin-left: 70px;
+  }
 }
 
 @media all and (max-width: 767px){
@@ -961,16 +970,6 @@ footer {
     color: #777;
     border-top-color: transparent;
   } 
-
-  
-  /* contact */
-  #contact-add-form {
-    border-left: 1px solid #B5003A;
-    margin-bottom: 20px;
-    padding: 20px;
-    margin-left: 70px;
-  }
-
 
   /* nous trouver */
   #noustrouver .table-responsive {
