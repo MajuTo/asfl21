@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Lora|Handlee);
+/* @import url(https://fonts.googleapis.com/css?family=Lora|Handlee); */
 
 /* ** Colors ** */
 /* 
@@ -405,6 +405,7 @@ label.notchecked::before {
   -webkit-transition: all 1s ease-out;
   -o-transition: all 1s ease-out;
   transition: all 1s ease-out;
+  font-size: .8em;
 }
 
 .whoooshh-active {
@@ -895,6 +896,14 @@ footer {
     height: 40px;
     margin-top: 15px;
   }
+
+  .whoooshh {
+    font-size: 1.1em;
+  }
+
+  .whoooshh h4 {
+    font-size: 1.3em;
+  }
 }
 
 @media all and (max-width: 767px){
@@ -958,6 +967,13 @@ footer {
     display: none;
   }
 
+  .whoooshh {
+    display: none;
+  }
+
+  #notremetier .overlay {
+    display: none;
+  }
 
   /* calendrier */
   #legend {
