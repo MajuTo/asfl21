@@ -10,14 +10,12 @@
 	</div>
 	<table class="table table-condensed table-hover">
 		<thead>
-			<td>#</td>
 			<td>Nom</td>
 			<td>Actions</td>
 		</thead>
 		<tbody>
 			@foreach($activities as $activity)
 				<tr>
-					<td>{{ $activity->id }}</td>
 					<td>{{ $activity->activityName }}</td>
 					<td>
 						<a href="{{ URL::route('admin.activity.edit', $activity->id) }}"><button class="btn label label-warning">Editer</button></a>

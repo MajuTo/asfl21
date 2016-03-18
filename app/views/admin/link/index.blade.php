@@ -10,7 +10,6 @@
 	</div>
 	<table class="table table-condensed table-hover">
 		<thead>
-			<td>#</td>
 			<td>Nom</td>
 			<td>Lien</td>
 			<td>Actions</td>
@@ -18,7 +17,6 @@
 		<tbody>
 			@foreach($links as $link)
 				<tr>
-					<td>{{ $link->id }}</td>
 					<td>{{ $link->linkName }}</td>
 					<td>{{ $link->link }}</td>
 					<td>
