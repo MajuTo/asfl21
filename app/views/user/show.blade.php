@@ -1,5 +1,5 @@
 @section('title')
-    <title>ASFL21, Contactez {{ strtoupper($user->name) . ' ' . ucfirst($user->firstname) }}</title>
+    <title>ASFL21, Contactez {{ strtoupper($user->name) . ' ' . ucfirst($user->firstname) }}, Sage Femme à Dijon</title>
 @stop
 @extends('layouts.index')
 @section('content')
