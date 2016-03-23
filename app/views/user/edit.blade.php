@@ -14,9 +14,10 @@
     </div>
 </div>
 <div class="row tab-content">
+
         <!-- Div de l'onglet profil -->
         <div role="tabpanel" class="row tab-pane fade in active" id="profil">
-            {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('user.update', $user->id)) }}
+            {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('user.update', $user->id)) }}
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
                         {{ Form::token() }}
@@ -36,7 +37,10 @@
                         @else
                             {{ BootForm::checkbox('Cacher le mobile', 'hideMobile') }}
                         @endif
-                        {{ BootForm::textarea('Description des activités', 'description')->placeHolder("Entrez ici une description des activités...") }}
+                        {{ BootForm::textarea('Plus de détail <br /><span class="textarea-subtext">Dites en un peu plus sur vous même et/ou vos activités...</span>', 'description')->placeHolder("Dites en un peu plus sur vous même et/ou vos activités...")->id('editor1') }}
+                        @if($user->group->id == 2 || $user->group->id == 3)
+                            {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
+                        @endif
                         {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
                 </div>
             {{ BootForm::close() }}
@@ -135,6 +139,7 @@
 @section('script')
     <script>
         $(document).ready(function(){
+            CKEDITOR.replace( 'editor1' );
             $('#nav-membre').addClass('active');
             $('#nav-profil').addClass('active');
             $(':checkbox:not(:checked)').parent().addClass('notchecked');
