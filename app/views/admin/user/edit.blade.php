@@ -68,7 +68,7 @@
                                     {{ BootForm::open()->delete()->action(URL::route('admin.adresse.destroy', $address->id))->style('display: inline;') }}
                                         {{ Form::token() }}
                                         {{ BootForm::bind($address) }}
-                                        {{ BootForm::submit('Supprimer', 'label-danger label') }}
+                                        {{ BootForm::submit('Supprimer', 'label-danger label eraser') }}
                                     {{ BootForm::close() }}
                                 </td>
                             </tr>

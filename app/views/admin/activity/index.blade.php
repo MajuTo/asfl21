@@ -22,7 +22,7 @@
 						{{ BootForm::open()->delete()->action(URL::route('admin.activity.destroy', $activity->id))->style('display: inline;') }}
 						    {{ Form::token() }}
 						    {{ BootForm::bind($activity) }}
-						    {{ BootForm::submit('Supprimer', 'label-danger label') }}
+						    {{ BootForm::submit('Supprimer', 'label-danger label eraser') }}
 						{{ BootForm::close() }}
 					</td>
 				</tr>

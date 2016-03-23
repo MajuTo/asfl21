@@ -26,7 +26,7 @@
 						{{ BootForm::open()->delete()->action(URL::route('admin.partner.destroy', $partner->id))->style('display: inline;') }}
 						    {{ Form::token() }}
 						    {{ BootForm::bind($partner) }}
-						    {{ BootForm::submit('Supprimer', 'label-danger label') }}
+						    {{ BootForm::submit('Supprimer', 'label-danger label eraser') }}
 						{{ BootForm::close() }}
 					</td>
 				</tr>

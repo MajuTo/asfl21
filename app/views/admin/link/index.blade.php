@@ -24,7 +24,7 @@
 						{{ BootForm::open()->delete()->action(URL::route('admin.link.destroy', $link->id))->style('display: inline;') }}
 						    {{ Form::token() }}
 						    {{ BootForm::bind($link) }}
-						    {{ BootForm::submit('Supprimer', 'label-danger label') }}
+						    {{ BootForm::submit('Supprimer', 'label-danger label eraser') }}
 						{{ BootForm::close() }}
 					</td>
 				</tr>

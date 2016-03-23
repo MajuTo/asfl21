@@ -32,6 +32,7 @@
     $(document).ready( function(){
         CKEDITOR.replaceAll('ckeditor');
         sizeContent();
+        init_erasers();
     });
 
     //Every resize of window
@@ -44,4 +45,15 @@
             
         $("#content-container").css("min-height", contentHeight);
     }
+
+    // Confirm delete
+    function init_erasers(){
+    $('.eraser').on('click', function(e){
+        if(!confirm("Confirmez la suppression"))
+        {
+            e.preventDefault();
+        }
+    });
+}
+
 </script>

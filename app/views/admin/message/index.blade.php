@@ -19,7 +19,7 @@
 						{{ BootForm::open()->delete()->action(URL::route('admin.message.destroy', $message->id))->style('display: inline;') }}
 						    {{ Form::token() }}
 						    {{ BootForm::bind($message) }}
-						    {{ BootForm::submit('Supprimer', 'label-danger label') }}
+						    {{ BootForm::submit('Supprimer', 'label-danger label eraser') }}
 						{{ BootForm::close() }}
 					</td>
 				</tr>
