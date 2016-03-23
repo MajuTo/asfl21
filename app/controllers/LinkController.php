@@ -132,6 +132,7 @@ class LinkController extends \BaseController {
 	public function destroy($id)
 	{
 		Link::destroy($id);
+		Alert::add("alert-success", "Le lien a bien été supprimé");
 		return Redirect::route('admin.link.index');
 	}
 

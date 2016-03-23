@@ -163,6 +163,7 @@ class PartnerController extends \BaseController {
 			File::delete($partner->logo);
 		}
 		Partner::destroy($id);
+		Alert::add("alert-success", "Le partenaire a bien été supprimé");
 		return Redirect::route('admin.partner.index');
 	}
 

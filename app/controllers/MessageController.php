@@ -131,6 +131,7 @@ class MessageController extends \BaseController {
 	public function destroy($id)
 	{
 		Message::destroy($id);
+		Alert::add("alert-success", "Le message a bien été supprimé");
 		return Redirect::route('admin.message.index');
 	}
 

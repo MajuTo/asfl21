@@ -131,6 +131,7 @@ class ActivityController extends \BaseController {
 	public function destroy($id)
 	{
 		Activity::destroy($id);
+		Alert::add("alert-success", "L'activité a bien été supprimée");
 		return Redirect::route('admin.activity.index');
 	}
 

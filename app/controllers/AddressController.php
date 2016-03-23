@@ -185,6 +185,7 @@ class AddressController extends \BaseController {
 	{
 		$user_id = User::find( Address::find($id)->user_id )->id;
 		Address::destroy($id);
+		Alert::add("alert-success", "L'adresse a bien été supprimée");
 		if($this->isAdminRequest()){
 			return Redirect::route('admin.user.edit', $user_id);
 		} else {
