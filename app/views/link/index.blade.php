@@ -23,7 +23,7 @@
                     <td>{{ $link->linkName }}</td>
                     <td>{{ $link->address . ' ' . $link->zipCode . ' ' . $link->city }}</td>
                     <td>{{ $link->phone }}</td>
-    	    		<td><a href="{{ $link->link }}" target="_blank">Visiter leur site <i class="fa fa-arrow-right"></i></a></td>
+    	    		<td><a href="{{ $link->link }}" target="_blank">Liens <i class="fa fa-arrow-right"></i></a></td>
                 </tr>
     	    	@endforeach
                 </tbody>
