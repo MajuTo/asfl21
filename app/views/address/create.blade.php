@@ -14,7 +14,7 @@
             @else
                 {{ BootForm::checkbox('Téléphone privé', 'hidePhone') }}
             @endif
-            {{ BootForm::textarea('Description', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)") }}
+            {{ BootForm::textarea('Description', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)")->class('ckeditor') }}
 
             {{ BootForm::submit('Ajouter', 'pull-right btn-pink') }}
 

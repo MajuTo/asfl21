@@ -1,6 +1,5 @@
 @extends('layouts.index')
 @section('content')
-<script src="//cdn.ckeditor.com/4.5.7/basic/ckeditor.js"></script>
 
 <section id="messagerie">
     <div class="row">
@@ -13,12 +12,7 @@
                 {{ BootForm::openHorizontal(2, 10)->action(URL::route('message.store')) }}
                 {{ Form::token() }}
                 {{ BootForm::text('Titre', 'title')->placeHolder('Titre...')->required() }}
-                {{ BootForm::textarea('Message <br /><span class="textarea-subtext">(Votre message ici...)</span>', 'content')->placeHolder("Ecrivez votre message ici...")->id('editor3')->required() }}
-                    <script>
-                        // Replace the <textarea id="editor1"> with a CKEditor
-                        // instance, using default configuration.
-                        CKEDITOR.replace( 'editor3' );
-                    </script>
+                {{ BootForm::textarea('Message <br /><span class="textarea-subtext">(Votre message ici...)</span>', 'content')->placeHolder("Ecrivez votre message ici...")->class('ckeditor')->required() }}
                 @if(Auth::getUser()->group_id == 2 || Auth::getUser()->group_id == 3)
                     {{ BootForm::checkbox('Envoyer le message comme administrateur', 'admin-msg') }}
                 @endif

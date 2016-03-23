@@ -1,6 +1,5 @@
 @extends('layouts.index')
 @section('content')
-<script src="//cdn.ckeditor.com/4.5.7/basic/ckeditor.js"></script>
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
         <ul class="nav nav-pills nav-justified">
@@ -37,7 +36,7 @@
                         @else
                             {{ BootForm::checkbox('Cacher le mobile', 'hideMobile') }}
                         @endif
-                        {{ BootForm::textarea('Plus de détail <br /><span class="textarea-subtext">Dites en un peu plus sur vous même et/ou vos activités...</span>', 'description')->placeHolder("Dites en un peu plus sur vous même et/ou vos activités...")->id('editor1') }}
+                        {{ BootForm::textarea('Plus de détail <br /><span class="textarea-subtext">Dites en un peu plus sur vous même et/ou vos activités...</span>', 'description')->placeHolder("Dites en un peu plus sur vous même et/ou vos activités...")->class('ckeditor') }}
                         @if($user->group->id == 2 || $user->group->id == 3)
                             {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
                         @endif
@@ -139,7 +138,6 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            CKEDITOR.replace( 'editor1' );
             $('#nav-membre').addClass('active');
             $('#nav-profil').addClass('active');
             $(':checkbox:not(:checked)').parent().addClass('notchecked');

@@ -1,6 +1,5 @@
 @extends('layouts.index')
 @section('content')
-<script src="//cdn.ckeditor.com/4.5.7/basic/ckeditor.js"></script>
 <div class="col-sm-6 col-sm-offset-4">
     <h3>Modification d'une adresse</h3>
 </div>
@@ -28,12 +27,7 @@
         @else
             {{ BootForm::checkbox('Ne pas montrer mon fax', 'hideFax') }}
         @endif
-        {{ BootForm::textarea('Informations supplémentaires <span class="textarea-subtext">(disponibilités, horaires, etc...)</span>', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)")->id('editor2') }}
-            <script>
-                // Replace the <textarea id="editor1"> with a CKEditor
-                // instance, using default configuration.
-                CKEDITOR.replace( 'editor2' );
-            </script>
+        {{ BootForm::textarea('Informations supplémentaires <span class="textarea-subtext">(disponibilités, horaires, etc...)</span>', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)")->class('ckeditor') }}
         {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
     {{ BootForm::close() }}
 </div>

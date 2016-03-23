@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-<script src="//cdn.ckeditor.com/4.5.7/basic/ckeditor.js"></script>
 <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
             <ul class="nav nav-pills nav-justified">
@@ -36,12 +35,7 @@
                         @else
                             {{ BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile') }}
                         @endif
-                        {{ BootForm::textarea('Plus de détail', 'description')->placeHolder("Dites en un peu plus sur vous même et/ou vos activités...")->id('editor1') }}
-                            <script>
-                                // Replace the <textarea id="editor1"> with a CKEditor
-                                // instance, using default configuration.
-                                CKEDITOR.replace( 'editor1' );
-                            </script>
+                        {{ BootForm::textarea('Plus de détail', 'description')->placeHolder("Dites en un peu plus sur vous même et/ou vos activités...")->class('ckeditor') }}
                         {{ BootForm::select('Groupe', 'group_id')->options($groups) }}
                         {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
                 </div>
