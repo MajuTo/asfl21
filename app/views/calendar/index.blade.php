@@ -3,7 +3,7 @@
 @stop
 @extends('layouts.index')
 @section('css')
-	{{ HTML::style('assets/datedropper/datedropper.css') }}
+	{{ HTML::style('assets/datepicker/bootstrap-datepicker3.css') }}
     
     <!-- timeline -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.min.css">
@@ -196,16 +196,14 @@
     <!-- END TIMELINE -->
 
 
-    {{ HTML::script('assets/datedropper/datedropper.min.js') }}
+    {{ HTML::script('assets/datepicker/bootstrap-datepicker.min.js') }}
+    {{ HTML::script('assets/datepicker/bootstrap-datepicker.fr.min.js') }}
     <script>
         $(document).ready(function(){
             $('#nav-calendrier').addClass('active');
-            $( ".datedropper" ).dateDropper({
-            	'format' : 'd-m-Y',
-            	'lang' : 'fr',
-                'color' : '#ff1493',
-                'animate_current' : false,
-                'animation' : 'dropdown'
+            $( ".datedropper" ).datepicker({
+                format: 'dd/mm/yyyy',
+                language : 'fr'
             });
             $('#date1').change(function(){
             	$('#date2').val('');
