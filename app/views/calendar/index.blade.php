@@ -202,7 +202,7 @@
         $(document).ready(function(){
             $('#nav-calendrier').addClass('active');
             $( ".datedropper" ).datepicker({
-                format: 'dd/mm/yyyy',
+                format: 'mm/dd/yyyy',
                 language : 'fr'
             });
             $('#date1').change(function(){
