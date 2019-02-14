@@ -67,9 +67,7 @@ class RemindersController extends BaseController {
 		switch ($response)
 		{
 			case Password::INVALID_PASSWORD:
-				 Alert::add("alert-danger", 'Mot de passe invalide ou non identique.');
 			case Password::INVALID_TOKEN:
-				 Alert::add("alert-danger", 'Problème d\'identifiant de réinitialisation.');
 			case Password::INVALID_USER:
 				 Alert::add("alert-danger", 'Email non valide ou mot de passe trop court (minimum 6 charactères) ou non identique.');
 				return Redirect::back();
