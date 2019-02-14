@@ -82,55 +82,36 @@
         </div>
         
         <!-- Div de l'onglet activités -->
-        <div role="tabpanel" class="tab-pane fade" id="activites">
-          <div class="col-sm-6 col-sm-offset-3">
-              <div class="col-sm-12 text-center"><h3>Activités de {{ $user->firstname }}</h3></div>
-              {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('user.updateActivities', $user->id)) }}
-                  {{ Form::token() }}
-                  {{ BootForm::bind($user) }}
-                  @foreach($activities as $act)
-                      @if($user->activities->contains($act->id))
-                          {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() }}
-                      @else
-                          {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) }}
-                      @endif
-                  @endforeach
-                  {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
-              {{ BootForm::close() }}
-          </div>
-        </div>
-    </div>
-    
-    <!-- Div de l'onglet activités -->
-    <div role="tabpanel" class="tab-pane fade" id="activites">
-      <div class="col-sm-6 col-sm-offset-3">
-          <div class="col-sm-12 text-center"><h3>Activités de {{ ucfirst($user->firstname) }}</h3></div>
-          {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('user.updateActivities', $user->id)) }}
-              {{ Form::token() }}
-              {{ BootForm::bind($user) }}
-              @foreach($activities as $act)
-                  @if($user->activities->contains($act->id))
-                      {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() }}
-                  @else
-                      {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) }}
-                  @endif
-              @endforeach
-              {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
-          {{ BootForm::close() }}
-      </div>
-    </div>
-    
-    <!-- Div de l'onglet mot de passe -->
-    <div role="tabpanel" class="tab-pane fade" id="motdepasse">
+      <div role="tabpanel" class="tab-pane fade" id="activites">
         <div class="col-sm-6 col-sm-offset-3">
-            <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
-                {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('sessions.update')) }}
-                  {{ Form::token() }}
-                  {{ BootForm::password('Mot de passe', 'password') }}
-                  {{ BootForm::password('Confirmation', 'password_confirmation') }}
-                  {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
-                {{ BootForm::close() }}
+            <div class="col-sm-12 text-center"><h3>Activités de {{ ucfirst($user->firstname) }}</h3></div>
+            {{ BootForm::openHorizontal(2, 10)->put()->action(URL::route('user.updateActivities', $user->id)) }}
+                {{ Form::token() }}
+                {{ BootForm::bind($user) }}
+                @foreach($activities as $act)
+                    @if($user->activities->contains($act->id))
+                        {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() }}
+                    @else
+                        {{ BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) }}
+                    @endif
+                @endforeach
+                {{ BootForm::submit('Enregistrer', 'pull-right btn-pink') }}
+            {{ BootForm::close() }}
         </div>
+      </div>
+    
+      <!-- Div de l'onglet mot de passe -->
+      <div role="tabpanel" class="tab-pane fade" id="motdepasse">
+          <div class="col-sm-6 col-sm-offset-3">
+              <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
+                  {{ BootForm::openHorizontal(3, 9)->put()->action(URL::route('sessions.update')) }}
+                    {{ Form::token() }}
+                    {{ BootForm::password('Mot de passe', 'password') }}
+                    {{ BootForm::password('Confirmation', 'password_confirmation') }}
+                    {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
+                  {{ BootForm::close() }}
+          </div>
+      </div>
     </div>
 
 </div> <!-- Fin div tab-content -->
