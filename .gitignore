@@ -9,4 +9,3 @@ Thumbs.db
 /app/config
 .idea/
 _ide_helper.php
-./app/_ide_helper.php

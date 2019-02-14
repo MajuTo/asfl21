@@ -20,7 +20,7 @@
             <div id="email-reminder">
                 {{ BootForm::openHorizontal(3, 9)->action(URL::route('sessions.store')) }}
                     {{ Form::token() }}
-                    {{ BootForm::text('Identifiant', 'username') }}
+                    {{ BootForm::text('Pseudo', 'username') }}
                     {{ BootForm::password('Mot de passe', 'password') }}
                     {{ BootForm::submit('Envoyer', 'pull-right btn-pink') }}
                 {{ BootForm::close() }}
