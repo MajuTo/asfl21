@@ -1,6 +1,8 @@
 <?php
 
-//use Session;
+namespace App\Helpers;
+
+use Illuminate\Support\Facades\Session;
 
 class Alert
 {
