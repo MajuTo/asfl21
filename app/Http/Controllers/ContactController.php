@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Alert;
 use Illuminate\Mail\Message;
-use Illuminate\Support\Facades\Mail;
+use Mail;
 
 class ContactController extends Controller
 {
@@ -29,14 +30,18 @@ class ContactController extends Controller
         $validation = validator()->make(request()->all(), $rules);
 
         if ($validation->fails()) {
+            Alert::add("alert-danger", "Il y a un problème dans votre formulaire");
             return redirect()->route('contact.index')->withErrors($validation)->withInput();
         } else {
             $subject = (request()->get('pro')) ? '[PRO] ' : '';
             $subject .= request()->get('subject');
             Mail::send('emails.contact', ['inputs' => request()->all()], function(Message $m) use ($subject){
-                $m->to('majuto@free.fr')->subject($subject)->from(request()->get('email'), request()->get('name'));
-//                $m->to('contact@asfl21.fr')->subject($subject)->from(request()->get('email'), request()->get('name'));
+//                $m->to('majuto@free.fr')->subject($subject)->from(request()->get('email'), request()->get('name'));
+                $m->to(env('CONTACT_MAIL'))->subject($subject)->from(request()->get('email'), request()->get('name'));
             });
+
+            Alert::add("alert-success", "Votre message a bien été envoyé");
+
             return view()->make('contact.index');
         }
     }
