@@ -2,11 +2,17 @@
 
 namespace App;
 
+use Eloquent;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Class User
+ * @package App
+ * @mixin Eloquent
+ */
 class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
 {
     use Notifiable, \Illuminate\Auth\Passwords\CanResetPassword, \Illuminate\Auth\MustVerifyEmail;
