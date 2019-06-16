@@ -2,8 +2,14 @@
 
 namespace App;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Address
+ * @package App
+ * @mixin Eloquent
+ */
 class Address extends Model
 {
     public $timestamps    = false;

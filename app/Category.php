@@ -2,11 +2,14 @@
 
 namespace App;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
-* Category
-*/
+ * Class Category
+ * @package App
+ * @mixin Eloquent
+ */
 class Category extends Model {
 
 	public $timestamps    = false;
