@@ -57,14 +57,14 @@
     <div class="row">
         <div class="col-sm-6">
             <h3>Contactez moi</h3>
-            {!! BootForm::openHorizontal(['lg' => [3, 9])->action(route('user.email', $user->id)) }}
-                {{ Form::token() }}
-                {{-- BootForm::bind($user) --}}
-                {!! BootForm::text('Votre nom', 'name')->placeHolder("Votre nom...")->required() }}
-                {!! BootForm::text('Email', 'email')->placeHolder("Votre email...")->required() }}
-                {!! BootForm::textarea('Message', 'message')->placeHolder("Votre message...")->required() }}
-                {!! BootForm::submit('Envoyer', 'pull-right btn-pink') }}
-            {!! BootForm::close() }}
+            {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('user.email', $user->id)) !!}
+                {!! Form::token() !!}
+{{--                {!! BootForm::bind($user) !!}--}}
+                {!! BootForm::text('Votre nom', 'name')->placeHolder("Votre nom...")->required() !!}
+                {!! BootForm::text('Email', 'email')->placeHolder("Votre email...")->required() !!}
+                {!! BootForm::textarea('Message', 'message')->placeHolder("Votre message...")->required() !!}
+                {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
+            {!! BootForm::close() !!}
         </div>
         <div class="col-sm-6">
             @if($user->description)

@@ -10,8 +10,8 @@ use App\User;
 use Hash;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Mail;
 
 class UserController extends Controller
 {
@@ -302,7 +302,7 @@ class UserController extends Controller
 
         Alert::add("alert-success", "Votre message a bien été envoyé");
 
-        return redirect()->route('user.show', $user->id);
+        return redirect()->route('user.show', [$user->id, strtoupper($user->name) . '-' . ucfirst($user->firstname)]);
     }
 
     /**
