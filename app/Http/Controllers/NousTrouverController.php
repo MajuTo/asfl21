@@ -40,22 +40,19 @@ class NousTrouverController extends Controller
 //                ->get();
 
 //            Test de requete de remplacement du 02 Mars 2019
-            $userByActivities = User::with('activities')
-                ->where('active', 1)
+            $userByActivities = User::where('active', 1)
                 ->whereHas('activities', function (Builder $query) use ($selectedActivities) {
-                    $query->whereIn('activities.id', $selectedActivities)
-                        ->groupBy('users.id')
+                    $query->select(['activity_user.user_id'])
+                        ->whereIn('activities.id', $selectedActivities)
+                        ->groupBy('activity_user.user_id')
                         ->havingRaw('count(distinct activities.id) = ' . count($selectedActivities));
                 })
-                ->where('active', 1)
                 ->where('group_id', '!=', 3)
                 ->orderBy('name')
                 ->get(['id', 'name', 'firstname']);
-
-
         } else {
             // $userByActivities = DB::table('users')->orderBy('name')->get();
-            $userByActivities = User::where('active', 1)->where('group_id', '!=', 3)->orderBy('name')->get();
+            $userByActivities = User::where('active', 1)->where('group_id', '!=', 3)->orderBy('name')->get(['id', 'name', 'firstname']);
         }
 
         return view()->make('noustrouver.listesf', [

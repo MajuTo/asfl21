@@ -7,7 +7,7 @@
 
 <!-- GOOGLE MAP API -->
 <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqJKkv1M-fhJ97dtL0CUV16QelltipJmE">
+    src="https://maps.googleapis.com/maps/api/js?key={!! env('GOOGLE_API_KEY') !!}">
 </script>
 
 <!-- CSS -->
