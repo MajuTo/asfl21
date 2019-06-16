@@ -16,7 +16,7 @@
 
         <!-- Div de l'onglet profil -->
         <div role="tabpanel" class="row tab-pane fade in active" id="profil">
-            {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->actionroute('user.update', $user->id) !!}
+            {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('user.update', $user->id)) !!}
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
                         {!! Form::token() !!}
