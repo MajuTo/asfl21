@@ -37,13 +37,12 @@
                     <div class="card-body">
                         @if (session('resent'))
                             <div class="alert alert-success" role="alert">
-                                {{ __('A fresh verification link has been sent to your email address.') }}
+                                {{ __('Un nouveau lien de vérification a été envoyé sur votre adresse mail..') }}
                             </div>
                         @endif
-
-                        {{ __('Before proceeding, please check your email for a verification link.') }}
-                        {{ __('If you did not receive the email') }}.
-                        <p><a class="btn btn-pink pull-right" href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a></p>
+                        {{ __('Avant de continuer, veuillez vérifier si vous avez reçu un email de vérification') }}
+{{--                        {{ __('Si vous n\'avez pas reçu l\'email') }}.--}}
+                        <p><a class="btn btn-pink pull-right" href="{{ route('verification.resend') }}">{{ __('Cliquez ici pour recevoir un nouvel email de vérification') }}</a></p>
                     </div>
                 {{--</div>--}}
             {{--</div>--}}
