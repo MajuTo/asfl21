@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class SessionsController extends Controller {
+class SessionsController2 extends Controller {
 
     /**
      * Show the form for creating a new resource.

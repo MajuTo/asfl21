@@ -4,7 +4,7 @@
         <title></title>
         <style type="text/css">
         body {
-            
+
         }
         p {
             margin-left: 50px;
@@ -16,6 +16,6 @@
         <p>Vous avez été inscrit sur le site des Sages Femmes Libérales de Côte d'Or: asfl21.fr</p>
         <p>Vouz pourrez modifier votre identifiant une fois votre inscription confirmée.</p>
         <p>Votre identifiant: <strong>{{ $user->username }}</strong></p>
-        <p>Veuillez confirmer votre adresse email en cliquant sur le liens suivant:<a href="{{ route('confirmation', $confirmation) }}">confirmation</a></p>
+        <p>Veuillez confirmer votre adresse email en cliquant sur le liens suivant:<a href="{{ $verificationLink }}">confirmation</a></p>
     </body>
 </html>

@@ -41,7 +41,7 @@ class AddressController extends Controller
         } else {
             $view = 'address.create';
         }
-        return View::make($view, [
+        return view()->make($view, [
             'address'   => $address
         ]);
     }
