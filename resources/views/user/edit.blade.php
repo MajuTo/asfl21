@@ -80,7 +80,7 @@
                 </table>
             </div>
         </div>
-        
+
         <!-- Div de l'onglet activités -->
         <div role="tabpanel" class="tab-pane fade" id="activites">
           <div class="col-sm-6 col-sm-offset-3">
@@ -104,7 +104,7 @@
         <div role="tabpanel" class="tab-pane fade" id="motdepasse">
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
-                {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('sessions.update', $user->id)) !!}
+                {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('user.update.password', $user->id)) !!}
                     {!! Form::token() !!}
                     {!! BootForm::password('Mot de passe', 'password') !!}
                     {!! BootForm::password('Confirmation', 'password_confirmation') !!}

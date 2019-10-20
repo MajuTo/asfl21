@@ -27,7 +27,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    public $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -37,7 +37,7 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->redirectTo = route('home');
+        $this->redirectTo = route('admin.index', [], false);
     }
 
     /**
@@ -50,7 +50,7 @@ class ResetPasswordController extends Controller
     protected function sendResetResponse(Request $request, $response)
     {
         Alert::add('alert-success', trans($response));
-        return redirect($this->redirectPath());
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -66,5 +66,4 @@ class ResetPasswordController extends Controller
             ->withInput($request->only('email'))
             ->withErrors(['email' => trans($response)]);
     }
-//        Alert::add('alert-info', trans($response));
 }

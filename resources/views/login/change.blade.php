@@ -16,12 +16,12 @@
                 @endif
             </div>
             <div class="col-sm-6">
-                    {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('sessions.update')) }}
+                    {!! BootForm::openHorizontal(['lg' => [3, 9]])->post()->action(route('password.update')) !!}
                         {{ Form::token() }}
-                        {!! BootForm::password('Mot de passe', 'password') }}
-                        {!! BootForm::password('Confirmation', 'password_confirmation') }}
-                        {!! BootForm::submit('Envoyer', 'pull-right btn-pink') }}
-                    {!! BootForm::close() }}
+                        {!! BootForm::password('Mot de passe', 'password') !!}
+                        {!! BootForm::password('Confirmation', 'password_confirmation') !!}
+                        {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
+                    {!! BootForm::close() !!}
             </div>
         </div>
     </div>

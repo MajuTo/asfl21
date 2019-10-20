@@ -7,14 +7,21 @@ use App\Address;
 use App\Group;
 use App\Helpers\Alert;
 use App\User;
+use Carbon\Carbon;
 use Hash;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Mail;
+use URL;
 
 class UserController extends Controller
 {
+
+    use VerifiesEmails;
     /**
      * Display a listing of the resource.
      *
@@ -91,13 +98,14 @@ class UserController extends Controller
         $user->activities()->sync($activities);
 
         //Envoi mail
-        $user->sendEmailVerificationNotification();
-        Mail::send('emails.inscription', ['user' => $user, 'confirmation' => $confirmation], function(Message $m) use ($user)	{
-            $m->to($user->email)->subject('Inscription sur le site asfl21.fr');
-        });
+        $user->sendInscriptionEmail();
+//        $verificationLink = URL::temporarySignedRoute('verification.verify', Carbon::now()->addWeek(), ['id' => $user->getKey()]);
+//        Mail::send('emails.inscription', ['user' => $user, 'verificationLink' => $verificationLink], function(Message $m) use ($user)	{
+//            $m->to($user->email)->subject('Inscription sur le site asfl21.fr');
+//        });
 
         Alert::add("alert-success", "L'adhérent a bien été créé");
-        
+
 
         return redirect()->route('admin.user.index');
     }
@@ -248,7 +256,6 @@ class UserController extends Controller
         return redirect()->route('user.edit', Auth::user()->id);
     }
 
-
     /**
      * Update user's activities.
      *
@@ -259,10 +266,10 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        $activities = [];
-        if(sizeof(request()->get('activities')) > 0){
-            $activities = request()->get('activities');
-        }
+        $activities =  request()->get('activities') ?? [];
+//        if(sizeof(request()->get('activities')) > 0){
+//            $activities = request()->get('activities');
+//        }
         $user->activities()->sync($activities);
         Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
 
@@ -270,6 +277,31 @@ class UserController extends Controller
             return redirect()->route('admin.user.index');
         }
         return redirect()->route('user.edit', Auth::user()->id);
+    }
+
+    /**
+     * Update user's activities.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function updatePassword(Request $request)
+    {
+        $user = auth()->user();
+        $this->validate($request, [
+            'password'              => 'required|confirmed|min:6',
+            'password_confirmation' => 'required',
+        ]);
+
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+        Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
+
+        if( $this->isAdminRequest() ){
+            return redirect()->route('admin.user.index');
+        }
+        return redirect()->route('user.edit', auth()->user()->id);
     }
 
     /**
@@ -314,17 +346,18 @@ class UserController extends Controller
     public function sendAgain($id){
         $user = User::find($id);
 
-        $confirmation = $this->generateConfirmation();
+//        $confirmation = $this->generateConfirmation();
 
-        $user->confirmation = $confirmation;
+//        $user->confirmation = $confirmation;
 
         //Sauvegarde
-        $user->save();
+//        $user->save();
 
         //Envoi mail
-        Mail::send('emails.inscription', ['user' => $user, 'confirmation' => $confirmation], function(Message $m) use ($user)	{
-            $m->to($user->email)->subject('Inscription sur le site asfl21.fr');
-        });
+//        Mail::send('emails.inscription', ['user' => $user, 'confirmation' => $confirmation], function(Message $m) use ($user)	{
+//            $m->to($user->email)->subject('Inscription sur le site asfl21.fr');
+//        });
+        $user->sendInscriptionEmail();
 
         Alert::add("alert-success", "L'email a bien été envoyé à " . $user->firstname . " " . $user->name);
         return redirect()->route('admin.user.index');

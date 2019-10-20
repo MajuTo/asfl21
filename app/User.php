@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Notifications\InscriptionEmail;
+use App\Notifications\VerifyEmail;
 use Eloquent;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -56,5 +58,35 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
     public function addresses()
     {
         return $this->hasMany(Address::class);
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendInscriptionEmail()
+    {
+        $this->notify(new InscriptionEmail);
+    }
+
+    /**
+     * Return true if user has to change his password, false either.
+     *
+     * @return bool
+     */
+    public function hasToChangePassword()
+    {
+        return (bool) ! $this->loggedOnce;
     }
 }
