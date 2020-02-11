@@ -8,3 +8,4 @@
 // TODO : Revoir la mise a jour du mot de passe de profil (updatePassword UserController)
 // TODO : Voir pour migrer sur BootStrap 4 ?
 // TODO : Passer sur un package de notification style laracasts/flash ?
+// TODO : Faire le tour des champs de BDD qui ne sont plus utiles -> migrations
