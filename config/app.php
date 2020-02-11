@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://www.asfl21'),
+    'url' => env('APP_URL', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -150,7 +150,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Collective\Html\HtmlServiceProvider::class,
         AdamWathan\BootForms\BootFormsServiceProvider::class,
         /*
          * Application Service Providers...
@@ -210,8 +209,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Form' => Collective\Html\FormFacade::class,
-        'HTML' => Collective\Html\HtmlFacade::class,
         'Str' => \Illuminate\Support\Str::class,
         'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
 

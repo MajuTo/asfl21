@@ -2,8 +2,6 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\Session;
-
 class Alert
 {
 	private static $session = [];
@@ -15,27 +13,25 @@ class Alert
 	 		self::clear();
 	 	}
 	 	array_push(self::$session, ['class' => $class, 'message' => $message]);
-	 	//Session::remove('alert');
-	 	//Session::push('alert', ['class' => $class, 'message' => $message]);
 	 	self::sendToSession();
 	 }
 
 	 private static function sendToSession()
 	 {
-	 	if(Session::has('alert'))
+	 	if(session()->has('alert'))
 	 	{
-	 		Session::remove('alert');
+	 		session()->remove('alert');
 	 	}
 
-	 	Session::flash('alert', self::$session);
+	 	session()->flash('alert', self::$session);
 	 }
 
 	 public static function clear()
 	 {
 	 	self::$session = [];
-	 	if(Session::has('alert'))
+	 	if(session()->has('alert'))
 	 	{
-	 		Session::remove('alert');
+	 		session()->remove('alert');
 	 	}
 	 }
 

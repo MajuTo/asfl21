@@ -17,7 +17,7 @@ class ChangePasswordMiddleware
     {
         $user = auth()->user();
         if ( $user && $user->hasToChangePassword() ) {
-            return response()->view('login.change', ['user' => $user]);
+            return redirect()->route('password.reset', ['user' => $user]);
         }
         return $next($request);
     }
