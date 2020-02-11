@@ -6,3 +6,5 @@
 // TODO : Google Map API KEY ? Plus de markers -_-
 // TODO : Revoir la gestion des activités / update activities et autre (UserController)
 // TODO : Revoir la mise a jour du mot de passe de profil (updatePassword UserController)
+// TODO : Voir pour migrer sur BootStrap 4 ?
+// TODO : Passer sur un package de notification style laracasts/flash ?
