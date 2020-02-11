@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-<div class="content-container"> 
+<div class="content-container">
 	<div class="row">
 		<div class="col-sm-6">
 			<h2>Mes Adresses</h2>
@@ -24,11 +24,11 @@
 					<td>{{ $address->phone }}</td>
 					<td>
 						<a href="{{ route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! BootForm::open()->delete()->action(route('adresse.destroy', $address->id))->style('display: inline;') }}
-						    {{ Form::token() }}
-						    {!! BootForm::bind($address) }}
-						    {!! BootForm::submit('Supprimer', 'label-danger label eraser') }}
-						{!! BootForm::close() }}
+						{!! BootForm::open()->delete()->action(route('adresse.destroy', $address->id))->style('display: inline;') !!}
+						    {!! Form::token() !!}
+						    {!! BootForm::bind($address) !!}
+						    {!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}
+						{!! BootForm::close() !!}
 					</td>
 				</tr>
 			@endforeach

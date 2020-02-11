@@ -10,7 +10,7 @@
         {!! BootForm::submit('Enregistrer', 'pull-right btn-pink') !!}
     {!! BootForm::close() !!}
     @if($partner->logo)
-        {{ HTML::image(asset($partner->logo), 'Logo de '.$partner->partnerName, ['class' => 'admin_logo_edit']) }}
+        {{ Html::image(asset($partner->logo), 'Logo de '.$partner->partnerName, ['class' => 'admin_logo_edit']) }}
     @endif
 @stop
 @section('script')

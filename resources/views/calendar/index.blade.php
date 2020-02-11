@@ -3,11 +3,11 @@
 @stop
 @extends('layouts.index')
 @section('css')
-	{{ HTML::style('assets/datepicker/bootstrap-datepicker3.css') }}
-    
+	{{ Html::style('assets/datepicker/bootstrap-datepicker3.css') }}
+
     <!-- timeline -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.min.css">
-    {{ HTML::style('assets/css/vis-timeline.css')}}
+    {{ Html::style('assets/css/vis-timeline.css')}}
 @stop
 @section('content')
 	<div class="row">
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div id="list-div"> 
+                <div id="list-div">
                     <p id="explication" class="text-justify"><small><em>Pour plus d'informations, passer la souris sur un élément du calendrier. Vous pouvez séléctionner un élément en cliquant dessus. Pour séléctionner un deuxième élément, cliquer longuement (rester appuyer). Ainsi, vous pouvez créer une liste personnalisée de dates.</em></small></p>
                     <ul id="mylist">
                     </ul>
@@ -68,7 +68,7 @@
 @section('script')
 
     <!-- TIMELINE -->
-    {{ HTML::script('assets/js/moment-with-locales.min.js') }}
+    {{ Html::script('assets/js/moment-with-locales.min.js') }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
@@ -103,7 +103,7 @@
             dataset.push({
                 id: i,
                 content:    "<i class='" + event[i]['icon'] + " time-icon'></i> " +
-                            "<div id=\"content" + i + "\" class=\"text-left info-minus\">" + 
+                            "<div id=\"content" + i + "\" class=\"text-left info-minus\">" +
                                 "<div style='padding-right: 5px'>" + "<i class='" + event[i]['icon'] + "'></i><em> " + timestring + "</em></div>" +
                                 "<div class=\"info-content\"><strong>" + event[i]['title'] + "</strong></div>" +
                             "</div>",
@@ -153,7 +153,7 @@
                 timeline.setGroups(groups);
             } else {
                 $('#group-toggle').addClass('no-group');
-                $('#group-toggle').text('Montrer les groupes');    
+                $('#group-toggle').text('Montrer les groupes');
                 timeline.setGroups();
             }
         });
@@ -171,11 +171,11 @@
                 if (value != 'undefined') {
                     $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
                 }
-            }); 
+            });
         });
 
         /* EFFECTS */
-        // On hover, show more text in top-center of timeline 
+        // On hover, show more text in top-center of timeline
         $('.vis-item').mouseenter(function(event) {
             var element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
             $(this).css('z-index', '999');
@@ -196,8 +196,8 @@
     <!-- END TIMELINE -->
 
 
-    {{ HTML::script('assets/datepicker/bootstrap-datepicker.min.js') }}
-    {{ HTML::script('assets/datepicker/bootstrap-datepicker.fr.min.js') }}
+    {{ Html::script('assets/datepicker/bootstrap-datepicker.min.js') }}
+    {{ Html::script('assets/datepicker/bootstrap-datepicker.fr.min.js') }}
     <script>
         $(document).ready(function(){
             $('#nav-calendrier').addClass('active');

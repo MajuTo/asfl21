@@ -6,7 +6,7 @@
       </button>
     </div>
       <a href="{{ route('home') }}">
-          {{ HTML::image(asset('/assets/img/logo.png'), 'logo', ['class' => 'logo']) }}
+          {{ Html::image(asset('/assets/img/logo.png'), 'logo', ['class' => 'logo']) }}
       </a>
       <span class="navbar-brand text-center">Association des Sages Femmes Libérales <br>  de Côte d'Or</span>
 
@@ -35,7 +35,7 @@
             <li id="nav-login">
                 <a href="{{ route('login') }}"><i class="fa fa-users"></i><br>Espace pro</a>
             </li>
-        @else 
+        @else
             <li class="dropdown" id="nav-membre">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
                     <i class="fa fa-users"></i><br>Espace pro<span class="caret"></span>
@@ -52,7 +52,7 @@
                     </form>
                 </ul>
             </li>
-        @endif        
+        @endif
       </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
