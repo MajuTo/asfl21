@@ -40,7 +40,7 @@
                </tr>
              </thead>
              <tbody id="listesf">
-                 @foreach ($sagesfemmes as $sf) 
+                 @foreach ($sagesfemmes as $sf)
                    <tr>
                      <td class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
                      <td><a href="{{ route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
@@ -76,7 +76,7 @@
 
           // on google map 'chez vous' search
           $('#chezvous_textbox').keyup(function(event){
-            if(event.keyCode == 13){
+            if(event.keyCode =n= 13){
               $('#chezvous_button').click();
             }
           });
@@ -130,7 +130,7 @@
             }
           }
 
-          // Affiche les sages femmes selectionnées 
+          // Affiche les sages femmes selectionnées
           function showSelectedSf(){
             $('.sf-tr-selected').each(function(){
               var sf = $(this).data('sf');
@@ -157,7 +157,7 @@
           }
 
           function toggleMarkers(){
-            
+
             // Par défaut on cache tous les markers, et plus loin on n'affiche que ceux qui doivent l'être
             hideAllMarkers();
 
@@ -172,12 +172,12 @@
             }
           } // Fin ToggleMarkers
 
-          // select and unselect activities 
+          // select and unselect activities
           $('.activity-td').on('click', function(){
             $(this).toggleClass('activity-td-selected');
             $('.sf-tr').removeClass('sf-tr-selected');
             toggleMarkers();
-            printSfByActivity();            
+            printSfByActivity();
           });
 
           // On bind le click sur le #table-sf car il n'est pas rechargé en Ajax
@@ -188,11 +188,11 @@
             toggleMarkers();
           });
         });
-    </script>
+{{--    </script>--}}
 
     <!-- GOOGLE MAPS -->
-     <script type="text/javascript">
-      var marker; 
+{{--     <script type="text/javascript">--}}
+      var marker;
       var markers = [];
       var map;
       var geocoder;
@@ -211,9 +211,9 @@
 
           @foreach ($sagesfemmes as $sf)
             @foreach ($sf->addresses as $address)
-              
+
               @if ($address->lat != null and $address->lng != null)
-                
+
                 var marker{{ $sf->id }}_{{$address->id}} = new google.maps.Marker({
                     position: new google.maps.LatLng( {{ $address->lat }}, {{ $address->lng }}),
                     id: {{$sf->id}} + '_' + {{$address->id}},
@@ -223,7 +223,7 @@
                 });
                 markers.push(marker{{ $sf->id }}_{{$address->id}});
 
-                var contentString{{ $sf->id }}_{{$address->id}} = 
+                var contentString{{ $sf->id }}_{{$address->id}} =
                       '<div class="container-fluid">'+
                       '<div class="row">'+
                       '<h3>{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</h3>'+
@@ -263,7 +263,7 @@
                   });
 
               @endif
-            @endforeach 
+            @endforeach
           @endforeach
         }
 

@@ -8,11 +8,11 @@
     </div>
     <div class="row">
         <div class="col-sm-6 text-center">
-            {{ HTML::image(asset('assets/img/notre-metier/Pendant_la_grossesse.jpg'), 'LoremPixel', ['class' => 'img-notre-metier']) }}
+            {{ Html::image(asset('assets/img/notre-metier/Pendant_la_grossesse.jpg'), 'LoremPixel', ['class' => 'img-notre-metier']) }}
         </div>
         <div class="col-sm-6">
             <h3>Pendant ma grossesse</h3>
-            
+
             <ul>
                 <li><span data-toggle="tooltip" data-placement="right" data-original-title="Peut être réalisé dès le 4ème mois, cet entretien permet de faire connaissance avec sa Sage-femme pour être informée sur la préparation à la naissance notamments">Entretien pré natal</span></li>
 
@@ -35,7 +35,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 text-center">
-            {{ HTML::image(asset('assets/img/notre-metier/Apres_accouchement.jpg'), 'LoremPixel', ['class' => 'img-notre-metier']) }}
+            {{ Html::image(asset('assets/img/notre-metier/Apres_accouchement.jpg'), 'LoremPixel', ['class' => 'img-notre-metier']) }}
         </div>
         <div class="col-sm-6">
             <h3>Après mon accouchement</h3>
@@ -52,7 +52,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 text-center">
-            {{ HTML::image(asset('assets/img/notre-metier/Et_apres.jpg'), 'LoremPixel', ['class' => 'img-notre-metier']) }}
+            {{ Html::image(asset('assets/img/notre-metier/Et_apres.jpg'), 'LoremPixel', ['class' => 'img-notre-metier']) }}
         </div>
         <div class="col-sm-6">
             <h3>Et après ??</h3>
@@ -68,7 +68,7 @@
 
                 <li><span data-toggle="tooltip" data-placement="right" data-original-title="Prolipsus, Fuites urinaires ...">Rééducation périnéale</span></li>
             </ul>
-            
+
         </div>
     </div>
 </div>

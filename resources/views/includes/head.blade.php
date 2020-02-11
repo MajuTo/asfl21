@@ -11,10 +11,10 @@
 </script>
 
 <!-- CSS -->
-{{ HTML::style('assets/bootstrap/css/bootstrap.min.css') }}
-{{ HTML::style('assets/font-awesome/css/font-awesome.min.css') }}
-<!-- {{ HTML::style('assets/css/custom.css') }} -->
-{{ HTML::style('assets/css/new-design.css') }}
+{{ Html::style('assets/bootstrap/css/bootstrap.min.css') }}
+{{ Html::style('assets/font-awesome/css/font-awesome.min.css') }}
+<!-- {{ Html::style('assets/css/custom.css') }} -->
+{{ Html::style('assets/css/new-design.css') }}
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

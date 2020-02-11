@@ -1,6 +1,6 @@
-{{ HTML::script('assets/js/jquery-1.11.1.min.js') }}
-{{ HTML::script('assets/bootstrap/js/bootstrap.min.js') }}
-{{ HTML::script('//cdn.ckeditor.com/4.5.7/basic/ckeditor.js') }}
+{{ Html::script('assets/js/jquery-1.11.1.min.js') }}
+{{ Html::script('assets/bootstrap/js/bootstrap.min.js') }}
+{{ Html::script('//cdn.ckeditor.com/4.5.7/basic/ckeditor.js') }}
 <script>
     $(document).ready(function(){
         $(".alert").fadeTo(5000, 500).slideUp(500, function(){
@@ -42,7 +42,7 @@
     function sizeContent() {
         var windowHeight = $(window).height();
         var contentHeight = windowHeight - 160 + "px";
-            
+
         $("#content-container").css("min-height", contentHeight);
     }
 

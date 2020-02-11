@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('css')
-    {{ HTML::style('assets/vertical-timeline/css/style.css') }}
+    {{ Html::style('assets/vertical-timeline/css/style.css') }}
 @stop
 @section('content')
 <div class="content-container">
