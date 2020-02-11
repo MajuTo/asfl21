@@ -6,10 +6,8 @@ use App\Address;
 use App\Helpers\Alert;
 use App\User;
 use Geocoder\Laravel\Facades\Geocoder;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
 
 class AddressController extends Controller
@@ -17,12 +15,12 @@ class AddressController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return View
      */
     public function index()
     {
-        $addresses = Address::where('user_id', '=', Auth::id())->get();
-        return view('address.index', [
+        $addresses = Address::where('user_id', '=', auth()->id())->get();
+        return view()->make('address.index', [
             'addresses' => $addresses
         ]);
     }
@@ -31,7 +29,7 @@ class AddressController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return View
      */
     public function create()
     {
@@ -50,7 +48,7 @@ class AddressController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @return RedirectResponse
      */
     public function store()
     {
@@ -61,18 +59,18 @@ class AddressController extends Controller
             'city' 		=> 'required'
         );
 
-        $validation = Validator::make(Input::all(), $rules);
+        $validation = Validator::make(request()->all(), $rules);
 
         if ($validation->fails()) {
             Alert::add("alert-danger", "L'adresse n'a pas pu être créée");
             return back()->withErrors($validation)->withInput();
         }
 
-        $address = new Address(Input::all());
+        $address = new Address(request()->all());
         if($this->isAdminRequest()){
-            $address->user_id = Session::get('user_id');
+            $address->user_id = session()->get('user_id');
         } else {
-            $address->user_id = Auth::id();
+            $address->user_id = auth()->id();
         }
 
         $address->country = 'FRANCE';
@@ -102,8 +100,8 @@ class AddressController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return void
      */
     public function show($id)
     {
@@ -115,20 +113,19 @@ class AddressController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return View
      */
     public function edit($id)
     {
         $address = Address::find($id);
         $user = User::find($address->user_id);
-        if($this->isAdminRequest()){
+        $admin = false;
+        $view = 'address.edit';
+        if($this->isAdminRequest()) {
             $admin = true;
-            $view = 'admin.address.edit';
-        } else {
-            $admin = false;
-            $view = 'address.edit';
+            $view = 'admin.' . $view;
         }
-        return view($view, [
+        return view()->make($view, [
             'address' => $address,
             'user' => $user,
             'admin' => $admin
@@ -140,7 +137,7 @@ class AddressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function update($id)
     {
@@ -190,7 +187,7 @@ class AddressController extends Controller
         if($this->isAdminRequest()){
             return redirect()->route('admin.user.index');
         } else {
-            return redirect()->route('user.edit', Auth::user()->id);
+            return redirect()->route('user.edit', auth()->user()->id);
         }
     }
 
@@ -199,7 +196,7 @@ class AddressController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
@@ -209,7 +206,7 @@ class AddressController extends Controller
         if($this->isAdminRequest()){
             return redirect()->route('admin.user.edit', $user_id);
         } else {
-            return redirect()->route('user.edit', Auth::user()->id);
+            return redirect()->route('user.edit', auth()->user()->id);
         }
     }
 
@@ -255,16 +252,13 @@ class AddressController extends Controller
             // The GoogleMapsProvider will return a result
             $address->lat = $geocode->getLatitude();
             $address->lng = $geocode->getLongitude();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             Alert::add('alert-warning', "Cette adresse n'existe pas dans Google Maps.");
             $address->lat = null;
             $address->lng = null;
         }
 
         return $address;
-
-        // return null;
-
     }
 
 }

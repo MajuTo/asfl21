@@ -7,21 +7,20 @@ use App\Address;
 use App\Group;
 use App\Helpers\Alert;
 use App\User;
-use Carbon\Carbon;
 use Hash;
-use Illuminate\Auth\Notifications\VerifyEmail;
-use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
+use Illuminate\View\View;
+use Invytr;
 use Mail;
-use URL;
+use Str;
 
 class UserController extends Controller
 {
 
-    use VerifiesEmails;
     /**
      * Display a listing of the resource.
      *
@@ -66,7 +65,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store()
     {
@@ -97,24 +96,21 @@ class UserController extends Controller
         $user->save();
         $user->activities()->sync($activities);
 
-        //Envoi mail
-        $user->sendInscriptionEmail();
-//        $verificationLink = URL::temporarySignedRoute('verification.verify', Carbon::now()->addWeek(), ['id' => $user->getKey()]);
-//        Mail::send('emails.inscription', ['user' => $user, 'verificationLink' => $verificationLink], function(Message $m) use ($user)	{
-//            $m->to($user->email)->subject('Inscription sur le site asfl21.fr');
-//        });
+        // Envoie l'email d'i,vitation
+        Invytr::invite($user);
 
         Alert::add("alert-success", "L'adhérent a bien été créé");
-
 
         return redirect()->route('admin.user.index');
     }
 
 
-
     /**
      * Generate a random username with the first two letters of the name and firstname and a random 4 digits number.
      * Verify if the generated username is not already in the database
+     * @param $name
+     * @param $firstname
+     * @return string
      */
     private function generateUsername($name, $firstname)
     {
@@ -131,32 +127,32 @@ class UserController extends Controller
     }
 
     /* Generates unique confirmation string for confirmation link */
-    private function generateConfirmation()
-    {
-        $confirmation = Str::random(12);
-        if (User::where('confirmation', '=', $confirmation)->first()) {
-            $this->generateConfirmation();
-        } else {
-            return $confirmation;
-        }
-    }
+//    private function generateConfirmation()
+//    {
+//        $confirmation = Str::random(12);
+//        if (User::where('confirmation', '=', $confirmation)->first()) {
+//            $this->generateConfirmation();
+//        } else {
+//            return $confirmation;
+//        }
+//    }
 
-    public function confirmation($confirmation){
-        $user = User::where('confirmation', '=', $confirmation)->first();
-        if ($user && $user->confirmed == 0) {
-            // return view()->make('user.confirmation.index', ['user' => $user]);
-            auth()->loginUsingId($user->id);
-
-            $user->confirmed = 1;
-            $user->save();
-
-            return redirect()->route('sessions.edit');
-        } else if ($user && $user->confirmed == 1) {
-            return view()->make('user.confirmation.error');
-        } else {
-            return redirect()->route('home');
-        }
-    }
+//    public function confirmation($confirmation){
+//        $user = User::where('confirmation', '=', $confirmation)->first();
+//        if ($user && $user->confirmed == 0) {
+//            // return view()->make('user.confirmation.index', ['user' => $user]);
+//            auth()->loginUsingId($user->id);
+//
+//            $user->confirmed = 1;
+//            $user->save();
+//
+//            return redirect()->route('sessions.edit');
+//        } else if ($user && $user->confirmed == 1) {
+//            return view()->make('user.confirmation.error');
+//        } else {
+//            return redirect()->route('home');
+//        }
+//    }
 
 
 
@@ -181,13 +177,13 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @param int $id
+     * @return Factory|RedirectResponse|View
      */
     public function edit($id)
     {
         $user = User::find($id);
-        $user_id = ($this->isAdminRequest()) ? $id : Auth::id();
+        $user_id = ($this->isAdminRequest()) ? $id : auth()->id();
         $addresses = Address::where('user_id', '=', $user_id)->get();
         $groups = Group::pluck('groupName', 'id');
         $activities = Activity::orderBy('activityName', 'ASC')->get();
@@ -195,8 +191,8 @@ class UserController extends Controller
         if( $this->isAdminRequest() ) {
             session(['user_id' => $id]);
         }
-        if ($id != Auth::id() && !$this->isAdminRequest()) {
-            return redirect()->route('user.edit', [Auth::id()]);
+        if ($id != auth()->id() && !$this->isAdminRequest()) {
+            return redirect()->route('user.edit', [auth()->id()]);
         }
 
         return view($view,[
@@ -212,12 +208,12 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update($id)
     {
         if ( !$this->isAdminRequest() ) {
-            $user = User::find(Auth::id());
+            $user = User::find(auth()->id());
         } else {
             $user = User::find($id);
         }
@@ -253,14 +249,14 @@ class UserController extends Controller
             $user->activities()->sync($activities);*/
             return redirect()->route('admin.user.index');
         }
-        return redirect()->route('user.edit', Auth::user()->id);
+        return redirect()->route('user.edit', auth()->user()->id);
     }
 
     /**
      * Update user's activities.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function updateActivities($id)
     {
@@ -276,15 +272,15 @@ class UserController extends Controller
         if( $this->isAdminRequest() ){
             return redirect()->route('admin.user.index');
         }
-        return redirect()->route('user.edit', Auth::user()->id);
+        return redirect()->route('user.edit', auth()->user()->id);
     }
 
     /**
      * Update user's activities.
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
+     * @return RedirectResponse
+     * @throws ValidationException
      */
     public function updatePassword(Request $request)
     {
@@ -308,7 +304,7 @@ class UserController extends Controller
      * Envoi un email à l'utilisateur depuis l'inteface de contact
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function sendEmail($id){
         $user = User::find($id);
@@ -341,23 +337,12 @@ class UserController extends Controller
      * Envoi un email à l'utilisateur.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function sendAgain($id){
         $user = User::find($id);
 
-//        $confirmation = $this->generateConfirmation();
-
-//        $user->confirmation = $confirmation;
-
-        //Sauvegarde
-//        $user->save();
-
-        //Envoi mail
-//        Mail::send('emails.inscription', ['user' => $user, 'confirmation' => $confirmation], function(Message $m) use ($user)	{
-//            $m->to($user->email)->subject('Inscription sur le site asfl21.fr');
-//        });
-        $user->sendInscriptionEmail();
+        Invytr::invite($user);
 
         Alert::add("alert-success", "L'email a bien été envoyé à " . $user->firstname . " " . $user->name);
         return redirect()->route('admin.user.index');
@@ -367,8 +352,8 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return void
      */
     public function destroy($id)
     {
@@ -380,7 +365,7 @@ class UserController extends Controller
      * Toogle the state of user (active/inactive).
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function toggle($id)
     {

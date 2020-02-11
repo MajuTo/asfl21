@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Helpers\Alert;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Password;
 
 class ResetPasswordController extends Controller
 {
@@ -30,40 +34,18 @@ class ResetPasswordController extends Controller
     public $redirectTo = '/';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest');
-        $this->redirectTo = route('admin.index', [], false);
-    }
-
-    /**
      * Get the response for a successful password reset.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @param string $response
+     * @return RedirectResponse
      */
     protected function sendResetResponse(Request $request, $response)
     {
-        Alert::add('alert-success', trans($response));
-        return redirect()->route('admin.index');
-    }
-
-    /**
-     * Get the response for a failed password reset.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $response
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    protected function sendResetFailedResponse(Request $request, $response)
-    {
-        return redirect()->back()
-            ->withInput($request->only('email'))
-            ->withErrors(['email' => trans($response)]);
+        Alert::add('alert-success', __('passwords.reset',[], 'fr'));
+        /** @var User $user */
+        $user = auth()->user();
+        $user->update(['loggedOnce' => 1]);
+        return redirect()->route('user.edit', ['user' => $user]);
     }
 }

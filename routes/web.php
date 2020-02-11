@@ -11,8 +11,6 @@
 |
 */
 
-use App\User;
-use Carbon\Carbon;
 
 Auth::routes(['verify' => true, 'register' => false]);
 
@@ -47,7 +45,6 @@ Route::get('inscription/verification/{confirmation}', 'UserController@confirmati
 Route::get('sage-femme/{id}/{name}', 'UserController@show')->name('user.show');
 Route::post('user/{user}', 'UserController@sendEmail')->name('user.email');
 Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show', 'store']]);
-Route::resource('adresse', 'AddressController');
 
 /* MENTIONS LEGALES */
 Route::get('mentions', function(){
@@ -58,7 +55,7 @@ Route::get('mentions', function(){
 /* nous-trouver */
 Route::post('getSfByActivity', 'NousTrouverController@getSfByActivity')->name('getSfByActivity');
 
-Route::middleware(['verified', 'auth', 'password'])->group(function(){
+Route::middleware(['auth'])->group(function(){
 
     /* Change pwd after first login */
 //    Route::get('sessions/{sessions}/edit', 'SessionsController@edit')->name('sessions.edit');
@@ -68,6 +65,7 @@ Route::middleware(['verified', 'auth', 'password'])->group(function(){
     Route::resource('user', 'UserController', ['only' => ['edit', 'update']]);
     Route::put('user/activities/{user}', 'UserController@updateActivities')->name('user.updateActivities');
     Route::put('user/update/password', 'UserController@updatePassword')->name('user.update.password');
+    Route::resource('adresse', 'AddressController');
 
     /* MESSAGE */
     Route::resource('message', 'MessageController');
@@ -86,21 +84,46 @@ Route::middleware(['verified', 'auth', 'password'])->group(function(){
         Route::resource('partner', 'PartnerController');
     });
 });
+Route::get('clear', function () {
+    Artisan::call('view:clear'); // Clear all compiled view files
+    Artisan::call('config:clear'); // Remove the configuration cache file
+    Artisan::call('cache:clear'); // Flush the application cache
+    Artisan::call('optimize:clear'); // Remove the cached bootstrap files
+    Artisan::call('route:clear'); // Remove the route cache file
+
+    return back();
+});
+
+Route::get('/add', function () {
+    $f = Faker\Factory::create('fr_FR');
+    $user = new \App\User(request()->all());
+
+    $user->name = $f->lastName;
+    $user->firstname = $f->firstName;
+    $user->username = $f->userName;
+    $user->password = Hash::make(Str::random(8));
+    $user->email = $f->email;
+    $user->confirmation = $f->randomNumber(8);
+    $user->group_id = 2;
+
+    $user->save();
+
+    Invytr::invite($user);;
+});
+
 
 Route::get('test', function () {
 
+    $t = new \GlaivePro\Invytr\Helpers\Translator();
+        $t->replaceResponseLines();
+    dd(
+        app('translator'),
+        app()->getLocale(),
+        now()->addWeek()->format('d/m/Y H\Hi'),
+        route('test', ['toto' => 'tata'])
+    );
     auth()->loginUsingId(2);
-//    return redirect('/');
+    return redirect('/');
 //    $p = new \Symfony\Component\Process\Process('composer update');
 //    dump($p->run(), $p->getExitCode(), $p->getOutput());
-}); //->middleware('verified');
-
-Route::get('email', function () {
-    auth()->logout();
-    $users = User::all();
-
-    return response()->json([
-        'link' => URL::temporarySignedRoute('verification.verify', Carbon::now()->addWeek(), ['id' => $users[1]->getKey()]),
-        'users' => $users,
-    ]);
-});
+})->name('test'); //->middleware('verified');

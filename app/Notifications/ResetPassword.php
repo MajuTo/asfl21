@@ -3,22 +3,23 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Password;
+use Illuminate\Notifications\Notification;
 
-class InscriptionEmail extends Notification
+class ResetPassword extends Notification
 {
     use Queueable;
+    private $token;
 
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param $token
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -33,7 +34,7 @@ class InscriptionEmail extends Notification
     }
 
     /**
-     * Build the mail representation of the notification.
+     * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
      * @return MailMessage
@@ -41,12 +42,10 @@ class InscriptionEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Inscription sur le site asfl21.fr')
-            ->view('emails.inscription', [
-                'user' => $notifiable,
-                'token' => Password::broker()->createToken($notifiable),
-                'email' => $notifiable->email,
-                'limit' => now()->addMinutes(config('auth.passwords.'.config('auth.defaults.passwords').'.invites_expire'))->format('d/m/Y H\hi')
+            ->subject('Réinitialisation de mot de passe pour le site asfl21.fr')
+            ->view('emails.auth.reminder', [
+                'token' => $this->token,
+                'email' => $notifiable->email
             ]);
     }
 
