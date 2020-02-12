@@ -3,7 +3,7 @@
 // TODO : Voir le format de la date dans le date picker du calendrier
 // TODO : Faire le tour des controllers pour voir les relations plutôt que des requetes séparées ??
 // TODO : Revoir les validations de données (Validator ? Request dédiées ?)
-// TODO : Google Map API KEY ? Plus de markers -_-
+// DONE : Google Map API KEY ? Plus de markers -_-
 // TODO : Revoir la gestion des activités / update activities et autre (UserController)
 // TODO : Revoir la mise a jour du mot de passe de profil (updatePassword UserController)
 // TODO : Voir pour migrer sur BootStrap 4 ?
