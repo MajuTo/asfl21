@@ -150,7 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
-        AdamWathan\BootForms\BootFormsServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

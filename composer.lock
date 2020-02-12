@@ -4,94 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71298e24cd52180bfc151e1a9ff98c9a",
+    "content-hash": "870546fcb7fc149fcdc142538ef1f304",
     "packages": [
-        {
-            "name": "adamwathan/bootforms",
-            "version": "v0.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/adamwathan/bootforms.git",
-                "reference": "2d5a8baa79cf6818cfa418276567c6ee6f40ed54"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/adamwathan/bootforms/zipball/2d5a8baa79cf6818cfa418276567c6ee6f40ed54",
-                "reference": "2d5a8baa79cf6818cfa418276567c6ee6f40ed54",
-                "shasum": ""
-            },
-            "require": {
-                "adamwathan/form": "^0.9.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "3.7.*",
-                "satooshi/php-coveralls": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "AdamWathan\\BootForms": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Adam Wathan",
-                    "email": "adam.wathan@gmail.com"
-                }
-            ],
-            "description": "Just a Formbuilder with some Bootstrap specific conveniences. Remembers old input, retrieves error messages and handles all your boilerplate Bootstrap markup automatically.",
-            "abandoned": true,
-            "time": "2017-07-18T15:25:51+00:00"
-        },
-        {
-            "name": "adamwathan/form",
-            "version": "v0.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/adamwathan/form.git",
-                "reference": "d44534bf812512daa9d5a3b68d0ef7928def99b8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/adamwathan/form/zipball/d44534bf812512daa9d5a3b68d0ef7928def99b8",
-                "reference": "d44534bf812512daa9d5a3b68d0ef7928def99b8",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "illuminate/support": "4.*",
-                "mockery/mockery": "~0.9",
-                "phpunit/phpunit": "3.7.*",
-                "satooshi/php-coveralls": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "AdamWathan\\Form": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Adam Wathan",
-                    "email": "adam.wathan@gmail.com"
-                }
-            ],
-            "description": "A basic framework agnostic form building package with a few extra niceties like remembering old input and retrieving error messages.",
-            "abandoned": true,
-            "time": "2017-07-07T16:13:45+00:00"
-        },
         {
             "name": "barryvdh/laravel-ide-helper",
             "version": "v2.6.6",
@@ -1144,6 +1058,126 @@
             "time": "2019-12-20T13:11:11+00:00"
         },
         {
+            "name": "galahad/bootforms",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/glhd/bootforms.git",
+                "reference": "99fc28ae3c34b050d39bf747c20b30818a5e6a0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/glhd/bootforms/zipball/99fc28ae3c34b050d39bf747c20b30818a5e6a0a",
+                "reference": "99fc28ae3c34b050d39bf747c20b30818a5e6a0a",
+                "shasum": ""
+            },
+            "require": {
+                "galahad/forms": "^1.1|dev-master",
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "php-coveralls/php-coveralls": "^1.0",
+                "phpunit/phpunit": "6.3.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Galahad\\BootForms\\BootFormsServiceProvider"
+                    ],
+                    "aliases": {
+                        "BootForm": "Galahad\\BootForms\\Facades\\BootForm"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Galahad\\BootForms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Wathan",
+                    "email": "adam.wathan@gmail.com"
+                },
+                {
+                    "name": "Chris Morrell",
+                    "homepage": "http://www.cmorrell.com"
+                }
+            ],
+            "description": "Form builder with Bootstrap-specific conveniences. Remembers old input, retrieves error messages and handles all your boilerplate Bootstrap markup automatically.",
+            "keywords": [
+                "BootForm",
+                "Forms",
+                "bootforms",
+                "bootstrap",
+                "laravel"
+            ],
+            "time": "2019-12-09T13:43:49+00:00"
+        },
+        {
+            "name": "galahad/forms",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/glhd/forms.git",
+                "reference": "afc19720a6aa299f97b7305cb1801673728e1857"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/glhd/forms/zipball/afc19720a6aa299f97b7305cb1801673728e1857",
+                "reference": "afc19720a6aa299f97b7305cb1801673728e1857",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "php-coveralls/php-coveralls": "^1.0",
+                "phpunit/phpunit": "6.3.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Galahad\\Forms\\FormsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Galahad\\Forms\\Facades\\Form"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Galahad\\Forms\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Wathan",
+                    "email": "adam.wathan@gmail.com"
+                },
+                {
+                    "name": "Chris Morrell",
+                    "homepage": "http://www.cmorrell.com"
+                }
+            ],
+            "description": "Base for builder",
+            "time": "2019-12-09T13:42:45+00:00"
+        },
+        {
             "name": "geocoder-php/chain-provider",
             "version": "4.1.1",
             "source": {
@@ -1437,6 +1471,124 @@
                 "laravel"
             ],
             "time": "2020-02-03T08:45:50+00:00"
+        },
+        {
+            "name": "guzzlehttp/guzzle",
+            "version": "6.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "43ece0e75098b7ecd8d13918293029e555a50f82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/43ece0e75098b7ecd8d13918293029e555a50f82",
+                "reference": "43ece0e75098b7ecd8d13918293029e555a50f82",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/promises": "^1.0",
+                "guzzlehttp/psr7": "^1.6.1",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
+                "psr/log": "^1.1"
+            },
+            "suggest": {
+                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
+                "psr/log": "Required for using the Log middleware"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2019-12-23T11:57:10+00:00"
+        },
+        {
+            "name": "guzzlehttp/promises",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/promises.git",
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Guzzle promises library",
+            "keywords": [
+                "promise"
+            ],
+            "time": "2016-12-20T10:07:11+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1760,16 +1912,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v6.14.0",
+            "version": "v6.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "9e78f1aeb2c60bd7badcbafc352a9a2c5863c60c"
+                "reference": "2842924b9ce7ffc43b09b96966a64a2ce0708aaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9e78f1aeb2c60bd7badcbafc352a9a2c5863c60c",
-                "reference": "9e78f1aeb2c60bd7badcbafc352a9a2c5863c60c",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2842924b9ce7ffc43b09b96966a64a2ce0708aaf",
+                "reference": "2842924b9ce7ffc43b09b96966a64a2ce0708aaf",
                 "shasum": ""
             },
             "require": {
@@ -1779,8 +1931,7 @@
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
-                "league/commonmark": "^1.1",
-                "league/commonmark-ext-table": "^2.1",
+                "league/commonmark": "^1.3",
                 "league/flysystem": "^1.0.8",
                 "monolog/monolog": "^1.12|^2.0",
                 "nesbot/carbon": "^2.0",
@@ -1903,7 +2054,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2020-02-04T14:38:06+00:00"
+            "time": "2020-02-11T14:26:43+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -2222,71 +2373,6 @@
             "time": "2020-02-08T23:42:03+00:00"
         },
         {
-            "name": "league/commonmark-ext-table",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/commonmark-ext-table.git",
-                "reference": "3228888ea69636e855efcf6636ff8e6316933fe7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark-ext-table/zipball/3228888ea69636e855efcf6636ff8e6316933fe7",
-                "reference": "3228888ea69636e855efcf6636ff8e6316933fe7",
-                "shasum": ""
-            },
-            "require": {
-                "league/commonmark": "~0.19.3|^1.0",
-                "php": "^7.1"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.14",
-                "phpstan/phpstan": "~0.11",
-                "phpunit/phpunit": "^7.0|^8.0",
-                "symfony/var-dumper": "^4.0",
-                "vimeo/psalm": "^3.0"
-            },
-            "type": "commonmark-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\CommonMark\\Ext\\Table\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Martin Hasoň",
-                    "email": "martin.hason@gmail.com"
-                },
-                {
-                    "name": "Webuni s.r.o.",
-                    "homepage": "https://www.webuni.cz"
-                },
-                {
-                    "name": "Colin O'Dell",
-                    "email": "colinodell@gmail.com",
-                    "homepage": "https://www.colinodell.com"
-                }
-            ],
-            "description": "Table extension for league/commonmark",
-            "homepage": "https://github.com/thephpleague/commonmark-ext-table",
-            "keywords": [
-                "commonmark",
-                "extension",
-                "markdown",
-                "table"
-            ],
-            "time": "2019-09-26T13:28:33+00:00"
-        },
-        {
             "name": "league/flysystem",
             "version": "1.0.64",
             "source": {
@@ -2453,16 +2539,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.29.1",
+            "version": "2.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "e509be5bf2d703390e69e14496d9a1168452b0a2"
+                "reference": "912dff66d2690ca66abddb9b291a1df5f371d3b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e509be5bf2d703390e69e14496d9a1168452b0a2",
-                "reference": "e509be5bf2d703390e69e14496d9a1168452b0a2",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/912dff66d2690ca66abddb9b291a1df5f371d3b4",
+                "reference": "912dff66d2690ca66abddb9b291a1df5f371d3b4",
                 "shasum": ""
             },
             "require": {
@@ -2519,7 +2605,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-01-21T09:36:43+00:00"
+            "time": "2020-02-07T15:25:46+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3681,6 +3767,66 @@
                 "phra"
             ],
             "time": "2020-01-13T10:41:09+00:00"
+        },
+        {
+            "name": "spatie/geocoder",
+            "version": "3.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/geocoder.git",
+                "reference": "006b79000a95240021bb97e21c57bce898b8157d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/geocoder/zipball/006b79000a95240021bb97e21c57bce898b8157d",
+                "reference": "006b79000a95240021bb97e21c57bce898b8157d",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0",
+                "illuminate/support": "^5.0|^6.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.0",
+                "vlucas/phpdotenv": "^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Geocoder\\GeocoderServiceProvider"
+                    ],
+                    "aliases": {
+                        "Geocoder": "Spatie\\Geocoder\\Facades\\Geocoder"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Geocoder\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be"
+                }
+            ],
+            "description": "Geocoding addresses to coordinates",
+            "homepage": "https://github.com/spatie/geocoder",
+            "keywords": [
+                "coordinate",
+                "geocode",
+                "laravel",
+                "location",
+                "map"
+            ],
+            "time": "2020-01-04T15:51:51+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
