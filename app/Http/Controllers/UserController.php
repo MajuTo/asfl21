@@ -127,15 +127,15 @@ class UserController extends Controller
     }
 
     /* Generates unique confirmation string for confirmation link */
-//    private function generateConfirmation()
-//    {
-//        $confirmation = Str::random(12);
-//        if (User::where('confirmation', '=', $confirmation)->first()) {
-//            $this->generateConfirmation();
-//        } else {
-//            return $confirmation;
-//        }
-//    }
+    private function generateConfirmation()
+    {
+        $confirmation = Str::random(12);
+        if (User::where('confirmation', '=', $confirmation)->first()) {
+            $this->generateConfirmation();
+        } else {
+            return $confirmation;
+        }
+    }
 
 //    public function confirmation($confirmation){
 //        $user = User::where('confirmation', '=', $confirmation)->first();
