@@ -1,4 +1,4 @@
-// TODO : Refaire les adresses (Geocoder ? spatie/geocoder ?)
+// DONE : Refaire les adresses (Geocoder ? spatie/geocoder ?)
 // TODO : Imaginer les events du calendar en BDD ??
 // TODO : Voir le format de la date dans le date picker du calendrier
 // TODO : Faire le tour des controllers pour voir les relations plutôt que des requetes séparées ??
@@ -11,3 +11,4 @@
 // TODO : Faire le tour des champs de BDD qui ne sont plus utiles -> migrations
 // DONE : adamwathan/bootforms --> galahad/bootforms
 // TODO : galahad/bootforms --> glhd/aire
+// TODO : Logger les dates de login des gens ?

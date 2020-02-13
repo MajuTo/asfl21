@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.14.0 on 2020-02-11 20:34:25.
+ * Generated for Laravel 6.15.1 on 2020-02-13 20:53:49.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2826,6 +2826,48 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Assert if a job was dispatched after the response was sent based on a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|int|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertDispatchedAfterResponse($command, $callback = null)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertDispatchedAfterResponse($command, $callback);
+        }
+        
+        /**
+         * Assert if a job was pushed after the response was sent a number of times.
+         *
+         * @param string $command
+         * @param int $times
+         * @return void 
+         * @static 
+         */ 
+        public static function assertDispatchedAfterResponseTimes($command, $times = 1)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertDispatchedAfterResponseTimes($command, $times);
+        }
+        
+        /**
+         * Determine if a job was dispatched based on a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|null $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function assertNotDispatchedAfterResponse($command, $callback = null)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertNotDispatchedAfterResponse($command, $callback);
+        }
+        
+        /**
          * Get all of the jobs matching a truth-test callback.
          *
          * @param string $command
@@ -2840,6 +2882,20 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Get all of the jobs dispatched after the response was sent matching a truth-test callback.
+         *
+         * @param string $command
+         * @param callable|null $callback
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function dispatchedAfterResponse($command, $callback = null)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        return $instance->dispatchedAfterResponse($command, $callback);
+        }
+        
+        /**
          * Determine if there are any stored commands for a given class.
          *
          * @param string $command
@@ -2850,6 +2906,19 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
                         return $instance->hasDispatched($command);
+        }
+        
+        /**
+         * Determine if there are any stored commands for a given class.
+         *
+         * @param string $command
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasDispatchedAfterResponse($command)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        return $instance->hasDispatchedAfterResponse($command);
         }
          
     }
@@ -4987,7 +5056,7 @@ namespace Illuminate\Support\Facades {
          * Register an event listener with the dispatcher.
          *
          * @param string|array $events
-         * @param mixed $listener
+         * @param \Closure|string $listener
          * @return void 
          * @static 
          */ 
@@ -5008,6 +5077,19 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Events\Dispatcher $instance */
                         return $instance->hasListeners($eventName);
+        }
+        
+        /**
+         * Determine if the given event has any wildcard listeners.
+         *
+         * @param string $eventName
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasWildcardListeners($eventName)
+        {
+                        /** @var \Illuminate\Events\Dispatcher $instance */
+                        return $instance->hasWildcardListeners($eventName);
         }
         
         /**
@@ -14885,72 +14967,54 @@ namespace Illuminate\Support {
  
 }
 
-namespace AdamWathan\BootForms\Facades { 
+namespace Galahad\BootForms\Facades { 
 
     /**
      * 
      *
+     * @codeCoverageIgnore 
+     * @mixin \Galahad\BootForms\BasicFormBuilder
+     * @mixin \Galahad\BootForms\HorizontalFormBuilder
+     * @mixin \Galahad\Forms\FormBuilder
      */ 
     class BootForm {
         
         /**
          * 
          *
+         * @return \Galahad\Forms\Elements\FormOpen 
          * @static 
          */ 
-        public static function open()
+        public static function open($action = null)
         {
-                        /** @var \AdamWathan\BootForms\BootForm $instance */
-                        return $instance->open();
+                        /** @var \Galahad\BootForms\BootForm $instance */
+                        return $instance->open($action);
         }
         
         /**
          * 
          *
+         * @param $columnSizes
+         * @return \Galahad\Forms\Elements\FormOpen 
          * @static 
          */ 
-        public static function openHorizontal($columnSizes)
+        public static function openHorizontal($columnSizes, $action = null)
         {
-                        /** @var \AdamWathan\BootForms\BootForm $instance */
-                        return $instance->openHorizontal($columnSizes);
-        }
-         
-    }
- 
-}
-
-namespace GlaivePro\Invytr\Facades { 
-
-    /**
-     * 
-     *
-     */ 
-    class Invytr {
-        
-        /**
-         * Send a set link to the given user.
-         *
-         * @param \Illuminate\Foundation\Auth\User $user
-         * @return bool 
-         * @static 
-         */ 
-        public static function invite($user)
-        {
-                        /** @var \GlaivePro\Invytr\Invytr $instance */
-                        return $instance->invite($user);
+                        /** @var \Galahad\BootForms\BootForm $instance */
+                        return $instance->openHorizontal($columnSizes, $action);
         }
         
         /**
-         * Delete a token record by user.
+         * 
          *
-         * @param \Illuminate\Foundation\Auth\User $user
-         * @return void 
+         * @param mixed|null $bound
+         * @return string 
          * @static 
          */ 
-        public static function revokeInvitation($user)
+        public static function bind($bound = null)
         {
-                        /** @var \GlaivePro\Invytr\Invytr $instance */
-                        $instance->revokeInvitation($user);
+                        /** @var \Galahad\BootForms\BootForm $instance */
+                        return $instance->bind($bound);
         }
          
     }
@@ -16139,6 +16203,133 @@ namespace Collective\Html {
         {
                         /** @var \Collective\Html\HtmlBuilder $instance */
                         return $instance->componentCall($method, $parameters);
+        }
+         
+    }
+ 
+}
+
+namespace GlaivePro\Invytr\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Invytr {
+        
+        /**
+         * Send a set link to the given user.
+         *
+         * @param \Illuminate\Foundation\Auth\User $user
+         * @return bool 
+         * @static 
+         */ 
+        public static function invite($user)
+        {
+                        /** @var \GlaivePro\Invytr\Invytr $instance */
+                        return $instance->invite($user);
+        }
+        
+        /**
+         * Delete a token record by user.
+         *
+         * @param \Illuminate\Foundation\Auth\User $user
+         * @return void 
+         * @static 
+         */ 
+        public static function revokeInvitation($user)
+        {
+                        /** @var \GlaivePro\Invytr\Invytr $instance */
+                        $instance->revokeInvitation($user);
+        }
+         
+    }
+ 
+}
+
+namespace Spatie\Geocoder\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Geocoder {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setApiKey($apiKey)
+        {
+                        /** @var \Spatie\Geocoder\Geocoder $instance */
+                        return $instance->setApiKey($apiKey);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setLanguage($language)
+        {
+                        /** @var \Spatie\Geocoder\Geocoder $instance */
+                        return $instance->setLanguage($language);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setRegion($region)
+        {
+                        /** @var \Spatie\Geocoder\Geocoder $instance */
+                        return $instance->setRegion($region);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setBounds($bounds)
+        {
+                        /** @var \Spatie\Geocoder\Geocoder $instance */
+                        return $instance->setBounds($bounds);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setCountry($country)
+        {
+                        /** @var \Spatie\Geocoder\Geocoder $instance */
+                        return $instance->setCountry($country);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getCoordinatesForAddress($address)
+        {
+                        /** @var \Spatie\Geocoder\Geocoder $instance */
+                        return $instance->getCoordinatesForAddress($address);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAddressForCoordinates($lat, $lng)
+        {
+                        /** @var \Spatie\Geocoder\Geocoder $instance */
+                        return $instance->getAddressForCoordinates($lat, $lng);
         }
          
     }
@@ -19023,13 +19214,15 @@ namespace  {
 
     class Str extends \Illuminate\Support\Str {}
 
-    class BootForm extends \AdamWathan\BootForms\Facades\BootForm {}
-
-    class Invytr extends \GlaivePro\Invytr\Facades\Invytr {}
+    class BootForm extends \Galahad\BootForms\Facades\BootForm {}
 
     class Form extends \Collective\Html\FormFacade {}
 
+    class Invytr extends \GlaivePro\Invytr\Facades\Invytr {}
+
     class Html extends \Collective\Html\HtmlFacade {}
+
+    class Geocoder extends \Spatie\Geocoder\Facades\Geocoder {}
  
 }
 

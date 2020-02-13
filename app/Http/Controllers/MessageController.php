@@ -77,7 +77,7 @@ class MessageController extends Controller
         $message->title = request()->get('title');
         $message->content = request()->get('content');
         $message->category_id = (request()->get('admin-msg')) ? 1 : 2;
-        $message->user_id = Auth::id();
+        $message->user_id = auth()->id();
 
         //Sauvegarde
         $message->save();

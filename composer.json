@@ -19,8 +19,7 @@
         "laravel/ui": "^1.1",
         "laravelcollective/html": "^6.0",
         "nesbot/carbon": "^2.25",
-        "spatie/geocoder": "^3.6",
-        "toin0u/geocoder-laravel": "^4.0"
+        "spatie/geocoder": "^3.6"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

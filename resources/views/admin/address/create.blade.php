@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="col-sm-8 col-sm-offset-2">
-        {!! BootForm::openHorizontal((['lg' => [2, 10]])->action(route('admin.adresse.store')) !!}
+        {!! BootForm::openHorizontal(['lg' => [2, 10]])->action(route('admin.adresse.store')) !!}
             {!! Form::token() !!}
             {!! BootForm::bind($address) !!}
             {!! BootForm::text('Nom', 'name')->placeHolder("Nom de l'adresse...")->required() !!}
@@ -14,7 +14,7 @@
             @else
                 {!! BootForm::checkbox('Téléphone privé', 'hidePhone') !!}
             @endif
-            {!! BootForm::textarea('Description', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)") v
+            {!! BootForm::textarea('Description', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)") !!}
 
             {!! BootForm::submit('Ajouter', 'pull-right btn-pink') !!}
 
