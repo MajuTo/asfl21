@@ -14,31 +14,15 @@
 
 Auth::routes(['verify' => true, 'register' => false]);
 
-//Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@home')->name('home');
-//Route::get('/home', function () {
-//    return redirect()->route('home');
-//});
 Route::get('notre-metier', 'NotreMetierController@index')->name('notremetier');
 Route::get('nous-trouver', 'NousTrouverController@index')->name('noustrouver');
-
+Route::get('liens-utiles',  'LinkController@index')->name('link');
+Route::get('partenaires', 'PartnerController@index')->name('partner');
 
 Route::get('contact',  'ContactController@index')->name('contact.index');
 Route::post('contact', 'ContactController@sendcontact')->name('sendcontact');
 
-Route::get('liens-utiles',  'LinkController@index')->name('link');
-Route::get('partenaires', 'PartnerController@index')->name('partner');
-
-// RESTful route => see php artisan routes
-
-/* AUTHENTIFICATION */
-//Route::get('login', 'SessionsController2@create')->name('login');
-//Route::get('logout', 'SessionsController2@destroy')->name('logout');
-//Route::resource('sessions', 'SessionsController2', ['only' => ['create', 'store', 'destroy', 'edit', 'update']]);
-//
-///* REGISTRATION */
-///* PASSWORD RECOVERY */
-//Route::resource('password', 'RemindersController');
 Route::get('inscription/verification/{confirmation}', 'UserController@confirmation')->name('confirmation');
 
 // Route::resource('user', 'UserController', ['only' => ['show']]);
@@ -56,10 +40,6 @@ Route::get('mentions', function(){
 Route::post('getSfByActivity', 'NousTrouverController@getSfByActivity')->name('getSfByActivity');
 
 Route::middleware(['auth'])->group(function(){
-
-    /* Change pwd after first login */
-//    Route::get('sessions/{sessions}/edit', 'SessionsController@edit')->name('sessions.edit');
-//    Route::put('sessions/{sessions}', 'SessionsController@update')->name('sessions.update');
 
     /* USER */
     Route::resource('user', 'UserController', ['only' => ['edit', 'update']]);
