@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\Alert;
 use App\Message;
 use App\Category;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,12 +15,12 @@ class MessageController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return View
      */
     public function index()
     {
         if($this->isAdminRequest()) {
-            return view('admin.message.index', [
+            return view()->make('admin.message.index', [
                 'messages' => Message::orderBy('created_at','desc')->paginate(10)
             ]);
         } else {
@@ -57,7 +59,7 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @return RedirectResponse
      */
     public function store()
     {
@@ -104,7 +106,7 @@ class MessageController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return View
      */
     public function edit($id)
     {
@@ -112,7 +114,7 @@ class MessageController extends Controller
         $message = Message::find($id);
         $categories = Category::pluck('categoryName', 'id');
 
-        return view($view, [
+        return view()->make($view, [
             'message' => $message,
             'categories'=> $categories
         ]);
@@ -123,7 +125,7 @@ class MessageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function update($id)
     {
@@ -139,7 +141,7 @@ class MessageController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

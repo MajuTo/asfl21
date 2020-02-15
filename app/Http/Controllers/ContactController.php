@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Alert;
+use Illuminate\Contracts\View\View;
 use Illuminate\Mail\Message;
 use Mail;
 
@@ -11,7 +12,7 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function index()
     {

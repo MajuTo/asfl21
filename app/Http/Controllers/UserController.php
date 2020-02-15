@@ -211,7 +211,7 @@ class UserController extends Controller
                 $activities = request()->get('activities');
             }
             $user->activities()->sync($activities);*/
-            return redirect()->route('admin.user.index');
+            return redirect()->route('admin.user.edit', $user->id);
         }
         return redirect()->route('user.edit', auth()->user()->id);
     }
@@ -231,7 +231,7 @@ class UserController extends Controller
         Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
 
         if( $this->isAdminRequest() ){
-            return redirect()->back();
+            return redirect()->route('admin.user.edit', $user->id);
         }
         return redirect()->route('user.edit', auth()->user()->id);
     }
