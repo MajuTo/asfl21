@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Alert;
 use App\Link;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class LinkController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function index()
     {
@@ -29,7 +31,7 @@ class LinkController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function create()
     {
@@ -42,7 +44,7 @@ class LinkController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store()
     {
@@ -85,7 +87,7 @@ class LinkController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function edit($id)
     {
@@ -99,7 +101,7 @@ class LinkController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update($id)
     {
@@ -130,7 +132,7 @@ class LinkController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function destroy($id)
     {

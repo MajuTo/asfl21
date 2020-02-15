@@ -159,7 +159,7 @@ class AddressController extends Controller
         Alert::add("alert-success", "L'adresse a bien été enregistrée");
 
         if($this->isAdminRequest()){
-            return redirect()->route('admin.user.index');
+            return redirect()->route('admin.user.edit', $address->user_id);
         } else {
             return redirect()->route('user.edit', auth()->user()->id);
         }

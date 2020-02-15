@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Alert;
 use App\Partner;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\File;
 
 class PartnerController extends Controller
@@ -13,13 +15,13 @@ class PartnerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return View
      */
     public function index()
     {
         if($this->isAdminRequest()){
             $partners = Partner::orderBy('partnerName')->paginate(10);
-            return view('admin.partner.index', [
+            return view()->make('admin.partner.index', [
                 'partners' => $partners
             ]);
         }else{
@@ -34,11 +36,11 @@ class PartnerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return View
      */
     public function create()
     {
-        return view('admin.partner.create', [
+        return view()->make('admin.partner.create', [
             'partner'   => new Partner()
         ]);
     }
@@ -47,7 +49,7 @@ class PartnerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @return RedirectResponse
      */
     public function store()
     {
@@ -98,11 +100,11 @@ class PartnerController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return View
      */
     public function edit($id)
     {
-        return view('admin.partner.edit',[
+        return view()->make('admin.partner.edit',[
             'partner' => Partner::find($id)
         ]);
     }
@@ -112,7 +114,7 @@ class PartnerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function update($id)
     {
@@ -158,7 +160,7 @@ class PartnerController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
