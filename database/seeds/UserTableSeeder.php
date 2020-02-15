@@ -16,7 +16,6 @@ class UserTableSeeder extends Seeder {
             'password'  => Hash::make('root'),
             'email'     => 'admin@musaya.net',
             'mobile'    => '987654321',
-            'confirmation' => '1234789',
             'group_id' => 3
             ]);
          User::create([
@@ -26,7 +25,6 @@ class UserTableSeeder extends Seeder {
             'password'  => Hash::make('root'),
             'email'     => 'majuto@free.fr',
             'mobile'    => '987654321',
-            'confirmation' => '123478',
             'group_id' => 3
             ]);
     }

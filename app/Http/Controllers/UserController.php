@@ -83,10 +83,8 @@ class UserController extends Controller
         }
 
         $user = new User(request()->all());
-        $confirmation = $this->generateConfirmation();
 
         $user->username = $this->generateUsername($user->name, $user->firstname);
-        $user->confirmation = $confirmation;
         $user->password = Hash::make(Str::random(8));
 
         //Activities
@@ -96,7 +94,7 @@ class UserController extends Controller
         $user->save();
         $user->activities()->sync($activities);
 
-        // Envoie l'email d'i,vitation
+        // Envoie l'email d'invitation
         Invytr::invite($user);
 
         Alert::add("alert-success", "L'adhérent a bien été créé");
@@ -125,36 +123,6 @@ class UserController extends Controller
             return $username;
         }
     }
-
-    /* Generates unique confirmation string for confirmation link */
-    private function generateConfirmation()
-    {
-        $confirmation = Str::random(12);
-        if (User::where('confirmation', '=', $confirmation)->first()) {
-            $this->generateConfirmation();
-        } else {
-            return $confirmation;
-        }
-    }
-
-//    public function confirmation($confirmation){
-//        $user = User::where('confirmation', '=', $confirmation)->first();
-//        if ($user && $user->confirmed == 0) {
-//            // return view()->make('user.confirmation.index', ['user' => $user]);
-//            auth()->loginUsingId($user->id);
-//
-//            $user->confirmed = 1;
-//            $user->save();
-//
-//            return redirect()->route('sessions.edit');
-//        } else if ($user && $user->confirmed == 1) {
-//            return view()->make('user.confirmation.error');
-//        } else {
-//            return redirect()->route('home');
-//        }
-//    }
-
-
 
     /**
      * Display the specified resource.
@@ -212,11 +180,7 @@ class UserController extends Controller
      */
     public function update($id)
     {
-        if ( !$this->isAdminRequest() ) {
-            $user = User::find(auth()->id());
-        } else {
-            $user = User::find($id);
-        }
+        $user = ( $this->isAdminRequest() ) ? User::find($id) : User::find(auth()->id());
 
         $fields = request()->only(['name', 'firstname', 'username', 'email', 'mobile', 'description', 'group_id']);
         // validation form
@@ -263,14 +227,11 @@ class UserController extends Controller
         $user = User::find($id);
 
         $activities =  request()->get('activities') ?? [];
-//        if(sizeof(request()->get('activities')) > 0){
-//            $activities = request()->get('activities');
-//        }
         $user->activities()->sync($activities);
         Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
 
         if( $this->isAdminRequest() ){
-            return redirect()->route('admin.user.index');
+            return redirect()->back();
         }
         return redirect()->route('user.edit', auth()->user()->id);
     }
