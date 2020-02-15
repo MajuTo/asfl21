@@ -290,9 +290,9 @@ class UserController extends Controller
             'password_confirmation' => 'required',
         ]);
 
-        $user->password = bcrypt($request->input('password'));
+        $user->password = Hash::make($request->input('password'));
         $user->save();
-        Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
+        Alert::add("alert-success", "Votre nouveau mot de passe a bien été enregistré.");
 
         if( $this->isAdminRequest() ){
             return redirect()->route('admin.user.index');

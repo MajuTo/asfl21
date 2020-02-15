@@ -9,6 +9,11 @@
 // TODO : Voir pour migrer sur BootStrap 4 ?
 // TODO : Passer sur un package de notification style laracasts/flash ?
 // TODO : Faire le tour des champs de BDD qui ne sont plus utiles -> migrations
+// (users : phone, hidePhone, fax, hideFax, address, zipCode, city, lat, lng) -> addresses
+// (users : confirmation, confirmed) -> plus utile ?
+// (addresses : description) -> a quoi ca sert ?
 // DONE : adamwathan/bootforms --> galahad/bootforms
 // TODO : galahad/bootforms --> glhd/aire
 // TODO : Logger les dates de login des gens ?
+// TODO : user description qui ne peut etre null (voir a changer null en '' dans le save du user)
+// TODO : redirect()->back() apres un édit admin, pour retomber au bon endroit dans la pagination (edit d'un user par exemple)
