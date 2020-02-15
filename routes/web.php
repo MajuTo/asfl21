@@ -113,15 +113,15 @@ Route::get('/add', function () {
 
 
 Route::get('test', function () {
-
     $client = new \GuzzleHttp\Client();
 
     $g = new \Spatie\Geocoder\Geocoder($client);
     $g->setApiKey(env('GOOGLE_MAPS_API_KEY'));
     $g->setLanguage(env('GOOGLE_MAPS_LOCALE'));
+     ['lat' => $lat, 'lng' => $lng] = Spatie\Geocoder\Facades\Geocoder::getCoordinatesForAddress('5 rue du Regiment de Bourgogne 21200 Beaune');
  dd(
-     $g->getCoordinatesForAddress('11 rue Jean Morelot 21370 PLOMBIERES LES DIJON'),
-     $g->getCoordinatesForAddress('26 noulevard petitjean 21000 dijon')
+     $lat, $lng,
+     $g->getCoordinatesForAddress('5 rue du Regiment de Bourgogne 21200 Beaune')
 );
 
     $t = new \GlaivePro\Invytr\Helpers\Translator();
