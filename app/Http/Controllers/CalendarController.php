@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Alert;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class CalendarController extends Controller
 {
@@ -308,11 +310,11 @@ class CalendarController extends Controller
   /**
      * Store a newly created resource in storage.
      *
-     * @return View
+     * @return RedirectResponse | View
      */
     public function store()
     {
-        $date = '';
+        $date = null;
 
         setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
         // Carbon::setLocale('fra');
@@ -322,6 +324,11 @@ class CalendarController extends Controller
         } elseif (request('date2')) {
             $date = Carbon::createFromTimestamp(strtotime(request('date2')));
         }
+
+        if ($date === null ) {
+           Alert::add('alert-danger', 'Vous devez indiquer une date.');
+           return redirect()->back();
+    }
 
         foreach ($this->events as $key => $event) {
             $d = clone($date);
