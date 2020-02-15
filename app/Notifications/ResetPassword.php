@@ -42,6 +42,7 @@ class ResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->from('noreply@asfl21.fr', 'ASFL21')
             ->subject('Réinitialisation de mot de passe pour le site asfl21.fr')
             ->view('emails.auth.reminder', [
                 'token' => $this->token,
