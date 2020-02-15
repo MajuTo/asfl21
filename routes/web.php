@@ -74,46 +74,48 @@ Route::get('clear', function () {
     return back();
 });
 
-Route::get('/add', function () {
-    $f = Faker\Factory::create('fr_FR');
-    $user = new \App\User(request()->all());
+//Route::get('/add', function () {
+//    $f = Faker\Factory::create('fr_FR');
+//    $user = new \App\User(request()->all());
+//
+//    $user->name = $f->lastName;
+//    $user->firstname = $f->firstName;
+//    $user->username = $f->userName;
+//    $user->password = Hash::make(Str::random(8));
+//    $user->email = $f->email;
+//    $user->confirmation = $f->randomNumber(8);
+//    $user->group_id = 2;
+//
+//    $user->save();
+//
+//    Invytr::invite($user);
+//});
 
-    $user->name = $f->lastName;
-    $user->firstname = $f->firstName;
-    $user->username = $f->userName;
-    $user->password = Hash::make(Str::random(8));
-    $user->email = $f->email;
-    $user->confirmation = $f->randomNumber(8);
-    $user->group_id = 2;
-
-    $user->save();
-
-    Invytr::invite($user);;
-});
+//Route::get('migrate', function () {
+//    echo(Artisan::call('migrate --force'));
+//});
 
 
-Route::get('test', function () {
-    $client = new \GuzzleHttp\Client();
-
-    $g = new \Spatie\Geocoder\Geocoder($client);
-    $g->setApiKey(env('GOOGLE_MAPS_API_KEY'));
-    $g->setLanguage(env('GOOGLE_MAPS_LOCALE'));
-     ['lat' => $lat, 'lng' => $lng] = Spatie\Geocoder\Facades\Geocoder::getCoordinatesForAddress('5 rue du Regiment de Bourgogne 21200 Beaune');
- dd(
-     $lat, $lng,
-     $g->getCoordinatesForAddress('5 rue du Regiment de Bourgogne 21200 Beaune')
-);
-
-    $t = new \GlaivePro\Invytr\Helpers\Translator();
-        $t->replaceResponseLines();
-    dd(
-        app('translator'),
-        app()->getLocale(),
-        now()->addWeek()->format('d/m/Y H\Hi'),
-        route('test', ['toto' => 'tata'])
-    );
-    auth()->loginUsingId(2);
-    return redirect('/');
-//    $p = new \Symfony\Component\Process\Process('composer update');
-//    dump($p->run(), $p->getExitCode(), $p->getOutput());
-})->name('test'); //->middleware('verified');
+//Route::get('test', function () {
+//    $client = new \GuzzleHttp\Client();
+//
+//    $g = new \Spatie\Geocoder\Geocoder($client);
+//    $g->setApiKey(env('GOOGLE_MAPS_API_KEY'));
+//    $g->setLanguage(env('GOOGLE_MAPS_LOCALE'));
+//     ['lat' => $lat, 'lng' => $lng] = Spatie\Geocoder\Facades\Geocoder::getCoordinatesForAddress('5 rue du Regiment de Bourgogne 21200 Beaune');
+// dd(
+//     $lat, $lng,
+//     $g->getCoordinatesForAddress('5 rue du Regiment de Bourgogne 21200 Beaune')
+//);
+//
+//    $t = new \GlaivePro\Invytr\Helpers\Translator();
+//        $t->replaceResponseLines();
+//    dd(
+//        app('translator'),
+//        app()->getLocale(),
+//        now()->addWeek()->format('d/m/Y H\Hi'),
+//        route('test', ['toto' => 'tata'])
+//    );
+//    auth()->loginUsingId(2);
+//    return redirect('/');
+//})->name('test'); //->middleware('verified');
