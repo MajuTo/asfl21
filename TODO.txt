@@ -21,3 +21,4 @@
 // TODO : afficher en grid/card les partenaires, voire les liens utiles aussi (eventuellement icone /logo?).
 // TODO : jQuery -> enlever ou mettre a jour
 // TODO : passer de momentJs a date-fns
+// TODO : mise a jour vis.js (timeline calendrier)
