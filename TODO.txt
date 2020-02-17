@@ -1,4 +1,4 @@
-// DONE : Refaire les adresses (Geocoder ? spatie/geocoder ?)
+// DONE : Refaire les adresses (Geocoder ? spatie/geocoder ?) -> spatie/geocoder
 // DONE : Google Map API KEY ? Plus de markers -_-
 // DONE : adamwathan/bootforms --> galahad/bootforms
 // DONE : table password_reminders ?? -> Supprimée, plus utile
@@ -19,3 +19,5 @@
 // TODO : Logger les dates de login des gens ?
 // TODO : user description qui ne peut etre null (voir a changer null en '' dans le save du user)
 // TODO : afficher en grid/card les partenaires, voire les liens utiles aussi (eventuellement icone /logo?).
+// TODO : jQuery -> enlever ou mettre a jour
+// TODO : passer de momentJs a date-fns
