@@ -6,7 +6,7 @@
 	{{ Html::style('assets/datepicker/bootstrap-datepicker3.css') }}
 
     <!-- timeline -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.min.css">
+	{{ Html::style('https://unpkg.com/vis-timeline@7.1.2/styles/vis-timeline-graph2d.min.css') }}
     {{ Html::style('assets/css/vis-timeline.css')}}
 @stop
 @section('content')
@@ -29,7 +29,8 @@
         </div>
     </div>
     <hr>
-    @if(!$events)
+{{--    @dump($json_events)--}}
+    @if(!$json_events)
     <div class="row">
         <div class="col-sm-12">
             <p class="text-center">Ce calendrier vous permettra d'avoir des repères tout au long de votre grossesse. Entrez la date de vos dernières règles ou du début de votre grossesse, vous obtiendrez ensuite les dates importantes de vos consultations,examens médicaux, et droits.</p>
@@ -66,152 +67,89 @@
 @stop
 
 @section('script')
-
-    <!-- TIMELINE -->
-    {{ Html::script('assets/js/moment-with-locales.min.js') }}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.0/vis.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        /* VARIABLES */
-        var event       = {!! $json_events !!};
-        var dataset     = [];
-        var grouping    = {!! $json_groups !!};
-        var groupset    = [];
-
-        // var start_limit = {!! $start_limit !!};
-        // var end_limit   = {!! $end_limit !!};
-
-        /* TIMELINE */
-        // Dynamically create dataset
-        for (var i = 0; i < event.length; i++) {
-            var startDate       = new Date(event[i]['start']);
-            var startDateString = ('0' + startDate.getDate()).slice(-2) + '.' + ('0' + (startDate.getMonth()+1)).slice(-2) + '.' + startDate.getFullYear() ;
-            if (event[i]['end']){
-                var endDate   = new Date(event[i]['end']);
-                var endDateString = ('0' + endDate.getDate()).slice(-2) + '.' + ('0' + (endDate.getMonth()+1)).slice(-2) + '.' + endDate.getFullYear();
-            }
-
-            // timeline
-            if (event[i]['end']) {
-                // var timestring = "<span>Du " + event[i]['start'] + " au " + event[i]['end'] + "</span>";
-                var timestring = "<span>Du " + startDateString + " au " + endDateString + "</span>";
-            } else {
-                // var timestring = "<span>Le " + event[i]['start'] + "</span>";
-                var timestring = "<span>Le " + startDateString + "</span>";
-            }
-
-            dataset.push({
-                id: i,
-                content:    "<i class='" + event[i]['icon'] + " time-icon'></i> " +
-                            "<div id=\"content" + i + "\" class=\"text-left info-minus\">" +
-                                "<div style='padding-right: 5px'>" + "<i class='" + event[i]['icon'] + "'></i><em> " + timestring + "</em></div>" +
-                                "<div class=\"info-content\"><strong>" + event[i]['title'] + "</strong></div>" +
-                            "</div>",
-                group: event[i]['group'],
-                start: event[i]['start'],
-                end: event[i]['end'],
-                className: 'vis-item-' + grouping[event[i]['group']]['content'],
-                type: 'box'
-            });
-        }
-
-        // DOM element where the Timeline will be attached
-        var containerTimeline = document.getElementById('visualization');
-
-        // Create a GroupSet
-        for (var j = 0; j < grouping.length; j++) {
-            groupset.push({
-                id: j,
-                //content: grouping[j]['content'].charAt(0).toUpperCase() + grouping[j]['content'].slice(1),
-                content: grouping[j]['title'],
-                value: grouping[j]['id'],
-                className: 'group-' + grouping[j]['content']
-            });
-        }
-
-        var groups  = new vis.DataSet(groupset);
-        var items   = new vis.DataSet(dataset);
-
-        // Option Configuration for the Timeline
-        var options = {
-            zoomMin: 1000 * 60 * 60 * 24 * 5,
-            zoomMax: 1000 * 60 * 60 * 24 * 31 * 12,
-            zoomable: false,
-            moveable: false,
-            multiselect: true,
-            locale: 'fr'
-        };
-
-        // Create a Timeline
-        var timeline = new vis.Timeline(containerTimeline, items, options);
-
-        // Toggle Order by group on click
-        $('#group-toggle').click(function() {
-            if( $('#group-toggle').hasClass('no-group')){
-                $('#group-toggle').removeClass('no-group');
-                $('#group-toggle').text('Cacher les groupes');
-                timeline.setGroups(groups);
-            } else {
-                $('#group-toggle').addClass('no-group');
-                $('#group-toggle').text('Montrer les groupes');
-                timeline.setGroups();
-            }
-        });
-
-        // Timeline Eventlistener (on select, create personalized list)
-        timeline.on('select', function (properties) {
-            $('#mylist > li').remove();
-            var selected = timeline.getSelection().sort(function(a, b){return a-b});
-            if (selected.length > 0) {
-                $('#explication').hide();
-            } else {
-                $('#explication').show();
-            }
-            $.each(selected, function(key, value){
-                if (value != 'undefined') {
-                    $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
-                }
-            });
-        });
-
-        /* EFFECTS */
-        // On hover, show more text in top-center of timeline
-        $('.vis-item').mouseenter(function(event) {
-            var element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-            $(this).css('z-index', '999');
-            $('#show-more').html($(this).children('.vis-item-content').children(':nth-child(2)').clone());
-            $('#show-more').addClass('span-plus');
-            $('#show-more #' + element).addClass('info-plus');
-        });
-
-        $('.vis-item').mouseleave(function(event) {
-            var element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-            $('#show-more').children(':first-child').remove();
-            $('#show-more').removeClass('span-plus');
-            $(this).css('z-index', '0');
-        });
-
-      })
-    </script>
-    <!-- END TIMELINE -->
-
-
     {{ Html::script('assets/datepicker/bootstrap-datepicker.min.js') }}
     {{ Html::script('assets/datepicker/bootstrap-datepicker.fr.min.js') }}
-    <script>
-        $(document).ready(function(){
+    {{ Html::script('assets/js/datepicker.js') }}
+    @if ($json_events)
+    {{ Html::script('https://unpkg.com/vis-timeline@7.1.2/standalone/umd/vis-timeline-graph2d.min.js') }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // DOM element where the Timeline will be attached
+            let containerTimeline = document.getElementById('visualization');
+
+            let groups = new vis.DataSet(@json($json_groups));
+            let items = new vis.DataSet(@json($json_events));
+
+            // Option Configuration for the Timeline
+            let options = {
+                zoomMin: 1000 * 60 * 60 * 24 * 5,
+                zoomMax: 1000 * 60 * 60 * 24 * 31 * 10,
+                zoomable: false,
+                moveable: false,
+                multiselect: true,
+                start: new Date(@json($start_limit)),
+                end: new Date(@json($end_limit)),
+                locale: 'fr'
+            };
+
+            // Create a Timeline
+            let timeline = new vis.Timeline(containerTimeline, items, options);
+
+            // Toggle Order by group on click
+            let btnGroupToggle = $('#group-toggle');
+            btnGroupToggle.click(function () {
+                if (btnGroupToggle.hasClass('no-group')) {
+                    btnGroupToggle.removeClass('no-group');
+                    btnGroupToggle.text('Cacher les groupes');
+                    timeline.setGroups(groups);
+                } else {
+                    btnGroupToggle.addClass('no-group');
+                    btnGroupToggle.text('Montrer les groupes');
+                    timeline.setGroups();
+                }
+            });
+
+            // Timeline Eventlistener (on select, create personalized list)
+            timeline.on('select', function (properties) {
+                $('#mylist > li').remove();
+                let selected = timeline.getSelection().sort(function (a, b) {
+                    return a - b
+                });
+                if (selected.length > 0) {
+                    $('#explication').hide();
+                } else {
+                    $('#explication').show();
+                }
+                $.each(selected, function (key, value) {
+                    if (typeof value !== 'undefined' && value !== null) {
+                        $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
+                    }
+                });
+            });
+
+            /* EFFECTS */
+            // On hover, show more text in top-center of timeline
+            let timelineItems = $('.vis-item');
+            let timelinePopup = $('#show-more');
+            timelineItems.mouseenter(function (event) {
+                let element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
+                $(this).css('z-index', '999');
+                timelinePopup.html($(this).children('.vis-item-content').children(':nth-child(2)').clone());
+                timelinePopup.addClass('span-plus');
+                $('#show-more #' + element).addClass('info-plus');
+            });
+
+            timelineItems.mouseleave(function (event) {
+                let element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
+                timelinePopup.children(':first-child').remove();
+                timelinePopup.removeClass('span-plus');
+                $(this).css('z-index', '0');
+            });
+
+            /* END TIMELINE */
             $('#nav-calendrier').addClass('active');
-            $( ".datedropper" ).datepicker({
-                format: 'mm/dd/yyyy',
-                language : 'fr'
-            });
-            $('#date1').change(function(){
-            	$('#date2').val('');
-            });
-            $('#date2').change(function(){
-            	$('#date1').val('');
-            });
         });
     </script>
+    @endif
 
 @stop

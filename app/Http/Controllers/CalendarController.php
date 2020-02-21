@@ -11,29 +11,36 @@ class CalendarController extends Controller
 {
     // 1 jour = 86400 secondes
     private $groups = [
-        ['id' => 0,
-            'content' => 'conception',
-            'title' => 'Conception'],
-
-        ['id' => 1,
-            'content' => 'consultation',
-            'title' => 'Consultation'],
-
-        ['id' => 2,
-            'content' => 'medical',
-            'title' => 'Médical'],
-
-        ['id' => 3,
-            'content' => 'administratif',
-            'title' => 'Administratif'],
-
-        ['id' => 4,
-            'content' => 'maternite',
-            'title' => 'Maternité'],
-
-        ['id' => 5,
-            'content' => 'naissance',
-            'title' => 'Naissance']
+        0 => [
+            'id' => 0,
+            'class' => 'conception',
+            'content' => 'Conception'
+        ],
+        1 => [
+            'id' => 1,
+            'class' => 'consultation',
+            'content' => 'Consultation'
+        ],
+        2 => [
+            'id' => 2,
+            'class' => 'medical',
+            'content' => 'Médical'
+        ],
+        3 => [
+            'id' => 3,
+            'class' => 'administratif',
+            'content' => 'Administratif'
+        ],
+        4 => [
+            'id' => 4,
+            'class' => 'maternite',
+            'content' => 'Maternité'
+        ],
+        5 => [
+            'id' => 5,
+            'class' => 'naissance',
+            'content' => 'Naissance'
+        ]
     ];
 
     private $events = [
@@ -288,11 +295,11 @@ class CalendarController extends Controller
     public function index()
     {
         return view()->make('calendar.index', [
-            'events' => null,
-            'json_events' => null,
-            'json_groups' => null,
-            'start_limit' => null,
-            'end_limit' => null
+            'events' => '',
+            'json_events' => '',
+            'json_groups' => '',
+            'start_limit' => '',
+            'end_limit' => ''
         ]);
     }
 
@@ -320,39 +327,53 @@ class CalendarController extends Controller
         // Carbon::setLocale('fra');
 
         if (request('date1')) {
-            $date = Carbon::createFromTimestamp(strtotime(request('date1')))->addDays(14);
+            $date = Carbon::createFromFormat('d/m/Y h:i:s', request('date1') . ' 12:00:00', config('app.timezone'))->addDays(14);
         } elseif (request('date2')) {
-            $date = Carbon::createFromTimestamp(strtotime(request('date2')));
+            $date = Carbon::createFromFormat('d/m/Y h:i:s', request('date2') . ' 12:00:00', config('app.timezone'));
         }
 
         if ($date === null ) {
            Alert::add('alert-danger', 'Vous devez indiquer une date.');
            return redirect()->back();
-    }
+        }
+
+        $endDate = null;
 
         foreach ($this->events as $key => $event) {
             $d = clone($date);
 
+            $event['id'] = $key;
+            $event['start'] = $d->addWeeks($event['date'])->format('Y-m-d');
+            $event['startDateString'] = utf8_encode($d->formatLocalized('%d %B %Y'));
+            $endDate= $d;
             if ($event['week']) {
-                $this->events[$key]['start'] = $d->addWeeks($this->events[$key]['date'])->format('Y-m-d');
-                $this->events[$key]['end'] = $d->addWeeks(1)->format('Y-m-d');
-            } else {
-                $this->events[$key]['start'] = $d->addWeeks($this->events[$key]['date'])->format('Y-m-d');
+                $event['end'] = $d->addWeeks(1)->format('Y-m-d');
+                $event['endDateString'] = utf8_encode($d->formatLocalized('%d %B %Y'));
+                $endDate= $d;
             }
+            $event['periodString'] = ($event['week']) ? 'Du '.$event['startDateString'].' au '.$event['endDateString'] : 'Le ' . $event['startDateString'];
+            $event['content'] = nl2br(view()->make('calendar.test', compact('event'))->render());
+            $event['className'] = 'vis-item-' . mb_strtolower($this->groups[$event['group']]['class']);
+            $event['type'] = 'box';
+
+            $this->events[$key] = $event;
         }
 
-        $jourj = Carbon::createFromFormat('Y-m-d', $this->events[23]['end'])->diffInDays(Carbon::now());
-        $start_limit = Carbon::createFromFormat('Y-m-d', $this->events[0]['start'])->subMonth()->format('Y-m-d');
-        $end_limit = Carbon::createFromFormat('Y-m-d', $this->events[23]['end'])->addMonth()->format('Y-m-d');
+        foreach ($this->groups as $key => $group) {
+            $this->groups[$key]['value'] = $group['id'];
+            $this->groups[$key]['className'] = 'group-' . $group['class'];
+        }
 
+        $jourj = $endDate->diffInDays(Carbon::now());
+        $start_limit = $date->subWeeks(2)->format('Y-m-d');
+        $end_limit = $endDate->addWeeks(2)->format('Y-m-d');
 
         return view()->make('calendar.index', [
-            'events' => $this->events,
             'jourj' => $jourj,
-            'start_limit' => json_encode($start_limit),
-            'end_limit' => json_encode($end_limit),
-            'json_events' => json_encode($this->events),
-            'json_groups' => json_encode($this->groups)
+            'start_limit' => $start_limit,
+            'end_limit' => $end_limit,
+            'json_events' => $this->events,
+            'json_groups' => $this->groups
         ]);
 
     }
