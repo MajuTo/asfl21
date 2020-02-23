@@ -352,7 +352,7 @@ class CalendarController extends Controller
                 $endDate= $d;
             }
             $event['periodString'] = ($event['week']) ? 'Du '.$event['startDateString'].' au '.$event['endDateString'] : 'Le ' . $event['startDateString'];
-            $event['content'] = nl2br(view()->make('calendar.test', compact('event'))->render());
+            $event['content'] = nl2br(view()->make('calendar.item', compact('event'))->render());
             $event['className'] = 'vis-item-' . mb_strtolower($this->groups[$event['group']]['class']);
             $event['type'] = 'box';
 
