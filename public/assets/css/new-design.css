@@ -24,6 +24,11 @@ body {
     margin-right: 50px;
 }
 
+.overflow-auto {
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
 h1 {
     color: #B5003A;
     font-family: "Handlee", sans-serif;
@@ -104,7 +109,7 @@ label.notchecked::before {
 
 /* ** Forms ** */
 .form-control {
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .form-control:focus {
@@ -247,7 +252,7 @@ label.notchecked::before {
 /* ADMIN */
 
 .nav-tabs.admin-menu {
-    border-bottom: 0px;
+    border-bottom: 0;
 }
 
 .nav-tabs.admin-menu > li > a {
@@ -305,7 +310,7 @@ label.notchecked::before {
 
 #accueil-text p:nth-child(1) {
     margin-top: 25px;
-    margin-left: 0px;
+    margin-left: 0;
 }
 
 #accueil-text p:nth-child(2) {
@@ -518,8 +523,8 @@ label.notchecked::before {
 #notremetier .row .whoooshh-row {
     margin-bottom: 0;
     background: rgba(181, 0, 58, .9);
-    -webkit-box-shadow: 0px 2px 5px #000;
-    box-shadow: 0px 2px 5px #000;
+    -webkit-box-shadow: 0 2px 5px #000;
+    box-shadow: 0 2px 5px #000;
 }
 
 #notremetier #preparation {
@@ -655,15 +660,6 @@ label.notchecked::before {
 /* ******************** */
 
 
-/* ** IDENTIFICATION ** */
-#email-reminder {
-    margin-top: 40px;
-}
-
-/* ** END IDENTIFICATION ** */
-/* ************************ */
-
-
 /* ****************** */
 /* ** LIENS UTILES ** */
 #liensutile-table {
@@ -683,7 +679,7 @@ label.notchecked::before {
 }
 
 #nous-h3 {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 #contact-add {
@@ -731,7 +727,7 @@ label.notchecked::before {
         opacity: 0;
     }
     50% {
-        top: 0px;
+        top: 0;
         opacity: .5;
     }
     75% {
@@ -750,7 +746,7 @@ label.notchecked::before {
         opacity: 0;
     }
     50% {
-        top: 0px;
+        top: 0;
         opacity: .5;
     }
     75% {
@@ -769,7 +765,7 @@ label.notchecked::before {
         opacity: 0;
     }
     50% {
-        top: 0px;
+        top: 0;
         opacity: .5;
     }
     75% {
@@ -788,7 +784,7 @@ label.notchecked::before {
         opacity: 0;
     }
     50% {
-        top: 0px;
+        top: 0;
         opacity: .5;
     }
     75% {
@@ -887,7 +883,7 @@ label.notchecked::before {
 #ani-nbr {
     position: relative;
     opacity: 0;
-    font-size: 0em;
+    font-size: 0;
     animation-name: toglow;
     animation-duration: 1.5s;
     animation-iteration-count: 1;
@@ -898,7 +894,7 @@ label.notchecked::before {
 
 @-webkit-keyframes toglow {
     0% {
-        font-size: 0em;
+        font-size: 0;
         opacity: 0;
     }
     5% {
@@ -921,7 +917,7 @@ label.notchecked::before {
 
 @-o-keyframes toglow {
     0% {
-        font-size: 0em;
+        font-size: 0;
         opacity: 0;
     }
     5% {
@@ -944,7 +940,7 @@ label.notchecked::before {
 
 @-moz-keyframes toglow {
     0% {
-        font-size: 0em;
+        font-size: 0;
         opacity: 0;
     }
     5% {
@@ -967,7 +963,7 @@ label.notchecked::before {
 
 @keyframes toglow {
     0% {
-        font-size: 0em;
+        font-size: 0;
         opacity: 0;
     }
     5% {
@@ -1146,8 +1142,7 @@ footer {
 
     #noustrouver-subtext {
         text-align: justify;
-        margin: 0;
-        margin-bottom: 20px;
+        margin: 0 0 20px;
     }
 
     .map_container {
