@@ -344,19 +344,22 @@ class CalendarController extends Controller
 
             $event['id'] = $key;
             $event['start'] = $d->addWeeks($event['date'])->format('Y-m-d');
-            $event['startDateString'] = utf8_encode($d->formatLocalized('%d %B %Y'));
+            $event['startDateString'] = $d->formatLocalized('%d %B %Y');
             $endDate= $d;
             if ($event['week']) {
                 $event['end'] = $d->addWeeks(1)->format('Y-m-d');
-                $event['endDateString'] = utf8_encode($d->formatLocalized('%d %B %Y'));
+                $event['endDateString'] = $d->formatLocalized('%d %B %Y');
                 $endDate= $d;
             }
-            $event['periodString'] = ($event['week']) ? 'Du '.$event['startDateString'].' au '.$event['endDateString'] : 'Le ' . $event['startDateString'];
+            $event['periodString'] = ($event['week']) ?
+                utf8_encode('Du '.$event['startDateString'].' au '.$event['endDateString']) :
+                utf8_encode('Le ' . $event['startDateString']);
+            unset($event['startDateString'], $event['endDateString']);
             $event['content'] = nl2br(view()->make('calendar.item', compact('event'))->render());
             $event['className'] = 'vis-item-' . mb_strtolower($this->groups[$event['group']]['class']);
             $event['type'] = 'box';
 
-            $this->events[$key] = $event;
+            $this->events[$key] = ($event);
         }
 
         foreach ($this->groups as $key => $group) {
