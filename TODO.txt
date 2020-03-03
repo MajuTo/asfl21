@@ -8,9 +8,10 @@
 // DONE : redirect()->back() apres un édit admin, pour éviter de retourner a l'index (edit d'un user par exemple)
 // DONE : jQuery -> enlever ou mettre a jour | 1.11.1 -> 3.4.1
 // DONE : mise a jour vis.js (timeline calendrier) 4.15.0 -> 7.1.2
+// DONE : Voir le format de la date dans le date picker du calendrier -> géré dans CalendarController avec la màj de Visjs
+// DONE : passer de momentJs a date-fns -> ni l'un ni l'autre :D
 // TODO : (addresses : description) -> a quoi ca sert ?
 // TODO : Imaginer les events du calendar en BDD ??
-// TODO : Voir le format de la date dans le date picker du calendrier
 // TODO : Faire le tour des controllers pour voir les relations plutôt que des requetes séparées ??
 // TODO : Revoir les validations de données (Validator ? Request dédiées ?)
 // TODO : Revoir la gestion des activités / update activities et autre (UserController)
@@ -21,5 +22,5 @@
 // TODO : Logger les dates de login des gens ?
 // TODO : user description qui ne peut etre null (voir a changer null en '' dans le save du user)
 // TODO : afficher en grid/card les partenaires, voire les liens utiles aussi (eventuellement icone /logo?).
-// TODO : passer de momentJs a date-fns
 // TODO : revoir la page d'une sage femme (voire https://www.asfl21.fr/sage-femme/46/MATHIEU-Lise) adresse
+// TODO : éventuellement revoir les checkbox activités
