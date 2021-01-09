@@ -76,7 +76,7 @@
 
           // on google map 'chez vous' search
           $('#chezvous_textbox').keyup(function(event){
-            if(event.keyCode =n= 13){
+            if(event.keyCode === 13){
               $('#chezvous_button').click();
             }
           });
