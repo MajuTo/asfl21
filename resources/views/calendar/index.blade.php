@@ -5,8 +5,8 @@
 @section('css')
 	{{ Html::style('assets/datepicker/bootstrap-datepicker3.css') }}
 
-    <!-- timeline -->
-	{{ Html::style('https://unpkg.com/vis-timeline@7.1.2/styles/vis-timeline-graph2d.min.css') }}
+    {{-- timeline --}}
+	{{ Html::style('https://unpkg.com/vis-timeline@7.2.1/styles/vis-timeline-graph2d.min.css') }}
     {{ Html::style('assets/css/vis-timeline.css')}}
 @stop
 @section('content')
@@ -29,7 +29,6 @@
         </div>
     </div>
     <hr>
-{{--    @dump($json_events)--}}
     @if(!$json_events)
     <div class="row">
         <div class="col-sm-12">
@@ -71,7 +70,7 @@
     {{ Html::script('assets/datepicker/bootstrap-datepicker.fr.min.js') }}
     {{ Html::script('assets/js/datepicker.js') }}
     @if ($json_events)
-    {{ Html::script('https://unpkg.com/vis-timeline@7.1.2/standalone/umd/vis-timeline-graph2d.min.js') }}
+    {{ Html::script('https://unpkg.com/vis-timeline@7.2.1/standalone/umd/vis-timeline-graph2d.min.js') }}
     <script type="text/javascript">
         $(document).ready(function () {
             // DOM element where the Timeline will be attached
