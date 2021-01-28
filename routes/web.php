@@ -14,55 +14,55 @@
 
 Auth::routes(['verify' => true, 'register' => false]);
 
-//Route::get('/', 'HomeController@home')->name('home');
+//Route::get('/', [HomeController::class, 'home')->]name('home');
 Route::view('/', 'accueil.home')->name('home');
-Route::get('notre-metier', 'NotreMetierController@index')->name('notremetier');
-Route::get('nous-trouver', 'NousTrouverController@index')->name('noustrouver');
-Route::get('liens-utiles',  'LinkController@index')->name('link');
-Route::get('partenaires', 'PartnerController@index')->name('partner');
+Route::get('notre-metier', [\App\Http\Controllers\NotreMetierController::class, 'index'])->name('notremetier');
+Route::get('nous-trouver', [\App\Http\Controllers\NousTrouverController::class, 'index'])->name('noustrouver');
+Route::get('liens-utiles',  [\App\Http\Controllers\LinkController::class, 'index'])->name('link');
+Route::get('partenaires', [\App\Http\Controllers\PartnerController::class, 'index'])->name('partner');
 
-Route::get('contact',  'ContactController@index')->name('contact.index');
-Route::post('contact', 'ContactController@sendcontact')->name('sendcontact');
+Route::get('contact',  [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
+Route::post('contact', [\App\Http\Controllers\ContactController::class, 'sendcontact'])->name('sendcontact');
 
-Route::get('inscription/verification/{confirmation}', 'UserController@confirmation')->name('confirmation');
+Route::get('inscription/verification/{confirmation}', [\App\Http\Controllers\UserController::class, 'confirmation'])->name('confirmation');
 
 // Route::resource('user', 'UserController', ['only' => ['show']]);
-Route::get('sage-femme/{id}/{name}', 'UserController@show')->name('user.show');
-Route::post('user/{user}', 'UserController@sendEmail')->name('user.email');
-Route::resource('calendrier', 'CalendarController', ['only' => ['index', 'show', 'store']]);
+Route::get('sage-femme/{id}/{name}', [\App\Http\Controllers\UserController::class, 'show'])->name('user.show');
+Route::post('user/{user}', [\App\Http\Controllers\UserController::class, 'sendEmail'])->name('user.email');
+Route::resource('calendrier', \App\Http\Controllers\CalendarController::class, ['only' => ['index', 'show', 'store']]);
 
 /* MENTIONS LEGALES */
-Route::get('mentions', function(){
+Route::get('mentions', function() {
     return view()->make('mentions');
 })->name('mentions');
 
 /* AJAX */
 /* nous-trouver */
-Route::post('getSfByActivity', 'NousTrouverController@getSfByActivity')->name('getSfByActivity');
+Route::post('getSfByActivity', [\App\Http\Controllers\NousTrouverController::class, 'getSfByActivity'])->name('getSfByActivity');
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function() {
 
     /* USER */
-    Route::resource('user', 'UserController', ['only' => ['edit', 'update']]);
-    Route::put('user/activities/{user}', 'UserController@updateActivities')->name('user.updateActivities');
-    Route::put('user/update/password', 'UserController@updatePassword')->name('user.update.password');
-    Route::resource('adresse', 'AddressController');
+    Route::resource('user', \App\Http\Controllers\UserController::class, ['only' => ['edit', 'update']]);
+    Route::put('user/activities/{user}', [\App\Http\Controllers\UserController::class, 'updateActivities'])->name('user.updateActivities');
+    Route::put('user/update/password', [\App\Http\Controllers\UserController::class, 'updatePassword'])->name('user.update.password');
+    Route::resource('adresse', \App\Http\Controllers\AddressController::class);
 
     /* MESSAGE */
-    Route::resource('message', 'MessageController');
+    Route::resource('message', \App\Http\Controllers\MessageController::class);
 
     /* user with prefix */
-    Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function(){
-        Route::get('/', 'UserController@index')->name('index');
-        Route::resource('link', 'LinkController');
-        Route::resource('user', 'UserController');
-        Route::resource('adresse', 'AddressController');
-        Route::put('user/{user}/toggle', 'UserController@toggle')->name('user.toggle');
-        Route::put('user/activities/{user}', 'UserController@updateActivities')->name('user.updateActivities');
-        Route::get('user/sendagain/{user}', 'UserController@sendAgain')->name('user.sendagain');
-        Route::resource('message', 'MessageController');
-        Route::resource('activity', 'ActivityController');
-        Route::resource('partner', 'PartnerController');
+    Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function() {
+        Route::get('/', [\App\Http\Controllers\UserController::class, 'index'])->name('index');
+        Route::resource('link', \App\Http\Controllers\LinkController::class);
+        Route::resource('user', \App\Http\Controllers\UserController::class);
+        Route::resource('adresse', \App\Http\Controllers\AddressController::class);
+        Route::put('user/{user}/toggle', [\App\Http\Controllers\UserController::class, 'toggle'])->name('user.toggle');
+        Route::put('user/activities/{user}', [\App\Http\Controllers\UserController::class, 'updateActivities'])->name('user.updateActivities');
+        Route::get('user/sendagain/{user}', [\App\Http\Controllers\UserController::class, 'sendAgain'])->name('user.sendagain');
+        Route::resource('message', \App\Http\Controllers\MessageController::class);
+        Route::resource('activity', \App\Http\Controllers\ActivityController::class);
+        Route::resource('partner', \App\Http\Controllers\PartnerController::class);
     });
 });
 Route::get('clear', function () {

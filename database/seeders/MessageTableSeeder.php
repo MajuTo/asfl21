@@ -1,6 +1,8 @@
 <?php
+namespace Database\Seeders;
 
 use App\Message;
+use DB;
 use Illuminate\Database\Seeder;
 
 class MessageTableSeeder extends Seeder {

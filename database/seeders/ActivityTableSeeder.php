@@ -1,6 +1,8 @@
 <?php
+namespace Database\Seeders;
 
 use App\Activity;
+use DB;
 use Illuminate\Database\Seeder;
 
 class ActivityTableSeeder extends Seeder {
