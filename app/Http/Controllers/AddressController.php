@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Address;
 use App\Helpers\Alert;
 use App\User;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
@@ -15,6 +16,7 @@ class AddressController extends Controller
      * Display a listing of the resource.
      *
      * @return View
+     * @throws BindingResolutionException
      */
     public function index()
     {
@@ -29,15 +31,13 @@ class AddressController extends Controller
      * Show the form for creating a new resource.
      *
      * @return View
+     * @throws BindingResolutionException
      */
     public function create()
     {
         $address = new Address();
-        if($this->isAdminRequest()){
-            $view = 'admin.address.create';
-        } else {
-            $view = 'address.create';
-        }
+        $view = $this->isAdminRequest() ? 'admin.address.create' : 'address.create';
+
         return view()->make($view, [
             'address'   => $address
         ]);
@@ -66,14 +66,8 @@ class AddressController extends Controller
         }
 
         $address = new Address(request()->all());
-        if($this->isAdminRequest()){
-            $address->user_id = session()->get('user_id');
-        } else {
-            $address->user_id = auth()->id();
-        }
-
+        $address->user_id = $this->isAdminRequest() ? session()->get('user_id') : auth()->id();
         $address->country = 'FRANCE';
-
         $address->save();
 
         Alert::add("alert-success", "L'adresse a bien été créée");
@@ -89,9 +83,10 @@ class AddressController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     *
      * @return void
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -101,9 +96,11 @@ class AddressController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return View
+     * @throws BindingResolutionException
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $address = Address::find($id);
         $user = User::find($address->user_id);
@@ -125,9 +122,10 @@ class AddressController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
      */
-    public function update($id)
+    public function update(int $id)
     {
         $rules = array(
             'name' 		=> 'required',
@@ -148,11 +146,7 @@ class AddressController extends Controller
         $address->hideFax = 0;
         $address->update(request()->all());
 
-        if($this->isAdminRequest()){
-            $address->user_id = $user_id;
-        } else {
-            $address->user_id = auth()->id();
-        }
+        $address->user_id = $this->isAdminRequest() ? $user_id : auth()->id();
 
         $address->save();
 
@@ -170,9 +164,10 @@ class AddressController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int$id)
     {
         $user_id = User::find( Address::find($id)->user_id )->id;
         Address::destroy($id);

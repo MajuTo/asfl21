@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Helpers\Alert;
 use App\Message;
 use App\Category;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -16,6 +15,7 @@ class MessageController extends Controller
      * Display a listing of the resource.
      *
      * @return View
+     * @throws BindingResolutionException
      */
     public function index()
     {
@@ -48,7 +48,7 @@ class MessageController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return void
      */
     public function create()
     {
@@ -60,6 +60,7 @@ class MessageController extends Controller
      * Store a newly created resource in storage.
      *
      * @return RedirectResponse
+     * @throws BindingResolutionException
      */
     public function store()
     {
@@ -94,9 +95,10 @@ class MessageController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     *
+     * @return void
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -106,9 +108,11 @@ class MessageController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return View
+     * @throws BindingResolutionException
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $view = ($this->isAdminRequest()) ? 'admin.message.edit' : 'message.edit';
         $message = Message::find($id);
@@ -125,9 +129,10 @@ class MessageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
      */
-    public function update($id)
+    public function update(int $id)
     {
         $view = ($this->isAdminRequest()) ? 'admin.message.index' : 'message.index';
         $message = Message::find($id);
@@ -141,9 +146,10 @@ class MessageController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         Message::destroy($id);
         Alert::add("alert-success", "Le message a bien été supprimé");

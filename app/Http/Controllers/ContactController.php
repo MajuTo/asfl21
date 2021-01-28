@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Alert;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Mail\Message;
 use Mail;
 
@@ -13,12 +15,17 @@ class ContactController extends Controller
      * Display a listing of the resource.
      *
      * @return View
+     * @throws BindingResolutionException
      */
     public function index()
     {
         return view()->make('contact.index');
     }
 
+    /**
+     * @return View|RedirectResponse|mixed
+     * @throws BindingResolutionException
+     */
     public function sendcontact()
     {
         $rules = array(
@@ -51,7 +58,7 @@ class ContactController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return void
      */
     public function create()
     {
@@ -62,7 +69,7 @@ class ContactController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @return void
      */
     public function store()
     {
@@ -74,9 +81,9 @@ class ContactController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return void
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -86,9 +93,9 @@ class ContactController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return void
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
     }
@@ -98,9 +105,9 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return void
      */
-    public function update($id)
+    public function update(int $id)
     {
         //
     }
@@ -110,9 +117,9 @@ class ContactController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }

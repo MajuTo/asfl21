@@ -14,7 +14,8 @@
 
 Auth::routes(['verify' => true, 'register' => false]);
 
-Route::get('/', 'HomeController@home')->name('home');
+//Route::get('/', 'HomeController@home')->name('home');
+Route::view('/', 'accueil.home')->name('home');
 Route::get('notre-metier', 'NotreMetierController@index')->name('notremetier');
 Route::get('nous-trouver', 'NousTrouverController@index')->name('noustrouver');
 Route::get('liens-utiles',  'LinkController@index')->name('link');
@@ -74,48 +75,297 @@ Route::get('clear', function () {
     return back();
 });
 
-//Route::get('/add', function () {
-//    $f = Faker\Factory::create('fr_FR');
-//    $user = new \App\User(request()->all());
+//Route::get('test', function () {
+////    \App\EventGroup::with('events')->get()->dd();
+//    $groups = [
+//        0 => [
+//            'id' => 0,
+//            'class' => 'conception',
+//            'content' => 'Conception'
+//        ],
+//        1 => [
+//            'id' => 1,
+//            'class' => 'consultation',
+//            'content' => 'Consultation'
+//        ],
+//        2 => [
+//            'id' => 2,
+//            'class' => 'medical',
+//            'content' => 'Médical'
+//        ],
+//        3 => [
+//            'id' => 3,
+//            'class' => 'administratif',
+//            'content' => 'Administratif'
+//        ],
+//        4 => [
+//            'id' => 4,
+//            'class' => 'maternite',
+//            'content' => 'Maternité'
+//        ],
+//        5 => [
+//            'id' => 5,
+//            'class' => 'naissance',
+//            'content' => 'Naissance'
+//        ]
+//    ];
+//    $events = [
+//        0 => [
+//            'date' => 0,
+//            'title' => 'Conception',
+//            'desc' => '',
+//            'icon' => 'fa fa-venus-mars',
+//            'group_id' => 0,
+//            'week' => false,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        1 => [
+//            'date' => 6,
+//            'title' => 'Consultation précoce du début de grossesse',
+//            'desc' => '',
+//            'icon' => 'fa fa-stethoscope',
+//            'group_id' => 1,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        2 => [
+//            'date' => 10,
+//            'title' => '1ère échographie',
+//            'desc' => 'Datation de la grossesse',
+//            'icon' => 'fa fa-user-md',
+//            'group_id' => 2,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        3 => [
+//            'date' => 10,
+//            'title' => 'Éventuel dépistage de la trisomie 21',
+//            'desc' => '',
+//            'icon' => 'fa fa-user-md',
+//            'group_id' => 2,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        4 => [
+//            'date' => 11,
+//            'title' => 'Consultation du 3ème mois',
+//            'desc' => '',
+//            'icon' => 'fa fa-stethoscope',
+//            'group_id' => 1,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        5 => [
+//            'date' => 11,
+//            'title' => 'Déclaration de grossesse',
+//            'desc' => '',
+//            'icon' => 'fa fa-calendar',
+//            'group_id' => 3,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        6 => [
+//            'date' => 14,
+//            'title' => 'Éventuel dépistage (tardif) de la trisomie 21',
+//            'desc' => '',
+//            'icon' => 'fa fa-user-md',
+//            'group_id' => 2,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        7 => [
+//            'date' => 15,
+//            'title' => 'Entretien pré-natal avec la sage femme pour la préparation à la naissance',
+//            'desc' => '',
+//            'icon' => 'fa fa-stethoscope',
+//            'group_id' => 1,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        8 => [
+//            'date' => 16,
+//            'title' => 'Reconnaissance anticipée du père',
+//            'desc' => '',
+//            'icon' => 'fa fa-calendar',
+//            'group_id' => 3,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        9 => [
+//            'date' => 16,
+//            'title' => 'Consultation du 4ème mois',
+//            'desc' => '',
+//            'icon' => 'fa fa-stethoscope',
+//            'group_id' => 1,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        10 => [
+//            'date' => 18,
+//            'title' => 'Début de prise en charge 100% médical',
+//            'desc' => '',
+//            'icon' => 'fa fa-calendar',
+//            'group_id' => 3,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        11 => [
+//            'date' => 20,
+//            'title' => 'Consultation 5ème mois',
+//            'desc' => '',
+//            'icon' => 'fa fa-stethoscope',
+//            'group_id' => 1,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        12 => [
+//            'date' => 20,
+//            'title' => '2ème échographie, échographie morphologique',
+//            'desc' => '',
+//            'icon' => 'fa fa-user-md',
+//            'group_id' => 2,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        13 => [
+//            'date' => 23,
+//            'title' => 'Biologie du 6ème mois',
+//            'desc' => '',
+//            'icon' => 'fa fa-user-md',
+//            'group_id' => 2,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        14 => [
+//            'date' => 24,
+//            'title' => 'Consultation 6ème mois',
+//            'desc' => '',
+//            'icon' => 'fa fa-stethoscope',
+//            'group_id' => 1,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        15 => [
+//            'date' => 29,
+//            'title' => 'Consultation 7ème mois (Maternité)',
+//            'desc' => '',
+//            'icon' => 'fa fa-h-square',
+//            'group_id' => 4,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        16 => [
+//            'date' => 30,
+//            'title' => '3ème échographie',
+//            'desc' => '',
+//            'icon' => 'fa fa-stethoscope',
+//            'group_id' => 1,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        17 => [
+//            'date' => 32,
+//            'title' => 'Consultation 8ème mois',
+//            'desc' => '',
+//            'icon' => 'fa fa-h-square',
+//            'group_id' => 4,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        18 => [
+//            'date' => 32,
+//            'title' => 'Début éventuel de congés pathologique',
+//            'desc' => '',
+//            'icon' => 'fa fa-calendar',
+//            'group_id' => 3,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        19 => [
+//            'date' => 33,
+//            'title' => 'Consultation anesthésiste (dans la maternité choisie)',
+//            'desc' => '',
+//            'icon' => 'fa fa-h-square',
+//            'group_id' => 4,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        20 => [
+//            'date' => 33,
+//            'title' => 'Début de congés maternité officiel',
+//            'desc' => '',
+//            'icon' => 'fa fa-calendar',
+//            'group_id' => 3,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        21 => [
+//            'date' => 33,
+//            'title' => 'Réalisation de prélèvement vaginal',
+//            'desc' => '',
+//            'icon' => 'fa fa-user-md',
+//            'group_id' => 2,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        22 => [
+//            'date' => 36,
+//            'title' => 'Consultation 9ème mois',
+//            'desc' => '',
+//            'icon' => 'fa fa-h-square',
+//            'group_id' => 4,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//        23 => [
+//            'date' => 39,
+//            'title' => 'Date présumée de l\'accouchement',
+//            'desc' => '',
+//            'icon' => 'fa fa-gift',
+//            'group_id' => 5,
+//            'week' => true,
+//            'start' => null,
+//            'end' => null
+//        ],
+//    ];
+//    collect($groups)->each(function($group) {
+//         $group['id'] = $group['id'] + 1;
+//         \App\EventGroup::create($group);
+//     });
+//    collect($events)->each(function($event) {
+//        $event['group_id'] = $event['group_id'] + 1;
+//        $event['description'] = $event['desc'];
+//        unset($event['desc']);
+//        unset($event['start']);
+//        unset($event['end']);
+//        \App\Event::create($event);
+//    });
 //
-//    $user->name = $f->lastName;
-//    $user->firstname = $f->firstName;
-//    $user->username = $f->userName;
-//    $user->password = Hash::make(Str::random(8));
-//    $user->email = $f->email;
-//    $user->confirmation = $f->randomNumber(8);
-//    $user->group_id = 2;
-//
-//    $user->save();
-//
-//    Invytr::invite($user);
-//});
+//})->name('test'); //->middleware('verified');
 
 //Route::get('migrate', function () {
-//    echo(Artisan::call('migrate --force'));
+//    Artisan::call('migrate');
 //});
-
-
-//Route::get('test', function () {
-//    $client = new \GuzzleHttp\Client();
-//
-//    $g = new \Spatie\Geocoder\Geocoder($client);
-//    $g->setApiKey(env('GOOGLE_MAPS_API_KEY'));
-//    $g->setLanguage(env('GOOGLE_MAPS_LOCALE'));
-//     ['lat' => $lat, 'lng' => $lng] = Spatie\Geocoder\Facades\Geocoder::getCoordinatesForAddress('5 rue du Regiment de Bourgogne 21200 Beaune');
-// dd(
-//     $lat, $lng,
-//     $g->getCoordinatesForAddress('5 rue du Regiment de Bourgogne 21200 Beaune')
-//);
-//
-//    $t = new \GlaivePro\Invytr\Helpers\Translator();
-//        $t->replaceResponseLines();
-//    dd(
-//        app('translator'),
-//        app()->getLocale(),
-//        now()->addWeek()->format('d/m/Y H\Hi'),
-//        route('test', ['toto' => 'tata'])
-//    );
-//    auth()->loginUsingId(2);
-//    return redirect('/');
-//})->name('test'); //->middleware('verified');

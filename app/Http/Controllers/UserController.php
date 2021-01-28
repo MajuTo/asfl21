@@ -8,7 +8,7 @@ use App\Group;
 use App\Helpers\Alert;
 use App\User;
 use Hash;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
@@ -24,7 +24,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
      */
     public function index()
     {
@@ -46,7 +46,8 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return View
+     * @throws BindingResolutionException
      */
     public function create()
     {
@@ -66,6 +67,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @return RedirectResponse
+     * @throws BindingResolutionException
      */
     public function store()
     {
@@ -106,11 +108,13 @@ class UserController extends Controller
     /**
      * Generate a random username with the first two letters of the name and firstname and a random 4 digits number.
      * Verify if the generated username is not already in the database
-     * @param $name
-     * @param $firstname
+     *
+     * @param string $name
+     * @param string $firstname
+     *
      * @return string
      */
-    private function generateUsername($name, $firstname)
+    private function generateUsername(string $name, string $firstname)
     {
         $username = Str::lower(substr($name, 0, 2) . substr($firstname, 0, 2) . rand(1000, 9999));
         try
@@ -128,9 +132,11 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\View\View
+     *
+     * @return View
+     * @throws BindingResolutionException
      */
-    public function show($id)
+    public function show(int $id)
     {
         $user = User::find($id);
         $address = Address::where('user_id', '=', $id)->get();
@@ -145,10 +151,11 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     * @return Factory|RedirectResponse|View
+     * @param  int  $id
+     *
+     * @return RedirectResponse|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $user = User::find($id);
         $user_id = ($this->isAdminRequest()) ? $id : auth()->id();
@@ -176,9 +183,11 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
+     * @throws BindingResolutionException
      */
-    public function update($id)
+    public function update(int $id)
     {
         $user = ( $this->isAdminRequest() ) ? User::find($id) : User::find(auth()->id());
 
@@ -220,9 +229,10 @@ class UserController extends Controller
      * Update user's activities.
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
      */
-    public function updateActivities($id)
+    public function updateActivities(int $id)
     {
         $user = User::find($id);
 
@@ -240,6 +250,7 @@ class UserController extends Controller
      * Update user's activities.
      *
      * @param Request $request
+     *
      * @return RedirectResponse
      * @throws ValidationException
      */
@@ -265,9 +276,11 @@ class UserController extends Controller
      * Envoi un email à l'utilisateur depuis l'inteface de contact
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
+     * @throws BindingResolutionException
      */
-    public function sendEmail($id){
+    public function sendEmail(int $id){
         $user = User::find($id);
 
         $rules = array(
@@ -298,9 +311,10 @@ class UserController extends Controller
      * Envoi un email à l'utilisateur.
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
      */
-    public function sendAgain($id){
+    public function sendAgain(int $id){
         $user = User::find($id);
 
         Invytr::invite($user);
@@ -313,10 +327,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
+     *
      * @return void
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }
@@ -326,17 +341,22 @@ class UserController extends Controller
      * Toogle the state of user (active/inactive).
      *
      * @param  int  $id
+     *
      * @return RedirectResponse
      */
-    public function toggle($id)
+    public function toggle(int $id)
     {
         $user = User::find($id);
-        if($user->active){
-            $user->active = 0;
-        }else{
-            $user->active = 1;
-        }
-        $user->save();
+        $user->update([
+            'active' => ! $user->active
+        ]);
+//        $user->active = $user->active ? 0 : 1;
+//        if($user->active){
+//            $user->active = 0;
+//        }else{
+//            $user->active = 1;
+//        }
+//        $user->save();
 
         return redirect()->route('admin.user.index');
     }
