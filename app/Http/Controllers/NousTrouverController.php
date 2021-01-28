@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Activity;
 use App\User;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -13,6 +14,7 @@ class NousTrouverController extends Controller
      * Display a listing of the resource.
      *
      * @return View
+     * @throws BindingResolutionException
      */
     public function index()
     {
@@ -87,9 +89,10 @@ class NousTrouverController extends Controller
      * Display the specified resource.
      *
      * @param int $id
+     *
      * @return void
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -99,9 +102,10 @@ class NousTrouverController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
+     *
      * @return void
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
     }
@@ -111,9 +115,10 @@ class NousTrouverController extends Controller
      * Update the specified resource in storage.
      *
      * @param int $id
+     *
      * @return void
      */
-    public function update($id)
+    public function update(int $id)
     {
         //
     }
@@ -123,9 +128,10 @@ class NousTrouverController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return void
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }

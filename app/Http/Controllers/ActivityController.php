@@ -23,7 +23,7 @@ class ActivityController extends Controller
             return view('admin.activity.index',[
                 'activities' => $activities
             ]);
-        }else{
+        } else {
             $activities = Activity::all();
             return view('activity.index',[
                 'activities' => $activities
@@ -40,6 +40,7 @@ class ActivityController extends Controller
     public function create()
     {
         $activity = new Activity();
+
         return view('admin.activity.create', [
             'activity'   => $activity
         ]);
@@ -71,6 +72,7 @@ class ActivityController extends Controller
         $activity->save();
 
         Alert::add("alert-success", "L'activité a bien été créée");
+
         return redirect()->route('admin.activity.index');
     }
 
@@ -81,7 +83,7 @@ class ActivityController extends Controller
      * @param int $id
      * @return void
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -91,11 +93,13 @@ class ActivityController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     *
      * @return Factory|View
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $activity = Activity::find($id);
+
         return view('admin.activity.edit', [
             'activity'   => $activity
         ]);
@@ -108,7 +112,7 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update($id)
+    public function update(int $id)
     {
         $activity = Activity::find($id);
 
@@ -127,6 +131,7 @@ class ActivityController extends Controller
         $activity->update(request()->all());
 
         Alert::add("alert-success", "L'activité a bien été modifiée");
+
         return redirect()->route('admin.activity.index');
     }
 
@@ -137,10 +142,11 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         Activity::destroy($id);
         Alert::add("alert-success", "L'activité a bien été supprimée");
+
         return redirect()->route('admin.activity.index');
     }
 }

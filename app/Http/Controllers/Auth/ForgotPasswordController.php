@@ -40,7 +40,7 @@ class ForgotPasswordController extends Controller
      * @param string $response
      * @return RedirectResponse
      */
-    protected function sendResetLinkResponse(Request $request, $response)
+    protected function sendResetLinkResponse(Request $request, string $response)
     {
         Alert::add('alert-info', trans($response));
         return back();
