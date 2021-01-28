@@ -1,6 +1,8 @@
 <?php
+namespace Database\Seeders;
 
 use App\Address;
+use DB;
 use Illuminate\Database\Seeder;
 
 class AddressTableSeeder extends Seeder {
@@ -17,7 +19,7 @@ class AddressTableSeeder extends Seeder {
             'phone'     => 1234567890,
             'fax'       => 9876543210,
             'hideFax'   => 1,
-            'lat'       => 47.308316, 
+            'lat'       => 47.308316,
             'lng'       => 5.048444
             ]);
         Address::create([

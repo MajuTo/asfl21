@@ -1,6 +1,8 @@
 <?php
+namespace Database\Seeders;
 
 use App\Link;
+use DB;
 use Illuminate\Database\Seeder;
 
 class LinkTableSeeder extends Seeder {
