@@ -1,60 +1,57 @@
-<nav class="navbar navbar-default text-center" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu">
-        <i class="fa fa-bars"></i>
-      </button>
-    </div>
-      <a href="{{ route('home') }}">
-          {{ Html::image(asset('/assets/img/logo.png'), 'logo', ['class' => 'logo']) }}
-      </a>
-      <span class="navbar-brand text-center">Association des Sages Femmes Libérales <br>  de Côte d'Or</span>
+<nav class="navbar navbar-expand-md navbar-light bg-light pb-1">
+{{--    <a class="navbar-brand" href="#">Navbar</a>--}}
+    <a href="{{ route('home') }}">
+        {{ Html::image(asset('img/logo.png'), 'logo', ['class' => 'logo']) }}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-brand text-center text-reset">Association des Sages Femmes Libérales <br>  de Côte d'Or</span>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="nav navbar-nav navbar-right ">
-        <li id="nav-accueil">
-        	<a href="{{ route('home') }}"><i class="fa fa-home"></i><br>Accueil</a>
-        </li>
-        <li id="nav-metier">
-        	<a href="{{ route('notremetier') }}"><i class="fa fa-user-md"></i><br>Notre Métier</a>
-        </li>
-        <li id="nav-trouver">
-        	<a href="{{ route('noustrouver') }}"><i class="fa fa-map-marker"></i><br>Nous Trouver</a>
-        </li>
-        <li id="nav-liens">
-            <a href="{{ route('link') }}"><i class="fa fa-external-link-square"></i><br>Liens Utiles</a>
-        </li>
-        <li id="nav-calendrier">
-            <a href="{{ route('calendrier.index') }}"><i class="fa fa-calendar"></i><br>Calendrier</a>
-        </li>
-        <li id="nav-contact">
-        	<a href="{{ route('contact.index') }}"><i class="fa fa-envelope"></i><br>Contact</a>
-        </li>
-        @if (auth()->guest())
-            <li id="nav-login">
-                <a href="{{ route('login') }}"><i class="fa fa-users"></i><br>Espace pro</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item px-2" id="nav-accueil">
+                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i><br>Accueil</a>
             </li>
-        @else
-            <li class="dropdown" id="nav-membre">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
-                    <i class="fa fa-users"></i><br>Espace pro<span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-left" role="menu">
-                    <li id="nav-info"><a href="{{ route('message.index') }}">Message</a></li>
-                    <li id="nav-profil"><a href="{{ route('user.edit', auth()->user()->id) }}">Mon Profil</a></li>
-                    @if(!auth()->guest() and auth()->user()->group->id == 2 or auth()->user()->group->id == 3)
-                        <li id="nav-admin"><a href="{{ route('admin.index') }}">Admin</a></li>
-                    @endif
-                    <li id="nav-logout"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Déconnexion</a></li>
-                    <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </ul>
+            <li class="nav-item px-2" id="nav-metier">
+                <a class="nav-link" href="{{ route('notremetier') }}"><i class="fas fa-user-md"></i><br>Notre Métier</a>
             </li>
-        @endif
-      </ul>
-    </div><!-- /.navbar-collapse -->
+            <li class="nav-item px-2" id="nav-trouver">
+                <a class="nav-link" href="{{ route('noustrouver') }}"><i class="fas fa-map-marker"></i><br>Nous Trouver</a>
+            </li>
+            <li class="nav-item px-2" id="nav-liens">
+                <a class="nav-link" href="{{ route('link') }}"><i class="fas fa-external-link-square-alt"></i><br>Liens Utiles</a>
+            </li>
+            <li class="nav-item px-2" id="nav-calendrier">
+                <a class="nav-link" href="{{ route('calendrier.index') }}"><i class="fas fa-calendar"></i><br>Calendrier</a>
+            </li>
+            <li class="nav-item px-2" id="nav-contact">
+                <a class="nav-link" href="{{ route('contact.index') }}"><i class="fas fa-envelope"></i><br>Contact</a>
+            </li>
+            @if (auth()->guest())
+                <li class="nav-item px-2" id="nav-login">
+                    <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-users"></i><br>Espace pro</a>
+                </li>
+            @else
+                <li class="nav-item px-2 dropdown" id="nav-membre">
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="1000">
+                        <i class="fas fa-users"></i><br>Espace pro<span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" role="menu">
+                        <a id="nav-info" class="dropdown-item" href="{{ route('message.index') }}">Message</a>
+                        <a id="nav-profil" class="dropdown-item" href="{{ route('user.edit', auth()->user()->id) }}">Mon Profil</a>
+                        @if(!auth()->guest() and auth()->user()->group->id == 2 or auth()->user()->group->id == 3)
+                            <a id="nav-admin" class="dropdown-item" href="{{ route('admin.index') }}">Admin</a>
+                        @endif
+                        <a id="nav-logout" class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">Déconnexion</a>
+                        <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </div>
+                </li>
+            @endif
+        </ul>
+    </div>
 </nav>
 <!-- END NAVIGATION -->
 

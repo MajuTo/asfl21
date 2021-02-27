@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>Trouver une sage femme libérale</h1>
-                <p class="text-center" id="noustrouver-subtext">Sélectionnez les activités qui vous intéresses, puis la ou les sages-femmes qui éffectuent ces activités. Pour plus d'information sur une sage-femme en particulier, cliquer sur <i class="fa fa-external-link"></i> à droite du nom de la sage-femme ou directement sur la map.</p>
+                <p class="text-center" id="noustrouver-subtext">Sélectionnez les activités qui vous intéresses, puis la ou les sages-femmes qui éffectuent ces activités. Pour plus d'information sur une sage-femme en particulier, cliquer sur <i class="fas fa-external-link"></i> à droite du nom de la sage-femme ou directement sur la map.</p>
             </div>
         </div>
         <div class="row">
@@ -16,7 +16,7 @@
                     <table class="table table-condensed sf-hov">
                         <thead>
                         <tr>
-                            <th>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
+                            <th>Activités <i class="pull-right fas fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,14 +36,14 @@
                         <thead>
                         <tr>
                             <th>Sages Femmes</th>
-                            <th><i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
+                            <th><i id="tooltip-sf" class="fas fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
                         </tr>
                         </thead>
                         <tbody id="listesf">
                         @foreach ($sagesfemmes as $sf)
                             <tr>
                                 <td class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
-                                <td><a href="{{ route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
+                                <td><a href="{{ route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fas fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -274,7 +274,7 @@
             };
 
             let icon = {
-                url: "{{ asset('assets/img/arrow.png') }}"
+                url: "{{ asset('img/arrow.png') }}"
             }
 
             let address = document.getElementById('chezvous_textbox').value;
