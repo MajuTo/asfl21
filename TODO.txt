@@ -11,7 +11,7 @@
 // DONE : Voir le format de la date dans le date picker du calendrier -> géré dans CalendarController avec la màj de Visjs
 // DONE : passer de momentJs a date-fns -> ni l'un ni l'autre :D
 // TODO : (addresses : description) -> a quoi ca sert ?
-// TODO : Imaginer les events du calendar en BDD ??
+// DONE : Imaginer les events du calendar en BDD ??
 // TODO : Faire le tour des controllers pour voir les relations plutôt que des requetes séparées ??
 // TODO : Revoir les validations de données (Validator ? Request dédiées ?)
 // TODO : Revoir la gestion des activités / update activities et autre (UserController)
@@ -24,3 +24,4 @@
 // TODO : afficher en grid/card les partenaires, voire les liens utiles aussi (eventuellement icone /logo?).
 // TODO : revoir la page d'une sage femme (voire https://www.asfl21.fr/sage-femme/46/MATHIEU-Lise) adresse
 // TODO : éventuellement revoir les checkbox activités
+// TODO : passer la classe 'active' des menus dans le menu au lieu du script dans chaque view ?

@@ -3,11 +3,11 @@
 @stop
 @extends('layouts.index')
 @section('css')
-	{{ Html::style('assets/datepicker/bootstrap-datepicker3.css') }}
+	{{ Html::style('datepicker/bootstrap-datepicker3.css') }}
 
     {{-- timeline --}}
 	{{ Html::style('https://unpkg.com/vis-timeline@7.2.1/styles/vis-timeline-graph2d.min.css') }}
-    {{ Html::style('assets/css/vis-timeline.css')}}
+    {{ Html::style('css/vis-timeline.css')}}
 @stop
 @section('content')
 	<div class="row">
@@ -45,12 +45,12 @@
         <div class="row">
             <div class="col-sm-6">
                 <div id="legend">
-                    <div class="legend-div"><span class="conception"><i class="fa fa-venus-mars"></i></span> Conception</div>
-                    <div class="legend-div"><span class="consultation"><i class="fa fa-stethoscope"></i></span> Consultation</div>
-                    <div class="legend-div"><span class="medical"><i class="fa fa-user-md"></i></span> Médical</div>
-                    <div class="legend-div"><span class="administratif"><i class="fa fa-calendar"></i></span> Administratif</div>
-                    <div class="legend-div"><span class="maternite"><i class="fa fa-h-square"></i></span> Maternité</div>
-                    <div class="legend-div"><span class="naissance"><i class="fa fa-gift"></i></span> Naissance</div>
+                    <div class="legend-div"><span class="conception"><i class="fas fa-venus-mars"></i></span> Conception</div>
+                    <div class="legend-div"><span class="consultation"><i class="fas fa-stethoscope"></i></span> Consultation</div>
+                    <div class="legend-div"><span class="medical"><i class="fas fa-user-md"></i></span> Médical</div>
+                    <div class="legend-div"><span class="administratif"><i class="fas fa-calendar"></i></span> Administratif</div>
+                    <div class="legend-div"><span class="maternite"><i class="fas fa-h-square"></i></span> Maternité</div>
+                    <div class="legend-div"><span class="naissance"><i class="fas fa-gift"></i></span> Naissance</div>
                 </div>
             </div>
             <div class="col-sm-6">

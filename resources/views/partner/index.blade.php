@@ -17,7 +17,7 @@
                         <td>{{ Html::image(asset($partner->logo), 'Logo de '.$partner->partnerName, ['class' => 'admin_logo_edit']) }}</td>
                         <td>{{ $partner->partnerName }}</td>
                         <td>{{ $partner->contact }}</td>
-                        <td>{{ ($partner->partnerWebsite) ? '<a href="$partner->partnerWebsite">Visiter leur site <i class="fa fa-arrow-right"></i></a>' : '' }}</td>
+                        <td>{{ ($partner->partnerWebsite) ? '<a href="$partner->partnerWebsite">Visiter leur site <i class="fas fa-arrow-right"></i></a>' : '' }}</td>
                     </tr>
                     @endforeach
                 </tbody>

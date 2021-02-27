@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\File;
 
 class PartnerController extends Controller
 {
-    private $logo_path = "assets/img/partners/";
+    private $logo_path = "img/partners/";
 
     /**
      * Display a listing of the resource.

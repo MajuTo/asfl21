@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <img class="img-responsive img-rounded" src="{{ asset('assets/img/pregnant-collection/feet-619534_1280.jpg') }}" alt="pieds de bébé">
+                <img class="img-responsive img-rounded" src="{{ asset('img/pregnant-collection/feet-619534_1280.jpg') }}" alt="pieds de bébé">
             </div>
             <div class="col-sm-6">
                 @yield('auth.content')

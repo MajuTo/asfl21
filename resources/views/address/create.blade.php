@@ -23,6 +23,15 @@
 @stop
 @section('script')
     <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     document.getElementById('nav-membre').classList.add('active')
+        //     document.getElementById('nav-profil').classList.add('active')
+        //     let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+        //     checkboxes.forEach(checkbox => {
+        //         let activeClass = checkbox.checked ? 'checked' : 'notchecked'
+        //         checkbox.parentElement.classList.add(activeClass)
+        //     })
+        // })
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
             $('#nav-profil').addClass('active');

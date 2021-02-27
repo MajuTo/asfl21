@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 img-col">
-            <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Pendant_la_grossesse.jpg') }}" alt="pendant la grossesse">
+            <img class="img-fluid rounded" src="{{ asset('img/notre-metier/Pendant_la_grossesse.jpg') }}" alt="pendant la grossesse">
         </div>
         <div class="col-sm-6">
             <h2>Pendant ma grossesse</h2>
@@ -23,7 +23,7 @@
                 <li>Massages pré-nataux/massages bébé</li>
                 <li>Suivi médical de grossesse</li>
                 <li>Surveillance de la grossesse</li>
-                <li class="info" id="info-grossesse"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
+                <li class="info" id="info-grossesse"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
             </ul>
         </div>
         <span class="whoooshh" id="whoooshh-grossesse">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4"> 
+                <div class="col-sm-4">
                     <div class="metier-content" id="preparation">
                         <h4 class="content-head">Préparation à la naissance</h4>
                         <div class="content-body">
@@ -86,11 +86,11 @@
                 <li>Visite post-accouchement à domicile</li>
                 <li>Consultation post-natale</li>
                 <li>Rééducation du périnée</li>
-                <li class="info" id="info-accouchement"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
+                <li class="info" id="info-accouchement"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
             </ul>
         </div>
         <div class="col-sm-6 img-col">
-            <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
+            <img class="img-fluid rounded" src="{{ asset('img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
         </div>
         <span class="whoooshh" id="whoooshh-accouchement">
             <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
@@ -101,7 +101,7 @@
                         <div class="content-body">
                             <p>Utilisation de l’homéopathie pour soulager certains maux de la grossesse, préparer l'accouchement et améliorer les suites de la naissance</p>
                         </div>
-                    </div>    
+                    </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -125,7 +125,7 @@
 
     <div class="row">
         <div class="col-sm-6 img-col">
-            <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Et_apres.jpg') }}" alt="et ensuite ?">
+            <img class="img-fluid rounded" src="{{ asset('img/notre-metier/Et_apres.jpg') }}" alt="et ensuite ?">
         </div>
         <div class="col-sm-6">
             <h2>Et ensuite ?</h2>
@@ -135,7 +135,7 @@
                 <li>Sexologie</li>
                 <li>Osthéopathie</li>
                 <li>Rééducation périnéale</li>
-                <li class="info" id="info-ensuite"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
+                <li class="info" id="info-ensuite"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
             </ul>
         </div>
         <span class="whoooshh" id="whoooshh-ensuite">
