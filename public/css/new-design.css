@@ -631,9 +631,10 @@ label.notchecked::before {
     background-color: #E35582;
 }
 
-.sf-hov > tbody > tr > td:hover {
-    border-top: 3px solid #B5003A;
-    font-weight: bold;
+.sf-hov > tbody > tr:hover {
+    border-left: 5px solid #B5003A;
+    /*font-weight: bold;*/
+    padding-left: 2px;
     cursor: pointer;
 }
 
@@ -641,10 +642,20 @@ label.notchecked::before {
     border-bottom: none;
 }
 
+.sf-hov td,
+.sf-hov th {
+    padding: 4px;
+}
+
 #table-height {
     /*min-height: 100px;*/
     max-height: 600px;
     overflow: auto;
+    padding: 0 2px;
+}
+
+#gmap {
+    padding: 0 2px;
 }
 
 /* ** END NOUS TROUVER ** */

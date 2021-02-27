@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light pb-1">
+<nav class="navbar navbar-expand-lg navbar-light bg-light pb-1">
 {{--    <a class="navbar-brand" href="#">Navbar</a>--}}
     <a href="{{ route('home') }}">
         {{ Html::image(asset('img/logo.png'), 'logo', ['class' => 'logo']) }}

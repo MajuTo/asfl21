@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h1>Trouver une sage femme libérale</h1>
-                <p class="text-center" id="noustrouver-subtext">Sélectionnez les activités qui vous intéresses, puis la ou les sages-femmes qui éffectuent ces activités. Pour plus d'information sur une sage-femme en particulier, cliquer sur <i class="fas fa-external-link"></i> à droite du nom de la sage-femme ou directement sur la map.</p>
+                <p class="text-center" id="noustrouver-subtext">Sélectionnez les activités qui vous intéresses, puis la ou les sages-femmes qui effectuent ces activités. Pour plus d'information sur une sage-femme en particulier, cliquer sur <i class="fas fa-external-link"></i> à droite du nom de la sage-femme ou directement sur la map.</p>
             </div>
         </div>
         <div class="row">
@@ -43,7 +43,7 @@
                         @foreach ($sagesfemmes as $sf)
                             <tr>
                                 <td class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
-                                <td><a href="{{ route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fas fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
+                                <td><a href="{{ route('user.show', [$sf->id, Str::upper($sf->name) . '-' . Str::title($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fas fa-external-link-alt" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
                             </tr>
                         @endforeach
                         </tbody>
