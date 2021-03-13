@@ -3,45 +3,52 @@
 @stop
 @extends('layouts.index')
 @section('css')
-	{{ Html::style('datepicker/bootstrap-datepicker3.css') }}
+	{{ Html::style('css/bootstrap-datepicker3.css') }}
 
     {{-- timeline --}}
-	{{ Html::style('https://unpkg.com/vis-timeline@7.2.1/styles/vis-timeline-graph2d.min.css') }}
-    {{ Html::style('css/vis-timeline.css')}}
+	{{ Html::style('css/vis.timeline.min.css') }}
+    {{ Html::style('css/vis-timeline-perso.css') }}
 @stop
 @section('content')
-	<div class="row">
-        <div class="col-sm-12">
+{{--	<div class="row">--}}
+        <div class="text-center">
             <h1>Calendrier de grossesse</h1>
-            <hr>
-    		{!! BootForm::open()->action(route('calendrier.store'))->addClass('form-inline') !!}
-                {!! Form::token() !!}
-    	    	<div class="col-sm-4 col-sm-offset-1">
-                    {!! BootForm::text('', 'date1', null, ['id' => 'date1'])->placeHolder("Date des dernieres règles")->addClass('datedropper') !!}
-    	    	</div>
-    	    	<div class="col-sm-4">
-                    {!! BootForm::text('', 'date2', null, ['id' => 'date2'])->placeHolder("Date de conception")->addClass('datedropper') !!}
-    	    	</div>
-    	    	<div class="col-sm-2">
-                    {!! BootForm::submit('Valider', 'btn-pink') !!}
-    	       	</div>
-            {!! BootForm::close() !!}
         </div>
-    </div>
+        <hr>
+            {!! BootForm::open()->id('calendar-form')->action(route('calendrier.store'))->addClass('form-inline d-flex justify-content-evenly') !!}
+{{--            <div class="">--}}
+{{--                {!! Form::token() !!}--}}
+{{--    	    	<div class="">--}}
+                    {!! BootForm::text('', 'date1', null, ['id' => 'date1'])->placeHolder("Date des dernieres règles")->addClass('datedropper')->noAutocomplete() !!}
+{{--    	    	</div>--}}
+{{--    	    	<div class="">--}}
+                    {!! BootForm::text('', 'date2', null, ['id' => 'date2'])->placeHolder("Date de conception")->addClass('datedropper')->noAutocomplete() !!}
+{{--    	    	</div>--}}
+{{--    	    	<div class="">--}}
+                    {!! BootForm::submit('Valider', 'btn-pink') !!}
+{{--    	       	</div>--}}
+{{--            </div>--}}
+            {!! BootForm::close() !!}
+{{--    </div>--}}
     <hr>
     @if(!$json_events)
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-12">
             <p class="text-center">Ce calendrier vous permettra d'avoir des repères tout au long de votre grossesse. Entrez la date de vos dernières règles ou du début de votre grossesse, vous obtiendrez ensuite les dates importantes de vos consultations,examens médicaux, et droits.</p>
         </div>
     </div>
     @else
+{{--    @dd($json_events)--}}
         <!-- NEW TIMELINE -->
-        <div class="row">
-            <div class="text-center" id="jourj"><span id="ani-j">J</span> <span class="hide-element ani-minus">-</span> <span id="ani-nbr">{{ $jourj }}</span></div>
-            <button id="group-toggle" class="btn btn-pink no-group">Montrer les groupes</button>
-            <div id="visualization"><span id="show-more" class="span-minus"></span></div>
-        </div>
+{{--        <div class="row">--}}
+            <div class="text-center" id="jourj">
+                <span id="ani-j">J</span>
+                <span class="hide-element ani-minus">-</span>
+                <span id="ani-nbr">{{ $jourj }}</span>
+            </div>
+            <button id="group-toggle" class="btn btn-pink no-group row">Montrer les groupes</button>
+            <div id="visualization" class="ow"><span id="show-more" class="span-minus"></span></div>
+{{--        </div>--}}
         <div class="row">
             <div class="col-sm-6">
                 <div id="legend">
@@ -66,11 +73,11 @@
 @stop
 
 @section('script')
-    {{ Html::script('assets/datepicker/bootstrap-datepicker.min.js') }}
-    {{ Html::script('assets/datepicker/bootstrap-datepicker.fr.min.js') }}
-    {{ Html::script('assets/js/datepicker.js') }}
+    {{ Html::script('js/bootstrap-datepicker.min.js') }}
+    {{ Html::script('js/bootstrap-datepicker.fr.min.js') }}
+    {{ Html::script('js/datepicker.js') }}
     @if ($json_events)
-    {{ Html::script('https://unpkg.com/vis-timeline@7.2.1/standalone/umd/vis-timeline-graph2d.min.js') }}
+    {{ Html::script('js/vis.timeline.min.js') }}
     <script type="text/javascript">
         $(document).ready(function () {
             // DOM element where the Timeline will be attached
@@ -88,7 +95,7 @@
                 multiselect: true,
                 start: new Date(@json($start_limit)),
                 end: new Date(@json($end_limit)),
-                locale: 'fr'
+                locale: 'fr',
             };
 
             // Create a Timeline
@@ -97,6 +104,10 @@
             // Toggle Order by group on click
             let btnGroupToggle = $('#group-toggle');
             btnGroupToggle.click(function () {
+                timeline.destroy()
+                setTimeout(() => {
+                    timeline = new vis.Timeline(containerTimeline, items, options);
+                }, 3000)
                 if (btnGroupToggle.hasClass('no-group')) {
                     btnGroupToggle.removeClass('no-group');
                     btnGroupToggle.text('Cacher les groupes');

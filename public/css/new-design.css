@@ -48,6 +48,11 @@ a:focus {
     text-decoration: none;
 }
 
+.justify-content-evenly {
+    justify-content: space-evenly !important;
+}
+
+
 
 /* ** Bootstrap Buttons ** */
 .btn-pink {
@@ -59,7 +64,7 @@ a:focus {
     /*filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);*/
     background-repeat: repeat-x;
     background-color: #E35582;
-    margin-top: 4px;
+    /*margin-top: 4px;*/
 }
 
 .btn-pink:hover,
