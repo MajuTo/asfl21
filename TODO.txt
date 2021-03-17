@@ -21,7 +21,7 @@
 // TODO : galahad/bootforms --> glhd/aire
 // TODO : Logger les dates de login des gens ?
 // TODO : user description qui ne peut etre null (voir a changer null en '' dans le save du user)
-// TODO : afficher en grid/card les partenaires, voire les liens utiles aussi (eventuellement icone /logo?).
+// TODO : afficher en grid/card les partenaires, voire les liens utiles aussi (éventuellement icône /logo?).
 // TODO : revoir la page d'une sage femme (voire https://www.asfl21.fr/sage-femme/46/MATHIEU-Lise) adresse
 // TODO : éventuellement revoir les checkbox activités
 // TODO : passer la classe 'active' des menus dans le menu au lieu du script dans chaque view ?
@@ -30,3 +30,5 @@
 // TODO : footer fixe
 // DONE : datepicker
 // TODO : virer jQuery pour tout ce qui n'est pas Bootstrap (pour être v5 ready)
+// TODO : menu sur mobile
+// TODO : Adresse de l'association changeable en admin + coordonnées dans la google map page contact
