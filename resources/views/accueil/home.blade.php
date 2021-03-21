@@ -52,7 +52,7 @@
                 <p><i class="fas fa-female"></i> Parce que l'on peut avoir besoin d'une <strong>Sage-Femme</strong> à chaque période de la vie.</p>
                 <p><i class="fas fa-comments"></i> Parce qu'<strong>être accompagnée</strong> et guidée dans sa féminité et sa maternité est essentiel.</p>
                 <p><i class="fas fa-question-circle"></i> Parce qu'on ne sait pas toujours ce qui <strong>s'offre à nous</strong>.</p>
-                <p><i class="fas fa-group"></i> Les sages-femmes libérales de la Côte-d'Or ont souhaité s'unir en une association pour proposer à</p>
+                <p><i class="fas fa-users"></i> Les sages-femmes libérales de la Côte-d'Or ont souhaité s'unir en une association pour proposer à</p>
                 <p><strong>chaque femme, couple et enfant</strong> une information claire et un accompagnement adapté à chacun.</p>
             </div>
         </div>
