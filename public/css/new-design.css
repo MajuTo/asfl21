@@ -130,12 +130,8 @@ a:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(181, 0, 58, .6);
 }
 
-.control-label {
-    font-weight: bold;
-}
-
-.control-label-required::after {
-    content: ' *';
+.form-group > label {
+    font-weight: 700;
 }
 
 /* ** End Forms ** */
@@ -144,15 +140,14 @@ a:focus {
 /* ** Pagination ** */
 .pagination > li > a,
 .pagination > li > span {
-    position: relative;
-    float: left;
     padding: 6px 12px;
-    margin-left: -1px;
-    line-height: 1.42857143;
     color: #B5003A;
-    text-decoration: none;
-    background-color: #fff;
     border: 1px solid #ddd;
+}
+
+.page-item.active > .page-link {
+    background-color: #B5003A;
+    border-color: #E35582;
 }
 
 .pagination > li > a:hover,
@@ -164,12 +159,12 @@ a:focus {
     border-color: #E35582;
 }
 
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
+.page-item.active > > a,
+.page-item.active > > span,
+.page-item.active > > a:hover,
+.page-item.active > > span:hover,
+.page-item.active > > a:focus,
+.page-item.active > > span:focus {
     z-index: 2;
     color: #fff;
     cursor: default;

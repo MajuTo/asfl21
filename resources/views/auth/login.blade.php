@@ -4,14 +4,13 @@
 @stop
 @section('auth.content')
     <div class="overflow-auto text-right">
-        {{ link_to(route('password.request'), 'Mot de passe oublié?', ['class' => 'text-right']) }}
+        {{ link_to(route('password.request'), 'Mot de passe oublié?', ['class' => 'text-right small']) }}
     </div>
     <div>
-        {!! BootForm::open()->action(route('login')) !!}
-            {{--{!! Form::token() !!}--}}
-            {!! BootForm::text('Identifiant', 'username') !!}
-            {!! BootForm::password('Mot de passe', 'password') !!}
-            {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-        {!! BootForm::close() !!}
+        {{ Aire::open(route('login'))->id('login-form') }}
+            {{ Aire::input('username', 'Identifiant')->required()->groupAddClass('bold-label') }}
+            {{ Aire::password('password', 'Mot de passe')->required() }}
+            {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink')->removeClass('btn-primary') }}
+        {{ Aire::close() }}
     </div>
 @stop

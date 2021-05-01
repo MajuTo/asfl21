@@ -41,6 +41,12 @@ Route::get('mentions', function() {
 Route::post('getSfByActivity', [\App\Http\Controllers\NousTrouverController::class, 'getSfByActivity'])->name('getSfByActivity');
 
 Route::middleware(['auth'])->group(function() {
+    Route::get('test', function () {
+        if(Auth::check()) {
+            return auth()->user();
+        }
+        return 'non';
+    });
 
     /* USER */
     Route::resource('user', \App\Http\Controllers\UserController::class, ['only' => ['edit', 'update']]);
@@ -74,6 +80,7 @@ Route::get('clear', function () {
 
     return back();
 });
+
 
 //Route::get('test', function () {
 ////    \App\EventGroup::with('events')->get()->dd();

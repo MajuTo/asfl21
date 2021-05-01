@@ -32,3 +32,5 @@
 // TODO : virer jQuery pour tout ce qui n'est pas Bootstrap (pour être v5 ready)
 // TODO : menu sur mobile
 // TODO : Adresse de l'association changeable en admin + coordonnées dans la google map page contact
+// TODO : gmaps -> mapbox ?
+// TODO : voir nouvelle version CKEDITOR
