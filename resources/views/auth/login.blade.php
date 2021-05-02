@@ -7,7 +7,7 @@
         {{ link_to(route('password.request'), 'Mot de passe oublié?', ['class' => 'text-right small']) }}
     </div>
     <div>
-        {{ Aire::open(route('login'))->id('login-form') }}
+        {{ Aire::open(route('login')) }}
             {{ Aire::input('username', 'Identifiant')->required()->groupAddClass('bold-label') }}
             {{ Aire::password('password', 'Mot de passe')->required() }}
             {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink')->removeClass('btn-primary') }}
