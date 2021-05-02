@@ -315,16 +315,16 @@ a:focus {
 /* ********************************************************** */
 /* ADMIN */
 
-.nav-tabs.admin-menu {
+.nav-pills.admin-menu {
     border-bottom: 0;
 }
 
-.nav-tabs.admin-menu > li > a {
+.nav-pills.admin-menu > a {
     border: none;
     border-radius: 4px;
 }
 
-.nav-tabs.admin-menu > li > a:hover {
+.nav-pills.admin-menu > a:hover {
     color: #B5003A;
     background-color: pink;
     border-right: none;
@@ -333,9 +333,9 @@ a:focus {
     border-left: 5px solid #B5003A;
 }
 
-.nav-tabs.admin-menu > li.active > a,
-.nav-tabs.admin-menu > li.active > a:hover,
-.nav-tabs.admin-menu > li.active > a:focus {
+.nav-pills.admin-menu > a.active,
+.nav-pills.admin-menu > a.active:hover,
+.nav-pills.admin-menu > a.active:focus {
     cursor: pointer;
     color: #B5003A;
     background-color: #fff;

@@ -1,19 +1,15 @@
 @extends('layouts.admin')
 @section('content')
-	<div class="row">
-		<div class="col-sm-6">
-			<h2>Gestion des utilisateurs</h2>
-		</div>
-		<div class="col-sm-6">
-			<h2><a href="{{ route('admin.user.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
-		</div>
+	<div class="row d-flex justify-content-between">
+        <h2>Gestion des utilisateurs</h2>
+        <div><a class="btn btn-pink" href="{{ route('admin.user.create') }}" >Ajouter</a></div>
 	</div>
-	<table class="table table-condensed table-hover">
+	<table class="table table-sm table-hover">
 		<thead>
-			<td>Nom</td>
-			<td>Prénom</td>
-			<td>Groupe</td>
-			<td>Actions</td>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Groupe</th>
+			<th>Actions</th>
 		</thead>
 		<tbody>
 			@foreach($users as $user)
@@ -22,18 +18,18 @@
 					<td>{{ Str::title($user->firstname) }}</td>
 					<td>{{ Str::title($user->group->groupName) }}</td>
 					<td>
-						<a href="{{ route('admin.user.edit', $user->id) }}"><button class="btn label label-warning">Editer</button></a>
+						<a href="{{ route('admin.user.edit', $user->id) }}"><button class="btn badge badge-warning">Editer</button></a>
 						{!! BootForm::open()->put()->action(route('admin.user.toggle', $user->id))->style('display: inline;') !!}
 						    {!! Form::token() !!}
 						    {!! BootForm::bind($user) !!}
 						    @if($user->active)
-						    	{!! BootForm::submit('Désactiver', 'label-danger label') !!}
+						    	{!! BootForm::submit('Désactiver', 'badge-danger badge') !!}
 						    @else
-								{!! BootForm::submit('Activer', 'label-success label') !!}
+								{!! BootForm::submit('Activer', 'badge-success badge') !!}
 						    @endif
 						{!! BootForm::close() !!}
 						@if(!$user->loggedOnce)
-							<a href="{{ route('admin.user.sendagain', $user->id) }}"><button class="btn label label-primary">Renvoyer le mail</button></a>
+							<a href="{{ route('admin.user.sendagain', $user->id) }}"><button class="btn badge badge-primary">Renvoyer le mail</button></a>
 						@endif
 					</td>
 				</tr>
