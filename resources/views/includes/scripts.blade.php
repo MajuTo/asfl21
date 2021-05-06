@@ -1,4 +1,4 @@
-{{ Html::script('assets/js/jquery-3.4.1.min.js') }}
-{{ Html::script('assets/bootstrap/js/bootstrap.min.js') }}
-{{ Html::script('https://cdn.ckeditor.com/4.13.1/basic/ckeditor.js') }}
-{{ Html::script('assets/js/app.js') }}
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('https://cdn.ckeditor.com/4.13.1/basic/ckeditor.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>

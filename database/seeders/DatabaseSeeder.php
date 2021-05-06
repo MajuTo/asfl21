@@ -14,14 +14,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Eloquent::unguard();
-        $this->call(GroupTableSeeder::class);
-        $this->call(UserTableSeeder::class);
-        $this->call(ActivityTableSeeder::class);
-        $this->call(CategoryTableSeeder::class);
-        $this->call(MessageTableSeeder::class);
-        $this->call(LinkTableSeeder::class);
-        $this->call(AddressTableSeeder::class);
-        $this->call(EventGroupTableSeeder::class);
-        $this->call(EventTableSeeder::class);
+        $this->call('GroupTableSeeder');
+        $this->call('UserTableSeeder');
+        $this->call('ActivityTableSeeder');
+        $this->call('CategoryTableSeeder');
+        $this->call('MessageTableSeeder');
+        $this->call('LinkTableSeeder');
+        $this->call('AddressTableSeeder');
     }
 }

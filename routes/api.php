@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+/* AJAX */
+/* nous-trouver */
+Route::post('getSfByActivity', [\App\Http\Controllers\NousTrouverController::class, 'getSfByActivity'])->name('api.getSfByActivity');

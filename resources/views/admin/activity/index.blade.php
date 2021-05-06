@@ -1,28 +1,24 @@
 @extends('layouts.admin')
 @section('content')
-	<div class="row">
-		<div class="col-sm-6">
-			<h2>Gestion des activités</h2>
-		</div>
-		<div class="col-sm-6">
-			<h2><a href="{{ route('admin.activity.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
-		</div>
+	<div class="row d-flex justify-content-between">
+        <h2>Gestion des activités</h2>
+        <div><a class="btn btn-pink" href="{{ route('admin.activity.create') }}">Ajouter</a></div>
 	</div>
-	<table class="table table-condensed table-hover">
+	<table class="table table-sm table-hover">
 		<thead>
-			<td>Nom</td>
-			<td>Actions</td>
+			<th>Nom</th>
+			<th>Actions</th>
 		</thead>
 		<tbody>
 			@foreach($activities as $activity)
 				<tr>
 					<td>{{ $activity->activityName }}</td>
 					<td>
-						<a href="{{ route('admin.activity.edit', $activity->id) }}"><button class="btn label label-warning">Editer</button></a>
+						<a href="{{ route('admin.activity.edit', $activity->id) }}"><button class="btn badge badge-warning">Editer</button></a>
 						{!! BootForm::open()->delete()->action(route('admin.activity.destroy', $activity->id))->style('display: inline;') !!}
 						    {!! Form::token() !!}
 						    {!! BootForm::bind($activity) !!}
-						    {!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}
+						    {!! BootForm::submit('Supprimer', 'badge-danger badge eraser') !!}
 						{!! BootForm::close() !!}
 					</td>
 				</tr>

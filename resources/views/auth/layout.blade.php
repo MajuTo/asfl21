@@ -11,10 +11,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
-                <img class="img-responsive img-rounded" src="{{ asset('assets/img/pregnant-collection/feet-619534_1280.jpg') }}" alt="pieds de bébé">
+            <div class="d-none d-md-flex col-md-7">
+                <img class="img-fluid rounded" src="{{ asset('img/pregnant-collection/feet-619534_1280.jpg') }}" alt="pieds de bébé">
             </div>
-            <div class="col-sm-6">
+            <div class="col-12 col-md-5 text-right">
                 @yield('auth.content')
             </div>
         </div>

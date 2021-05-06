@@ -14,6 +14,7 @@
         "fruitcake/laravel-cors": "^2.0",
         "galahad/bootforms": "^1.2",
         "glaivepro/invytr": "^1.0",
+        "glhd/aire-bootstrap": "^2.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/helpers": "^1.1",

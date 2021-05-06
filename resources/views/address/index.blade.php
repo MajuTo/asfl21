@@ -6,15 +6,17 @@
 			<h2>Mes Adresses</h2>
 		</div>
 		<div class="col-sm-6">
-			<h2><a href="{{ route('adresse.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+			<h2><a class="btn btn-pink pull-right" href="{{ route('adresse.create') }}">Ajouter</a></h2>
 		</div>
 	</div>
 	<table class="table table-condensed table-hover">
 		<thead>
-			<td>Nom</td>
-			<td>Adresse</td>
-			<td>Téléphone</td>
-			<td>Actions</td>
+        <tr>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Téléphone</th>
+            <th>Actions</th>
+        </tr>
 		</thead>
 		<tbody>
 			@foreach($addresses as $address)
@@ -24,11 +26,9 @@
 					<td>{{ $address->phone }}</td>
 					<td>
 						<a href="{{ route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! BootForm::open()->delete()->action(route('adresse.destroy', $address->id))->style('display: inline;') !!}
-						    {!! Form::token() !!}
-						    {!! BootForm::bind($address) !!}
-						    {!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}
-						{!! BootForm::close() !!}
+						{{ Aire::open(route('adresse.destroy', $address->id), $address)->delete()->style('display: inline;') }}
+						    {{ Aire::submit('Supprimer')->addClass('badge-danger badge eraser')->removeClass('btn btn-primary') }}
+						{{ Aire::close() }}
 					</td>
 				</tr>
 			@endforeach

@@ -1,28 +1,45 @@
 @extends('layouts.index')
 @section('content')
-    <div class="col-sm-8 col-sm-offset-2">
-        {!! BootForm::openHorizontal(['lg' => [2, 10]])->action(route('adresse.store')) !!}
-            {{ Form::token() }}
-            {!! BootForm::bind($address) !!}
-            {!! BootForm::text('Nom', 'name')->placeHolder("Nom de l'adresse...")->required() !!}
-            {!! BootForm::text('Adresse', 'address')->placeHolder("Adresse...")->required() !!}
-            {!! BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal...")->required() !!}
-            {!! BootForm::text('Ville', 'city')->placeHolder("Ville...")->required() !!}
-            {!! BootForm::text('Téléphone Fixe', 'phone')->placeHolder("Téléphone fixe...") !!}
-            @if($address->hidePhone)
-                {!! BootForm::checkbox('Téléphone privé', 'hidePhone')->check() !!}
-            @else
-                {!! BootForm::checkbox('Téléphone privé', 'hidePhone') !!}
-            @endif
-            {!! BootForm::textarea('Description', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)")->class('ckeditor') !!}
+    <div class="col-sm-8 offset-2">
+        {!! Aire::open(route('adresse.store'), $address) !!}
+            {{ Aire::input('name', 'Nom')->placeholder("Nom de l'adresse...")->required() }}
+            {{ Aire::input('address', 'Adresse')->placeholder("Adresse...")->required() }}
+            {{ Aire::input('zipCode', 'Code postal')->placeholder("Code postal...")->required() }}
+            {{ Aire::input('city', 'Ville')->placeholder("Ville...")->required() }}
+            <div class="row">
+                <div class="col-6 mb-3">
+                    {{ Aire::input('phone', 'Téléphone fixe')->placeholder("Téléphone fixe...")->groupAddClass('mb-1')->required() }}
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" name="hidePhone" id="hidePhone" {{ $address->hidePhone ? 'checked' : '' }}>
+                        <label class="custom-control-label" for="hidePhone">Téléphone privé</label>
+                    </div>
+                </div>
+                <div class="col-6 mb-3">
+                    {{ Aire::input('fax', 'Fax')->groupAddClass('mb-1')->placeholder('Fax...') }}
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" name="hideFax" id="hideFax" {{ $address->hideFax ? 'checked' : '' }}>
+                        <label class="custom-control-label" for="hideFax">Ne pas montrer mon fax</label>
+                    </div>
+                </div>
+            </div>
+            {!! Aire::textarea('description', 'Description')->placeHolder("Informations supplémentaires (horaires, etc...)")->class('ckeditor') !!}
 
-            {!! BootForm::submit('Ajouter', 'pull-right btn-pink') !!}
+            {!! Aire::submit('Ajouter')->addClass('pull-right btn-pink')->removeClass('btn-primary') !!}
 
-        {!! BootForm::close() !!}
+        {!! Aire::close() !!}
     </div>
 @stop
 @section('script')
     <script>
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     document.getElementById('nav-membre').classList.add('active')
+        //     document.getElementById('nav-profil').classList.add('active')
+        //     let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+        //     checkboxes.forEach(checkbox => {
+        //         let activeClass = checkbox.checked ? 'checked' : 'notchecked'
+        //         checkbox.parentElement.classList.add(activeClass)
+        //     })
+        // })
         $(document).ready(function(){
             $('#nav-membre').addClass('active');
             $('#nav-profil').addClass('active');

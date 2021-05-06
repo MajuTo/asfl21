@@ -1,35 +1,39 @@
 @extends('layouts.index')
 @section('content')
-<div class="col-sm-6 col-sm-offset-4">
+<div class="col-sm-6 offset-4">
     <h3>Modification d'une adresse</h3>
 </div>
-<div class="col-sm-9 col-sm-offset-1">
+<div class="col-sm-8 offset-2">
     @if($admin)
-        {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('admin.adresse.update', $address->id)) !!}
+        {{ Aire::open(route('admin.adresse.update', $address->id), $address) }}
     @else
-        {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('adresse.update', $address->id)) !!}
+        {{ Aire::open(route('adresse.update', $address->id), $address) }}
     @endif
-        {{ Form::token() }}
-        {!! BootForm::bind($address) !!}
-        {!! BootForm::text('Nom', 'name')->placeHolder("Nom de l'adresse...")->required() !!}
-        {!! BootForm::text('Adresse', 'address')->placeHolder("Adresse...")->required() !!}
-        {!! BootForm::text('Code postal', 'zipCode')->placeHolder("Code postal...")->required() !!}
-        {!! BootForm::text('Ville', 'city')->placeHolder("Ville...")->required() !!}
-        {!! BootForm::text('Téléphone Fixe', 'phone')->placeHolder("Téléphone fixe...") !!}
-        @if($address->hidePhone)
-            {!! BootForm::checkbox('Ne pas montrer mon téléphone', 'hidePhone')->check() !!}
-        @else
-            {!! BootForm::checkbox('Ne pas montrer mon téléphone', 'hidePhone') !!}
-        @endif
-        {!! BootForm::text('Fax', 'fax')->placeHolder("Fax...") !!}
-        @if($address->hideFax)
-            {!! BootForm::checkbox('Ne pas montrer mon fax', 'hideFax')->check() !!}
-        @else
-            {!! BootForm::checkbox('Ne pas montrer mon fax', 'hideFax') !!}
-        @endif
-        {!! BootForm::textarea('Informations supplémentaires <span class="textarea-subtext">(disponibilités, horaires, etc...)</span>', 'description')->placeHolder("Informations supplémentaires (horaires, etc...)")->class('ckeditor') !!}
-        {!! BootForm::submit('Enregistrer', 'pull-right btn-pink') !!}
-    {!! BootForm::close() !!}
+    {{ Aire::input('name', 'Nom')->placeholder("Nom de l'adresse...")->required() }}
+    {{ Aire::input('address', 'Adresse')->placeholder("Adresse...")->required() }}
+    {{ Aire::input('zipCode', 'Code postal')->placeholder("Code postal...")->required() }}
+    {{ Aire::input('city', 'Ville')->placeholder("Ville...")->required() }}
+    <div class="row">
+        <div class="col-6">
+            {{ Aire::input('phone', 'Téléphone fixe')->placeholder("Téléphone fixe...")->required() }}
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" name="hidePhone" id="hidePhone" {{ $address->hidePhone ? 'checked' : '' }}>
+                <label class="custom-control-label" for="hidePhone">Téléphone privé</label>
+            </div>
+        </div>
+        <div class="col-6">
+            {{ Aire::input('fax', 'Fax')->placeholder('Fax...') }}
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" name="hideFax" id="hideFax" {{ $address->hideFax ? 'checked' : '' }}>
+                <label class="custom-control-label" for="hideFax">Ne pas montrer mon fax</label>
+            </div>
+        </div>
+    </div>
+    {!! Aire::textarea('description', 'Description')->placeHolder("Informations supplémentaires (horaires, etc...)")->class('ckeditor') !!}
+
+    {!! Aire::submit('Ajouter')->addClass('pull-right btn-pink')->removeClass('btn-primary') !!}
+
+    {!! Aire::close() !!}
 </div>
 @stop
 @section('script')

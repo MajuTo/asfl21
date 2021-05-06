@@ -2,14 +2,8 @@
 
 namespace App;
 
-use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Group
- * @package App
- * @mixin Eloquent
- */
 class EventGroup extends Model
 {
     protected $guarded = [];

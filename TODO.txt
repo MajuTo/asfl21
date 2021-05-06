@@ -11,16 +11,26 @@
 // DONE : Voir le format de la date dans le date picker du calendrier -> géré dans CalendarController avec la màj de Visjs
 // DONE : passer de momentJs a date-fns -> ni l'un ni l'autre :D
 // TODO : (addresses : description) -> a quoi ca sert ?
-// TODO : Imaginer les events du calendar en BDD ??
+// DONE : Imaginer les events du calendar en BDD ??
 // TODO : Faire le tour des controllers pour voir les relations plutôt que des requetes séparées ??
 // TODO : Revoir les validations de données (Validator ? Request dédiées ?)
 // TODO : Revoir la gestion des activités / update activities et autre (UserController)
 // TODO : Revoir la mise a jour du mot de passe de profil (updatePassword UserController)
-// TODO : Voir pour migrer sur BootStrap 4 ?
+// TODO WIP : Voir pour migrer sur BootStrap 4 ?
 // TODO : Passer sur un package de notification style laracasts/flash ?
 // TODO : galahad/bootforms --> glhd/aire
 // TODO : Logger les dates de login des gens ?
 // TODO : user description qui ne peut etre null (voir a changer null en '' dans le save du user)
-// TODO : afficher en grid/card les partenaires, voire les liens utiles aussi (eventuellement icone /logo?).
+// TODO : afficher en grid/card les partenaires, voire les liens utiles aussi (éventuellement icône /logo?).
 // TODO : revoir la page d'une sage femme (voire https://www.asfl21.fr/sage-femme/46/MATHIEU-Lise) adresse
 // TODO : éventuellement revoir les checkbox activités
+// TODO : passer la classe 'active' des menus dans le menu au lieu du script dans chaque view ?
+// TODO : page nous trouver
+// DONE : popper js (nous-trouver)
+// TODO : footer fixe
+// DONE : datepicker
+// TODO : virer jQuery pour tout ce qui n'est pas Bootstrap (pour être v5 ready)
+// TODO : menu sur mobile
+// TODO : Adresse de l'association changeable en admin + coordonnées dans la google map page contact
+// TODO : gmaps -> mapbox ?
+// TODO : voir nouvelle version CKEDITOR
