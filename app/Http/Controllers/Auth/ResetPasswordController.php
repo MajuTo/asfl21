@@ -38,7 +38,7 @@ class ResetPasswordController extends Controller
      * @param string $response
      * @return RedirectResponse
      */
-    protected function sendResetResponse(Request $request, $response)
+    protected function sendResetResponse(Request $request, $response): RedirectResponse
     {
         Alert::add('alert-success', __('passwords.reset',[], 'fr'));
         /** @var User $user */

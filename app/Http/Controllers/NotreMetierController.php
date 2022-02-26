@@ -14,7 +14,7 @@ class NotreMetierController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View
     {
         return view()->make('notremetier.index');
     }

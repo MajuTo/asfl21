@@ -16,7 +16,7 @@ class NousTrouverController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View
     {
         $sagesfemmes = User::with('addresses')->where('active', 1)->where('group_id', '!=', 3)->orderBy('name')->get();
         $activities  = Activity::orderBy('activityName')->get();
@@ -28,6 +28,9 @@ class NousTrouverController extends Controller
     }
 
     /* Get User by Activity */
+    /**
+     * @throws BindingResolutionException
+     */
     public function getSfByActivity(){
         if ($selectedActivities = request('selectedActivities')) {
 //            Commenté le 02 Mars 2019 au profit de la requete plus bas
@@ -54,7 +57,6 @@ class NousTrouverController extends Controller
                 ->orderBy('name')
                 ->get(['id', 'name', 'firstname']);
         } else {
-            // $userByActivities = DB::table('users')->orderBy('name')->get();
             $userByActivities = User::where('active', 1)->where('group_id', '!=', 3)->orderBy('name')->get(['id', 'name', 'firstname']);
         }
 

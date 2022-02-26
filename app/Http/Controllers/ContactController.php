@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Mail\Message;
 use Mail;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class ContactController extends Controller
 {
@@ -17,7 +19,7 @@ class ContactController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View
     {
         return view()->make('contact.index');
     }
@@ -25,8 +27,10 @@ class ContactController extends Controller
     /**
      * @return View|RedirectResponse|mixed
      * @throws BindingResolutionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function sendcontact()
+    public function sendContact()
     {
         $rules = array(
             'name' => 'required',

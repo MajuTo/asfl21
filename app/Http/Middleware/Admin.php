@@ -15,7 +15,7 @@ class Admin
      * @param Closure $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         if (auth()->user()->group->id != 2 && auth()->user()->group->id != 3) {
             Alert::add("alert-danger", "Vous n'avez pas de droit d'administration.");

@@ -8,6 +8,8 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\File;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class PartnerController extends Controller
 {
@@ -19,7 +21,7 @@ class PartnerController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View
     {
         if($this->isAdminRequest()){
             $partners = Partner::orderBy('partnerName')->paginate(10);
@@ -41,7 +43,7 @@ class PartnerController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function create()
+    public function create(): View
     {
         return view()->make('admin.partner.create', [
             'partner'   => new Partner()
@@ -55,7 +57,7 @@ class PartnerController extends Controller
      * @return RedirectResponse
      * @throws BindingResolutionException
      */
-    public function store()
+    public function store(): RedirectResponse
     {
         $rules = array(
             'partnerName'  => 'required|unique:partners',
@@ -84,6 +86,7 @@ class PartnerController extends Controller
         $partner->save();
 
         Alert::add("alert-success", "Le partenaire a bien été créé");
+
         return redirect()->route('admin.partner.index');
     }
 
@@ -108,10 +111,10 @@ class PartnerController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         return view()->make('admin.partner.edit',[
-            'partner' => Partner::find($id)
+            'partner' => Partner::findOrFail($id)
         ]);
     }
 
@@ -123,8 +126,10 @@ class PartnerController extends Controller
      *
      * @return RedirectResponse
      * @throws BindingResolutionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function update(int $id)
+    public function update(int $id): RedirectResponse
     {
         $rules = array(
             'partnerName'  => 'required|unique:partners,partnerName,'.$id,
@@ -160,6 +165,7 @@ class PartnerController extends Controller
         $partner->update(request()->all());
 
         Alert::add("alert-success", "Le partenaire a bien été modifié");
+
         return redirect()->route('admin.partner.index');
     }
 
@@ -171,7 +177,7 @@ class PartnerController extends Controller
      *
      * @return RedirectResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         $partner = Partner::find($id);
         if($partner->logo){
@@ -179,6 +185,7 @@ class PartnerController extends Controller
         }
         Partner::destroy($id);
         Alert::add("alert-success", "Le partenaire a bien été supprimé");
+
         return redirect()->route('admin.partner.index');
     }
 

@@ -4,6 +4,7 @@ namespace App;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Class Activity
@@ -15,7 +16,7 @@ class Activity extends Model
     public $timestamps    = false;
     protected $fillable	  = ['activityName', 'activityDesc'];
 
-    public function users()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }

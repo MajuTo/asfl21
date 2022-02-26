@@ -17,12 +17,12 @@ class Address extends Model
     public $timestamps    = false;
     protected $fillable	  = ['address', 'zipCode', 'phone', 'city', 'name', 'description', 'hidePhone', 'fax', 'hideFax', 'user_id'];
 
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function save(array $options = [])
+    public function save(array $options = []): bool
     {
         ['lat' => $this->lat, 'lng' => $this->lng] = Geocoder::getCoordinatesForAddress($this->address . ' ' . $this->zipCode . ' ' . $this->city . ' ' . $this->country);
         if ($this->lat == 0 || $this->lng == 0) {

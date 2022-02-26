@@ -4,6 +4,7 @@ namespace App;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Category
@@ -14,7 +15,7 @@ class Category extends Model {
 
 	public $timestamps    = false;
 
-	public function messages()
+	public function messages(): HasMany
     {
 		return $this->hasMany(Message::class);
 	}

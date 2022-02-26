@@ -4,6 +4,7 @@ namespace App;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class File
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class File extends Model
 {
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

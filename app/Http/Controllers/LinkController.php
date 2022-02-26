@@ -14,7 +14,7 @@ class LinkController extends Controller
      *
      * @return View
      */
-    public function index()
+    public function index(): View
     {
         if($this->isAdminRequest()){
             return view('admin.link.index', [

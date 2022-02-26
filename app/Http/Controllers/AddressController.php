@@ -9,6 +9,8 @@ use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Validator;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class AddressController extends Controller
 {
@@ -18,9 +20,10 @@ class AddressController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View
     {
         $addresses = Address::where('user_id', '=', auth()->id())->get();
+
         return view()->make('address.index', [
             'addresses' => $addresses
         ]);
@@ -33,7 +36,7 @@ class AddressController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function create()
+    public function create(): View
     {
         $address = new Address();
         $view = $this->isAdminRequest() ? 'admin.address.create' : 'address.create';
@@ -48,8 +51,10 @@ class AddressController extends Controller
      * Store a newly created resource in storage.
      *
      * @return RedirectResponse
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function store()
+    public function store(): RedirectResponse
     {
         $rules = array(
             'name' 		=> 'required',
@@ -100,7 +105,7 @@ class AddressController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         $address = Address::find($id);
         $user = User::find($address->user_id);
@@ -125,7 +130,7 @@ class AddressController extends Controller
      *
      * @return RedirectResponse
      */
-    public function update(int $id)
+    public function update(int $id): RedirectResponse
     {
         $rules = array(
             'name' 		=> 'required',
@@ -167,7 +172,7 @@ class AddressController extends Controller
      *
      * @return RedirectResponse
      */
-    public function destroy(int$id)
+    public function destroy(int $id): RedirectResponse
     {
         $user_id = User::find( Address::find($id)->user_id )->id;
         Address::destroy($id);

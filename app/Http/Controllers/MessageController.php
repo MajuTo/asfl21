@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Helpers\Alert;
 use App\Message;
-use App\Category;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class MessageController extends Controller
 {
@@ -17,7 +19,7 @@ class MessageController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View
     {
         if($this->isAdminRequest()) {
             return view()->make('admin.message.index', [
@@ -61,8 +63,10 @@ class MessageController extends Controller
      *
      * @return RedirectResponse
      * @throws BindingResolutionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function store()
+    public function store(): RedirectResponse
     {
         $rules = array(
             'title'   => 'required',
@@ -112,7 +116,7 @@ class MessageController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function edit(int $id)
+    public function edit(int $id): View
     {
         $view = ($this->isAdminRequest()) ? 'admin.message.edit' : 'message.edit';
         $message = Message::find($id);
@@ -132,7 +136,7 @@ class MessageController extends Controller
      *
      * @return RedirectResponse
      */
-    public function update(int $id)
+    public function update(int $id): RedirectResponse
     {
         $view = ($this->isAdminRequest()) ? 'admin.message.index' : 'message.index';
         $message = Message::find($id);
@@ -149,7 +153,7 @@ class MessageController extends Controller
      *
      * @return RedirectResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         Message::destroy($id);
         Alert::add("alert-success", "Le message a bien été supprimé");

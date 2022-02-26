@@ -8,8 +8,11 @@ use App\Notifications\VerifyEmail;
 use Eloquent;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class User
@@ -36,27 +39,27 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    public function messages()
+    public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
     }
 
-    public function files()
+    public function files(): HasMany
     {
         return $this->hasMany(File::class);
     }
 
-    public function group()
+    public function group(): BelongsTo
     {
         return $this->belongsTo(Group::class);
     }
 
-    public function activities()
+    public function activities(): BelongsToMany
     {
         return $this->belongsToMany(Activity::class);
     }
 
-    public function addresses()
+    public function addresses(): HasMany
     {
         return $this->hasMany(Address::class);
     }
@@ -66,7 +69,7 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
      *
      * @return bool
      */
-    public function hasToChangePassword()
+    public function hasToChangePassword(): bool
     {
         return (bool) ! $this->loggedOnce;
     }

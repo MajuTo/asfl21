@@ -16,6 +16,8 @@ use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use Invytr;
 use Mail;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use Str;
 
 class UserController extends Controller
@@ -26,7 +28,7 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function index()
+    public function index(): View
     {
         if($this->isAdminRequest()){
             $users = User::orderBy('name')->orderBy('firstname')->paginate(10);
@@ -49,7 +51,7 @@ class UserController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function create()
+    public function create(): View
     {
         $groups = Group::pluck('groupName', 'id');
 
@@ -69,7 +71,7 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws BindingResolutionException
      */
-    public function store()
+    public function store(): RedirectResponse
     {
         $rules = array(
             'name'      => 'required',
@@ -114,18 +116,11 @@ class UserController extends Controller
      *
      * @return string
      */
-    private function generateUsername(string $name, string $firstname)
+    private function generateUsername(string $name, string $firstname): string
     {
         $username = Str::lower(substr($name, 0, 2) . substr($firstname, 0, 2) . rand(1000, 9999));
-        try
-        {
-            User::where('username', '=', $username)->firstOrFail();
-            $this->generateUsername($name, $firstname);
-        }
-        catch(\Exception $e)
-        {
-            return $username;
-        }
+
+        return (User::where('username', '=', $username)->first()) ? $this->generateUsername($name, $firstname) : $username;
     }
 
     /**
@@ -136,7 +131,7 @@ class UserController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function show(int $id)
+    public function show(int $id): View
     {
         $user = User::find($id);
         $address = Address::where('user_id', '=', $id)->get();
@@ -186,8 +181,10 @@ class UserController extends Controller
      *
      * @return RedirectResponse
      * @throws BindingResolutionException
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function update(int $id)
+    public function update(int $id): RedirectResponse
     {
         $user = ( $this->isAdminRequest() ) ? User::find($id) : User::find(auth()->id());
 
@@ -214,12 +211,6 @@ class UserController extends Controller
         Alert::add("alert-success", "Les modifications ont bien été enregistrées.");
 
         if($this->isAdminRequest()){
-            //Activities
-            /*$activities = [];
-            if(sizeof(request()->get('activities')) > 0){
-                $activities = request()->get('activities');
-            }
-            $user->activities()->sync($activities);*/
             return redirect()->route('admin.user.edit', $user->id);
         }
         return redirect()->route('user.edit', auth()->user()->id);
@@ -231,8 +222,10 @@ class UserController extends Controller
      * @param  int  $id
      *
      * @return RedirectResponse
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
-    public function updateActivities(int $id)
+    public function updateActivities(int $id): RedirectResponse
     {
         $user = User::find($id);
 
@@ -254,7 +247,7 @@ class UserController extends Controller
      * @return RedirectResponse
      * @throws ValidationException
      */
-    public function updatePassword(Request $request)
+    public function updatePassword(Request $request): RedirectResponse
     {
         $user = auth()->user();
         $this->validate($request, [
@@ -273,14 +266,15 @@ class UserController extends Controller
     }
 
     /**
-     * Envoi un email à l'utilisateur depuis l'inteface de contact
+     * Envoi un email à l'utilisateur depuis l'interface de contact
      *
      * @param  int  $id
      *
      * @return RedirectResponse
      * @throws BindingResolutionException
      */
-    public function sendEmail(int $id){
+    public function sendEmail(int $id): RedirectResponse
+    {
         $user = User::find($id);
 
         $rules = array(
@@ -315,7 +309,8 @@ class UserController extends Controller
      *
      * @return RedirectResponse
      */
-    public function sendAgain(int $id){
+    public function sendAgain(int $id): RedirectResponse
+    {
         $user = User::find($id);
 
         Invytr::invite($user);
@@ -339,25 +334,18 @@ class UserController extends Controller
 
 
     /**
-     * Toogle the state of user (active/inactive).
+     * Toggle the state of user (active/inactive).
      *
      * @param  int  $id
      *
      * @return RedirectResponse
      */
-    public function toggle(int $id)
+    public function toggle(int $id): RedirectResponse
     {
         $user = User::find($id);
         $user->update([
             'active' => ! $user->active
         ]);
-//        $user->active = $user->active ? 0 : 1;
-//        if($user->active){
-//            $user->active = 0;
-//        }else{
-//            $user->active = 1;
-//        }
-//        $user->save();
 
         return redirect()->route('admin.user.index');
     }

@@ -21,7 +21,7 @@ Route::get('liens-utiles',  [\App\Http\Controllers\LinkController::class, 'index
 Route::get('partenaires', [\App\Http\Controllers\PartnerController::class, 'index'])->name('partner');
 
 Route::get('contact',  [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
-Route::post('contact', [\App\Http\Controllers\ContactController::class, 'sendcontact'])->name('sendcontact');
+Route::post('contact', [\App\Http\Controllers\ContactController::class, 'sendContact'])->name('sendcontact');
 
 Route::get('inscription/verification/{confirmation}', [\App\Http\Controllers\UserController::class, 'confirmation'])->name('confirmation');
 
@@ -31,9 +31,7 @@ Route::post('user/{user}', [\App\Http\Controllers\UserController::class, 'sendEm
 Route::resource('calendrier', \App\Http\Controllers\CalendarController::class, ['only' => ['index', 'show', 'store']]);
 
 /* MENTIONS LEGALES */
-Route::get('mentions', function() {
-    return view()->make('mentions');
-})->name('mentions');
+Route::view('mentions', 'mentions')->name('mentions');
 
 /* AJAX */
 /* nous-trouver */

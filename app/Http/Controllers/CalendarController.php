@@ -18,7 +18,7 @@ class CalendarController extends Controller
      * @return View
      * @throws BindingResolutionException
      */
-    public function index()
+    public function index(): View
     {
         return view()->make('calendar.index', [
             'events' => '',
@@ -70,7 +70,7 @@ class CalendarController extends Controller
         $events = [];
 
         foreach ($groups as $group) {
-            foreach ($group->events as $key => $event) {
+            foreach ($group->events as $event) {
                 $d = clone($date);
                 $event->start = $d->addWeeks($event->date)->format('Y-m-d');
                 $event->startDateString = utf8_encode(strftime('%d %B %Y', $d->timestamp));

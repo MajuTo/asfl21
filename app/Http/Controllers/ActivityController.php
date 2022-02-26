@@ -52,7 +52,7 @@ class ActivityController extends Controller
      *
      * @return RedirectResponse
      */
-    public function store()
+    public function store(): RedirectResponse
     {
         $rules = array(
             'activityName'      => 'required|unique:activities',
@@ -112,7 +112,7 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(int $id)
+    public function update(int $id): RedirectResponse
     {
         $activity = Activity::find($id);
 
@@ -142,7 +142,7 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function destroy(int $id)
+    public function destroy(int $id): RedirectResponse
     {
         Activity::destroy($id);
         Alert::add("alert-success", "L'activité a bien été supprimée");
