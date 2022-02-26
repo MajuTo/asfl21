@@ -15,6 +15,7 @@
         "galahad/bootforms": "^1.2",
         "glaivepro/invytr": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "haruncpi/laravel-simple-captcha": "^1.0",
         "laravel/framework": "^8.0",
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^2.0",

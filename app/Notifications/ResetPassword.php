@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -42,7 +41,7 @@ class ResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->from('noreply@asfl21.fr', 'ASFL21')
+            ->from(env('MAIL_FROM_ADDRESS'), 'ASFL21')
             ->subject('Réinitialisation de mot de passe pour le site asfl21.fr')
             ->view('emails.auth.reminder', [
                 'token' => $this->token,

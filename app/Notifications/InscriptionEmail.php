@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 use Password;
 
 class InscriptionEmail extends Notification
@@ -41,6 +41,7 @@ class InscriptionEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->from(env('MAIL_FROM_ADDRESS'), 'ASFL21')
             ->subject('Inscription sur le site asfl21.fr')
             ->view('emails.inscription', [
                 'user' => $notifiable,

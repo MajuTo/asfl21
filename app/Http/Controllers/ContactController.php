@@ -32,7 +32,8 @@ class ContactController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'subject' => 'required|max:250',
-            'message' => 'required|max:250'
+            'message' => 'required|max:250',
+            '_answer' => 'required | simple_captcha',
         );
 
         $validation = validator()->make(request()->all(), $rules);
@@ -44,8 +45,7 @@ class ContactController extends Controller
             $subject = (request()->get('pro')) ? '[PRO] ' : '';
             $subject .= request()->get('subject');
             Mail::send('emails.contact', ['inputs' => request()->all()], function(Message $m) use ($subject){
-//                $m->to('majuto@free.fr')->subject($subject)->from(request()->get('email'), request()->get('name'));
-                $m->to(env('CONTACT_MAIL'))->subject($subject)->from(request()->get('email'), request()->get('name'));
+                $m->to(env('CONTACT_MAIL'))->subject($subject)->from(env('MAIL_FROM_ADDRESS'), request()->get('name'));
             });
 
             Alert::add("alert-success", "Votre message a bien été envoyé");

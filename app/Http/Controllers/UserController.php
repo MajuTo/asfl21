@@ -286,19 +286,20 @@ class UserController extends Controller
         $rules = array(
             'name' => 'required',
             'email' => 'required',
-            'message' => 'required'
+            'message' => 'required',
+            '_answer' => 'required | simple_captcha',
         );
         $validation = validator()->make(request()->all(), $rules);
 
         if ($validation->fails()) {
             Alert::add("alert-danger", "Vous devez remplir tous les champs");
 
-            return redirect()->back()->withErrors($validation);
+            return redirect()->back()->withErrors($validation)->withInput();
         }
 
         //Envoi mail
-        Mail::send('emails.usercontact', ['input' => request()->all()], function(Message $m) use ($user)	{
-            $m->from(request('email'), request('name'));
+        Mail::send('emails.usercontact', ['inputs' => request()->all()], function(Message $m) use ($user)	{
+            $m->from(env('MAIL_FROM_ADDRESS'), request('name'));
             $m->to($user->email)->subject('Contact depuis le site ASFL21');
         });
 

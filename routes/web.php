@@ -11,7 +11,6 @@
 |
 */
 
-
 Auth::routes(['verify' => true, 'register' => false]);
 
 //Route::get('/', [HomeController::class, 'home')->]name('home');
