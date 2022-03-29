@@ -13,16 +13,16 @@
         <div class="row">
             <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
                 <div class="table-responsive">
-                    <table class="table table-condensed sf-hov">
+                    <table class="table table-condensed sf-hov" aria-describedby="liste des activités">
                         <thead>
                         <tr>
-                            <th>Activités <i class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></i></th>
+                            <th scope="col">Activités <em class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></em></th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach ($activities as $activity)
                         <tr>
-                            @foreach ($activities as $activity)
-                                <td class="activity-td" data-activity="{{ $activity->id }}" id="{{ $activity->id }}">{{ Str::title($activity->activityName) }}</td>
+                            <td class="activity-td" data-activity="{{ $activity->id }}" id="{{ $activity->id }}">{{ Str::title($activity->activityName) }}</td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -32,11 +32,11 @@
             <!-- AJAX liste des sf selon activité -->
             <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
                 <div class="table-responsive" id="table-sf">
-                    <table class="table table-condensed sf-hov">
+                    <table class="table table-condensed sf-hov" aria-describedby="liste des sages femmes">
                         <thead>
                         <tr>
-                            <th>Sages Femmes</th>
-                            <th><i id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></i></th>
+                            <th scope="col">Sages Femmes</th>
+                            <th scope="col"><em id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></em></th>
                         </tr>
                         </thead>
                         <tbody id="listesf">
