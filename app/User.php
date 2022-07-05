@@ -28,7 +28,7 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = ['name', 'firstname', 'username', 'password', 'email', 'hideEmail', 'loggedOnce', 'mobile', 'hideMobile', 'description', 'group_id'];
+    protected $fillable = ['name', 'firstname', 'username', 'password', 'email', 'hideEmail', 'loggedOnce', 'mobile', 'hideMobile', 'description', 'group_id', 'active'];
 
     /**
      * The attributes that should be hidden for arrays.

@@ -313,9 +313,12 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        Invytr::invite($user);
+        if(Invytr::invite($user)) {
+            Alert::add("alert-success", "L'email a bien été envoyé à " . $user->firstname . " " . $user->name);
+        } else {
+            Alert::add("alert-danger", "Une erreur est survenue lors de l'envoi de l'email à " . $user->firstname . " " . $user->name);
+        }
 
-        Alert::add("alert-success", "L'email a bien été envoyé à " . $user->firstname . " " . $user->name);
         return redirect()->route('admin.user.index');
     }
 
