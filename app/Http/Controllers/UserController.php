@@ -293,8 +293,10 @@ class UserController extends Controller
 
         //Envoi mail
         Mail::send('emails.usercontact', ['inputs' => request()->all()], function(Message $m) use ($user)	{
-            $m->from(env('MAIL_FROM_ADDRESS'), request('name'));
-            $m->to($user->email)->subject('Contact depuis le site ASFL21');
+            $m->from(env('MAIL_FROM_ADDRESS'), request('name'))
+                ->to($user->email)
+                ->replyTo(request()->get('email'), request()->get('name'))
+                ->subject('Contact depuis le site ASFL21');
         });
 
         Alert::add("alert-success", "Votre message a bien été envoyé");
