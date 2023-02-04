@@ -36,3 +36,4 @@
 // TODO : voir nouvelle version CKEDITOR
 // TODO : modif pour les dernières versions de visJS éventuellement ?
 // TODO : Vérifier les exceptions dans les divers controlleurs
+// TODO : page mentions

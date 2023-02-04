@@ -7,7 +7,7 @@
                 <li class="active"><a href="#profil" data-toggle="tab">Profil</a></li>
                 <li><a href="#adresses" data-toggle="tab">Adresses</a></li>
                 <li><a href="#activites" data-toggle="tab">Activités</a></li>
-                
+
             </ul>
         </div>
     </div>
@@ -77,7 +77,7 @@
                 </table>
             </div>
         </div>
-        
+
         <!-- Div de l'onglet activités -->
         <div role="tabpanel" class="tab-pane fade" id="activites">
           <div class="col-sm-6 col-sm-offset-3">
@@ -98,22 +98,4 @@
         </div>
 
     </div> <!-- Fin div tab-content -->
-@stop
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $('#nav-membre').addClass('active');
-            $('#nav-admin').addClass('active');
-            $('#nav-admin-users').addClass('active');
-            $(':checkbox:not(:checked)').parent().addClass('notchecked');
-            $(':checkbox:checked').parent().addClass('checked');
-            $(':checkbox').on('change', function(){
-                if( $(this).parent().hasClass('checked') ){
-                    $(this).parent().removeClass('checked').addClass('notchecked');
-                }else{
-                    $(this).parent().removeClass('notchecked').addClass('checked');
-                }
-            });
-        });
-    </script>
 @stop

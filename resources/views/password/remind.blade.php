@@ -19,7 +19,6 @@
                         {!! BootForm::email('Email', 'email')->required() !!}
                         {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
                     {!! BootForm::close() !!}
-
             </div>
         </div>
     </div>

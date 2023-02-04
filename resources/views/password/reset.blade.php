@@ -8,8 +8,8 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                    {!! BootForm::openHorizontal(['lg' => [4, 8]) !!}
-                        {!!  Form::token() !!}
+                    {!! BootForm::openHorizontal(['lg' => [4, 8]]) !!}
+                        {!! Form::token() !!}
                         {!! Form::hidden('token', $token) !!}
                         {!! BootForm::email('Email', 'email')->required() !!}
                         {!! BootForm::password('Mot de passe', 'password')->required() !!}

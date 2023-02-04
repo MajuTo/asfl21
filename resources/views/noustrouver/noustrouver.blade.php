@@ -67,7 +67,7 @@
     <script>
         $(document).ready(function(){
             // active navbar
-            $('#nav-trouver').addClass('active');
+            // $('#nav-trouver').addClass('active');
 
             // tooltip
             $(function () {
@@ -77,16 +77,20 @@
             // on google map 'chez vous' search
             // $('#chezvous_textbox').keyup(function(event){
             document.getElementById('chezvous_textbox').addEventListener('keyup', function (event) {
-                if(event.keyCode === 13){
-                    $('#chezvous_button').click();
+                if(event.code === 'Enter'){
+                    document.getElementById('chezvous_button').click()
+                    // $('#chezvous_button').click();
                 }
             });
 
             // get selected activities
             function getSelectedActivities(){
                 let selected_id = [];
-                $.each($('.activity-td-selected'), function(){
-                    selected_id.push($(this).attr('id'));
+                // $.each($('.activity-td-selected'), function(){
+                //     selected_id.push($(this).attr('id'));
+                // })
+                document.querySelectorAll('.activity-td-selected').forEach((tdNode) => {
+                    selected_id.push(tdNode.getAttribute('id'))
                 })
                 return selected_id;
             }
@@ -94,8 +98,11 @@
             // get selected sf
             function getSelectedSf(){
                 let selected_sf = [];
-                $.each($('.sf-tr-selected'), function(){
-                    selected_sf.push($(this).attr('id'));
+                // $.each($('.sf-tr-selected'), function(){
+                //     selected_sf.push($(this).attr('id'));
+                // })
+                document.querySelectorAll('.sf-tr-selected').forEach((trNode) => {
+                    selected_sf.push(trNode.getAttribute('id'))
                 })
                 return selected_sf;
             }
@@ -114,19 +121,29 @@
                         toggleMarkers();
                     }
                 });
+                let httpRequest = new XMLHttpRequest();
+                httpRequest.onreadystatechange = function(data) {
+                    // code
+                };
+                httpRequest.setRequestHeader(
+                    "Content-Type",
+                    "application/x-www-form-urlencoded",
+                );
+                httpRequest.open("POST", url);
+                httpRequest.send("username=" + encodeURIComponent(username));
 
             }
 
             // Cache tous les markers de la Google Map
             function hideAllMarkers(){
-                for(i=0; i<markers.length; i++){
+                for(let i=0; i<markers.length; i++){
                     markers[i].setVisible(false)
                 }
             }
 
             // Affiche tous les markers
             function showAllMarkers(){
-                for(i=0; i<markers.length; i++){
+                for(let i=0; i<markers.length; i++){
                     markers[i].setVisible(true)
                 }
             }
@@ -136,7 +153,7 @@
                 $('.sf-tr-selected').each(function(){
                     let sf = $(this).data('sf');
 
-                    for(i=0; i<markers.length; i++){
+                    for(let i=0; i<markers.length; i++){
                         if ( sf == markers[i]['id'].split('_')[0] ) {
                             markers[i].setVisible(true)
                         };
@@ -149,7 +166,7 @@
                 $('.sf-tr').each(function(){
                     let sf = $(this).data('sf');
 
-                    for(i=0; i<markers.length; i++){
+                    for(let i=0; i<markers.length; i++){
                         if ( sf == markers[i]['id'].split('_')[0] ) {
                             markers[i].setVisible(true)
                         };

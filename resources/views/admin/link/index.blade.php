@@ -33,12 +33,3 @@
 	</table>
 	{{ $links->links() }}
 @stop
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $('#nav-membre').addClass('active');
-            $('#nav-admin').addClass('active');
-            $('#nav-admin-links').addClass('active');
-        });
-    </script>
-@stop

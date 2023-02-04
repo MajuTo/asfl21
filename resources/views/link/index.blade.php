@@ -32,10 +32,3 @@
     </div>
 </section>
 @stop
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $('#nav-liens').addClass('active');
-        });
-    </script>
-@stop

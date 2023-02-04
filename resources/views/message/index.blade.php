@@ -51,28 +51,16 @@
 @stop
 @section('script')
     <script>
-        $(document).ready(function(){
-            $('#nav-membre').addClass('active');
-            $('#nav-info').addClass('active');
-            $(':checkbox:not(:checked)').parent().addClass('notchecked');
-            $(':checkbox:checked').parent().addClass('checked');
-            $(':checkbox').on('change', function(){
-                if( $(this).parent().hasClass('checked') ){
-                    $(this).parent().removeClass('checked').addClass('notchecked');
-                }else{
-                    $(this).parent().removeClass('notchecked').addClass('checked');
-                }
-            });
-
-            $('#envoi').click(function(event) {
-                if( $('.messagerie-form').hasClass('hide-form')){
-                    $('.messagerie-form').removeClass('hide-form');
-                    $('#envoi').text('Fermer le formulaire');
-                } else {
-                    $('.messagerie-form').addClass('hide-form');
-                    $('#envoi').text('Ecrire un message');
-                }
-            });
-        });
+        let sendButton = document.getElementById('envoi')
+        sendButton?.addEventListener('click', e => {
+            let classList = document.querySelector('.messagerie-form').classList
+            if (classList?.contains('hide-form')) {
+                classList?.remove('hide-form')
+                sendButton.innerText = 'Fermer le formulaire'
+            } else {
+                classList?.add('hide-form')
+                sendButton.innerText = 'Ecrire un message'
+            }
+        })
     </script>
 @stop

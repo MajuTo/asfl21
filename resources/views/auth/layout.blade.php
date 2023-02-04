@@ -20,10 +20,3 @@
         </div>
     </section>
 @stop
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $('#nav-login').addClass('active');
-        });
-    </script>
-@stop

@@ -56,7 +56,7 @@
             <div class="col-sm-6">
                 <div id="list-div">
                     <p id="explication" class="text-justify"><small><em>Pour plus d'informations, passer la souris sur un élément du calendrier. Vous pouvez séléctionner un élément en cliquant dessus. Pour séléctionner un deuxième élément, cliquer longuement (rester appuyer). Ainsi, vous pouvez créer une liste personnalisée de dates.</em></small></p>
-                    <ul id="mylist">
+                    <ul id="mylist" class="myList">
                     </ul>
                 </div>
             </div>
@@ -70,9 +70,10 @@
     {{ Html::script('assets/datepicker/bootstrap-datepicker.fr.min.js') }}
     {{ Html::script('assets/js/datepicker.js') }}
     @if ($json_events)
-    {{ Html::script('https://unpkg.com/vis-timeline@7.2.1/standalone/umd/vis-timeline-graph2d.min.js') }}
+    {{ Html::script('assets/js/vis-timeline.js') }}
     <script type="text/javascript">
-        $(document).ready(function () {
+        // $(document).ready(function () {
+        document.addEventListener("DOMContentLoaded", function() {
             // DOM element where the Timeline will be attached
             let containerTimeline = document.getElementById('visualization');
 
@@ -95,58 +96,106 @@
             let timeline = new vis.Timeline(containerTimeline, items, options);
 
             // Toggle Order by group on click
-            let btnGroupToggle = $('#group-toggle');
-            btnGroupToggle.click(function () {
-                if (btnGroupToggle.hasClass('no-group')) {
-                    btnGroupToggle.removeClass('no-group');
-                    btnGroupToggle.text('Cacher les groupes');
-                    timeline.setGroups(groups);
+            // let btnGroupToggle = $('#group-toggle');
+            // btnGroupToggle.click(function () {
+            //     if (btnGroupToggle.hasClass('no-group')) {
+            //         btnGroupToggle.removeClass('no-group');
+            //         btnGroupToggle.text('Cacher les groupes');
+            //         timeline.setGroups(groups);
+            //     } else {
+            //         btnGroupToggle.addClass('no-group');
+            //         btnGroupToggle.text('Montrer les groupes');
+            //         timeline.setGroups();
+            //     }
+            // });
+            let btnGroupToggle = document.getElementById('group-toggle')
+            btnGroupToggle.addEventListener('click', () => {
+                if(btnGroupToggle.classList?.contains('no-group')) {
+                    btnGroupToggle.classList?.remove('no-group')
+                    btnGroupToggle.innerText = 'Cacher les groupes'
+                    timeline.setGroups(groups)
                 } else {
-                    btnGroupToggle.addClass('no-group');
-                    btnGroupToggle.text('Montrer les groupes');
-                    timeline.setGroups();
+                    btnGroupToggle.classList?.add('no-group')
+                    btnGroupToggle.innerText = 'Montrer les groupes'
+                    timeline.setGroups()
                 }
-            });
+            })
 
             // Timeline Eventlistener (on select, create personalized list)
-            timeline.on('select', function (properties) {
-                $('#mylist > li').remove();
+            // timeline.on('select', function (properties) {
+            //     $('#mylist > li').remove();
+            //     let selected = timeline.getSelection().sort(function (a, b) {
+            //         return a - b
+            //     });
+            //     if (selected.length > 0) {
+            //         $('#explication').hide();
+            //     } else {
+            //         $('#explication').show();
+            //     }
+            //     $.each(selected, function (key, value) {
+            //         if (typeof value !== 'undefined' && value !== null) {
+            //             $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
+            //         }
+            //     });
+            // });
+            timeline.addEventListener('select', () => {
+                document.querySelectorAll('#mylist > li').forEach(el => {
+                    el.remove()
+                })
                 let selected = timeline.getSelection().sort(function (a, b) {
                     return a - b
                 });
-                if (selected.length > 0) {
-                    $('#explication').hide();
-                } else {
-                    $('#explication').show();
-                }
-                $.each(selected, function (key, value) {
+                document.getElementById('explication').style.display = (selected.length > 0) ? 'none' : 'block';
+                // $.each(selected, function (key, value) {
+                //     if (typeof value !== 'undefined' && value !== null) {
+                //         $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
+                //     }
+                // });
+                let list = document.querySelector('.myList')
+                selected.forEach((value, key) => {
                     if (typeof value !== 'undefined' && value !== null) {
-                        $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
+                        let li = document.createElement("li")
+                        li.innerHTML = document.getElementById('content'+value).innerHTML
+                        list?.appendChild(li)
+                        // $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
                     }
-                });
-            });
+                })
+            })
 
             /* EFFECTS */
             // On hover, show more text in top-center of timeline
-            let timelineItems = $('.vis-item');
-            let timelinePopup = $('#show-more');
-            timelineItems.mouseenter(function (event) {
-                let element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-                $(this).css('z-index', '999');
-                timelinePopup.html($(this).children('.vis-item-content').children(':nth-child(2)').clone());
-                timelinePopup.addClass('span-plus');
-                $('#show-more #' + element).addClass('info-plus');
-            });
-
-            timelineItems.mouseleave(function (event) {
-                let element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-                timelinePopup.children(':first-child').remove();
-                timelinePopup.removeClass('span-plus');
-                $(this).css('z-index', '0');
-            });
+            // let timelineItems = $('.vis-item');
+            let timelineItems = document.querySelectorAll('.vis-item');
+            // let timelinePopup = $('#show-more');
+            let timelinePopup = document.querySelector('#show-more');
+            timelineItems.forEach(el => {
+                el.addEventListener('mouseover', e => {
+                    e.stopImmediatePropagation()
+                    timelinePopup.innerHTML = el.children.item(0).children.item(1).innerHTML
+                    timelinePopup.classList.add('span-plus')
+                })
+                el.addEventListener('mouseleave', e => {
+                    timelinePopup.children.item(0).remove()
+                    timelinePopup.classList.remove('span-plus')
+                })
+            })
+            // timelineItems.mouseenter(function (event) {
+            //     let element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
+            //     $(this).css('z-index', '999');
+            //     timelinePopup.html($(this).children('.vis-item-content').children(':nth-child(2)').clone());
+            //     timelinePopup.addClass('span-plus');
+            //     $('#show-more #' + element).addClass('info-plus');
+            // });
+            //
+            // timelineItems.mouseleave(function (event) {
+            //     let element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
+            //     timelinePopup.children(':first-child').remove();
+            //     timelinePopup.removeClass('span-plus');
+            //     $(this).css('z-index', '0');
+            // });
 
             /* END TIMELINE */
-            $('#nav-calendrier').addClass('active');
+            // $('#nav-calendrier').addClass('active');
         });
     </script>
     @endif

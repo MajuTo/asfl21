@@ -23,11 +23,11 @@
                 <li>Massages pré-nataux/massages bébé</li>
                 <li>Suivi médical de grossesse</li>
                 <li>Surveillance de la grossesse</li>
-                <li class="info" id="info-grossesse"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
+                <li class="info" data-whoooshh="whoooshh-grossesse" id="info-grossesse"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
             </ul>
         </div>
         <span class="whoooshh" id="whoooshh-grossesse">
-            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
+{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-grossesse">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content" id="prenatale">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4"> 
+                <div class="col-sm-4">
                     <div class="metier-content" id="preparation">
                         <h4 class="content-head">Préparation à la naissance</h4>
                         <div class="content-body">
@@ -86,14 +86,14 @@
                 <li>Visite post-accouchement à domicile</li>
                 <li>Consultation post-natale</li>
                 <li>Rééducation du périnée</li>
-                <li class="info" id="info-accouchement"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
+                <li class="info" data-whoooshh="whoooshh-accouchement" id="info-accouchement"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
             </ul>
         </div>
         <div class="col-sm-6 img-col">
             <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
         </div>
         <span class="whoooshh" id="whoooshh-accouchement">
-            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
+{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-accouchement">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -101,7 +101,7 @@
                         <div class="content-body">
                             <p>Utilisation de l’homéopathie pour soulager certains maux de la grossesse, préparer l'accouchement et améliorer les suites de la naissance</p>
                         </div>
-                    </div>    
+                    </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -135,11 +135,11 @@
                 <li>Sexologie</li>
                 <li>Osthéopathie</li>
                 <li>Rééducation périnéale</li>
-                <li class="info" id="info-ensuite"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
+                <li class="info" data-whoooshh="whoooshh-ensuite" id="info-ensuite"><i class="fa fa-circle-o pulsing-circle"></i> Plus d'info...</li>
             </ul>
         </div>
         <span class="whoooshh" id="whoooshh-ensuite">
-            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
+{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-ensuite">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -188,22 +188,20 @@
 @stop
 @section('script')
     <script>
-        $(document).ready(function(){
-            $('#nav-metier').addClass('active');
-
-            $('.info').click(function(event) {
-                $('.whoooshh').removeClass('whoooshh-active');
-                $('#overlay').addClass('overlay');
-
-                var thiswhooosh = '#whoooshh-' + $(this).attr('id').split('-')[1];
-                $(thiswhooosh).addClass('whoooshh-active');
-            });
-
-            $('.whoooshh-close').click(function(event) {
-                var thiswhooosh = '#' + $(this).parents('.whoooshh').attr('id');
-                $(thiswhooosh).removeClass('whoooshh-active');
-                $('#overlay').removeClass('overlay');
-            });
-        });
+        document.querySelectorAll('.info')?.forEach(el => {
+            el.addEventListener('click', e => {
+                document.querySelector('.whoooshh')?.classList.remove('whoooshh-active')
+                document.getElementById('overlay')?.classList.add('overlay')
+                document.getElementById(e.target.dataset.whoooshh)?.classList.add('whoooshh-active')
+            })
+        })
+        // document.querySelector('.whoooshh-close')?.addEventListener('click', e => {
+        //     document.getElementById(e.target.dataset.whoooshh)?.classList.remove('whoooshh-active')
+        //     document.getElementById('overlay')?.classList.remove('overlay')
+        // })
+        document.getElementById('overlay').addEventListener('click', e => {
+            document.querySelector('.whoooshh-active')?.classList.remove('whoooshh-active')
+            document.getElementById('overlay')?.classList.remove('overlay')
+        })
     </script>
 @stop

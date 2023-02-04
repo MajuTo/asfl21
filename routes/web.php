@@ -50,7 +50,7 @@ Route::middleware(['auth'])->group(function() {
 
     /* user with prefix */
     Route::prefix('admin')->name('admin.')->middleware(['admin'])->group(function() {
-        Route::get('/', [\App\Http\Controllers\UserController::class, 'index'])->name('index');
+        Route::get('/', function() { return redirect()->route('admin.user.index'); })->name('index');
         Route::resource('link', \App\Http\Controllers\LinkController::class);
         Route::resource('user', \App\Http\Controllers\UserController::class);
         Route::resource('adresse', \App\Http\Controllers\AddressController::class);

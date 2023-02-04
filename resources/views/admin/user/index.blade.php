@@ -42,12 +42,3 @@
 	</table>
 	{{ $users->links() }}
 @stop
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $('#nav-membre').addClass('active');
-            $('#nav-admin').addClass('active');
-            $('#nav-admin-users').addClass('active');
-        });
-    </script>
-@stop
