@@ -51,6 +51,7 @@
                 </div>
             </div>
             <!-- END AJAX liste des sf selon activite -->
+{{--            <div id="map"></div>--}}
             <div class="col-sm-8 col-md-8 col-lg-8" id="gmap">
                 <div class="map_container">
                     <div id="panel">
@@ -64,7 +65,34 @@
     </section>
 @stop
 @section('script')
+{{--    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>--}}
     <script>
+        // let leafletmap = L.map('map').setView([47.313208, 5.058476], 12);
+        // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //     maxZoom: 19,
+        //     attribution: ''
+        // }).addTo(leafletmap);
+        // // show the scale bar on the lower left corner
+        // L.control.scale({imperial: true, metric: true}).addTo(leafletmap);
+        //
+        // // show a marker on the map
+        // let customIcon = L.icon({
+        //     iconUrl: 'icon-marker.png',
+        //     //shadowUrl: 'icon-shadow.png',
+        //     iconSize:     [64, 64], // taille de l'icone
+        //     //shadowSize:   [50, 64], // taille de l'ombre
+        //     iconAnchor:   [32, 64], // point de l'icone qui correspondra à la position du marker
+        //     //shadowAnchor: [32, 64],  // idem pour l'ombre
+        //     popupAnchor:  [-3, -76] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
+        // });
+        //
+        // L.marker([47.313208, 5.058476])
+        //     .addTo(leafletmap)
+        //     .bindTooltip("Ceci tooltip")
+        //     .bindPopup('Ceci est le popup');
+        // L.marker([48.5, 2])
+        //     .addTo(leafletmap)
+        //     .bindTooltip("Les Granges-le-Roi", {permanent: true, direction: 'top'});
         $(document).ready(function(){
             // active navbar
             // $('#nav-trouver').addClass('active');
