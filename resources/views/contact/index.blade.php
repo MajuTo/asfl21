@@ -9,7 +9,7 @@
             <div class="col-sm-12">
                 <h1>Contactez nous</h1>
                 <div class="row">
-                    <p id="contact-add">Association des Sages-Femmes Libérales de Côte d'Or, &nbsp; <span class="numbers">27 A Boulevard des Bourroches, 21000 DIJON</span>, &nbsp; Tel: <span class="numbers">06 49 63 43 59</span></p>
+                    <p id="contact-add">Association des Sages-Femmes Libérales de Côte d'Or, &nbsp; <span class="numbers">27 A Boulevard des Bourroches, 21000 DIJON</span>, &nbsp; Tel: <span class="numbers">06 11 10 27 04</span></p>
                 </div>
             </div>
         </div>
