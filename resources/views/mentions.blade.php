@@ -3,9 +3,9 @@
     <h2>Informations légales</h2>
     <h3>1. Présentation du site.</h3>
     <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site <a href="http://www.asfl21.fr/" title="asfl21 - www.asfl21.fr">www.asfl21.fr</a> l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi :</p>
-    <p><strong>Propriétaire</strong> : asfl21 –  – 32 Bis bd Université, 21000 DIJON<br />
+    <p><strong>Propriétaire</strong> : asfl21 –  – 27 A Boulevard des Bourroches, 21000 DIJON<br />
     <strong>Créateur</strong>  : Thomas Ray, <a href="http://musaya.net">Alexis Richter</a><br />
-    <strong>Responsable publication</strong> : Mylène Hoppe – 06 49 63 43 59<br />
+    <strong>Responsable publication</strong> : Elisa Monet<br />
     Le responsable publication est une personne physique ou une personne morale.<br />
     <strong>Webmaster</strong> : Thomas Ray, Alexis Richter – admin@musaya.net<br />
     <strong>Hébergeur</strong> : ovh – 2 rue Kellermann - 59100 Roubaix - France<br />

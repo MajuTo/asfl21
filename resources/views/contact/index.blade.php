@@ -9,7 +9,7 @@
             <div class="col-sm-12">
                 <h1>Contactez nous</h1>
                 <div class="row">
-                    <p id="contact-add">Association des Sages-Femmes Libérales de Côte d'Or, &nbsp; <span class="numbers">69 Avenue Jean Jaurès, 21000 DIJON</span>, &nbsp; Tel: <span class="numbers">06 49 63 43 59</span></p>
+                    <p id="contact-add">Association des Sages-Femmes Libérales de Côte d'Or, &nbsp; <span class="numbers">27 A Boulevard des Bourroches, 21000 DIJON</span>, &nbsp; Tel: <span class="numbers">06 49 63 43 59</span></p>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
 @section('script')
     <script type="text/javascript">
         function initialize() {
-          let myLatlng = new google.maps.LatLng(47.310990, 5.0267596);
+          let myLatlng = new google.maps.LatLng(47.30695956607417, 5.019860923828873);
           let mapOptions = {
             zoom: 15,
             center: myLatlng
