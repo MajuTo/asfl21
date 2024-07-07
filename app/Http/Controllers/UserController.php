@@ -203,6 +203,7 @@ class UserController extends Controller
         $validation = validator()->make($fields, $rules);
 
         if ($validation->fails()) {
+            dd($validation->errors());
             Alert::add("alert-danger", "Les modifications n'ont pas été enregistrées.");
             return redirect()->back()->withErrors($validation);
         }
@@ -286,11 +287,12 @@ class UserController extends Controller
         $rules = array(
             'name' => 'required',
             'email' => 'required',
-            'message' => 'required'
+            'message' => 'required',
+            'captcha' => 'required|captcha'
         );
         $validation = validator()->make(request()->all(), $rules);
 
-        if ($validation->fails()) {
+        if ($validation->fails()){
             Alert::add("alert-danger", "Vous devez remplir tous les champs");
 
             return redirect()->back()->withErrors($validation);

@@ -3,31 +3,31 @@
 @stop
 @extends('layouts.index')
 @section('content')
-<section id="notremetier">
-    <span id="overlay"></span>
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Que me propose ma sage femme libérale ?</h1>
+    <section id="notremetier">
+        <span id="overlay"></span>
+        <div class="row mb-5">
+            <div class="col-sm-12">
+                <h1>Que me propose ma sage femme libérale ?</h1>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6 img-col">
-            <img class="img-fluid rounded" src="{{ asset('img/notre-metier/Pendant_la_grossesse.jpg') }}" alt="pendant la grossesse">
-        </div>
-        <div class="col-sm-6">
-            <h2>Pendant ma grossesse</h2>
-            <ul>
-                <li>Entretien pré natal</li>
-                <li>Préparation à la naissance</li>
-                <li>Déclaration de grossesse</li>
-                <li>Massages pré-nataux/massages bébé</li>
-                <li>Suivi médical de grossesse</li>
-                <li>Surveillance de la grossesse</li>
-                <li class="info" id="info-grossesse"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
-            </ul>
-        </div>
-        <span class="whoooshh" id="whoooshh-grossesse">
-            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
+        <div class="row mb-5">
+            <div class="col-sm-6 img-col">
+                <img class="img-fluid rounded shadowed-img" src="{{ asset('img/notre-metier/Pendant_la_grossesse.jpg') }}" alt="pendant la grossesse">
+            </div>
+            <div class="col-sm-6 mt-3">
+                <h2>Pendant ma grossesse</h2>
+                <ul class="list-unstyled mx-5">
+                    <li>Entretien pré natal</li>
+                    <li>Préparation à la naissance</li>
+                    <li>Déclaration de grossesse</li>
+                    <li>Massages pré-nataux/massages bébé</li>
+                    <li>Suivi médical de grossesse</li>
+                    <li>Surveillance de la grossesse</li>
+                    <li class="info" data-whoooshh="whoooshh-grossesse" id="info-grossesse"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
+                </ul>
+            </div>
+            <span class="whoooshh" id="whoooshh-grossesse">
+{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-grossesse">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content" id="prenatale">
@@ -77,23 +77,23 @@
                 </div>
             </div>
         </span>
-    </div>
+        </div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <h2>Après mon accouchement</h2>
-            <ul>
-                <li>Visite post-accouchement à domicile</li>
-                <li>Consultation post-natale</li>
-                <li>Rééducation du périnée</li>
-                <li class="info" id="info-accouchement"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
-            </ul>
-        </div>
-        <div class="col-sm-6 img-col">
-            <img class="img-fluid rounded" src="{{ asset('img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
-        </div>
-        <span class="whoooshh" id="whoooshh-accouchement">
-            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
+        <div class="row mb-5">
+            <div class="col-sm-6 mt-3">
+                <h2>Après mon accouchement</h2>
+                <ul class="list-unstyled mx-5">
+                    <li>Visite post-accouchement à domicile</li>
+                    <li>Consultation post-natale</li>
+                    <li>Rééducation du périnée</li>
+                    <li class="info" data-whoooshh="whoooshh-accouchement" id="info-accouchement"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 img-col">
+                <img class="img-fluid rounded shadowed-img" src="{{ asset('img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
+            </div>
+            <span class="whoooshh" id="whoooshh-accouchement">
+{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-accouchement">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -121,25 +121,25 @@
                 </div>
             </div>
         </span>
-    </div>
+        </div>
 
-    <div class="row">
-        <div class="col-sm-6 img-col">
-            <img class="img-fluid rounded" src="{{ asset('img/notre-metier/Et_apres.jpg') }}" alt="et ensuite ?">
-        </div>
-        <div class="col-sm-6">
-            <h2>Et ensuite ?</h2>
-            <ul>
-                <li>Visite post-natale</li>
-                <li>Suivi gynécologique</li>
-                <li>Sexologie</li>
-                <li>Osthéopathie</li>
-                <li>Rééducation périnéale</li>
-                <li class="info" id="info-ensuite"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
-            </ul>
-        </div>
-        <span class="whoooshh" id="whoooshh-ensuite">
-            <div class="text-right"><span class="whoooshh-close">Fermer X</span></div>
+        <div class="row mb-5">
+            <div class="col-sm-6 img-col">
+                <img class="img-fluid rounded shadowed-img" src="{{ asset('img/notre-metier/Et_apres.jpg') }}" alt="et ensuite ?">
+            </div>
+            <div class="col-sm-6 mt-3">
+                <h2>Et ensuite ?</h2>
+                <ul class="list-unstyled mx-5">
+                    <li>Visite post-natale</li>
+                    <li>Suivi gynécologique</li>
+                    <li>Sexologie</li>
+                    <li>Osthéopathie</li>
+                    <li>Rééducation périnéale</li>
+                    <li class="info" data-whoooshh="whoooshh-ensuite" id="info-ensuite"><i class="far fa-circle pulsing-circle"></i> Plus d'info...</li>
+                </ul>
+            </div>
+            <span class="whoooshh" id="whoooshh-ensuite">
+{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-ensuite">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -183,27 +183,25 @@
                 </div>
             </div>
         </span>
-    </div>
-</section>
+        </div>
+    </section>
 @stop
 @section('script')
     <script>
-        $(document).ready(function(){
-            $('#nav-metier').addClass('active');
-
-            $('.info').click(function(event) {
-                $('.whoooshh').removeClass('whoooshh-active');
-                $('#overlay').addClass('overlay');
-
-                var thiswhooosh = '#whoooshh-' + $(this).attr('id').split('-')[1];
-                $(thiswhooosh).addClass('whoooshh-active');
-            });
-
-            $('.whoooshh-close').click(function(event) {
-                var thiswhooosh = '#' + $(this).parents('.whoooshh').attr('id');
-                $(thiswhooosh).removeClass('whoooshh-active');
-                $('#overlay').removeClass('overlay');
-            });
-        });
+        document.querySelectorAll('.info')?.forEach(el => {
+            el.addEventListener('click', e => {
+                document.querySelector('.whoooshh')?.classList.remove('whoooshh-active')
+                document.getElementById('overlay')?.classList.add('overlay')
+                document.getElementById(e.target.dataset.whoooshh)?.classList.add('whoooshh-active')
+            })
+        })
+        // document.querySelector('.whoooshh-close')?.addEventListener('click', e => {
+        //     document.getElementById(e.target.dataset.whoooshh)?.classList.remove('whoooshh-active')
+        //     document.getElementById('overlay')?.classList.remove('overlay')
+        // })
+        document.getElementById('overlay').addEventListener('click', e => {
+            document.querySelector('.whoooshh-active')?.classList.remove('whoooshh-active')
+            document.getElementById('overlay')?.classList.remove('overlay')
+        })
     </script>
 @stop

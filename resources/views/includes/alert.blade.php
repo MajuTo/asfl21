@@ -1,7 +1,8 @@
-@if(Session::has('alert'))
-    @foreach(Session::get('alert') as $alert)
-        <div class="row">
-    	<div class="alert {{ $alert['class'] }} alert-dismissible col-sm-6 offset-3"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ $alert['message'] }}</div>
+@if(session()->has('alert'))
+    @foreach(session()->get('alert') as $alert)
+        <div class="alert {{ $alert['class'] }} alert-dismissible col-sm-6 offset-3 fade show" role="alert">
+            {{ $alert['message'] }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endforeach
 @endif

@@ -151,6 +151,8 @@ return [
          * Package Service Providers...
          */
 
+        Mews\Captcha\CaptchaServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -211,6 +213,7 @@ return [
 
         'Str' => \Illuminate\Support\Str::class,
         'BootForm' => \Galahad\BootForms\Facades\BootForm::class,
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 

@@ -29,6 +29,10 @@ body {
     margin-bottom: 10px;
 }
 
+.shadowed-img {
+    box-shadow: 1px 1px 5px #B5003A;
+}
+
 h1 {
     color: #B5003A;
     font-family: "Handlee", sans-serif;
@@ -55,6 +59,24 @@ a:focus {
 
 
 /* ** Bootstrap Buttons ** */
+/*.btn-primary {*/
+/*    --bs-btn-color: #fff;*/
+/*    --bs-btn-bg: #E35582;*/
+/*    --bs-btn-border-color: #E35582;*/
+/*    --bs-btn-hover-color: #fff;*/
+/*    --bs-btn-hover-bg: #0b5ed7;*/
+/*    --bs-btn-hover-border-color: #0a58ca;*/
+/*    --bs-btn-focus-shadow-rgb: 49,132,253;*/
+/*    --bs-btn-active-color: #fff;*/
+/*    --bs-btn-active-bg: #0a58ca;*/
+/*    --bs-btn-active-border-color: #0a53be;*/
+/*    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);*/
+/*    --bs-btn-disabled-color: #fff;*/
+/*    --bs-btn-disabled-bg: #0d6efd;*/
+/*    --bs-btn-disabled-border-color: #0d6efd;*/
+/*}*/
+
+/*.btn-primary,*/
 .btn-pink {
     color: #fff;
     background-image: -webkit-linear-gradient(#E35582 0%, #B5003A 100%);
@@ -64,14 +86,18 @@ a:focus {
     /*filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);*/
     background-repeat: repeat-x;
     background-color: #E35582;
+    border-color: #B5003A;
     /*margin-top: 4px;*/
 }
 
+/*.btn-primary:hover,*/
+/*.btn-primary:focus,*/
 .btn-pink:hover,
 .btn-pink:focus {
     color: #fff;
     background-color: #B5003A;
     background-position: 0 -15px;
+    border-color: #B5003A;
 }
 
 .btn-pink:active,
@@ -91,6 +117,11 @@ a:focus {
     background-color: #b5003a;
     box-shadow: 0 0 0 .2rem rgba(255, 0, 58, 0.25);
 }
+
+.custom-control-input:checked + .custom-control-label {
+    font-weight: bold;
+}
+
 /*.checkbox input[type=checkbox] {*/
 /*    display: none;*/
 /*}*/
@@ -119,6 +150,14 @@ a:focus {
 
 
 /* ** Forms ** */
+.inline-group label {
+    width: 25% !important;
+}
+
+.inline-group input {
+    width: 75% !important;
+}
+
 .form-control {
     border-radius: 0;
 }
@@ -130,7 +169,9 @@ a:focus {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(181, 0, 58, .6);
 }
 
-.form-group > label {
+/*form > * label,*/
+.form-floating > label,
+.form-group:not(.custom-control) > label {
     font-weight: 700;
 }
 
@@ -154,6 +195,7 @@ a:focus {
     border-color: #E35582;
 }
 
+.pagination > li > a:hover,
 .pagination > li > a:hover,
 .pagination > li > span:hover,
 .pagination > li > a:focus,
@@ -200,6 +242,7 @@ a:focus {
 .navbar {
     font-family: 'Handlee', sans-serif;
     margin-bottom: 20px;
+    border-bottom: 1px solid #E35582;
 }
 
 .navbar-light {
@@ -209,9 +252,9 @@ a:focus {
     padding: 0 !important;
 }
 
-.navbar:has( > .collapse) {
-    border-bottom: 1px solid #E35582;
-}
+/*.navbar:has( > .collapse) {*/
+/*    border-bottom: 1px solid #E35582;*/
+/*}*/
 
 .navbar-light .navbar-toggle,
 .navbar-light .navbar-toggle:focus,
@@ -239,10 +282,10 @@ a:focus {
     color: #777;
 }
 
-.navbar-brand,
-.navbar-nav > .nav-item > a:hover {
-    color: #000!important;
-}
+/*.navbar-brand,*/
+/*.navbar-nav > .nav-item > a:hover {*/
+/*    color: #000!important;*/
+/*}*/
 
 .navbar-nav > .nav-item.active > a {
     color: #fff !important;
@@ -279,7 +322,6 @@ a:focus {
 /*    background-color: rgba(227, 85, 130, .5);*/
 /*    border-top-color: #B5003A;*/
 /*}*/
-
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus,
@@ -294,16 +336,22 @@ a:focus {
     display: block;
 }
 
-.nav > li > a:hover,
-.nav > li > a:focus {
+.nav a,
+.nav > li > button {
+    text-decoration: none;
+    color: #B5003A;
+}
+
+.nav > li > button:hover,
+.nav > li > button:focus {
     text-decoration: none;
     color: #B5003A;
     background-color: rgba(255, 20, 147, 0.4);
 }
 
-.nav-pills > li.nav-item > a.active,
-.nav-pills > li.nav-item > a.active:hover,
-.nav-pills > li.nav-item > a.active:focus {
+.nav-pills > li.nav-item > button.active,
+.nav-pills > li.nav-item > button.active:hover,
+.nav-pills > li.nav-item > button.active:focus {
     color: #fff;
     background-color: #B5003A;
 }
@@ -337,8 +385,10 @@ a:focus {
 .nav-pills.admin-menu > a.active:hover,
 .nav-pills.admin-menu > a.active:focus {
     cursor: pointer;
-    color: #B5003A;
-    background-color: #fff;
+    /*color: #B5003A;*/
+    /*background-color: #fff;*/
+    color: #FFF;
+    background-color: rgba(227, 85, 130, .5);
     border-right: none;
     border-bottom: none;
     border-top: none;
@@ -465,13 +515,13 @@ a:focus {
     margin-bottom: 20px;
 }
 
-#notremetier .row {
-    margin-bottom: 50px;
-}
+/*#notremetier .row {*/
+/*    margin-bottom: 50px;*/
+/*}*/
 
-#notremetier img {
-    box-shadow: 1px 1px 5px #B5003A;
-}
+/*#notremetier img {*/
+/*    box-shadow: 1px 1px 5px #B5003A;*/
+/*}*/
 
 #notremetier ul {
     list-style-type: none;
@@ -526,7 +576,7 @@ a:focus {
     -webkit-transition: all 1s ease-out;
     -o-transition: all 1s ease-out;
     transition: all 1s ease-out;
-    font-size: .8em;
+    font-size: .95em;
 }
 
 .whoooshh-active {

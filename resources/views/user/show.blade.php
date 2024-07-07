@@ -11,39 +11,36 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <h3>Mes coordonnées</h3>
-            <dl class="dl-horizontal">
-                <dt>Nom</dt><dd>{{ strtoupper($user->name) }}</dd>
-                <dt>Prénom</dt><dd>{{ ucfirst($user->firstname) }}</dd>
+            <dl class="row">
+                <dt class="col-sm-3">Nom</dt><dd class="col-sm-9">{{ strtoupper($user->name) }}</dd>
+                <dt class="col-sm-3">Prénom</dt><dd class="col-sm-9">{{ ucfirst($user->firstname) }}</dd>
                 @if($user->mobile && !$user->hideMobile)
-                    <dt>Mobile</dt><dd>{{ $user->mobile }}</dd>
-                @endif
-
-                @foreach($address as $add)
-                <br>
-                    <dt>{{ $add->name }}</dt><dd></dd>
-                    <dt>Adresse</dt><dd>{{ $add->address }}</dd>
-                    <dt>Code Postal</dt><dd>{{ $add->zipCode }}</dd>
-                    <dt>Ville</dt><dd>{{ $add->city }}</dd>
-                    @if($add->phone && !$add->hidePhone)
-                        <dt>Téléphone Fixe</dt><dd>{{ $add->phone }}</dd>
-                    @endif
-                    @if($add->fax && !$add->hideFax)
-                        <dt>Fax : </dt><dd>{{ $add->fax }}</dd>
-                    @endif
-                @endforeach
-
-                @if($user->phone && !$user->hidePhone)
-                    <dt>Téléphone</dt><dd>{{ $user->phone }}</dd>
-                @endif
-
-                @if($user->fax && !$user->hideFax)
-                <dt>Fax</dt><dd>{{ $user->fax }}</dd>
+                    <dt class="col-sm-3">Mobile</dt><dd class="col-sm-9">{{ $user->mobile }}</dd>
                 @endif
             </dl>
+
+                @foreach($address as $i => $add)
+{{--                <br>--}}
+{{--                {{ $add->name }}--}}
+                <dl class="row">
+                    <dt class="col-sm-3 fw-bold">{{ $add->name }}</dt><dd class="col-sm-9"></dd>
+                    <dt class="col-sm-3">Adresse</dt><dd class="col-sm-9">{{ $add->address }}</dd>
+                    <dt class="col-sm-3">Code Postal</dt><dd class="col-sm-9">{{ $add->zipCode }}</dd>
+                    <dt class="col-sm-3">Ville</dt><dd class="col-sm-9">{{ $add->city }}</dd>
+                    @if($add->phone && !$add->hidePhone)
+                        <dt class="col-sm-3">Téléphone Fixe</dt><dd class="col-sm-9">{{ $add->phone }}</dd>
+                    @endif
+                    @if($add->fax && !$add->hideFax)
+                        <dt class="col-sm-3">Fax : </dt><dd class="col-sm-9">{{ $add->fax }}</dd>
+                    @endif
+                </dl>
+                @endforeach
+                <dl class="row">
+            </dl>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
             <h3>Mes activités</h3>
             <ul class="dl-horizontal">
                 @foreach($user->activities as $act)
@@ -51,20 +48,28 @@
                 @endforeach
             </ul>
         </div>
-    </div>
+{{--    </div>--}}
 
     @if($user->email && !$user->hideEmail)
-    <div class="row">
-        <div class="col-sm-6">
+{{--    <div class="row">--}}
+        <div class="col-sm-4">
             <h3>Contactez moi</h3>
-            {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('user.email', $user->id)) !!}
-                {!! Form::token() !!}
+            {{ aire()->open()->route('user.email', $user->id) }}
+            {{ aire()->input('name', 'Votre nom')->placeHolder("Votre nom...")->groupAddClass('mb-2')->required() }}
+            {{ aire()->email('email', 'Email')->placeHolder("Votre email...")->groupAddClass('mb-2')->required() }}
+            {{ aire()->textArea('message', 'Message')->placeHolder("Votre message...")->rows(10)->groupAddClass('mb-3')->required() }}
+            {!! captcha_img('inverse') !!}
+            {{ aire()->input('captcha')->groupAddClass('mb-3') }}
+            {{ aire()->submit('Envoyer')->class('float-end btn-pink') }}
+            {{ aire()->close() }}
+{{--            {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('user.email', $user->id)) !!}--}}
+{{--                {!! Form::token() !!}--}}
 {{--                {!! BootForm::bind($user) !!}--}}
-                {!! BootForm::text('Votre nom', 'name')->placeHolder("Votre nom...")->required() !!}
-                {!! BootForm::text('Email', 'email')->placeHolder("Votre email...")->required() !!}
-                {!! BootForm::textarea('Message', 'message')->placeHolder("Votre message...")->required() !!}
-                {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-            {!! BootForm::close() !!}
+{{--                {!! BootForm::text('Votre nom', 'name')->placeHolder("Votre nom...")->required() !!}--}}
+{{--                {!! BootForm::text('Email', 'email')->placeHolder("Votre email...")->required() !!}--}}
+{{--                {!! BootForm::textarea('Message', 'message')->placeHolder("Votre message...")->required() !!}--}}
+{{--                {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}--}}
+{{--            {!! BootForm::close() !!}--}}
         </div>
         <div class="col-sm-6">
             @if($user->description)
@@ -73,7 +78,7 @@
                     {!! $user->description !!}
                 </div>
             @else
-                <img class="img-responsive img-rounded" id="contact-img" src="{{ asset('assets/img/pregnant-collection/belly-painting-france_1920.jpg') }}" alt="femme enceinte belly painting france">
+                <img class="img-fluid rounded" id="contact-img" src="{{ asset('img/pregnant-collection/belly-painting-france_1920.jpg') }}" alt="femme enceinte belly painting france">
             @endif
         </div>
     </div>
@@ -81,10 +86,10 @@
 </section>
 @stop
 
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $('#nav-trouver').addClass('active');
-        });
-    </script>
-@stop
+{{--@section('script')--}}
+{{--    <script>--}}
+{{--        $(document).ready(function(){--}}
+{{--            $('#nav-trouver').addClass('active');--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@stop--}}

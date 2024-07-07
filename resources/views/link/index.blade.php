@@ -11,7 +11,7 @@
     </div>
     <div class="row">
         <div class="d-none d-lg-block col-lg-4">
-            <img class="img-fluid rounded" src="{{ asset('img/pregnant-collection/pregant-little-girl.jpg') }}" alt="femme enceinte avec petite fille">
+            <img class="img-fluid rounded shadowed-img" src="{{ asset('img/pregnant-collection/pregant-little-girl.jpg') }}" alt="femme enceinte avec petite fille">
         </div>
     	<div class="col-12 col-lg-8">
             <table class="table table-condensed" id="liensutile-table">
@@ -35,11 +35,4 @@
 	    </div>
     </div>
 </section>
-@stop
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $('#nav-liens').addClass('active');
-        });
-    </script>
 @stop

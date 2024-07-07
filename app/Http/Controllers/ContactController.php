@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Alert;
+use App\Http\Requests\ContactRequest;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -26,21 +27,22 @@ class ContactController extends Controller
      * @return View|RedirectResponse|mixed
      * @throws BindingResolutionException
      */
-    public function sendcontact()
+    public function sendcontact(ContactRequest $request)
     {
-        $rules = array(
-            'name' => 'required',
-            'email' => 'required|email',
-            'subject' => 'required|max:250',
-            'message' => 'required|max:250'
-        );
+//        $rules = array(
+//            'name' => 'required',
+//            'email' => 'required|email',
+//            'subject' => 'required|max:250',
+//            'message' => 'required|max:250'
+//        );
 
-        $validation = validator()->make(request()->all(), $rules);
+//        $validation = validator()->make(request()->all(), $rules);
 
-        if ($validation->fails()) {
-            Alert::add("alert-danger", "Il y a un problème dans votre formulaire");
-            return redirect()->route('contact.index')->withErrors($validation)->withInput();
-        } else {
+//        if ($validation->fails()) {
+//            Alert::add("alert-danger", "Il y a un problème dans votre formulaire");
+//            dd($validation);
+//            return redirect()->route('contact.index')->withErrors($validation)->withInput();
+//        } else {
             $subject = (request()->get('pro')) ? '[PRO] ' : '';
             $subject .= request()->get('subject');
             Mail::send('emails.contact', ['inputs' => request()->all()], function(Message $m) use ($subject){
@@ -51,7 +53,7 @@ class ContactController extends Controller
             Alert::add("alert-success", "Votre message a bien été envoyé");
 
             return view()->make('contact.index');
-        }
+//        }
     }
 
 

@@ -58,9 +58,3 @@
         </div>
     </section>
 @stop
-
-@section('script')
-    <script>
-        document.getElementById('nav-accueil').classList.add('active')
-    </script>
-@stop

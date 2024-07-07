@@ -77,14 +77,21 @@
         {{--</div>--}}
         {{--<div class="row">--}}
             {{--<div class="col-sm-6">--}}
-                {!! BootForm::openHorizontal(['lg' => [4, 8]])->action(route('password.update')) !!}
-                    {!! Form::token() !!}
-                    {!! Form::hidden('token', $token) !!}
-                    {!! BootForm::email('Email', 'email')->value(request('email') ?? '')->required() !!}
-                    {!! BootForm::password('Mot de passe', 'password')->required() !!}
-                    {!! BootForm::password('Confirmation', 'password_confirmation')->required() !!}
-                    {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-                {!! BootForm::close() !!}
+    {{ aire()->open()->route('password.update')->post() }}
+    {{ aire()->hidden('token', $token) }}
+    {{ aire()->email('email', 'Email')->value(request('email') ?? '')->required() }}
+    {{ aire()->password('password', 'Mot de passe')->autoFocus()->required() }}
+    {{ aire()->password('password_confirmation', 'Confirmation')->required() }}
+    {{ aire()->submit('Envoyer')->class('float-end btn-pink') }}
+    {{ aire()->close() }}
+{{--                {!! BootForm::openHorizontal(['lg' => [4, 8]])->action(route('password.update')) !!}--}}
+{{--                    {!! Form::token() !!}--}}
+{{--                    {!! Form::hidden('token', $token) !!}--}}
+{{--                    {!! BootForm::email('Email', 'email')->value(request('email') ?? '')->required() !!}--}}
+{{--                    {!! BootForm::password('Mot de passe', 'password')->required() !!}--}}
+{{--                    {!! BootForm::password('Confirmation', 'password_confirmation')->required() !!}--}}
+{{--                    {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}--}}
+{{--                {!! BootForm::close() !!}--}}
 
             {{--</div>--}}
         {{--</div>--}}

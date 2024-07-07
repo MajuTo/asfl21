@@ -60,11 +60,15 @@
             {{--<div class="col-sm-6">--}}
             <div>
                 <h4 class="text-center">Veuillez entrer votre adresse email.</h4>
-                {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('password.email')) !!}
-                @csrf
-                {!! BootForm::email('Email', 'email')->required() !!}
-                {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-                {!! BootForm::close() !!}
+                {{ aire()->open()->route('password.email') }}
+                {{ aire()->email('email', 'Email')->required()->class('mb-3') }}
+                {{ aire()->submit('Envoyer')->class('float-end btn-pink') }}
+                {{ aire()->close() }}
+{{--                {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('password.email')) !!}--}}
+{{--                @csrf--}}
+{{--                {!! BootForm::email('Email', 'email')->required() !!}--}}
+{{--                {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}--}}
+{{--                {!! BootForm::close() !!}--}}
             </div>
             {{--</div>--}}
         {{--</div>--}}

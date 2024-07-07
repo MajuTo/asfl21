@@ -26,9 +26,9 @@
 					<td>{{ $address->phone }}</td>
 					<td>
 						<a href="{{ route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{{ Aire::open(route('adresse.destroy', $address->id), $address)->delete()->style('display: inline;') }}
-						    {{ Aire::submit('Supprimer')->addClass('badge-danger badge eraser')->removeClass('btn btn-primary') }}
-						{{ Aire::close() }}
+						{{ aire()->open(route('adresse.destroy', $address->id), $address)->delete()->style('display: inline;') }}
+						    {{ aire()->submit('Supprimer')->addClass('text-bg-danger badge eraser')->removeClass('btn btn-primary') }}
+						{{ aire()->close() }}
 					</td>
 				</tr>
 			@endforeach
@@ -36,12 +36,12 @@
 	</table>
 </div>
 @stop
-@section('script')
-    <script>
-        $(document).ready(function(){
-            $('#nav-membre').addClass('active');
-            $('#nav-admin').addClass('active');
-            $('#nav-admin-users').addClass('active');
-        });
-    </script>
-@stop
+{{--@section('script')--}}
+{{--    <script>--}}
+{{--        $(document).ready(function(){--}}
+{{--            $('#nav-membre').addClass('active');--}}
+{{--            $('#nav-admin').addClass('active');--}}
+{{--            $('#nav-admin-users').addClass('active');--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@stop--}}

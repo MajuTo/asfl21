@@ -21,8 +21,11 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.0",
+        "mews/captcha": "^3.3",
         "nesbot/carbon": "^2.25",
-        "spatie/geocoder": "^3.6"
+        "protonemedia/laravel-form-components": "^3.6",
+        "spatie/geocoder": "^3.6",
+        "spatie/laravel-html": "^3.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

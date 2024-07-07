@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <!-- HEADER -->
-        @include('includes.head')
-    </head>
-    <body>
-        <div class="container">
-            <!-- NAVIGATION -->
-            @include('includes.nav')
-            <!-- Flash messages -->
-            @include('includes.alert')
-            <!-- BODY CONTENT -->
-            <div id="content-container">
+{{--<!DOCTYPE html>--}}
+{{--<html lang="fr">--}}
+{{--    <head>--}}
+{{--        <!-- HEADER -->--}}
+{{--        @include('includes.head')--}}
+{{--    </head>--}}
+{{--    <body>--}}
+{{--        <div class="container">--}}
+{{--            <!-- NAVIGATION -->--}}
+{{--            @include('includes.nav')--}}
+{{--            <!-- Flash messages -->--}}
+{{--            @include('includes.alert')--}}
+{{--            <!-- BODY CONTENT -->--}}
+{{--            <div id="content-container">--}}
+@extends('layouts.index')
+@section('content')
                 <div class="row">
                     <div class="col-sm-12">
                         <h1>Tableau de bord Admin</h1>
@@ -23,16 +25,17 @@
                         @include('admin.menu')
                     </div>
                     <div class="col-sm-10">
-                        @yield('content')
+                        @yield('admincontent')
                     </div>
                 </div>
-            </div>
-            <!-- FOOTER -->
-            @include('includes.footer')
-        </div>
-        <!-- Javascipts -->
-        @include('includes.scripts')
-        <!-- Custom scripts -->
-        @yield('script')
-    </body>
-</html>
+@stop
+{{--            </div>--}}
+{{--            <!-- FOOTER -->--}}
+{{--            @include('includes.footer')--}}
+{{--        </div>--}}
+{{--        <!-- Javascipts -->--}}
+{{--        @include('includes.scripts')--}}
+{{--        <!-- Custom scripts -->--}}
+{{--        @yield('script')--}}
+{{--    </body>--}}
+{{--</html>--}}
