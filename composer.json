@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1.0",
-        "barryvdh/laravel-ide-helper": "^2.6",
+        "barryvdh/laravel-ide-helper": "^3.0",
         "galahad/bootforms": "^1.2",
         "glaivepro/invytr": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
