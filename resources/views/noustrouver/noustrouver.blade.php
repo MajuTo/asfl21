@@ -55,7 +55,7 @@
             <div class="col-sm-8 col-md-8 col-lg-8" id="gmap">
                 <div class="map_container">
                     <div id="panel">
-                        <input id="chezvous_textbox" type="textbox" placeholder="Votre adresse">
+                        <input id="chezvous_textbox" type="text" placeholder="Votre adresse">
                         <input id="chezvous_button" type="button" value="go" onclick="codeAddress()">
                     </div>
                     <div class="map_canvas" id="map_canvas"></div>
@@ -144,21 +144,25 @@
                     url:  "{{ route('getSfByActivity') }}",
                     type: 'POST',
                     data: {selectedActivities: selectedActivities},
+                    headers: {
+                        'X-CSRF-Token': '{{ csrf_token() }}'
+                    },
                     success: function(response){
                         $('tbody#listesf').html(response);
                         toggleMarkers();
                     }
                 });
-                let httpRequest = new XMLHttpRequest();
-                httpRequest.onreadystatechange = function(data) {
-                    // code
-                };
-                httpRequest.setRequestHeader(
-                    "Content-Type",
-                    "application/x-www-form-urlencoded",
-                );
-                httpRequest.open("POST", url);
-                httpRequest.send("username=" + encodeURIComponent(username));
+                // let httpRequest = new XMLHttpRequest();
+                // httpRequest.onreadystatechange = function(data) {
+                //     // code
+                // };
+                // httpRequest.setRequestHeader(
+                //     "Content-Type",
+                //     "application/x-www-form-urlencoded",
+                // );
+                // httpRequest
+                // httpRequest.open("POST", url);
+                // httpRequest.send("username=" + encodeURIComponent(username));
 
             }
 
@@ -184,7 +188,7 @@
                     for(let i=0; i<markers.length; i++){
                         if ( sf == markers[i]['id'].split('_')[0] ) {
                             markers[i].setVisible(true)
-                        };
+                        }
                     }
                 });
             }
@@ -197,7 +201,7 @@
                     for(let i=0; i<markers.length; i++){
                         if ( sf == markers[i]['id'].split('_')[0] ) {
                             markers[i].setVisible(true)
-                        };
+                        }
                     }
                 });
             }
@@ -316,7 +320,7 @@
         function codeAddress() {
             if (marker) {
                 marker.setMap(null);
-            };
+            }
 
             let icon = {
                 url: "{{ asset('assets/img/arrow.png') }}"
