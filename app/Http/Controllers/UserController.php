@@ -281,7 +281,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'message' => 'required',
-            '_answer' => 'required | simple_captcha',
+            'captcha' => 'required|captcha'
         );
         $validation = validator()->make(request()->all(), $rules);
 

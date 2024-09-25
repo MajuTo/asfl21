@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Mews\Captcha\CaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -169,7 +170,7 @@ return [
     |
     | This array of class aliases will be registered when this application
     | is started. However, feel free to register as many as you wish as
-    | the aliases are "lazy" loaded so they don't hinder performance.
+    | the aliases are "lazy" loaded, so they don't hinder performance.
     |
     */
 
@@ -211,6 +212,8 @@ return [
 
         'Str' => \Illuminate\Support\Str::class,
         'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
+
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
 
     ],
 

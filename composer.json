@@ -13,12 +13,12 @@
         "galahad/bootforms": "^1.2",
         "glaivepro/invytr": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "haruncpi/laravel-simple-captcha": "^1.0",
         "laravel/framework": "^10.0",
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "laravelcollective/html": "^6.0",
+        "mews/captcha": "^3.4",
         "nesbot/carbon": "^2.25",
         "spatie/geocoder": "^3.6"
     },

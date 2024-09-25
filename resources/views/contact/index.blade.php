@@ -24,9 +24,7 @@
                     {!! BootForm::text('Votre sujet*', 'subject')->placeHolder('Votre sujet ...')->required() !!}
                     {!! BootForm::textarea('Votre message*', 'message')->placeHolder('Votre message ...')->required() !!}
                     {!! BootForm::checkbox('Je suis un professionnel', 'pro') !!}
-                    <div class="col-lg-offset-3 col-lg-9">
-                        {!!getCaptchaBox()!!}
-                    </div>
+                    <x-captcha></x-captcha>
                     {!! BootForm::submit('Envoyer', 'pull-right btn btn-pink') !!}
                 {!! BootForm::close() !!}
 

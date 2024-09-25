@@ -37,7 +37,7 @@ class ContactController extends Controller
             'email' => 'required|email',
             'subject' => 'required|max:250',
             'message' => 'required|max:250',
-            '_answer' => 'required | simple_captcha',
+            'captcha' => 'required|captcha'
         );
 
         $validation = validator()->make(request()->all(), $rules);
