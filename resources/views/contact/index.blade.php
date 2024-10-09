@@ -24,7 +24,8 @@
                     {!! BootForm::text('Votre sujet*', 'subject')->placeHolder('Votre sujet ...')->required() !!}
                     {!! BootForm::textarea('Votre message*', 'message')->placeHolder('Votre message ...')->required() !!}
                     {!! BootForm::checkbox('Je suis un professionnel', 'pro') !!}
-                    <x-captcha></x-captcha>
+                    <x-captcha />
+                    <x-honeypot />
                     {!! BootForm::submit('Envoyer', 'pull-right btn btn-pink') !!}
                 {!! BootForm::close() !!}
 

@@ -20,7 +20,8 @@
         "laravelcollective/html": "^6.0",
         "mews/captcha": "^3.4",
         "nesbot/carbon": "^2.25",
-        "spatie/geocoder": "^3.6"
+        "spatie/geocoder": "^3.6",
+        "spatie/laravel-honeypot": "^4.5"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

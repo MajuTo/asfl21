@@ -21,13 +21,13 @@ Route::get('liens-utiles',  [\App\Http\Controllers\LinkController::class, 'index
 Route::get('partenaires', [\App\Http\Controllers\PartnerController::class, 'index'])->name('partner');
 
 Route::get('contact',  [\App\Http\Controllers\ContactController::class, 'index'])->name('contact.index');
-Route::post('contact', [\App\Http\Controllers\ContactController::class, 'sendContact'])->name('sendcontact');
+Route::post('contact', [\App\Http\Controllers\ContactController::class, 'sendContact'])->name('sendcontact')->middleware(\Spatie\Honeypot\ProtectAgainstSpam::class);
 
 Route::get('inscription/verification/{confirmation}', [\App\Http\Controllers\UserController::class, 'confirmation'])->name('confirmation');
 
 // Route::resource('user', 'UserController', ['only' => ['show']]);
 Route::get('sage-femme/{id}/{name}', [\App\Http\Controllers\UserController::class, 'show'])->name('user.show');
-Route::post('user/{user}', [\App\Http\Controllers\UserController::class, 'sendEmail'])->name('user.email');
+Route::post('user/{user}', [\App\Http\Controllers\UserController::class, 'sendEmail'])->name('user.email')->middleware(\Spatie\Honeypot\ProtectAgainstSpam::class);
 Route::resource('calendrier', \App\Http\Controllers\CalendarController::class, ['only' => ['index', 'show', 'store']]);
 
 /* MENTIONS LEGALES */

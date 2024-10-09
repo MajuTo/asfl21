@@ -63,7 +63,8 @@
                 {!! BootForm::text('Votre nom', 'name')->placeHolder("Votre nom...")->required() !!}
                 {!! BootForm::text('Email', 'email')->placeHolder("Votre email...")->required() !!}
                 {!! BootForm::textarea('Message', 'message')->placeHolder("Votre message...")->required() !!}
-                <x-captcha></x-captcha>
+                <x-captcha />
+                <x-honeypot />
                 {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
             {!! BootForm::close() !!}
         </div>
