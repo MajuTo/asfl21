@@ -21,11 +21,9 @@
 					<td>{{ $link->link }}</td>
 					<td>
 						<a href="{{ route('admin.link.edit', $link->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! BootForm::open()->delete()->action(route('admin.link.destroy', $link->id))->style('display: inline;') !!}
-						    {!! Form::token() !!}
-						    {!! BootForm::bind($link) !!}
-						    {!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}
-						{!! BootForm::close() !!}
+						{!! Aire::open()->route('admin.link.destroy', $link->id)->delete() !!}
+						    {!! Aire::submit('Supprimer')->addClass('label-danger label eraser') !!}
+						{!! Aire::close() !!}
 					</td>
 				</tr>
 			@endforeach

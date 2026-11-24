@@ -17,17 +17,16 @@
     <!-- Contact Us -->
         <div class="row">
             <div class="col-sm-7" id="contact-add-form">
-                {!! BootForm::openHorizontal(['lg' => [3, 9]])->post()->action(route('sendcontact')) !!}
-                    {!! Form::token() !!}
-                    {!! BootForm::text('Votre nom*', 'name')->placeHolder('Votre nom ...')->required() !!}
-                    {!! BootForm::text('Votre email*', 'email')->placeHolder('Votre email ...')->required() !!}
-                    {!! BootForm::text('Votre sujet*', 'subject')->placeHolder('Votre sujet ...')->required() !!}
-                    {!! BootForm::textarea('Votre message*', 'message')->placeHolder('Votre message ...')->required() !!}
-                    {!! BootForm::checkbox('Je suis un professionnel', 'pro') !!}
+                {{ Aire::open()->route('sendcontact') }}
+                    {{ Aire::input('name', 'Votre nom*')->placeholder('Votre nom ...')->required() }}
+                    {{ Aire::input('email', 'Votre email*')->placeholder('Votre email ...')->required() }}
+                    {{ Aire::input('subject', 'Votre sujet*')->placeholder('Votre sujet ...')->required() }}
+                    {{ Aire::textarea('message', 'Votre message*')->placeholder('Votre message ...')->required() }}
+                    {{ Aire::checkbox('pro', 'Je suis un professionnel') }}
                     <x-captcha />
                     <x-honeypot />
-                    {!! BootForm::submit('Envoyer', 'pull-right btn btn-pink') !!}
-                {!! BootForm::close() !!}
+                    {{ Aire::submit('Envoyer')->addClass('pull-right btn btn-pink') }}
+                {{ Aire::close() }}
 
             </div>
             <div class="col-sm-5">

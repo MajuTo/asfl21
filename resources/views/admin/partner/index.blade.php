@@ -23,11 +23,10 @@
 					<td>{{ $partner->contact }}</td>
 					<td>
 						<a href="{{ route('admin.partner.edit', $partner->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! BootForm::open()->delete()->action(route('admin.partner.destroy', $partner->id))->style('display: inline;') !!}
-						    {!! Form::token() !!}
-						    {!! BootForm::bind($partner) !!}
-						    {!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}
-						{!! BootForm::close() !!}
+						{!! Aire::open()->route('admin.partner.destroy', $partner->id)->method('DELETE')->addClass('inline-display') !!}
+						    {!! Aire::bind($partner) !!}
+						    {!! Aire::submit('Supprimer')->addClass('label-danger label eraser') !!}
+						{!! Aire::close() !!}
 					</td>
 				</tr>
 			@endforeach

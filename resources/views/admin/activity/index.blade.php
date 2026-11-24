@@ -19,11 +19,10 @@
 					<td>{{ $activity->activityName }}</td>
 					<td>
 						<a href="{{ route('admin.activity.edit', $activity->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! BootForm::open()->delete()->action(route('admin.activity.destroy', $activity->id))->style('display: inline;') !!}
-						    {!! Form::token() !!}
-						    {!! BootForm::bind($activity) !!}
-						    {!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}
-						{!! BootForm::close() !!}
+						{!! Aire::open()->route('admin.activity.destroy', $activity->id)->method('DELETE')->addClass('inline-display') !!}
+						    {!! Aire::bind($activity) !!}
+						    {!! Aire::submit('Supprimer')->addClass('label-danger label eraser') !!}
+						{!! Aire::close() !!}
 					</td>
 				</tr>
 			@endforeach

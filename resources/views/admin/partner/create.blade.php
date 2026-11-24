@@ -1,11 +1,10 @@
 @extends('layouts.admin')
 @section('content')
-    {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('admin.partner.store'))->multipart() !!}
-        {!! Form::token() !!}
-        {!! BootForm::bind($partner) !!}
-        {!! BootForm::text('Nom', 'partnerName')->placeHolder("Nom du partenaire...")->required() !!}
-        {!! BootForm::text('Contact', 'contact')->placeHolder("Contact...") !!}
-        {!! BootForm::file('Logo', 'logo_file')->placeHolder("Logo du partenaire...") !!}
-        {!! BootForm::submit('Ajouter', 'pull-right btn-pink') !!}
-    {!! BootForm::close() !!}
+    {!! Aire::open()->multipart()->route('admin.partner.store') !!}
+        {!! Aire::bind($partner) !!}
+        {!! Aire::input('partnerName', 'Nom')->placeholder("Nom du partenaire...")->required() !!}
+        {!! Aire::input('contact', 'Contact')->placeholder("Contact...") !!}
+        {!! Aire::file('logo_file', 'Logo')->placeholder("Logo du partenaire...") !!}
+        {!! Aire::submit('Ajouter')->addClass('pull-right btn-pink') !!}
+    {!! Aire::close() !!}
 @stop

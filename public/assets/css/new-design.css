@@ -55,16 +55,21 @@ a:focus {
 
 
 /* ** Bootstrap Buttons ** */
+.label.btn-primary,
+.btn-primary.btn-pink {
+    border-color: #E35582;
+}
+
 .btn-pink {
     color: #fff;
-    background-image: -webkit-linear-gradient(#E35582 0%, #B5003A 100%);
-    background-image: -o-linear-gradient(#E35582 0%, #B5003A 100%);
+    /*background-image: -webkit-linear-gradient(#E35582 0%, #B5003A 100%);*/
+    /*background-image: -o-linear-gradient(#E35582 0%, #B5003A 100%);*/
     background-image: linear-gradient(#E35582 0%, #B5003A 100%);
     /*filter: progid:DXImage:;Transform.Microsoft.gradient(startColorstr='#E35582', endColorstr='#B5003A', GradientType=0);*/
     /*filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);*/
     background-repeat: repeat-x;
     background-color: #E35582;
-    margin-top: 4px;
+    /*margin-top: 4px;*/
 }
 
 .btn-pink:hover,
@@ -83,6 +88,9 @@ a:focus {
 
 /* ** End Bootstrap Buttons ** */
 
+input[type=checkbox] {
+    accent-color: #B5003A;
+}
 
 /* ** Beautiful Checkboxes ** */
 .checkbox input[type=checkbox] {

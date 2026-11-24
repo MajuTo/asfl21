@@ -2,43 +2,28 @@
 @section('content')
 <div class="row">
     <div class="col-sm-6">
-        {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('admin.user.store')) !!}
-            {!! Form::token() !!}
-            {!! BootForm::bind($user) !!}
-            {!! BootForm::text('Nom', 'name')->placeHolder("Nom de l'adhérent...")->required() !!}
-            {!! BootForm::text('Prénom', 'firstname')->placeHolder("Prénom de l'adhérent...")->required() !!}
-            {!! BootForm::text('Email', 'email')->placeHolder("Email de l'adhérent ...")->required() !!}
-            @if($user->hideEmail)
-                {!! BootForm::checkbox('Email privé', 'hideEmail')->check() !!}
-            @else
-                {!! BootForm::checkbox('Email privé', 'hideEmail') !!}
-            @endif
-            {!! BootForm::text('Téléphone', 'phone')->placeHolder("Téléphone de l'adhérent...") !!}
-            @if($user->hidePhone)
-                {!! BootForm::checkbox('Téléphone privé', 'hidePhone')->check() !!}
-            @else
-                {!! BootForm::checkbox('Téléphone privé', 'hidePhone') !!}
-            @endif
-            {!! BootForm::text('Mobile', 'mobile')->placeHolder("Mobile de l'adhérent...") !!}
-            @if($user->hideMobile)
-                {!! BootForm::checkbox('Mobile privé', 'hideMobile')->check() !!}
-            @else
-                {!! BootForm::checkbox('Mobile privé', 'hideMobile') !!}
-            @endif
-            {!! BootForm::text('Fax', 'fax')->placeHolder("Fax de l'adhérent...") !!}
-            @if($user->hideFax)
-                {!! BootForm::checkbox('Fax privé', 'hideFax')->check() !!}
-            @else
-                {!! BootForm::checkbox('Fax privé', 'hideFax') !!}
-            @endif
-            {!! BootForm::select('Groupe', 'group_id')->options($groups) !!}
+        {{ Aire::open()->route('admin.user.store') }}
+            {{ Aire::bind($user) }}
+            {{ Aire::input('name', 'Nom')->placeholder("Nom de l'adhérent...")->required() }}
+            {{ Aire::input('firstname', 'Prénom')->placeholder("Prénom de l'adhérent...")->required() }}
+            {{ Aire::input('email', 'Email')->placeholder("Email de l'adhérent ...")->required() }}
+            {{ Aire::checkbox('hideEmail', 'Email privé')->checked($user->hideEmail ?? false) }}
+            {{ Aire::input('phone', 'Téléphone')->placeholder("Téléphone de l'adhérent...") }}
+            {{ Aire::checkbox('hidePhone', 'Téléphone privé')->checked($user->hidePhone ?? false) }}
+            {{ Aire::input('mobile', 'Mobile')->placeholder("Mobile de l'adhérent...") }}
+            {{ Aire::checkbox('hideMobile', 'Mobile privé')->checked($user->hideMobile ?? false) }}
+            {{ Aire::input('fax', 'Fax')->placeholder("Fax de l'adhérent...") }}
+            {{ Aire::checkbox('hideFax', 'Fax privé')->checked($user->hideFax ?? false) }}
+            {{ Aire::select($groups, 'group_id', 'Groupe') }}
     </div>
     <div class="col-sm-6">
-        @foreach($activities as $act)
-            {!! BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) !!}
-        @endforeach
-            {!! BootForm::submit('Ajouter', 'pull-right btn-pink') !!}
-        {!! BootForm::close() !!}
+        {{ Aire::checkboxGroup('test', 'activities', 'label') }}
+{{--        @foreach($activities as $act)--}}
+{{--            @dd($act)--}}
+{{--            {{ Aire::checkbox('activities[]')->value($act->id)->label($act->activityName) }}--}}
+{{--        @endforeach--}}
+            {{ Aire::submit('Ajouter')->addClass('pull-right btn-pink') }}
+        {{ Aire::close() }}
     </div>
 </div>
 @stop

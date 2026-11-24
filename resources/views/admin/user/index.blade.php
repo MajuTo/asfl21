@@ -22,16 +22,14 @@
 					<td>{{ Str::title($user->firstname) }}</td>
 					<td>{{ Str::title($user->group->groupName) }}</td>
 					<td>
-						<a href="{{ route('admin.user.edit', $user->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! BootForm::open()->put()->action(route('admin.user.toggle', $user->id))->style('display: inline;') !!}
-						    {!! Form::token() !!}
-						    {!! BootForm::bind($user) !!}
+						<a href="{{ route('admin.user.edit', $user->id) }}"><button class="btn btn-warning label label-warning">Editer</button></a>
+						{!! Aire::open()->route('admin.user.toggle', $user->id)->put() !!}
 						    @if($user->active)
-						    	{!! BootForm::submit('Désactiver', 'label-danger label') !!}
+						    	{!! Aire::submit('Désactiver')->removeClass('btn-primary')->addClass('btn-danger label-danger label') !!}
 						    @else
-								{!! BootForm::submit('Activer', 'label-success label') !!}
+								{!! Aire::submit('Activer')->removeClass('btn-primary')->addClass('btn-danger label-success label') !!}
 						    @endif
-						{!! BootForm::close() !!}
+						{!! Aire::close() !!}
 						@if(!$user->loggedOnce)
 							<a href="{{ route('admin.user.sendagain', $user->id) }}"><button class="btn label label-primary">Renvoyer le mail</button></a>
 						@endif

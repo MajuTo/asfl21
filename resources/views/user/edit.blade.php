@@ -16,33 +16,24 @@
 
     <!-- Div de l'onglet profil -->
     <div role="tabpanel" class="row tab-pane fade in active" id="profil">
-        {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('user.update', $user->id)) !!}
+        {{ Aire::open()->route('user.update', $user->id)->put() }}
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
-                    {!! Form::token() !!}
-                    {!! BootForm::bind($user) !!}
-                    {!! BootForm::text('Nom', 'name')->placeHolder("Nom...")->required() !!}
-                    {!! BootForm::text('Prénom', 'firstname')->placeHolder("Prénom...")->required() !!}
-                    {!! BootForm::text('Identifiant', 'username')->placeHolder("Identifiant...")->required() !!}
-                    {!! BootForm::text('Email', 'email')->placeHolder("Email...")->required() !!}
-                    @if($user->hideEmail)
-                        {!! BootForm::checkbox('Cacher l\'email (Cache le formulaire de contact)', 'hideEmail')->check() !!}
-                    @else
-                        {!! BootForm::checkbox('Cacher l\' email (Cache le formulaire de contact)', 'hideEmail') !!}
-                    @endif
-                    {!! BootForm::text('Mobile', 'mobile')->placeHolder("Mobile...") !!}
-                    @if($user->hideMobile)
-                        {!! BootForm::checkbox('Cacher le mobile', 'hideMobile')->check() !!}
-                    @else
-                        {!! BootForm::checkbox('Cacher le mobile', 'hideMobile') !!}
-                    @endif
-                    {!! BootForm::textarea('Plus de détail <br /><span class="textarea-subtext">Dites en un peu plus sur vous même et/ou vos activités...</span>', 'description')->placeHolder("Dites en un peu plus sur vous même et/ou vos activités...")->class('ckeditor') !!}
+                    {{ Aire::bind($user) }}
+                    {{ Aire::input('name')->label('Nom')->placeholder("Nom...")->required() }}
+                    {{ Aire::input('firstname')->label('Prénom')->placeholder("Prénom...")->required() }}
+                    {{ Aire::input('username')->label('Identifiant')->placeholder("Identifiant...")->required() }}
+                    {{ Aire::input('email')->label('Email')->placeholder("Email...")->required() }}
+                    {{ Aire::checkbox('hideEmail')->label('Cacher l\'email (Cache le formulaire de contact)')->checked($user->hideEmail) }}
+                    {{ Aire::input('mobile')->label('Mobile')->placeholder("Mobile...") }}
+                    {{ Aire::checkbox('hideMobile')->label('Cacher le mobile')->checked($user->hideMobile) }}
+                    {{ Aire::textarea('description')->label('Plus de détail <br /><span class="textarea-subtext">Dites en un peu plus sur vous même et/ou vos activités...</span>')->placeholder("Dites en un peu plus sur vous même et/ou vos activités...")->addClass('ckeditor') }}
                     @if($user->group->id == 2 || $user->group->id == 3)
-                        {!! BootForm::select('Groupe', 'group_id')->options($groups) !!}
+                        {{ Aire::select($groups, 'group_id')->label('Groupe') }}
                     @endif
-                    {!! BootForm::submit('Enregistrer', 'pull-right btn-pink') !!}
+                    {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
             </div>
-        {!! BootForm::close() !!}
+        {{ Aire::close() }}
     </div>
 
     <!-- Div de l'onglet adresses -->
@@ -68,11 +59,9 @@
                             <td>{{ $address->phone }}</td>
                             <td>
                                 <a href="{{ route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-                                {!! BootForm::open()->delete()->action(route('adresse.destroy', $address->id))->style('display: inline;') !!}
-                                    {!! Form::token() !!}
-                                    {!! BootForm::bind($address) !!}
-                                    {!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}
-                                {!! BootForm::close() !!}
+                                {!! Aire::open()->route('adresse.destroy', $address->id)->class('delete-form') !!}
+                                    {!! Aire::submit('Supprimer')->class('label-danger label eraser') !!}
+                                {!! Aire::close() !!}
                             </td>
                         </tr>
                     @endforeach
@@ -85,18 +74,13 @@
     <div role="tabpanel" class="tab-pane fade" id="activites">
         <div class="col-sm-6 col-sm-offset-3">
           <div class="col-sm-12 text-center"><h3>Activités de {{ $user->firstname }}</h3></div>
-          {!! BootForm::openHorizontal(['lg' => [2, 10]])->put()->action(route('user.updateActivities', $user->id)) !!}
-              {!! Form::token() !!}
-              {!! BootForm::bind($user) !!}
+          {{ Aire::open()->route('user.updateActivities', $user->id)->put() }}
+              {{ Aire::bind($user) }}
               @foreach($activities as $act)
-                  @if($user->activities->contains($act->id))
-                      {!! BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() !!}
-                  @else
-                      {!! BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) !!}
-                  @endif
+                  {{ Aire::checkbox('activities[]')->value($act->id)->label($act->activityName)->checked($user->activities->contains($act->id)) }}
               @endforeach
-              {!! BootForm::submit('Enregistrer', 'pull-right btn-pink') !!}
-          {!! BootForm::close() !!}
+              {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
+          {{ Aire::close() }}
         </div>
     </div>
 
@@ -104,12 +88,11 @@
     <div role="tabpanel" class="tab-pane fade" id="motdepasse">
         <div class="col-sm-6 col-sm-offset-3">
             <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
-            {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('user.update.password', $user->id)) !!}
-                {!! Form::token() !!}
-                {!! BootForm::password('Mot de passe', 'password') !!}
-                {!! BootForm::password('Confirmation', 'password_confirmation') !!}
-                {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-            {!! BootForm::close() !!}
+            {{ Aire::open()->route('user.update.password', $user->id)->put() }}
+                {{ Aire::password('password', 'Mot de passe') }}
+                {{ Aire::password('password_confirmation', 'Confirmation') }}
+                {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+            {{ Aire::close() }}
         </div>
     </div>
 </div> <!-- Fin div tab-content -->

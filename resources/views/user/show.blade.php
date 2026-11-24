@@ -57,16 +57,14 @@
     <div class="row">
         <div class="col-sm-6">
             <h3>Contactez moi</h3>
-            {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('user.email', $user->id)) !!}
-                {!! Form::token() !!}
-{{--                {!! BootForm::bind($user) !!}--}}
-                {!! BootForm::text('Votre nom', 'name')->placeHolder("Votre nom...")->required() !!}
-                {!! BootForm::text('Email', 'email')->placeHolder("Votre email...")->required() !!}
-                {!! BootForm::textarea('Message', 'message')->placeHolder("Votre message...")->required() !!}
+            {{ Aire::open()->route('user.email', $user->id) }}
+                {{ Aire::input('name')->label('Votre nom')->placeholder("Votre nom...")->required() }}
+                {{ Aire::input('email')->label('Email')->placeholder("Votre email...")->required() }}
+                {{ Aire::textarea('message')->label('Message')->placeholder("Votre message...")->required() }}
                 <x-captcha />
                 <x-honeypot />
-                {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-            {!! BootForm::close() !!}
+                {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+            {{ Aire::close() }}
         </div>
         <div class="col-sm-6">
             @if($user->description)

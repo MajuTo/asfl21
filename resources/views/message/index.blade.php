@@ -9,15 +9,14 @@
         <div class="col-sm-12">
         <h3><button class="btn btn-pink" id="envoi">Ecrire un message</button></h3>
             <div class="messagerie-form hide-form">
-                {!! BootForm::openHorizontal(['lg' => [2, 10]])->action(route('message.store')) !!}
-                {!! Form::token() !!}
-                {!! BootForm::text('Titre', 'title')->placeHolder('Titre...')->required() !!}
-                {!! BootForm::textarea('Message <br /><span class="textarea-subtext">(Votre message ici...)</span>', 'content')->placeHolder("Ecrivez votre message ici...")->class('ckeditor')->required() !!}
+                {{ Aire::open()->route('message.store') }}
+                {{ Aire::input('title', 'Titre')->placeholder('Titre...')->required() }}
+                {{ Aire::textarea('content', 'Message <br /><span class="textarea-subtext">(Votre message ici...)</span>')->placeholder("Ecrivez votre message ici...")->addClass('ckeditor')->required() }}
                 @if(Auth::getUser()->group_id == 2 || Auth::getUser()->group_id == 3)
-                    {!! BootForm::checkbox('Envoyer le message comme administrateur', 'admin-msg') !!}
+                    {{ Aire::checkbox('admin-msg', 'Envoyer le message comme administrateur') }}
                 @endif
-                {!! BootForm::submit('Envoyer', 'pull-right btn btn-pink') !!}
-            {!! BootForm::close() !!}
+                {{ Aire::submit('Envoyer')->addClass('pull-right btn btn-pink') }}
+            {{ Aire::close() }}
             </div>
         </div>
         <div class="col-sm-6">
