@@ -8,14 +8,13 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                    {!! BootForm::openHorizontal(['lg' => [4, 8]]) !!}
-                        {!! Form::token() !!}
-                        {!! Form::hidden('token', $token) !!}
-                        {!! BootForm::email('Email', 'email')->required() !!}
-                        {!! BootForm::password('Mot de passe', 'password')->required() !!}
-                        {!! BootForm::password('Confirmation', 'password_confirmation')->required() !!}
-                        {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-                    {!! BootForm::close() !!}
+                    {{ Aire::open() }}
+{{--                        {!! Form::hidden('token', $token) !!}--}}
+                        {{ Aire::input('email', 'Email')->required() }}
+                        {{ Aire::password('password', 'Mot de passe')->required() }}
+                        {{ Aire::password('password_confirmation', 'Confirmation')->required() }}
+                        {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+                    {{ Aire::close() }}
 
             </div>
         </div>

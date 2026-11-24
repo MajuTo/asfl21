@@ -14,11 +14,10 @@
         <div class="row">
             <div class="col-sm-6">
                 <p>Veuillez entrer votre adresse email.</p>
-                    {!! BootForm::openHorizontal(['lg' => [3, 9]]) !!}
-                        {{ Form::token() }}
-                        {!! BootForm::email('Email', 'email')->required() !!}
-                        {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-                    {!! BootForm::close() !!}
+                    {{ Aire::open() }}
+                        {{ Aire::input('email', 'Email')->required() }}
+                        {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+                    {{ Aire::close() }}
             </div>
         </div>
     </div>

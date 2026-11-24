@@ -1,11 +1,10 @@
 @extends('layouts.admin')
 @section('content')
-    {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('admin.message.update', $message->id)) !!}
-        {!! Form::token() !!}
-        {!! BootForm::bind($message) !!}
-        {!! BootForm::text('Titre', 'title')->placeHolder('Titre...')->required() !!}
-        {!! BootForm::textarea('Message', 'content')->placeHolder('Message...')->class('ckeditor')->required() !!}
-        {!! BootForm::select('Catégorie', 'category_id')->options($categories) !!}
-        {!! BootForm::submit('Enregistrer', 'pull-right btn-pink') !!}
-    {!! BootForm::close() !!}
+    {!! Aire::open()->route('admin.message.update', $message->id)->put() !!}
+        {!! Aire::bind($message) !!}
+        {!! Aire::input('title', 'Titre')->placeholder('Titre...')->required() !!}
+        {!! Aire::textarea('content', 'Message')->placeholder('Message...')->addClass('ckeditor')->required() !!}
+        {!! Aire::select('category_id', 'Catégorie')->options($categories) !!}
+        {!! Aire::submit('Enregistrer')->addClass('pull-right btn-pink') !!}
+    {!! Aire::close() !!}
 @stop

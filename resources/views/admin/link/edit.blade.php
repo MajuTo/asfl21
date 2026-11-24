@@ -1,14 +1,12 @@
 @extends('layouts.admin')
 @section('content')
-    {!! BootForm::openHorizontal(['lg' => [3, 9]])->put()->action(route('admin.link.update', $link->id)) !!}
-        {!! Form::token() !!}
-        {!! BootForm::bind($link) !!}
-        {!! BootForm::text('Nom', 'linkName')->placeHolder("Nom du lien...")->required() !!}
-        {!! BootForm::text('Lien', 'link')->placeHolder("Lien...")->required() !!}
-        {!! BootForm::text('Adresse', 'address')->placeHolder("Adresse...") !!}
-        {!! BootForm::text('Code Postal', 'zipCode')->placeHolder("Code Postal...") !!}
-        {!! BootForm::text('Ville', 'city')->placeHolder("Ville...") !!}
-        {!! BootForm::text('Téléphone', 'phone')->placeHolder("Téléphone...") !!}
-        {!! BootForm::submit('Enregistrer', 'pull-right btn-pink') !!}
-    {!! BootForm::close() !!}
-@stop
+    {{ Aire::open()->route('admin.link.update', $link->id)->put() }}
+        {{ Aire::bind($link) }}
+        {{ Aire::input('linkName', 'Nom')->placeholder("Nom du lien...")->required() }}
+        {{ Aire::input('link', 'Lien')->placeholder("Lien...")->required() }}
+        {{ Aire::input('address', 'Adresse')->placeholder("Adresse...") }}
+        {{ Aire::input('zipCode', 'Code Postal')->placeholder("Code Postal...") }}
+        {{ Aire::input('city', 'Ville')->placeholder("Ville...") }}
+        {{ Aire::input('phone', 'Téléphone')->placeholder("Téléphone...") }}
+        {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
+    {{ Aire::close() }}@stop

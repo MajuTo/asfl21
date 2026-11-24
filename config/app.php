@@ -211,7 +211,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Str' => \Illuminate\Support\Str::class,
-        'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
 
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
 

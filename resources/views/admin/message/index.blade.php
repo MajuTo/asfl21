@@ -16,11 +16,9 @@
 					<td>{{ $message->category->categoryName }}</td>
 					<td>
 						<a href="{{ route('admin.message.edit', $message->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{{--{!! BootForm::open()->delete()->action(route('admin.message.destroy', $message->id))->style('display: inline;') !!}--}}
-						    {{--{!! Form::token() !!}--}}
-						    {{--{!! BootForm::bind($message) !!}--}}
-						    {{--{!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}--}}
-						{{--{!! BootForm::close() !!}--}}
+{{--                        {{ Aire::open('admin.message.destroy') }}--}}
+{{--                            {{ Aire::submit('X')->removeClass('btn-primary')->class('btn label label-danger eraser') }}--}}
+{{--                        {{ Aire::close() }}--}}
 					</td>
 				</tr>
 			@endforeach

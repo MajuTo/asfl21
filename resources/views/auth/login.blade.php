@@ -7,11 +7,11 @@
         {{ link_to(route('password.request'), 'Mot de passe oublié?', ['class' => 'pull-right']) }}
     </div>
     <div>
-        {!! BootForm::openHorizontal(['lg' => [3, 9]])->action(route('login')) !!}
+        {{ Aire::open()->route('login')->post() }}
             {{--{!! Form::token() !!}--}}
-            {!! BootForm::text('Identifiant', 'username') !!}
-            {!! BootForm::password('Mot de passe', 'password') !!}
-            {!! BootForm::submit('Envoyer', 'pull-right btn-pink') !!}
-        {!! BootForm::close() !!}
+            {{ Aire::input('username')->label('Identifiant') }}
+            {{ Aire::password('password', 'Mot de passe') }}
+            {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+        {{ Aire::close() }}
     </div>
 @stop

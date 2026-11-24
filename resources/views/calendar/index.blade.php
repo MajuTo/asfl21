@@ -14,18 +14,17 @@
         <div class="col-sm-12">
             <h1>Calendrier de grossesse</h1>
             <hr>
-    		{!! BootForm::open()->action(route('calendrier.store'))->addClass('form-inline') !!}
-                {!! Form::token() !!}
+    		{{ Aire::open()->route('calendrier.store')->addClass('form-inline') }}
     	    	<div class="col-sm-4 col-sm-offset-1">
-                    {!! BootForm::text('', 'date1', null, ['id' => 'date1'])->placeHolder("Date des dernieres règles")->addClass('datedropper') !!}
+                    {{ Aire::input('date1')->placeholder("Date des dernieres règles")->id('date1')->addClass('datedropper') }}
     	    	</div>
     	    	<div class="col-sm-4">
-                    {!! BootForm::text('', 'date2', null, ['id' => 'date2'])->placeHolder("Date de conception")->addClass('datedropper') !!}
+                    {{ Aire::input('date2')->placeholder("Date de conception")->id('date2')->addClass('datedropper') }}
     	    	</div>
     	    	<div class="col-sm-2">
-                    {!! BootForm::submit('Valider', 'btn-pink') !!}
+                    {{ Aire::submit('Valider')->addClass('btn-pink') }}
     	       	</div>
-            {!! BootForm::close() !!}
+            {{ Aire::close() }}
         </div>
     </div>
     <hr>

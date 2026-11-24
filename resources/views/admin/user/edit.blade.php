@@ -15,31 +15,22 @@
 
         <!-- Div de l'onglet profil -->
         <div role="tabpanel" class="row tab-pane fade in active" id="profil">
-            {!! BootForm::openHorizontal(['lg' => [2, 10]])->put()->action(route('admin.user.update', $user->id)) !!}
+            {{ Aire::open()->route('admin.user.update', $user->id)->put() }}
                 <div class="col-sm-8 col-sm-offset-2">
                     <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
-                        {!! Form::token() !!}
-                        {!! BootForm::bind($user) !!}
-                        {!! BootForm::text('Nom', 'name')->placeHolder("Nom...")->required() !!}
-                        {!! BootForm::text('Prénom', 'firstname')->placeHolder("Prénom...")->required() !!}
-                        {!! BootForm::text('Identifiant', 'username')->placeHolder("Identifiant...")->required() !!}
-                        {!! BootForm::text('Email', 'email')->placeHolder("Email...")->required() !!}
-                        @if($user->hideEmail)
-                            {!! BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail')->check() !!}
-                        @else
-                            {!! BootForm::checkbox('Ne pas montrer mon email (Cache le formulaire de contact)', 'hideEmail') !!}
-                        @endif
-                        {!! BootForm::text('Mobile', 'mobile')->placeHolder("Mobile...") !!}
-                        @if($user->hideMobile)
-                            {!! BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile')->check() !!}
-                        @else
-                            {!! BootForm::checkbox('Ne pas montrer mon mobile', 'hideMobile') !!}
-                        @endif
-                        {!! BootForm::textarea('Plus de détail', 'description')->placeHolder("Dites en un peu plus sur vous même et/ou vos activités...")->class('ckeditor') !!}
-                        {!! BootForm::select('Groupe', 'group_id')->options($groups) !!}
-                        {!! BootForm::submit('Enregistrer', 'pull-right btn-pink') !!}
+                        {{ Aire::bind($user) }}
+                        {{ Aire::input('name', 'Nom')->placeholder("Nom...")->required() }}
+                        {{ Aire::input('firstname', 'Prénom')->placeholder("Prénom...")->required() }}
+                        {{ Aire::input('username', 'Identifiant')->placeholder("Identifiant...")->required() }}
+                        {{ Aire::input('email', 'Email')->placeholder("Email...")->required() }}
+                        {{ Aire::checkbox('hideEmail', 'Ne pas montrer mon email (Cache le formulaire de contact)')->checked($user->hideEmail) }}
+                        {{ Aire::input('mobile', 'Mobile')->placeholder("Mobile...") }}
+                        {{ Aire::checkbox('hideMobile', 'Ne pas montrer mon mobile')->checked($user->hideMobile) }}
+                        {{ Aire::textarea('description', 'Plus de détail')->placeholder("Dites en un peu plus sur vous même et/ou vos activités...")->addClass('ckeditor') }}
+                        {{ Aire::select($groups, 'group_id', 'Groupe') }}
+                        {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
                 </div>
-            {!! BootForm::close() !!}
+            {{ Aire::close() }}
         </div>
 
         <!-- Div de l'onglet adresses -->
@@ -65,11 +56,9 @@
                                 <td>{{ $address->phone }}</td>
                                 <td>
                                     <a href="{{ route('admin.adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-                                    {!! BootForm::open()->delete()->action(route('admin.adresse.destroy', $address->id))->style('display: inline;') !!}
-                                        {!! Form::token() !!}
-                                        {!! BootForm::bind($address) !!}
-                                        {!! BootForm::submit('Supprimer', 'label-danger label eraser') !!}
-                                    {!! BootForm::close() !!}
+                                    {!! Aire::open()->route('admin.adresse.destroy', $address->id)->class('delete-form') !!}
+                                        {!! Aire::submit('Supprimer')->addClass('label-danger label eraser') !!}
+                                    {!! Aire::close() !!}
                                 </td>
                             </tr>
                         @endforeach
@@ -82,18 +71,13 @@
         <div role="tabpanel" class="tab-pane fade" id="activites">
           <div class="col-sm-6 col-sm-offset-3">
               <div class="col-sm-12 text-center"><h3>Activités de {{ $user->firstname }}</h3></div>
-                {!! BootForm::openHorizontal(['lg' => [2, 10]])->put()->action(route('admin.user.updateActivities', $user->id)) !!}
-                    {!! Form::token() !!}
-                    {!! BootForm::bind($user) !!}
+                {{ Aire::open()->route('admin.user.updateActivities', $user->id)->put() }}
+                    {{ Aire::bind($user) }}
                   @foreach($activities as $act)
-                      @if($user->activities->contains($act->id))
-                          {!! BootForm::checkbox($act->activityName, 'activities[]')->value($act->id)->check() !!}
-                      @else
-                          {!! BootForm::checkbox($act->activityName, 'activities[]')->value($act->id) !!}
-                      @endif
+                      {{ Aire::checkbox('activities[]')->value($act->id)->label($act->activityName)->checked($user->activities->contains($act->id)) }}
                   @endforeach
-                {!! BootForm::submit('Enregistrer', 'pull-right btn-pink') !!}
-              {!! BootForm::close() !!}
+                {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
+              {{ Aire::close() }}
           </div>
         </div>
 
