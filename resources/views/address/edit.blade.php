@@ -18,7 +18,7 @@
         {{ Aire::checkbox('hidePhone', 'Ne pas montrer mon téléphone')->checked($address->hidePhone) }}
         {{ Aire::input('fax', 'Fax')->placeholder("Fax...") }}
         {{ Aire::checkbox('hideFax', 'Ne pas montrer mon fax')->checked($address->hideFax) }}
-        {{ Aire::textarea('description', 'Informations supplémentaires <span class="textarea-subtext">(disponibilités, horaires, etc...)</span>')->placeholder("Informations supplémentaires (horaires, etc...)")->addClass('ckeditor') }}
+        {{ Aire::textarea('description', 'Description')->placeholder("Informations supplémentaires (horaires, etc...)")->addClass('ckeditor') }}
         {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
     {{ Aire::close() }}
 </div>

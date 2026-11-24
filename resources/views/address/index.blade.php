@@ -24,7 +24,7 @@
 					<td>{{ $address->phone }}</td>
 					<td>
 						<a href="{{ route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! Aire::open()->route('adresse.destroy', $address->id)->class('delete-form') !!}
+						{!! Aire::open()->route('adresse.destroy', $address->id)->class('delete-form')->delete() !!}
 						    {!! Aire::submit('Supprimer')->class('label-danger label eraser') !!}
 						{!! Aire::close() !!}
 					</td>

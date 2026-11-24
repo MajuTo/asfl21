@@ -19,7 +19,7 @@
 					<td>{{ $activity->activityName }}</td>
 					<td>
 						<a href="{{ route('admin.activity.edit', $activity->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! Aire::open()->route('admin.activity.destroy', $activity->id)->method('DELETE')->addClass('inline-display') !!}
+						{!! Aire::open()->route('admin.activity.destroy', $activity->id)->delete()->addClass('inline-display') !!}
 						    {!! Aire::bind($activity) !!}
 						    {!! Aire::submit('Supprimer')->addClass('label-danger label eraser') !!}
 						{!! Aire::close() !!}

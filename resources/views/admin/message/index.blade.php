@@ -17,7 +17,7 @@
 					<td>
 						<a href="{{ route('admin.message.edit', $message->id) }}"><button class="btn label label-warning">Editer</button></a>
 {{--                        {{ Aire::open('admin.message.destroy') }}--}}
-{{--                            {{ Aire::submit('X')->removeClass('btn-primary')->class('btn label label-danger eraser') }}--}}
+{{--                            {{ Aire::submit('X')->removeClass('btn-primary')->delete()->class('btn label label-danger eraser') }}--}}
 {{--                        {{ Aire::close() }}--}}
 					</td>
 				</tr>

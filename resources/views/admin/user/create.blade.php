@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 <div class="row">
-    <div class="col-sm-6">
-        {{ Aire::open()->route('admin.user.store') }}
+    {{ Aire::open()->route('admin.user.store') }}
+        <div class="col-sm-6">
             {{ Aire::bind($user) }}
             {{ Aire::input('name', 'Nom')->placeholder("Nom de l'adhérent...")->required() }}
             {{ Aire::input('firstname', 'Prénom')->placeholder("Prénom de l'adhérent...")->required() }}
@@ -15,15 +15,11 @@
             {{ Aire::input('fax', 'Fax')->placeholder("Fax de l'adhérent...") }}
             {{ Aire::checkbox('hideFax', 'Fax privé')->checked($user->hideFax ?? false) }}
             {{ Aire::select($groups, 'group_id', 'Groupe') }}
-    </div>
-    <div class="col-sm-6">
-        {{ Aire::checkboxGroup('test', 'activities', 'label') }}
-{{--        @foreach($activities as $act)--}}
-{{--            @dd($act)--}}
-{{--            {{ Aire::checkbox('activities[]')->value($act->id)->label($act->activityName) }}--}}
-{{--        @endforeach--}}
+        </div>
+        <div class="col-sm-6">
+        {{ Aire::checkboxGroup($activities->pluck('activityName', 'id'), 'activities', 'label') }}
             {{ Aire::submit('Ajouter')->addClass('pull-right btn-pink') }}
-        {{ Aire::close() }}
-    </div>
+        </div>
+    {{ Aire::close() }}
 </div>
 @stop

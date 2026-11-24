@@ -23,7 +23,7 @@
 					<td>{{ $partner->contact }}</td>
 					<td>
 						<a href="{{ route('admin.partner.edit', $partner->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! Aire::open()->route('admin.partner.destroy', $partner->id)->method('DELETE')->addClass('inline-display') !!}
+						{!! Aire::open()->route('admin.partner.destroy', $partner->id)->delete()->addClass('inline-display') !!}
 						    {!! Aire::bind($partner) !!}
 						    {!! Aire::submit('Supprimer')->addClass('label-danger label eraser') !!}
 						{!! Aire::close() !!}
