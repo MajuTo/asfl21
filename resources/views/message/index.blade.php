@@ -15,7 +15,7 @@
                 @if(auth()->user()->group_id == 2 || auth()->user()->group_id == 3)
                     {{ Aire::checkbox('admin-msg', 'Envoyer le message comme administrateur') }}
                 @endif
-                {{ Aire::submit('Envoyer')->addClass('pull-right btn btn-pink') }}
+                {{ Aire::submit('Envoyer')->addClass('btn-pink') }}
             {{ Aire::close() }}
             </div>
         </div>
