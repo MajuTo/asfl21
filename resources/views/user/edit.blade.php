@@ -20,14 +20,14 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
                     {{ Aire::bind($user) }}
-                    {{ Aire::input('name')->label('Nom')->placeholder("Nom...")->required() }}
-                    {{ Aire::input('firstname')->label('Prénom')->placeholder("Prénom...")->required() }}
-                    {{ Aire::input('username')->label('Identifiant')->placeholder("Identifiant...")->required() }}
-                    {{ Aire::input('email')->label('Email')->placeholder("Email...")->required() }}
-                    {{ Aire::checkbox('hideEmail')->label('Cacher l\'email (Cache le formulaire de contact)')->checked($user->hideEmail) }}
-                    {{ Aire::input('mobile')->label('Mobile')->placeholder("Mobile...") }}
-                    {{ Aire::checkbox('hideMobile')->label('Cacher le mobile')->checked($user->hideMobile) }}
-                    {{ Aire::textarea('description')->label('Plus de détail <br /><span class="textarea-subtext">Dites en un peu plus sur vous même et/ou vos activités...</span>')->placeholder("Dites en un peu plus sur vous même et/ou vos activités...")->addClass('ckeditor') }}
+                    {{ Aire::input('name', 'Nom')->placeholder("Nom...")->required() }}
+                    {{ Aire::input('firstname', 'Prénom')->placeholder("Prénom...")->required() }}
+                    {{ Aire::input('username', 'Identifiant')->placeholder("Identifiant...")->required() }}
+                    {{ Aire::email('email', 'Email')->placeholder("Email...")->required() }}
+                    {{ Aire::checkbox('hideEmail', 'Cacher l\'email (Cache le formulaire de contact)')->checked($user->hideEmail) }}
+                    {{ Aire::input('mobile', 'Mobile')->placeholder("Mobile...") }}
+                    {{ Aire::checkbox('hideMobile', 'Cacher le mobile')->checked($user->hideMobile) }}
+                    {{ Aire::textarea('description', 'Plus de détails')->placeholder('Dites en un peu plus sur vous même et/ou vos activités...')->helpText("Dites en un peu plus sur vous même et/ou vos activités...")->addClass('ckeditor') }}
                     @if($user->group->id == 2 || $user->group->id == 3)
                         {{ Aire::select($groups, 'group_id')->label('Groupe') }}
                     @endif
@@ -59,9 +59,9 @@
                             <td>{{ $address->phone }}</td>
                             <td>
                                 <a href="{{ route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-                                {!! Aire::open()->route('adresse.destroy', $address->id)->class('delete-form')->delete() !!}
-                                    {!! Aire::submit('Supprimer')->class('label-danger label eraser') !!}
-                                {!! Aire::close() !!}
+                                {{ Aire::open()->route('adresse.destroy', $address->id)->class('delete-form')->delete() }}
+                                    {{ Aire::submit('Supprimer')->class('label-danger label eraser') }}
+                                {{ Aire::close() }}
                             </td>
                         </tr>
                     @endforeach

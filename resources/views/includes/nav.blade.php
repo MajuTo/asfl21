@@ -50,7 +50,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left" role="menu">
                     <li id="nav-info" class="{{ (Route::currentRouteName() === 'message.index') ? 'active' : '' }}"><a href="{{ route('message.index') }}">Message</a></li>
-                    <li id="nav-profil" class="{{ (Route::currentRouteName() === 'user.edit') ? 'active' : '' }}"><a href="{{ route('user.edit', auth()->user()->id) }}">Mon Profil</a></li>
+                    <li id="nav-profil" class="{{ (Route::currentRouteName() === 'user.edit') ? 'active' : '' }}"><a href="{{ route('user.edit', auth()->user()) }}">Mon Profil</a></li>
                     @if(!auth()->guest() and auth()->user()->group->id == 2 or auth()->user()->group->id == 3)
                         <li id="nav-admin" class="{{ (Route::currentRouteName() === 'admin.user.index') ? 'active' : '' }}"><a href="{{ route('admin.user.index') }}">Admin</a></li>
                     @endif

@@ -9,7 +9,7 @@
     <div>
         {{ Aire::open()->route('login')->post() }}
             {{--{!! Form::token() !!}--}}
-            {{ Aire::input('username')->label('Identifiant') }}
+            {{ Aire::input('username', 'Identifiant') }}
             {{ Aire::password('password', 'Mot de passe') }}
             {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
         {{ Aire::close() }}

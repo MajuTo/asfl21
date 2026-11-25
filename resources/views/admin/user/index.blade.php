@@ -23,13 +23,13 @@
 					<td>{{ Str::title($user->group->groupName) }}</td>
 					<td>
 						<a href="{{ route('admin.user.edit', $user->id) }}"><button class="btn btn-warning label label-warning">Editer</button></a>
-						{!! Aire::open()->route('admin.user.toggle', $user->id)->put() !!}
+						{{ Aire::open()->route('admin.user.toggle', $user->id)->put() }}
 						    @if($user->active)
-						    	{!! Aire::submit('Désactiver')->removeClass('btn-primary')->addClass('btn-danger label-danger label') !!}
+						    	{{ Aire::submit('Désactiver')->removeClass('btn-primary')->addClass('btn-danger label-danger label') }}
 						    @else
-								{!! Aire::submit('Activer')->removeClass('btn-primary')->addClass('btn-danger label-success label') !!}
+								{{ Aire::submit('Activer')->removeClass('btn-primary')->addClass('btn-danger label-success label') }}
 						    @endif
-						{!! Aire::close() !!}
+						{{ Aire::close() }}
 						@if(!$user->loggedOnce)
 							<a href="{{ route('admin.user.sendagain', $user->id) }}"><button class="btn label label-primary">Renvoyer le mail</button></a>
 						@endif

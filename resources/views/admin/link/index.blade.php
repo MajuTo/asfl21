@@ -21,9 +21,9 @@
 					<td>{{ $link->link }}</td>
 					<td>
 						<a href="{{ route('admin.link.edit', $link->id) }}"><button class="btn label label-warning">Editer</button></a>
-						{!! Aire::open()->route('admin.link.destroy', $link->id)->delete() !!}
-						    {!! Aire::submit('Supprimer')->addClass('label-danger label eraser') !!}
-						{!! Aire::close() !!}
+						{{ Aire::open()->route('admin.link.destroy', $link->id)->delete() }}
+						    {{ Aire::submit('Supprimer')->addClass('label-danger label eraser') }}
+						{{ Aire::close() }}
 					</td>
 				</tr>
 			@endforeach

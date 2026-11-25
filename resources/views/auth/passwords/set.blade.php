@@ -79,9 +79,9 @@
             {{--<div class="col-sm-6">--}}
                 {{ Aire::open()->route('password.update') }}
                     {{ Aire::hidden('token', $token) }}
-                    {{ Aire::input('email', 'Email')->label('Email')->value(request('email') ?? '')->required() }}
-                    {{ Aire::input('password')->password()->label('Mot de passe')->required() }}
-                    {{ Aire::input('password_confirmation')->password()->label('Confirmation')->required() }}
+                    {{ Aire::email('email', 'Email')->value(request('email') ?? '')->required() }}
+                    {{ Aire::password('password', 'Mot de passe')->required() }}
+                    {{ Aire::password('password_confirmation', 'Confirmation')->required() }}
                     {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
                 {{ Aire::close() }}
 

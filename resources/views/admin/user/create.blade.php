@@ -6,7 +6,7 @@
             {{ Aire::bind($user) }}
             {{ Aire::input('name', 'Nom')->placeholder("Nom de l'adhérent...")->required() }}
             {{ Aire::input('firstname', 'Prénom')->placeholder("Prénom de l'adhérent...")->required() }}
-            {{ Aire::input('email', 'Email')->placeholder("Email de l'adhérent ...")->required() }}
+            {{ Aire::email('email', 'Email')->placeholder("Email de l'adhérent ...")->required() }}
             {{ Aire::checkbox('hideEmail', 'Email privé')->checked($user->hideEmail ?? false) }}
             {{ Aire::input('phone', 'Téléphone')->placeholder("Téléphone de l'adhérent...") }}
             {{ Aire::checkbox('hidePhone', 'Téléphone privé')->checked($user->hidePhone ?? false) }}

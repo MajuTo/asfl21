@@ -58,9 +58,9 @@
         <div class="col-sm-6">
             <h3>Contactez moi</h3>
             {{ Aire::open()->route('user.email', $user->id) }}
-                {{ Aire::input('name')->label('Votre nom')->placeholder("Votre nom...")->required() }}
-                {{ Aire::input('email')->label('Email')->placeholder("Votre email...")->required() }}
-                {{ Aire::textarea('message')->label('Message')->placeholder("Votre message...")->required() }}
+                {{ Aire::input('name', 'Votre nom')->placeholder("Votre nom...")->required() }}
+                {{ Aire::input('email', 'Email')->placeholder("Votre email...")->required() }}
+                {{ Aire::textarea('message', 'Message')->placeholder("Votre message...")->required() }}
                 <x-captcha />
                 <x-honeypot />
                 {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}

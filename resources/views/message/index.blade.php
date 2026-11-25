@@ -7,12 +7,12 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-        <h3><button class="btn btn-pink" id="envoi">Ecrire un message</button></h3>
+        <h3><button class="btn btn-pink" id="envoi">Écrire un message</button></h3>
             <div class="messagerie-form hide-form">
                 {{ Aire::open()->route('message.store') }}
                 {{ Aire::input('title', 'Titre')->placeholder('Titre...')->required() }}
-                {{ Aire::textarea('content', 'Message <br /><span class="textarea-subtext">(Votre message ici...)</span>')->placeholder("Ecrivez votre message ici...")->addClass('ckeditor')->required() }}
-                @if(Auth::getUser()->group_id == 2 || Auth::getUser()->group_id == 3)
+                {{ Aire::textarea('content', 'Message')->required()->placeholder('(Votre message ici...)')->helpText("Écrivez votre message ici...")->addClass('ckeditor') }}
+                @if(auth()->user()->group_id == 2 || auth()->user()->group_id == 3)
                     {{ Aire::checkbox('admin-msg', 'Envoyer le message comme administrateur') }}
                 @endif
                 {{ Aire::submit('Envoyer')->addClass('pull-right btn btn-pink') }}
@@ -51,14 +51,14 @@
 @section('script')
     <script>
         let sendButton = document.getElementById('envoi')
-        sendButton?.addEventListener('click', e => {
+        sendButton?.addEventListener('click', () => {
             let classList = document.querySelector('.messagerie-form').classList
             if (classList?.contains('hide-form')) {
                 classList?.remove('hide-form')
                 sendButton.innerText = 'Fermer le formulaire'
             } else {
                 classList?.add('hide-form')
-                sendButton.innerText = 'Ecrire un message'
+                sendButton.innerText = 'Écrire un message'
             }
         })
     </script>

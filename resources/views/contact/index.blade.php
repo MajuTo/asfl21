@@ -19,7 +19,7 @@
             <div class="col-sm-7" id="contact-add-form">
                 {{ Aire::open()->route('sendcontact') }}
                     {{ Aire::input('name', 'Votre nom*')->placeholder('Votre nom ...')->required() }}
-                    {{ Aire::input('email', 'Votre email*')->placeholder('Votre email ...')->required() }}
+                    {{ Aire::email('email', 'Votre email*')->placeholder('Votre email ...')->required() }}
                     {{ Aire::input('subject', 'Votre sujet*')->placeholder('Votre sujet ...')->required() }}
                     {{ Aire::textarea('message', 'Votre message*')->placeholder('Votre message ...')->required() }}
                     {{ Aire::checkbox('pro', 'Je suis un professionnel') }}

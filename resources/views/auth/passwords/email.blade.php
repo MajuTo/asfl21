@@ -62,7 +62,7 @@
                 <h4 class="text-center">Veuillez entrer votre adresse email.</h4>
                 {{ Aire::open()->route('password.email') }}
                 @csrf
-                {{ Aire::input('email')->label('Email')->required() }}
+                {{ Aire::email('email', 'Email')->required() }}
                 {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
                 {{ Aire::close() }}
             </div>

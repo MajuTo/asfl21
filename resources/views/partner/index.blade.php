@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
     	<div class="col-sm-12">
-    	<h1 class="animate-page-title">Nos partenaires</h1 class="animate-page-title">
+    	<h1 class="animate-page-title">Nos partenaires</h1>
             @if($partners->isEmpty())
                 <p class="text-center">Bientôt sur ce page...</p>
                 <img class="img-responsive img-rounded" id="contact-img" src="{{ asset('assets/img/pregnant-collection/pregnant-163611_1280.jpg') }}" alt="femme enceinte avec parapluie">

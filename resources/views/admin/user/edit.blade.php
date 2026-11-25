@@ -26,7 +26,7 @@
                         {{ Aire::checkbox('hideEmail', 'Ne pas montrer mon email (Cache le formulaire de contact)')->checked($user->hideEmail) }}
                         {{ Aire::input('mobile', 'Mobile')->placeholder("Mobile...") }}
                         {{ Aire::checkbox('hideMobile', 'Ne pas montrer mon mobile')->checked($user->hideMobile) }}
-                        {{ Aire::textarea('description', 'Plus de détail')->placeholder("Dites en un peu plus sur vous même et/ou vos activités...")->addClass('ckeditor') }}
+                        {{ Aire::textarea('description', 'Plus de détail')->placeholder("Dites en un peu plus sur vous même et/ou vos activités...")->helpText("Dites en un peu plus sur vous même et/ou vos activités...")->addClass('ckeditor') }}
                         {{ Aire::select($groups, 'group_id', 'Groupe') }}
                         {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
                 </div>
@@ -56,9 +56,9 @@
                                 <td>{{ $address->phone }}</td>
                                 <td>
                                     <a href="{{ route('admin.adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
-                                    {!! Aire::open()->route('admin.adresse.destroy', $address->id)->delete()->class('delete-form') !!}
-                                        {!! Aire::submit('Supprimer')->addClass('label-danger label eraser') !!}
-                                    {!! Aire::close() !!}
+                                    {{ Aire::open()->route('admin.adresse.destroy', $address->id)->delete()->class('delete-form') }}
+                                        {{ Aire::submit('Supprimer')->addClass('label-danger label eraser') }}
+                                    {{ Aire::close() }}
                                 </td>
                             </tr>
                         @endforeach

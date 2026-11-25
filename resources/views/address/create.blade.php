@@ -9,7 +9,7 @@
             {{ Aire::input('city', 'Ville')->placeholder("Ville...")->required() }}
             {{ Aire::input('phone', 'Téléphone Fixe')->placeholder("Téléphone fixe...") }}
             {{ Aire::checkbox('hidePhone', 'Téléphone privé')->checked($address->hidePhone) }}
-            {{ Aire::textarea('description', 'Description')->placeholder("Informations supplémentaires (horaires, etc...)")->addClass('ckeditor') }}
+            {{ Aire::textarea('description', 'Informations supplémentaires')->placeholder("Informations supplémentaires (horaires, etc...)")->helpText("Informations supplémentaires (horaires, etc...)")->addClass('ckeditor') }}
 
             {{ Aire::submit('Ajouter')->addClass('pull-right btn-pink') }}
 
