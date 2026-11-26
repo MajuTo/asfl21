@@ -1,42 +1,26 @@
-$(document).ready(function(){
-    $(".alert").fadeTo(5000, 500).slideUp(500, function(){
-        $(".alert").alert('close');
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Fermeture automatique des alertes flash après 5 secondes
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+        setTimeout(() => {
+            alert.style.transition = "opacity 0.5s ease";
+            alert.style.opacity = "0";
+            setTimeout(() => alert.remove(), 500);
+        }, 5000);
     });
-
-    $('.dropdown')
-        .mouseenter(function(){
-            $(this).addClass('focus');
-        })
-        .mouseleave(function(){
-            $(this).removeClass('focus');
-        });
-
-    // pass along the csfr token header on every AJAX request
-    $(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-Token': $('meta[name="_token"]').attr('content')
-            }
-        });
-    });
-
-    // CKEDITOR.replaceAll('ckeditor');
-    // $('.ckeditor').trumbowyg();
     sizeContent();
     init_erasers();
     initCheckboxes();
 });
-
-//Every resize of window
-$(window).resize(sizeContent);
+window.addEventListener('resize', sizeContent);
+function sizeContent() {
+    const container = document.getElementById("content-container");
+    if (container) {
+        container.style.minHeight = (window.innerHeight - 160) + "px";
+    }
+}
 
 //Dynamically assign height
-function sizeContent() {
-    let windowHeight = $(window).height();
-    let contentHeight = windowHeight - 160 + "px";
-
-    $("#content-container").css("min-height", contentHeight);
-}
 
 // Confirm delete
 function init_erasers(){
