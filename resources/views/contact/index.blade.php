@@ -1,6 +1,6 @@
 @section('title')
     <title>ASFL21, Contactez l'Association des Sages-Femmes Libérales de Côte d'Or</title>
-@stop
+@endsection
 @extends('layouts.index')
 @section('content')
     <!-- Page Title -->
@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 @section('script')
     <script type="text/javascript">
@@ -55,4 +55,4 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-@stop
+@endsection

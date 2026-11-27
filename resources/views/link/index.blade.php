@@ -1,6 +1,6 @@
 @section('title')
     <title>ASFL21, Liens Utiles de l'association des sages-femmes libérales de côte d'or</title>
-@stop
+@endsection
 @extends('layouts.index')
 @section('content')
 <section id="liensutile">
@@ -31,4 +31,4 @@
 	    </div>
     </div>
 </section>
-@stop
+@endsection

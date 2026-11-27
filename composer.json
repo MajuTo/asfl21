@@ -19,7 +19,6 @@
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
-        "laravelcollective/html": "^6.0",
         "mews/captcha": "^3.4",
         "nesbot/carbon": "^2.25",
         "spatie/geocoder": "^3.6",

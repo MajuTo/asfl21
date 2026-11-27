@@ -1,6 +1,6 @@
 @section('title')
     <title>ASFL21, Les activités d'une sage-femme</title>
-@stop
+@endsection
 @extends('layouts.index')
 @section('content')
 <section id="notremetier">
@@ -185,7 +185,7 @@
         </span>
     </div>
 </section>
-@stop
+@endsection
 @section('script')
     <script>
         document.querySelectorAll('.info')?.forEach(el => {
@@ -204,4 +204,4 @@
             document.getElementById('overlay')?.classList.remove('overlay')
         })
     </script>
-@stop
+@endsection

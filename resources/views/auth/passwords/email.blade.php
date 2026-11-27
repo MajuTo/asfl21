@@ -48,7 +48,7 @@
 @extends('auth.layout')
 @section('auth.title')
     <h1 class="animate-page-title">Mot de Passe Oublié ?</h1>
-@stop
+@endsection
 @section('auth.content')
     {{--<div class="content-container">--}}
         {{--<div class="row">--}}
@@ -69,4 +69,4 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</div>--}}
-@stop
+@endsection

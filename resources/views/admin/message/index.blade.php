@@ -25,4 +25,4 @@
 		</tbody>
 	</table>
 	{{ $messages->links() }}
-@stop
+@endsection

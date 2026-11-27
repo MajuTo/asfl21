@@ -22,4 +22,4 @@
         {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
     {{ Aire::close() }}
 </div>
-@stop
+@endsection

@@ -9,4 +9,5 @@
         {{ Aire::input('city', 'Ville')->placeholder("Ville...") }}
         {{ Aire::input('phone', 'Téléphone')->placeholder("Téléphone...") }}
         {{ Aire::submit('Ajouter')->addClass('pull-right btn-pink') }}
-    {{ Aire::close() }}@stop
+    {{ Aire::close() }}
+@endsection

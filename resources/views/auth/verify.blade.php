@@ -26,7 +26,7 @@
 @extends('auth.layout')
 @section('auth.title')
     <h1 class="animate-page-title">Vérification de votre adresse mail</h1>
-@stop
+@endsection
 @section('auth.content')
     {{--<div class="container">--}}
         {{--<div class="row justify-content-center">--}}

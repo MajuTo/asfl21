@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
+    <head title="ASFL21">
         <!-- HEADER -->
         @include('includes.head')
         @yield('css')

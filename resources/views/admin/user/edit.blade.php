@@ -82,4 +82,4 @@
         </div>
 
     </div> <!-- Fin div tab-content -->
-@stop
+@endsection

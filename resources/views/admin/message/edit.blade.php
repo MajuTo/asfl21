@@ -7,4 +7,4 @@
         {{ Aire::select($categories, 'category_id', 'Catégorie') }}
         {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
     {{ Aire::close() }}
-@stop
+@endsection

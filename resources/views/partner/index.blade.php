@@ -1,6 +1,6 @@
 @section('title')
     <title>ASFL21, Les partenaires de l'assocation des sages-femmes de côte d'or</title>
-@stop
+@endsection
 @extends('layouts.index')
 @section('content')
     <div class="row">
@@ -14,7 +14,7 @@
                 <tbody>
                     @foreach($partners as $partner)
                     <tr>
-                        <td>{{ Html::image(asset($partner->logo), 'Logo de '.$partner->partnerName, ['class' => 'admin_logo_edit']) }}</td>
+                        <td><img src="{{ asset($partner->logo) }}" alt="Logo de {{ $partner->partnerName }}" class="admin_logo_edit"></td>
                         <td>{{ $partner->partnerName }}</td>
                         <td>{{ $partner->contact }}</td>
                         <td>{{ ($partner->partnerWebsite) ? '<a href="$partner->partnerWebsite">Visiter leur site <i class="fa fa-arrow-right"></i></a>' : '' }}</td>
@@ -25,4 +25,4 @@
             @endif
         </div>
     </div>
-@stop
+@endsection

@@ -47,7 +47,7 @@
         </div>
     </div>
 </section>
-@stop
+@endsection
 @section('script')
     <script>
         let sendButton = document.getElementById('envoi')
@@ -62,4 +62,4 @@
             }
         })
     </script>
-@stop
+@endsection

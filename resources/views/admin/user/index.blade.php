@@ -39,4 +39,4 @@
 		</tbody>
 	</table>
 	{{ $users->links() }}
-@stop
+@endsection

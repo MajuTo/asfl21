@@ -30,4 +30,4 @@
 		</tbody>
 	</table>
 	{{ $links->links() }}
-@stop
+@endsection

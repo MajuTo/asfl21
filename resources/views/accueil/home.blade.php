@@ -1,6 +1,6 @@
 @section('title')
     <title>Association des Sages Femmes Libérales de Côte d'Or</title>
-@stop
+@endsection
 @extends('layouts.index')
 @section('content')
     <section id="accueil">
@@ -55,4 +55,4 @@
             </div>
         </div>
     </section>
-@stop
+@endsection

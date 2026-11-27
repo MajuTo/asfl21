@@ -29,4 +29,4 @@
 		</tbody>
 	</table>
 	{{ $activities->links() }}
-@stop
+@endsection

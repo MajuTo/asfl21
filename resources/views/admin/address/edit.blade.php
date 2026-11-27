@@ -32,4 +32,4 @@
         {{ Aire::close() }}
     </div>
 </div>
-@stop
+@endsection

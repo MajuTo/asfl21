@@ -1,6 +1,6 @@
 @section('title')
     <title>ASFL21, Contactez {{ strtoupper($user->name) . ' ' . ucfirst($user->firstname) }}, Sage Femme à Dijon</title>
-@stop
+@endsection
 @extends('layouts.index')
 @section('content')
 <section id="user-show">
@@ -79,4 +79,4 @@
     </div>
     @endif
 </section>
-@stop
+@endsection

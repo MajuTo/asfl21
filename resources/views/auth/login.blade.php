@@ -1,17 +1,16 @@
 @extends('auth.layout')
 @section('auth.title')
     <h1 class="animate-page-title">Identification</h1>
-@stop
+@endsection
 @section('auth.content')
     <div class="overflow-auto">
-        {{ link_to(route('password.request'), 'Mot de passe oublié?', ['class' => 'pull-right']) }}
+        <a href="{{ route('password.request') }}" class="pull-right">Mot de passe oublié?</a>
     </div>
     <div>
         {{ Aire::open()->route('login')->post() }}
-            {{--{!! Form::token() !!}--}}
             {{ Aire::input('username', 'Identifiant') }}
             {{ Aire::password('password', 'Mot de passe') }}
             {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
         {{ Aire::close() }}
     </div>
-@stop
+@endsection

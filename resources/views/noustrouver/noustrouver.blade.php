@@ -1,6 +1,6 @@
 @section('title')
     <title>ASFL21, Où trouver une sage-femme en côte d'or</title>
-@stop
+@endsection
 @extends('layouts.index')
 @section('content')
     <section id="noustrouver">
@@ -63,7 +63,7 @@
             </div>
         </div>
     </section>
-@stop
+@endsection
 @section('script')
 {{--    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>--}}
     <script>
@@ -93,149 +93,134 @@
         // L.marker([48.5, 2])
         //     .addTo(leafletmap)
         //     .bindTooltip("Les Granges-le-Roi", {permanent: true, direction: 'top'});
-        $(document).ready(function(){
-            // active navbar
-            // $('#nav-trouver').addClass('active');
+        document.addEventListener("DOMContentLoaded", function() {
+            // Tooltips Bootstrap
+            if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"], [data-toggle="tooltip"]');
+                [...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
+            }
 
-            // tooltip
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            });
-
-            // on google map 'chez vous' search
-            // $('#chezvous_textbox').keyup(function(event){
-            document.getElementById('chezvous_textbox').addEventListener('keyup', function (event) {
-                if(event.code === 'Enter'){
-                    document.getElementById('chezvous_button').click()
-                    // $('#chezvous_button').click();
+            // Recherche 'chez vous' sur Google Map
+            const chezVousInput = document.getElementById('chezvous_textbox');
+            chezVousInput?.addEventListener('keyup', function (event) {
+                if (event.code === 'Enter') {
+                    document.getElementById('chezvous_button')?.click();
                 }
             });
 
-            // get selected activities
-            function getSelectedActivities(){
-                let selected_id = [];
-                // $.each($('.activity-td-selected'), function(){
-                //     selected_id.push($(this).attr('id'));
-                // })
+            // Récupère les IDs des activités sélectionnées
+            function getSelectedActivities() {
+                const selected_id = [];
                 document.querySelectorAll('.activity-td-selected').forEach((tdNode) => {
-                    selected_id.push(tdNode.getAttribute('id'))
-                })
+                    selected_id.push(tdNode.getAttribute('id'));
+                });
                 return selected_id;
             }
 
-            // get selected sf
-            function getSelectedSf(){
-                let selected_sf = [];
-                // $.each($('.sf-tr-selected'), function(){
-                //     selected_sf.push($(this).attr('id'));
-                // })
+            // Récupère les IDs des sages-femmes sélectionnées
+            function getSelectedSf() {
+                const selected_sf = [];
                 document.querySelectorAll('.sf-tr-selected').forEach((trNode) => {
-                    selected_sf.push(trNode.getAttribute('id'))
-                })
+                    selected_sf.push(trNode.getAttribute('id'));
+                });
                 return selected_sf;
             }
 
-            // load list of sf by activity
-            function printSfByActivity(){
-                let activity_id = $(this).data('activity');
-                let selectedActivities = getSelectedActivities();
+            // Charge la liste des sages-femmes par activité via fetch()
+            function printSfByActivity() {
+                const selectedActivities = getSelectedActivities();
 
-                $.ajax({
-                    url:  "{{ route('getSfByActivity') }}",
-                    type: 'POST',
-                    data: {selectedActivities: selectedActivities},
+                fetch("{{ route('getSfByActivity') }}", {
+                    method: 'POST',
                     headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}'
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
-                    success: function(response){
-                        $('tbody#listesf').html(response);
-                        toggleMarkers();
+                    body: JSON.stringify({ selectedActivities: selectedActivities })
+                })
+                .then(response => response.text())
+                .then(html => {
+                    const tbody = document.querySelector('tbody#listesf');
+                    if (tbody) {
+                        tbody.innerHTML = html;
+                        // Réinitialiser les tooltips pour la nouvelle liste
+                        if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
+                            tbody.querySelectorAll('[data-bs-toggle="tooltip"], [data-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+                        }
                     }
-                });
-                // let httpRequest = new XMLHttpRequest();
-                // httpRequest.onreadystatechange = function(data) {
-                //     // code
-                // };
-                // httpRequest.setRequestHeader(
-                //     "Content-Type",
-                //     "application/x-www-form-urlencoded",
-                // );
-                // httpRequest
-                // httpRequest.open("POST", url);
-                // httpRequest.send("username=" + encodeURIComponent(username));
-
+                    toggleMarkers();
+                })
+                .catch(error => console.error('Erreur chargement SF:', error));
             }
 
             // Cache tous les markers de la Google Map
-            function hideAllMarkers(){
-                for(let i=0; i<markers.length; i++){
-                    markers[i].setVisible(false)
+            function hideAllMarkers() {
+                for (let i = 0; i < markers.length; i++) {
+                    markers[i].setVisible(false);
                 }
             }
 
             // Affiche tous les markers
-            function showAllMarkers(){
-                for(let i=0; i<markers.length; i++){
-                    markers[i].setVisible(true)
+            function showAllMarkers() {
+                for (let i = 0; i < markers.length; i++) {
+                    markers[i].setVisible(true);
                 }
             }
 
-            // Affiche les sages femmes selectionnées
-            function showSelectedSf(){
-                $('.sf-tr-selected').each(function(){
-                    let sf = $(this).data('sf');
-
-                    for(let i=0; i<markers.length; i++){
-                        if ( sf == markers[i]['id'].split('_')[0] ) {
-                            markers[i].setVisible(true)
+            // Affiche les sages-femmes sélectionnées
+            function showSelectedSf() {
+                document.querySelectorAll('.sf-tr-selected').forEach(el => {
+                    const sf = el.dataset.sf;
+                    for (let i = 0; i < markers.length; i++) {
+                        if (sf == markers[i]['id'].split('_')[0]) {
+                            markers[i].setVisible(true);
                         }
                     }
                 });
             }
 
-            // Affiche toutes les sages femmes des activités selectionnées
+            // Affiche toutes les sages-femmes des activités sélectionnées
             function showAllSfByActivities() {
-                $('.sf-tr').each(function(){
-                    let sf = $(this).data('sf');
-
-                    for(let i=0; i<markers.length; i++){
-                        if ( sf == markers[i]['id'].split('_')[0] ) {
-                            markers[i].setVisible(true)
+                document.querySelectorAll('.sf-tr').forEach(el => {
+                    const sf = el.dataset.sf;
+                    for (let i = 0; i < markers.length; i++) {
+                        if (sf == markers[i]['id'].split('_')[0]) {
+                            markers[i].setVisible(true);
                         }
                     }
                 });
             }
 
-            function toggleMarkers(){
-
-                // Par défaut on cache tous les markers, et plus loin on n'affiche que ceux qui doivent l'être
+            function toggleMarkers() {
                 hideAllMarkers();
 
-                if( $('.sf-tr-selected').length > 0 ){ // Si au moins une sage femme est selectionnée
+                if (document.querySelectorAll('.sf-tr-selected').length > 0) {
                     showSelectedSf();
-                } else { // Si aucune sage femme n'est selectionnée
-                    if( $('.activity-td-selected').length > 0 ){ // Si au moins une activité est selectionnée
-                        showAllSfByActivities();
-                    } else { // Si rien n'est selectionné, ni sf ni activité
-                        showAllMarkers();
-                    }
+                } else if (document.querySelectorAll('.activity-td-selected').length > 0) {
+                    showAllSfByActivities();
+                } else {
+                    showAllMarkers();
                 }
-            } // Fin ToggleMarkers
+            }
 
-            // select and unselect activities
-            $('.activity-td').on('click', function(){
-                $(this).toggleClass('activity-td-selected');
-                $('.sf-tr').removeClass('sf-tr-selected');
-                toggleMarkers();
-                printSfByActivity();
+            // Sélection et déselection des activités
+            document.querySelectorAll('.activity-td').forEach(td => {
+                td.addEventListener('click', function() {
+                    this.classList.toggle('activity-td-selected');
+                    document.querySelectorAll('.sf-tr').forEach(tr => tr.classList.remove('sf-tr-selected'));
+                    toggleMarkers();
+                    printSfByActivity();
+                });
             });
 
-            // On bind le click sur le #table-sf car il n'est pas rechargé en Ajax
-            // et on dit a quel élément de ce table on associe le click (suis je clair ?)
-            // Du coup, plus besoin de js dans la vue chargée en Ajax
-            $('#table-sf').on('click', '.sf-tr', function(){
-                $(this).toggleClass('sf-tr-selected');
-                toggleMarkers();
+            // Délégation d'événement sur le tableau #table-sf pour les lignes chargées en AJAX
+            const tableSf = document.getElementById('table-sf');
+            tableSf?.addEventListener('click', function(e) {
+                const tr = e.target.closest('.sf-tr');
+                if (tr && this.contains(tr)) {
+                    tr.classList.toggle('sf-tr-selected');
+                    toggleMarkers();
+                }
             });
         });
         {{--    </script>--}}
@@ -346,4 +331,4 @@
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
     <!-- END GOOGLE MAPS -->
-@stop
+@endsection

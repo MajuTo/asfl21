@@ -6,4 +6,4 @@
         {{ Aire::textarea('activityDesc', 'Description')->placeholder("Description de l'activité...")->required() }}
         {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
     {{ Aire::close() }}
-@stop
+@endsection

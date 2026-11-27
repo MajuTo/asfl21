@@ -9,6 +9,6 @@
         {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
     {{ Aire::close() }}
     @if($partner->logo)
-        {{ Html::image(asset($partner->logo), 'Logo de '.$partner->partnerName, ['class' => 'admin_logo_edit']) }}
+        <img src="{{ asset($partner->logo) }}" alt="Logo de {{ $partner->partnerName }}" class="admin_logo_edit">
     @endif
-@stop
+@endsection

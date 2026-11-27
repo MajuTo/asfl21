@@ -1,6 +1,6 @@
 @section('title')
     <title>ASFL21, Espace Pro</title>
-@stop
+@endsection
 @extends('layouts.index')
 @section('content')
     <section id="espacepro">
@@ -19,4 +19,4 @@
             </div>
         </div>
     </section>
-@stop
+@endsection

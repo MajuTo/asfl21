@@ -7,4 +7,4 @@
         {{ Aire::file('logo_file', 'Logo')->placeholder("Logo du partenaire...") }}
         {{ Aire::submit('Ajouter')->addClass('pull-right btn-pink') }}
     {{ Aire::close() }}
-@stop
+@endsection

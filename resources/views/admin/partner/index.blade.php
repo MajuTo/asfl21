@@ -19,7 +19,7 @@
 			@foreach($partners as $partner)
 				<tr>
 					<td>{{ $partner->partnerName }}</td>
-					<td>{{ ($partner->logo) ? Html::image(asset($partner->logo), 'Logo de '.$partner->partnerName, ['class' => 'admin_logo_index']) : '' }}</td>
+					<td>@if($partner->logo) <img src="{{ asset($partner->logo) }}" alt="Logo de {{ $partner->partnerName }}" class="admin_logo_index"> @endif</td>
 					<td>{{ $partner->contact }}</td>
 					<td>
 						<a href="{{ route('admin.partner.edit', $partner->id) }}"><button class="btn label label-warning">Editer</button></a>
@@ -33,4 +33,4 @@
 		</tbody>
 	</table>
 	{{ $partners->links() }}
-@stop
+@endsection

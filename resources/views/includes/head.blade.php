@@ -11,10 +11,7 @@
 </script>
 
 <!-- CSS -->
-{{ Html::style('assets/bootstrap/css/bootstrap.min.css') }}
-{{ Html::style('assets/font-awesome/css/font-awesome.min.css') }}
-{{--{{ Html::style('assets/fontawesome-free-6.2.1-web/css/font-awesome.min.css') }}--}}
-<!-- {{ Html::style('assets/css/custom.css') }} -->
-{{ Html::style('assets/css/new-design.css') }}
-{{ Html::style('assets/leaflet/leaflet.css') }}
-
+<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/new-design.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/leaflet/leaflet.css') }}">

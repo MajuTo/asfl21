@@ -1,14 +1,13 @@
+@extends('layouts.index')
 @section('title')
     <title>ASFL21, Calendrier de grossesse</title>
-@stop
-@extends('layouts.index')
+@endsection
 @section('css')
-	{{ Html::style('assets/datepicker/bootstrap-datepicker3.css') }}
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/css/datepicker-bs5.min.css">
     {{-- timeline --}}
-	{{ Html::style('https://unpkg.com/vis-timeline@7.2.1/styles/vis-timeline-graph2d.min.css') }}
-    {{ Html::style('assets/css/vis-timeline.css')}}
-@stop
+    <link rel="stylesheet" href="https://unpkg.com/vis-timeline@7.2.1/styles/vis-timeline-graph2d.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/vis-timeline.css') }}">
+@endsection
 @section('content')
 	<div class="row">
         <div class="col-sm-12">
@@ -16,10 +15,10 @@
             <hr>
     		{{ Aire::open()->route('calendrier.store')->addClass('form-inline') }}
     	    	<div class="col-sm-4 col-sm-offset-1">
-                    {{ Aire::input('date1')->placeholder("Date des dernieres règles")->id('date1')->addClass('datedropper') }}
+                    {{ Aire::input('date1')->placeholder("Date des dernieres règles")->id('date1') }}
     	    	</div>
     	    	<div class="col-sm-4">
-                    {{ Aire::input('date2')->placeholder("Date de conception")->id('date2')->addClass('datedropper') }}
+                    {{ Aire::input('date2')->placeholder("Date de conception")->id('date2') }}
     	    	</div>
     	    	<div class="col-sm-2">
                     {{ Aire::submit('Valider')->addClass('btn-pink') }}
@@ -62,16 +61,27 @@
         </div>
         <!-- END TIMELINE -->
     @endif
-@stop
+@endsection
 
 @section('script')
-    {{ Html::script('assets/datepicker/bootstrap-datepicker.min.js') }}
-    {{ Html::script('assets/datepicker/bootstrap-datepicker.fr.min.js') }}
-    {{ Html::script('assets/js/datepicker.js') }}
-    @if ($json_events)
-    {{ Html::script('assets/js/vis-timeline.js') }}
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/locales/fr.js"></script>
     <script type="text/javascript">
-        // $(document).ready(function () {
+        const date1 = document.getElementById('date1');
+        const date2 = document.getElementById('date2');
+        const options = {
+            format: 'dd/mm/yyyy',
+            language: 'fr',
+            autohide: true
+        };
+        const datepicker1 = new Datepicker(date1, options);
+        const datepicker2 = new Datepicker(date2, options);
+        date1.addEventListener('changeDate', () => datepicker2.setDate({clear: true}));
+        date2.addEventListener('changeDate', () => datepicker1.setDate({clear: true}));
+    </script>
+    @if ($json_events)
+    <script src="{{ asset('assets/js/vis-timeline.js') }}"></script>
+    <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             // DOM element where the Timeline will be attached
             let containerTimeline = document.getElementById('visualization');
@@ -95,108 +105,56 @@
             let timeline = new vis.Timeline(containerTimeline, items, options);
 
             // Toggle Order by group on click
-            // let btnGroupToggle = $('#group-toggle');
-            // btnGroupToggle.click(function () {
-            //     if (btnGroupToggle.hasClass('no-group')) {
-            //         btnGroupToggle.removeClass('no-group');
-            //         btnGroupToggle.text('Cacher les groupes');
-            //         timeline.setGroups(groups);
-            //     } else {
-            //         btnGroupToggle.addClass('no-group');
-            //         btnGroupToggle.text('Montrer les groupes');
-            //         timeline.setGroups();
-            //     }
-            // });
-            let btnGroupToggle = document.getElementById('group-toggle')
+            let btnGroupToggle = document.getElementById('group-toggle');
             btnGroupToggle.addEventListener('click', () => {
                 if(btnGroupToggle.classList?.contains('no-group')) {
-                    btnGroupToggle.classList?.remove('no-group')
-                    btnGroupToggle.innerText = 'Cacher les groupes'
-                    timeline.setGroups(groups)
+                    btnGroupToggle.classList?.remove('no-group');
+                    btnGroupToggle.innerText = 'Cacher les groupes';
+                    timeline.setGroups(groups);
                 } else {
-                    btnGroupToggle.classList?.add('no-group')
-                    btnGroupToggle.innerText = 'Montrer les groupes'
-                    timeline.setGroups()
+                    btnGroupToggle.classList?.add('no-group');
+                    btnGroupToggle.innerText = 'Montrer les groupes';
+                    timeline.setGroups();
                 }
-            })
+            });
 
             // Timeline Eventlistener (on select, create personalized list)
-            // timeline.on('select', function (properties) {
-            //     $('#mylist > li').remove();
-            //     let selected = timeline.getSelection().sort(function (a, b) {
-            //         return a - b
-            //     });
-            //     if (selected.length > 0) {
-            //         $('#explication').hide();
-            //     } else {
-            //         $('#explication').show();
-            //     }
-            //     $.each(selected, function (key, value) {
-            //         if (typeof value !== 'undefined' && value !== null) {
-            //             $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
-            //         }
-            //     });
-            // });
             timeline.addEventListener('select', () => {
                 document.querySelectorAll('#mylist > li').forEach(el => {
-                    el.remove()
-                })
+                    el.remove();
+                });
                 let selected = timeline.getSelection().sort(function (a, b) {
-                    return a - b
+                    return a - b;
                 });
                 document.getElementById('explication').style.display = (selected.length > 0) ? 'none' : 'block';
-                // $.each(selected, function (key, value) {
-                //     if (typeof value !== 'undefined' && value !== null) {
-                //         $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
-                //     }
-                // });
-                let list = document.querySelector('.myList')
+
+                let list = document.querySelector('.myList');
                 selected.forEach((value, key) => {
                     if (typeof value !== 'undefined' && value !== null) {
-                        let li = document.createElement("li")
-                        li.innerHTML = document.getElementById('content'+value).innerHTML
-                        list?.appendChild(li)
-                        // $('#mylist').append("<li>" + $('#content' + value).html() + "</li>")
+                        let li = document.createElement("li");
+                        li.innerHTML = document.getElementById('content'+value).innerHTML;
+                        list?.appendChild(li);
                     }
-                })
-            })
+                });
+            });
 
             /* EFFECTS */
             // On hover, show more text in top-center of timeline
-            // let timelineItems = $('.vis-item');
             let timelineItems = document.querySelectorAll('.vis-item');
-            // let timelinePopup = $('#show-more');
             let timelinePopup = document.querySelector('#show-more');
             timelineItems.forEach(el => {
                 el.addEventListener('mouseover', e => {
-                    e.stopImmediatePropagation()
-                    timelinePopup.innerHTML = el.children.item(0).children.item(1).innerHTML
-                    timelinePopup.classList.add('span-plus')
-                })
+                    e.stopImmediatePropagation();
+                    timelinePopup.innerHTML = el.children.item(0).children.item(1).innerHTML;
+                    timelinePopup.classList.add('span-plus');
+                });
                 el.addEventListener('mouseleave', e => {
-                    timelinePopup.children.item(0).remove()
-                    timelinePopup.classList.remove('span-plus')
-                })
-            })
-            // timelineItems.mouseenter(function (event) {
-            //     let element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-            //     $(this).css('z-index', '999');
-            //     timelinePopup.html($(this).children('.vis-item-content').children(':nth-child(2)').clone());
-            //     timelinePopup.addClass('span-plus');
-            //     $('#show-more #' + element).addClass('info-plus');
-            // });
-            //
-            // timelineItems.mouseleave(function (event) {
-            //     let element = $(this).children('.vis-item-content').children(':nth-child(2)').attr('id');
-            //     timelinePopup.children(':first-child').remove();
-            //     timelinePopup.removeClass('span-plus');
-            //     $(this).css('z-index', '0');
-            // });
-
-            /* END TIMELINE */
-            // $('#nav-calendrier').addClass('active');
+                    timelinePopup.children.item(0).remove();
+                    timelinePopup.classList.remove('span-plus');
+                });
+            });
         });
     </script>
     @endif
 
-@stop
+@endsection

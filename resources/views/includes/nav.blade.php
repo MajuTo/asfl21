@@ -6,7 +6,7 @@
       </button>
     </div>
       <a href="{{ route('home') }}">
-          {{ Html::image(asset('/assets/img/logo.png'), 'logo', ['class' => 'logo']) }}
+          <img src="{{ asset('/assets/img/logo.png') }}" alt="logo" class="logo">
       </a>
       <span class="navbar-brand text-center">Association des Sages Femmes Libérales <br>  de Côte d'Or</span>
 
