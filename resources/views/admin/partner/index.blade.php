@@ -24,7 +24,7 @@
 					<td>@if($partner->logo) <img src="{{ asset($partner->logo) }}" alt="Logo de {{ $partner->partnerName }}" class="admin_logo_index"> @endif</td>
 					<td>{{ $partner->contact }}</td>
 					<td>
-						<a href="{{ route('admin.partner.edit', $partner->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
+						<a href="{{ route('admin.partner.edit', $partner->id) }}"><button class="btn btn-sm btn-warning">Éditer</button></a>
 						{{ Aire::open()->route('admin.partner.destroy', $partner->id)->delete()->addClass('inline-display') }}
 						    {{ Aire::bind($partner) }}
 						    {{ Aire::submit('Supprimer')->addClass('btn-sm btn-danger eraser') }}

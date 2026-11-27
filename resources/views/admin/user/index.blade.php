@@ -24,7 +24,7 @@
 					<td>{{ Str::title($user->firstname) }}</td>
 					<td>{{ Str::title($user->group->groupName) }}</td>
 					<td>
-						<a href="{{ route('admin.user.edit', $user->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
+						<a href="{{ route('admin.user.edit', $user->id) }}"><button class="btn btn-sm btn-warning">Éditer</button></a>
 						{{ Aire::open()->route('admin.user.toggle', $user->id)->put() }}
 						    @if($user->active)
 						    	{{ Aire::submit('Désactiver')->removeClass('btn-primary')->addClass('btn-sm btn-danger') }}

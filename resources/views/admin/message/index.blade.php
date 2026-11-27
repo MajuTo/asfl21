@@ -17,7 +17,7 @@
 					<td>{{ Str::title($message->title) }}</td>
 					<td>{{ $message->category->categoryName }}</td>
 					<td>
-						<a href="{{ route('admin.message.edit', $message->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
+						<a href="{{ route('admin.message.edit', $message->id) }}"><button class="btn btn-sm btn-warning">Éditer</button></a>
 {{--                        {{ Aire::open('admin.message.destroy') }}--}}
 {{--                            {{ Aire::submit('X')->removeClass('btn-primary')->delete()->class('btn label label-danger eraser') }}--}}
 {{--                        {{ Aire::close() }}--}}

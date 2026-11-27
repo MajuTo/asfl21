@@ -22,7 +22,7 @@
 					<td>{{ $link->linkName }}</td>
 					<td>{{ $link->link }}</td>
 					<td>
-						<a href="{{ route('admin.link.edit', $link->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
+						<a href="{{ route('admin.link.edit', $link->id) }}"><button class="btn btn-sm btn-warning">Éditer</button></a>
 						{{ Aire::open()->route('admin.link.destroy', $link->id)->delete() }}
 						    {{ Aire::submit('Supprimer')->addClass('btn-sm btn-danger eraser') }}
 						{{ Aire::close() }}

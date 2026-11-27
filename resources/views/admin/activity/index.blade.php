@@ -20,7 +20,7 @@
 				<tr>
 					<td>{{ $activity->activityName }}</td>
 					<td>
-						<a href="{{ route('admin.activity.edit', $activity->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
+						<a href="{{ route('admin.activity.edit', $activity->id) }}"><button class="btn btn-sm btn-warning">Éditer</button></a>
 						{{ Aire::open()->route('admin.activity.destroy', $activity->id)->delete()->addClass('inline-display') }}
 						    {{ Aire::bind($activity) }}
 						    {{ Aire::submit('Supprimer')->addClass('btn-sm btn-danger eraser') }}

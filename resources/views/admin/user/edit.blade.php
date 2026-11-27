@@ -57,7 +57,7 @@
                                 <td>{{ Str::title($address->address) }}, {{ $address->zipCode }}, {{ Str::title($address->city) }}</td>
                                 <td>{{ $address->phone }}</td>
                                 <td>
-                                    <a href="{{ route('admin.adresse.edit', $address->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
+                                    <a href="{{ route('admin.adresse.edit', $address->id) }}"><button class="btn btn-sm btn-warning">Éditer</button></a>
                                     {{ Aire::open()->route('admin.adresse.destroy', $address->id)->delete()->class('delete-form') }}
                                         {{ Aire::submit('Supprimer')->addClass('btn-sm btn-danger eraser') }}
                                     {{ Aire::close() }}
