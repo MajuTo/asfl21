@@ -18,7 +18,7 @@
         </div>
         <div class="col-sm-6">
         {{ Aire::checkboxGroup($activities->pluck('activityName', 'id'), 'activities', 'label') }}
-            {{ Aire::submit('Ajouter')->addClass('pull-right btn-pink') }}
+            {{ Aire::submit('Ajouter')->addClass('float-end btn-pink') }}
         </div>
     {{ Aire::close() }}
 </div>

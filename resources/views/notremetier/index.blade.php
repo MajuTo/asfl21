@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6 img-col">
-            <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Pendant_la_grossesse.jpg') }}" alt="pendant la grossesse">
+            <img class="img-fluid rounded" src="{{ asset('assets/img/notre-metier/Pendant_la_grossesse.jpg') }}" alt="pendant la grossesse">
         </div>
         <div class="col-sm-6">
             <h2>Pendant ma grossesse</h2>
@@ -27,7 +27,7 @@
             </ul>
         </div>
         <span class="whoooshh" id="whoooshh-grossesse">
-{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-grossesse">Fermer X</span></div>--}}
+{{--            <div class="text-end"><span class="whoooshh-close" data-whoooshh="whoooshh-grossesse">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content" id="prenatale">
@@ -90,10 +90,10 @@
             </ul>
         </div>
         <div class="col-sm-6 img-col">
-            <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
+            <img class="img-fluid rounded" src="{{ asset('assets/img/notre-metier/Apres_accouchement.jpg') }}" alt="après l'accouchement">
         </div>
         <span class="whoooshh" id="whoooshh-accouchement">
-{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-accouchement">Fermer X</span></div>--}}
+{{--            <div class="text-end"><span class="whoooshh-close" data-whoooshh="whoooshh-accouchement">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -125,7 +125,7 @@
 
     <div class="row">
         <div class="col-sm-6 img-col">
-            <img class="img-responsive img-rounded" src="{{ asset('assets/img/notre-metier/Et_apres.jpg') }}" alt="et ensuite ?">
+            <img class="img-fluid rounded" src="{{ asset('assets/img/notre-metier/Et_apres.jpg') }}" alt="et ensuite ?">
         </div>
         <div class="col-sm-6">
             <h2>Et ensuite ?</h2>
@@ -139,7 +139,7 @@
             </ul>
         </div>
         <span class="whoooshh" id="whoooshh-ensuite">
-{{--            <div class="text-right"><span class="whoooshh-close" data-whoooshh="whoooshh-ensuite">Fermer X</span></div>--}}
+{{--            <div class="text-end"><span class="whoooshh-close" data-whoooshh="whoooshh-ensuite">Fermer X</span></div>--}}
             <div class="row whoooshh-row">
                 <div class="col-sm-4">
                     <div class="metier-content">
@@ -199,7 +199,7 @@
         //     document.getElementById(e.target.dataset.whoooshh)?.classList.remove('whoooshh-active')
         //     document.getElementById('overlay')?.classList.remove('overlay')
         // })
-        document.getElementById('overlay').addEventListener('click', e => {
+        document.getElementById('overlay').addEventListener('click', () => {
             document.querySelector('.whoooshh-active')?.classList.remove('whoooshh-active')
             document.getElementById('overlay')?.classList.remove('overlay')
         })

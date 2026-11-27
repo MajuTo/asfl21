@@ -8,9 +8,9 @@
     	<h1 class="animate-page-title">Nos partenaires</h1>
             @if($partners->isEmpty())
                 <p class="text-center">Bientôt sur ce page...</p>
-                <img class="img-responsive img-rounded" id="contact-img" src="{{ asset('assets/img/pregnant-collection/pregnant-163611_1280.jpg') }}" alt="femme enceinte avec parapluie">
+                <img class="img-fluid rounded" id="contact-img" src="{{ asset('assets/img/pregnant-collection/pregnant-163611_1280.jpg') }}" alt="femme enceinte avec parapluie">
             @else
-            <table class="table table-condensed">
+            <table class="table table-sm">
                 <tbody>
                     @foreach($partners as $partner)
                     <tr>

@@ -6,16 +6,18 @@
 <section id="liensutile">
     <div class="row">
         <div class="col-sm-6">
-            <img class="img-responsive img-rounded" src="{{ asset('assets/img/pregnant-collection/pregant-little-girl.jpg') }}" alt="femme enceinte avec petite fille">
+            <img class="img-fluid rounded" src="{{ asset('assets/img/pregnant-collection/pregant-little-girl.jpg') }}" alt="femme enceinte avec petite fille">
         </div>
     	<div class="col-sm-6">
     	<h1>Liens utiles</h1>
-            <table class="table table-condensed" id="liensutile-table">
+            <table class="table table-sm" id="liensutile-table">
                 <thead>
-                    <td>Nom</td>
-                    <td>Adresse</td>
-                    <td>Téléphone</td>
-                    <td>Lien</td>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Téléphone</th>
+                        <th>Lien</th>
+                    </tr>
                 </thead>
                 <tbody>
     	    	@foreach($links as $link)

@@ -82,7 +82,7 @@
                     {{ Aire::email('email', 'Email')->value(request('email') ?? '')->required() }}
                     {{ Aire::password('password', 'Mot de passe')->required() }}
                     {{ Aire::password('password_confirmation', 'Confirmation')->required() }}
-                    {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+                    {{ Aire::submit('Envoyer')->addClass('float-end btn-pink') }}
                 {{ Aire::close() }}
 
             {{--</div>--}}

@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     sizeContent();
     init_erasers();
-    initCheckboxes();
 });
 window.addEventListener('resize', sizeContent);
 function sizeContent() {
@@ -28,26 +27,6 @@ function init_erasers(){
         el.addEventListener('click', e => {
             if( ! confirm("Confirmez la suppression") ) {
                 e.preventDefault();
-            }
-        })
-    })
-}
-
-function initCheckboxes() {
-    document.querySelectorAll('input[type=checkbox]:not(:checked)')?.forEach(el => {
-        el.parentElement.classList.add('notchecked')
-    })
-    document.querySelectorAll('input[type=checkbox]:checked')?.forEach(el => {
-        el.parentElement.classList.add('checked')
-    })
-    document.querySelectorAll('input[type=checkbox]')?.forEach((checkbox) => {
-        checkbox.addEventListener('click', e => {
-            if (e.target.parentElement.classList.contains('checked')) {
-                e.target.parentElement.classList.remove('checked')
-                e.target.parentElement.classList.add('notchecked')
-            } else {
-                e.target.parentElement.classList.remove('notchecked')
-                e.target.parentElement.classList.add('checked')
             }
         })
     })

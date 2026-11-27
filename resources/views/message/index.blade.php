@@ -22,9 +22,9 @@
         <div class="col-sm-6">
         <h3>Messages des membres</h3>
             @foreach($mMessages as $mMessage)
-                <span class="pull-left message-author">{{ strtoupper($mMessage->user->name) . ' ' . ucfirst($mMessage->user->firstname) . ' ' . date('d/m/Y H:i:s', strtotime($mMessage->created_at)) }}</span><br />
+                <span class="float-start message-author">{{ strtoupper($mMessage->user->name) . ' ' . ucfirst($mMessage->user->firstname) . ' ' . date('d/m/Y H:i:s', strtotime($mMessage->created_at)) }}</span><br />
                 <p>
-                    <strong class="pull-left">{{ $mMessage->title }}</strong><br />
+                    <strong class="float-start">{{ $mMessage->title }}</strong><br />
                     {!! $mMessage->content !!}
                 </p>
                 <hr>
@@ -35,9 +35,9 @@
         <div class="col-sm-6">
         <h3>Messages de l'association</h3>
             @foreach($aMessages as $aMessage)
-                <span class="pull-left message-author">{{ strtoupper($aMessage->user->name) . ' ' . ucfirst($aMessage->user->firstname) . ' ' . date('d/m/Y H:i:s', strtotime($aMessage->created_at)) }}</span><br />
+                <span class="float-start message-author">{{ strtoupper($aMessage->user->name) . ' ' . ucfirst($aMessage->user->firstname) . ' ' . date('d/m/Y H:i:s', strtotime($aMessage->created_at)) }}</span><br />
                 <p>
-                    <strong class="pull-left">{{ $aMessage->title }}</strong><br />
+                    <strong class="float-start">{{ $aMessage->title }}</strong><br />
                     {!! $aMessage->content !!}
                 </p>
                 <hr>

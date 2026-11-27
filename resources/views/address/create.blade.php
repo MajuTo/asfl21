@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-8 offset-sm-2">
         {{ Aire::open()->route('adresse.store') }}
             {{ Aire::bind($address) }}
             {{ Aire::input('name', 'Nom')->placeholder("Nom de l'adresse...")->required() }}
@@ -11,7 +11,7 @@
             {{ Aire::checkbox('hidePhone', 'Téléphone privé')->checked($address->hidePhone) }}
             {{ Aire::textarea('description', 'Informations supplémentaires')->placeholder("Informations supplémentaires (horaires, etc...)")->helpText("Informations supplémentaires (horaires, etc...)")->addClass('ckeditor') }}
 
-            {{ Aire::submit('Ajouter')->addClass('pull-right btn-pink') }}
+            {{ Aire::submit('Ajouter')->addClass('float-end btn-pink') }}
 
         {{ Aire::close() }}
     </div>

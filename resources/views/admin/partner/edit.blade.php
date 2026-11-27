@@ -6,7 +6,7 @@
         {{ Aire::input('contact', 'Contact')->placeholder("Contact...") }}
         {{ Aire::file('logo_file', 'Logo')->placeholder("Logo du partenaire...") }}
         {{ Aire::checkbox('delete_logo', 'Effacer le logo') }}
-        {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
+        {{ Aire::submit('Enregistrer')->addClass('float-end btn-pink') }}
     {{ Aire::close() }}
     @if($partner->logo)
         <img src="{{ asset($partner->logo) }}" alt="Logo de {{ $partner->partnerName }}" class="admin_logo_edit">

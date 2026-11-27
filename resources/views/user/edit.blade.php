@@ -1,24 +1,24 @@
 @extends('layouts.index')
 @section('content')
 <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-        <ul class="nav nav-pills nav-justified">
+    <div class="col-sm-8 offset-sm-2">
+        <ul class="nav nav-pills nav-justified mb-3" role="tablist">
 
-            <li class="active"><a href="#profil" data-toggle="tab">Profil</a></li>
-            <li><a href="#adresses" data-toggle="tab">Adresses</a></li>
-            <li><a href="#activites" data-toggle="tab">Activités</a></li>
-            <li><a href="#motdepasse" data-toggle="tab">Mot de passe</a></li>
+            <li class="nav-item" role="presentation"><button class="nav-link active" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#profil" aria-selected="true">Profil</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#adresses" aria-selected="false">Adresses</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#activites" aria-selected="false">Activités</button></li>
+            <li class="nav-item" role="presentation"><button class="nav-link" type="button" role="tab" data-bs-toggle="tab" data-bs-target="#motdepasse" aria-selected="false">Mot de passe</button></li>
 
         </ul>
     </div>
 </div>
-<div class="row tab-content">
+<div class="tab-content">
 
     <!-- Div de l'onglet profil -->
-    <div role="tabpanel" class="row tab-pane fade in active" id="profil">
+    <div role="tabpanel" class="tab-pane fade show active" id="profil">
         {{ Aire::open()->route('user.update', $user->id)->put() }}
-            <div class="col-sm-8 col-sm-offset-2">
-                <div class="col-sm-9 col-sm-offset-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
+            <div class="col-sm-8 offset-sm-2">
+                <div class="col-sm-9 offset-sm-3"><h3>Coordonnées de {{ $user->firstname }}</h3></div>
                     {{ Aire::bind($user) }}
                     {{ Aire::input('name', 'Nom')->placeholder("Nom...")->required() }}
                     {{ Aire::input('firstname', 'Prénom')->placeholder("Prénom...")->required() }}
@@ -31,7 +31,7 @@
                     @if($user->group->id == 2 || $user->group->id == 3)
                         {{ Aire::select($groups, 'group_id')->label('Groupe') }}
                     @endif
-                    {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
+                    {{ Aire::submit('Enregistrer')->addClass('float-end btn-pink') }}
             </div>
         {{ Aire::close() }}
     </div>
@@ -39,17 +39,19 @@
     <!-- Div de l'onglet adresses -->
     <div role="tabpanel" class="tab-pane fade" id="adresses">
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-7">
-                <h2><a href="{{ route('adresse.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+            <div class="col-sm-4 offset-sm-7">
+                <h2><a href="{{ route('adresse.create') }}" ><button class="btn btn-pink float-end">Ajouter</button></a></h2>
             </div>
         </div>
-        <div class="col-sm-10 col-sm-offset-1">
-            <table class="table table-condensed table-hover">
+        <div class="col-sm-10 offset-sm-1">
+            <table class="table table-sm table-hover">
                 <thead>
-                    <td>Nom</td>
-                    <td>Adresse</td>
-                    <td>Téléphone</td>
-                    <td>Actions</td>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Téléphone</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @foreach($addresses as $address)
@@ -58,9 +60,9 @@
                             <td>{{ Str::title($address->address) }}, {{ $address->zipCode }}, {{ Str::title($address->city) }}</td>
                             <td>{{ $address->phone }}</td>
                             <td>
-                                <a href="{{ route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
+                                <a href="{{ route('adresse.edit', $address->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
                                 {{ Aire::open()->route('adresse.destroy', $address->id)->class('delete-form')->delete() }}
-                                    {{ Aire::submit('Supprimer')->class('label-danger label eraser') }}
+                                    {{ Aire::submit('Supprimer')->class('btn btn-sm btn-danger eraser') }}
                                 {{ Aire::close() }}
                             </td>
                         </tr>
@@ -72,26 +74,26 @@
 
     <!-- Div de l'onglet activités -->
     <div role="tabpanel" class="tab-pane fade" id="activites">
-        <div class="col-sm-6 col-sm-offset-3">
+        <div class="col-sm-6 offset-sm-3">
           <div class="col-sm-12 text-center"><h3>Activités de {{ $user->firstname }}</h3></div>
           {{ Aire::open()->route('user.updateActivities', $user->id)->put() }}
               {{ Aire::bind($user) }}
               @foreach($activities as $act)
                   {{ Aire::checkbox('activities[]')->value($act->id)->label($act->activityName)->checked($user->activities->contains($act->id)) }}
               @endforeach
-              {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
+              {{ Aire::submit('Enregistrer')->addClass('float-end btn-pink') }}
           {{ Aire::close() }}
         </div>
     </div>
 
     <!-- Div de l'onglet mot de passe -->
     <div role="tabpanel" class="tab-pane fade" id="motdepasse">
-        <div class="col-sm-6 col-sm-offset-3">
+        <div class="col-sm-6 offset-sm-3">
             <div class="col-sm-12 text-center"><h3>Changer mon mot de passe</h3></div>
             {{ Aire::open()->route('user.update.password', $user->id)->put() }}
                 {{ Aire::password('password', 'Mot de passe') }}
                 {{ Aire::password('password_confirmation', 'Confirmation') }}
-                {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+                {{ Aire::submit('Envoyer')->addClass('float-end btn-pink') }}
             {{ Aire::close() }}
         </div>
     </div>

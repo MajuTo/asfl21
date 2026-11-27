@@ -25,7 +25,7 @@
                     {{ Aire::checkbox('pro', 'Je suis un professionnel') }}
                     <x-captcha />
                     <x-honeypot />
-                    {{ Aire::submit('Envoyer')->addClass('pull-right btn btn-pink') }}
+                    {{ Aire::submit('Envoyer')->addClass('float-end btn btn-pink') }}
                 {{ Aire::close() }}
 
             </div>

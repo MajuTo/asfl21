@@ -5,6 +5,6 @@
         {{ Aire::input('partnerName', 'Nom')->required()->placeholder("Nom du partenaire...") }}
         {{ Aire::input('contact', 'Contact')->placeholder("Contact...") }}
         {{ Aire::file('logo_file', 'Logo')->placeholder("Logo du partenaire...") }}
-        {{ Aire::submit('Ajouter')->addClass('pull-right btn-pink') }}
+        {{ Aire::submit('Ajouter')->addClass('float-end btn-pink') }}
     {{ Aire::close() }}
 @endsection

@@ -97,6 +97,27 @@ return [
 	|
 	*/
 	'default_classes' => [
+        // glhd/aire-bootstrap cible Bootstrap 4 : on remappe vers les classes Bootstrap 5
+        'group' => 'mb-3',
+        'group_prepend' => '',
+        'group_append' => '',
+        'group_help_text' => 'form-text',
+        'label' => 'form-label',
+
+        'checkbox' => 'form-check-input',
+        'checkbox_label' => 'form-check-label',
+        'checkbox_wrapper' => 'form-check',
+
+        'checkbox_group' => 'form-check-input',
+        'checkbox_group_label' => 'form-check-label',
+        'checkbox_group_label_wrapper' => 'form-check',
+
+        'radio_group' => 'form-check-input',
+        'radio_group_label' => 'form-check-label',
+        'radio_group_label_wrapper' => 'form-check',
+
+        'select' => 'form-select',
+
         'button' => 'btn',
         'submit' => 'btn',
     ],
@@ -110,7 +131,17 @@ return [
 	| If you need to override any of these, do so here.
 	|
 	*/
-	'variant_classes' => [],
+	'variant_classes' => [
+        'select' => [
+            'default' => [
+                'display' => 'form-select',
+                'size' => '',
+                'color' => '',
+            ],
+            'sm' => 'form-select-sm',
+            'lg' => 'form-select-lg',
+        ],
+    ],
 
 	/*
 	|--------------------------------------------------------------------------

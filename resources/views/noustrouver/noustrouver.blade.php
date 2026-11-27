@@ -5,18 +5,18 @@
 @section('content')
     <section id="noustrouver">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
                 <h1>Trouver une sage femme libérale</h1>
                 <p class="text-center" id="noustrouver-subtext">Sélectionnez les activités qui vous intéresses, puis la ou les sages-femmes qui éffectuent ces activités. Pour plus d'information sur une sage-femme en particulier, cliquer sur <i class="fa fa-external-link"></i> à droite du nom de la sage-femme ou directement sur la map.</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
+            <div class="col-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
                 <div class="table-responsive">
-                    <table class="table table-condensed sf-hov" aria-describedby="liste des activités">
+                    <table class="table table-sm sf-hov" aria-describedby="liste des activités">
                         <thead>
                         <tr>
-                            <th scope="col">Activités <em class="pull-right fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></em></th>
+                            <th scope="col">Activités <em class="float-end fa fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sélectionnez ou désélectionnez les activités que vous souhaitez."></em></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -30,20 +30,20 @@
                 </div>
             </div>
             <!-- AJAX liste des sf selon activité -->
-            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
+            <div class="col-6 col-sm-2 col-md-2 col-lg-2" id="table-height">
                 <div class="table-responsive" id="table-sf">
-                    <table class="table table-condensed sf-hov" aria-describedby="liste des sages femmes">
+                    <table class="table table-sm sf-hov" aria-describedby="liste des sages femmes">
                         <thead>
                         <tr>
                             <th scope="col">Sages Femmes</th>
-                            <th scope="col"><em id="tooltip-sf" class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></em></th>
+                            <th scope="col"><em id="tooltip-sf" class="fa fa-question-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sélectionnez ou désélectionnez une sage femme."></em></th>
                         </tr>
                         </thead>
                         <tbody id="listesf">
                         @foreach ($sagesfemmes as $sf)
                             <tr>
                                 <td class="sf-tr" data-sf="{{ $sf->id }}" id="{{ $sf->id }}">{{{ Str::upper($sf->name) }}} {{{ Str::title($sf->firstname) }}}</td>
-                                <td><a href="{{ route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fa fa-external-link" data-toggle="tooltip" data-placement="left" title="Contact"></i></a></td>
+                                <td><a href="{{ route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]) }}" target="_blank"><i id="tooltip-sf" class="fa fa-external-link" data-bs-toggle="tooltip" data-bs-placement="left" title="Contact"></i></a></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -96,7 +96,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             // Tooltips Bootstrap
             if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"], [data-toggle="tooltip"]');
+                const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"], [data-bs-toggle="tooltip"]');
                 [...tooltipTriggerList].forEach(el => new bootstrap.Tooltip(el));
             }
 
@@ -145,7 +145,7 @@
                         tbody.innerHTML = html;
                         // Réinitialiser les tooltips pour la nouvelle liste
                         if (typeof bootstrap !== 'undefined' && bootstrap.Tooltip) {
-                            tbody.querySelectorAll('[data-bs-toggle="tooltip"], [data-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+                            tbody.querySelectorAll('[data-bs-toggle="tooltip"], [data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
                         }
                     }
                     toggleMarkers();
@@ -262,7 +262,7 @@
                 '<div class="container-fluid">'+
                 '<div class="row">'+
                 '<h3>{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</h3>'+
-                '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">'+
+                '<div class="col-6 col-sm-6 col-md-6 col-lg-6">'+
                 '<h4>Activités</h4>'+
                 '<ul>'+
                 @foreach($sf->activities as $activity)
@@ -270,8 +270,8 @@
                 @endforeach
                     '</ul>'+
                 '</div>'+
-                '<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">'+
-                '<div class="text-right">'+
+                '<div class="col-6 col-sm-6 col-md-6 col-lg-6">'+
+                '<div class="text-end">'+
                 '<h4>Adresse</h4>'+
                 '<p>{{{ $address->address }}}</br>'+
                 '{{{ $address->zipCode }}} {{{ $address->city }}}</br>'+

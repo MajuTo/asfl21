@@ -18,10 +18,28 @@
 
 /* ************* */
 /* ** GENERAL ** */
+:root {
+    --bs-primary: #B5003A;
+    --bs-primary-rgb: 181, 0, 58;
+    --bs-link-color: #B5003A;
+    --bs-link-color-rgb: 181, 0, 58;
+    --bs-link-hover-color: #E35582;
+    --bs-link-hover-color-rgb: 227, 85, 130;
+    --bs-body-font-family: "Lora", serif;
+}
+
 body {
     font-family: "Lora", serif;
     font-weight: 400;
-    font-size: 1.6em;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text-justify {
+    text-align: justify;
 }
 
 .container-fluid {
@@ -39,6 +57,7 @@ h1 {
     font-family: "Handlee", sans-serif;
     font-size: 2.5em;
     text-align: center;
+    margin-top: 20px;
     margin-bottom: 25px;
 }
 
@@ -55,7 +74,6 @@ a:focus {
 
 
 /* ** Bootstrap Buttons ** */
-.label.btn-primary,
 .btn-primary.btn-pink {
     border-color: #E35582;
 }
@@ -92,32 +110,22 @@ input[type=checkbox] {
     accent-color: #B5003A;
 }
 
-/* ** Beautiful Checkboxes ** */
-.checkbox input[type=checkbox] {
-    display: none;
+/* ** Checkboxes ** */
+.form-check-input:checked {
+    background-color: #B5003A;
+    border-color: #B5003A;
 }
 
-label.checked {
+.form-check-input:focus {
+    border-color: #E35582;
+    box-shadow: 0 0 0 .25rem rgba(181, 0, 58, .25);
+}
+
+.form-check-input:checked + .form-check-label {
     font-weight: bold;
 }
 
-label.notchecked {
-    font-weight: normal;
-}
-
-label.checked::before {
-    padding-right: 5px;
-    font-family: "FontAwesome", serif;
-    content: "\f046";
-}
-
-label.notchecked::before {
-    padding-right: 5px;
-    font-family: "FontAwesome", serif;
-    content: "\f096";
-}
-
-/* ** End Beautiful Checkboxes ** */
+/* ** End Checkboxes ** */
 
 
 /* ** Forms ** */
@@ -132,43 +140,36 @@ label.notchecked::before {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(181, 0, 58, .6);
 }
 
+/* CKEditor 5 */
+:root {
+    --ck-color-focus-border: #E35582;
+    --ck-color-button-on-color: #B5003A;
+    --ck-color-button-on-background: rgba(227, 85, 130, .15);
+    --ck-color-button-on-hover-background: rgba(227, 85, 130, .25);
+    --ck-color-link-default: #B5003A;
+}
+
+.ck-editor__editable_inline {
+    min-height: 150px;
+}
+
+.ck.ck-editor {
+    font-family: "Lora", serif;
+}
+
 /* ** End Forms ** */
 
 
 /* ** Pagination ** */
-.pagination > li > a,
-.pagination > li > span {
-    position: relative;
-    float: left;
-    padding: 6px 12px;
-    margin-left: -1px;
-    line-height: 1.42857143;
-    color: #B5003A;
-    text-decoration: none;
-    background-color: #fff;
-    border: 1px solid #ddd;
-}
-
-.pagination > li > a:hover,
-.pagination > li > span:hover,
-.pagination > li > a:focus,
-.pagination > li > span:focus {
-    color: #fff;
-    background-color: #E35582;
-    border-color: #E35582;
-}
-
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-    z-index: 2;
-    color: #fff;
-    cursor: default;
-    background-color: #B5003A;
-    border-color: #B5003A;
+.pagination {
+    --bs-pagination-color: #B5003A;
+    --bs-pagination-hover-color: #fff;
+    --bs-pagination-hover-bg: #E35582;
+    --bs-pagination-hover-border-color: #E35582;
+    --bs-pagination-focus-color: #B5003A;
+    --bs-pagination-focus-box-shadow: 0 0 0 .25rem rgba(181, 0, 58, .25);
+    --bs-pagination-active-bg: #B5003A;
+    --bs-pagination-active-border-color: #B5003A;
 }
 
 /* ** End Pagination ** */
@@ -180,81 +181,77 @@ label.notchecked::before {
 /* ** NAVIG-ACTION ** */
 .logo {
     height: 70px;
-    float: left;
     margin: 5px;
 }
 
-.navbar-brand {
+#main-nav {
     font-family: 'Handlee', sans-serif;
-    margin-bottom: 0;
-    padding-left: 0;
-    font-size: 1em;
-}
-
-#menu {
+    padding-top: 0;
+    padding-bottom: 0;
     border-bottom: 1px solid #E35582;
 }
 
-.navbar-default {
-    background-color: transparent;
-    border: none;
-    font-size: 1em;
+#main-nav .navbar-brand {
     font-family: 'Handlee', sans-serif;
+    color: #333;
+    margin-bottom: 0;
+    padding-left: 0;
+    font-size: .8em;
+    white-space: normal;
 }
 
-.navbar-default .navbar-toggle,
-.navbar-default .navbar-toggle:focus,
-.navbar-default .navbar-toggle:hover,
-.navbar-default .navbar-toggle:active {
+#main-nav .navbar-toggler {
     color: #fff;
     background-color: #E35582;
 }
 
-.navbar-default .navbar-nav > li > a {
+#main-nav .navbar-toggler:focus {
+    box-shadow: 0 0 0 .25rem rgba(181, 0, 58, .25);
+}
+
+#main-nav .navbar-nav .nav-link {
+    color: #777;
+    padding: 10px 12px;
+    white-space: nowrap;
     border-top: 5px solid transparent;
 }
 
-.navbar-default .navbar-nav > li > a:hover {
+#main-nav .navbar-nav .nav-link:hover {
     color: #000;
     border-top-color: #B5003A;
 }
 
-.navbar-default .navbar-nav > li > a:focus,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus,
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .focus > a {
+#main-nav .navbar-nav .nav-link.active,
+#main-nav .navbar-nav .nav-link.show,
+#main-nav .navbar-nav .nav-link.active:hover {
     color: #fff;
     background-color: rgba(227, 85, 130, .5);
     border-top-color: #B5003A;
 }
 
-.nav .open > a,
-.nav .open > a:hover,
-.nav .open > a:focus,
-.dropdown-menu > li > a:hover,
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus {
-    background-color: #B5003A;
+#main-nav .dropdown-toggle::after {
+    display: none;
 }
 
-.navbar-nav > li:hover > .dropdown-menu {
-    display: block;
+#main-nav .dropdown-menu {
+    --bs-dropdown-link-active-bg: #B5003A;
+    --bs-dropdown-link-hover-bg: rgba(227, 85, 130, .2);
+    font-family: "Lora", serif;
+    margin-top: 0;
 }
 
-.nav > li > a:hover,
-.nav > li > a:focus {
-    text-decoration: none;
+@media (min-width: 992px) {
+    #main-nav .navbar-nav > .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+}
+
+.nav-pills {
+    --bs-nav-pills-link-active-bg: #B5003A;
+}
+
+.nav-tabs .nav-link {
     color: #B5003A;
-    background-color: rgba(255, 20, 147, 0.4);
-}
-
-.nav-pills > li.active > a,
-.nav-pills > li.active > a:hover,
-.nav-pills > li.active > a:focus {
-    color: #fff;
-    background-color: #B5003A;
 }
 
 /* ** END NAVIGATION ** */
@@ -264,40 +261,27 @@ label.notchecked::before {
 /* ********************************************************** */
 /* ADMIN */
 
-.nav-tabs.admin-menu {
-    border-bottom: 0;
-}
-
-.nav-tabs.admin-menu > li > a {
-    border: none;
+.admin-menu .nav-link {
+    color: #B5003A;
+    border-left: 5px solid transparent;
     border-radius: 4px;
 }
 
-.nav-tabs.admin-menu > li > a:hover {
-    color: #B5003A;
+.admin-menu .nav-link:hover {
     background-color: pink;
-    border-right: none;
-    border-bottom: none;
-    border-top: none;
-    border-left: 5px solid #B5003A;
+    border-left-color: #B5003A;
 }
 
-.nav-tabs.admin-menu > li.active > a,
-.nav-tabs.admin-menu > li.active > a:hover,
-.nav-tabs.admin-menu > li.active > a:focus {
-    cursor: pointer;
-    color: #B5003A;
+.admin-menu .nav-link.active {
     background-color: #fff;
-    border-right: none;
-    border-bottom: none;
-    border-top: none;
-    border-left: 5px solid #B5003A;
-    border-bottom-color: transparent;
+    border-left-color: #B5003A;
 }
 
-.label {
-    font-weight: 400;
-    font-size: 80%;
+/* Boutons d'action (Editer / Supprimer...) alignés dans les tableaux */
+td > a,
+td > form {
+    display: inline-block;
+    margin: 0 2px 2px 0;
 }
 
 /* END ADMIN */
@@ -352,23 +336,30 @@ label.notchecked::before {
 }
 
 /* Carousel */
-.carousel-control {
+#carousel-home .carousel-control-prev,
+#carousel-home .carousel-control-next {
     font-size: 2em;
     color: #B5003A;
-    border-radius: 20px;
+    opacity: .8;
 }
 
-.carousel-indicators li {
-    border-color: #B5003A;
-}
-
-.carousel-indicators .active {
-    background-color: #B5003A;
-}
-
-.carousel-control:hover,
-.carousel-control:focus {
+#carousel-home .carousel-control-prev:hover,
+#carousel-home .carousel-control-next:hover {
     color: #E35582;
+    opacity: 1;
+}
+
+#carousel-home .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #B5003A;
+    background-color: transparent;
+    opacity: 1;
+}
+
+#carousel-home .carousel-indicators .active {
+    background-color: #B5003A;
 }
 
 .carousel-img {
@@ -386,20 +377,6 @@ label.notchecked::before {
 
 #carousel-three {
     background: url('../img/pregnant-collection/belly-painting-africa-1140.jpg') no-repeat center center;
-}
-
-#carousel-ctrl-right,
-#carousel-ctrl-left {
-    position: absolute;
-    top: 50%;
-}
-
-#carousel-ctrl-left {
-    left: 10%;
-}
-
-#carousel-ctrl-right {
-    right: 10%;
 }
 
 /* End Carousel */
@@ -1082,11 +1059,11 @@ footer {
 /* ******************* */
 /* ** MEDIA QUERIES ** */
 @media all and (max-width: 1205px) {
-    .navbar-default {
+    #main-nav {
         font-size: .9em;
     }
 
-    .navbar-brand {
+    #main-nav .navbar-brand {
         font-size: .7em;
     }
 
@@ -1095,20 +1072,15 @@ footer {
 
 @media all and (max-width: 995px) {
     body {
-        font-size: 1em;
+        font-size: .95rem;
     }
 
-    .navbar-default {
-        font-size: 1.4em;
-    }
-
-    .navbar-brand {
+    #main-nav .navbar-brand {
         display: none;
     }
 
     .logo {
-        height: 40px;
-        margin-top: 15px;
+        height: 50px;
     }
 
     .whoooshh {
@@ -1134,15 +1106,7 @@ footer {
 
 @media all and (max-width: 767px) {
     /* navigation */
-    .logo {
-        display: none;
-    }
-
-    .navbar-default {
-        font-size: 1.5em;
-    }
-
-    .navbar-default .navbar-nav > li > a:hover {
+    #main-nav .navbar-nav .nav-link:hover {
         color: #777;
         border-top-color: transparent;
     }

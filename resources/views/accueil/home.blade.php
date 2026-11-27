@@ -11,36 +11,36 @@
         </div>
 
         <!-- CAROUSEL -->
-        <div id="carousel-home" class="carousel slide" data-ride="carousel" data-interval="8000">
+        <div id="carousel-home" class="carousel slide" data-bs-ride="carousel" data-bs-interval="8000">
             <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#carousel-home" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-home" data-slide-to="1"></li>
-                <li data-target="#carousel-home" data-slide-to="2"></li>
-            </ol>
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carousel-home" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Image 1"></button>
+                <button type="button" data-bs-target="#carousel-home" data-bs-slide-to="1" aria-label="Image 2"></button>
+                <button type="button" data-bs-target="#carousel-home" data-bs-slide-to="2" aria-label="Image 3"></button>
+            </div>
 
             <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
                     <div class="carousel-img" id="carousel-one"></div>
                 </div>
-                <div class="item">
+                <div class="carousel-item">
                     <div class="carousel-img" id="carousel-two"></div>
                 </div>
-                <div class="item">
+                <div class="carousel-item">
                     <div class="carousel-img" id="carousel-three"></div>
                 </div>
             </div>
 
             <!-- Controls -->
-            <a class="left carousel-control" href="#carousel-home" role="button" data-slide="prev">
-                <span aria-hidden="true"><i class="fa fa-angle-double-left" id="carousel-ctrl-left"></i></span>
-                <span class="sr-only">Précédent</span>
-            </a>
-            <a class="right carousel-control" href="#carousel-home" role="button" data-slide="next">
-                <span aria-hidden="true"><i class="fa fa-angle-double-right" id="carousel-ctrl-right"></i></span>
-                <span class="sr-only">Suivant</span>
-            </a>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-home" data-bs-slide="prev">
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel-home" data-bs-slide="next">
+                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                <span class="visually-hidden">Suivant</span>
+            </button>
         </div>
         <!-- END CAROUSEL -->
 

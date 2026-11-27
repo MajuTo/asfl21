@@ -1,9 +1,9 @@
 @extends('layouts.index')
 @section('content')
-<div class="col-sm-6 col-sm-offset-4">
+<div class="col-sm-6 offset-sm-4">
     <h3>Modification d'une adresse</h3>
 </div>
-<div class="col-sm-9 col-sm-offset-1">
+<div class="col-sm-9 offset-sm-1">
     @if($admin)
         {{ Aire::open()->route('admin.adresse.update', $address->id)->put() }}
     @else
@@ -19,7 +19,7 @@
         {{ Aire::input('fax', 'Fax')->placeholder("Fax...") }}
         {{ Aire::checkbox('hideFax', 'Ne pas montrer mon fax')->checked($address->hideFax) }}
         {{ Aire::textarea('description', 'Informations supplémentaires')->placeholder("Informations supplémentaires (horaires, etc...)")->helpText("Informations supplémentaires (horaires, etc...)")->addClass('ckeditor') }}
-        {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
+        {{ Aire::submit('Enregistrer')->addClass('float-end btn-pink') }}
     {{ Aire::close() }}
 </div>
 @endsection

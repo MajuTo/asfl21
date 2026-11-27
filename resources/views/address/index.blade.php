@@ -6,15 +6,17 @@
 			<h2>Mes Adresses</h2>
 		</div>
 		<div class="col-sm-6">
-			<h2><a href="{{ route('adresse.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+			<h2><a href="{{ route('adresse.create') }}" ><button class="btn btn-pink float-end">Ajouter</button></a></h2>
 		</div>
 	</div>
-	<table class="table table-condensed table-hover">
+	<table class="table table-sm table-hover">
 		<thead>
-			<td>Nom</td>
-			<td>Adresse</td>
-			<td>Téléphone</td>
-			<td>Actions</td>
+            <tr>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+            </tr>
 		</thead>
 		<tbody>
 			@foreach($addresses as $address)
@@ -23,9 +25,9 @@
 					<td>{{ Str::title($address->address) }}, {{ $address->zipCode }}, {{ Str::title($address->city) }}</td>
 					<td>{{ $address->phone }}</td>
 					<td>
-						<a href="{{ route('adresse.edit', $address->id) }}"><button class="btn label label-warning">Editer</button></a>
+						<a href="{{ route('adresse.edit', $address->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
 						{{ Aire::open()->route('adresse.destroy', $address->id)->class('delete-form')->delete() }}
-						    {{ Aire::submit('Supprimer')->class('label-danger label eraser') }}
+						    {{ Aire::submit('Supprimer')->class('btn btn-sm btn-danger eraser') }}
 						{{ Aire::close() }}
 					</td>
 				</tr>

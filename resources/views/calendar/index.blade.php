@@ -13,16 +13,16 @@
         <div class="col-sm-12">
             <h1>Calendrier de grossesse</h1>
             <hr>
-    		{{ Aire::open()->route('calendrier.store')->addClass('form-inline') }}
-    	    	<div class="col-sm-4 col-sm-offset-1">
+            {{ Aire::open()->route('calendrier.store')->addClass('row g-2 justify-content-center align-items-start') }}
+                <div class="col-sm-4">
                     {{ Aire::input('date1')->placeholder("Date des dernieres règles")->id('date1') }}
-    	    	</div>
-    	    	<div class="col-sm-4">
+                </div>
+                <div class="col-sm-4">
                     {{ Aire::input('date2')->placeholder("Date de conception")->id('date2') }}
-    	    	</div>
-    	    	<div class="col-sm-2">
-                    {{ Aire::submit('Valider')->addClass('btn-pink') }}
-    	       	</div>
+                </div>
+                <div class="col-sm-2">
+                    {{ Aire::submit('Valider')->addClass('btn-pink w-100') }}
+                </div>
             {{ Aire::close() }}
         </div>
     </div>

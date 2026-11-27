@@ -5,14 +5,16 @@
 			<h2>Gestion des liens</h2>
 		</div>
 		<div class="col-sm-6">
-			<h2><a href="{{ route('admin.link.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+			<h2><a href="{{ route('admin.link.create') }}" ><button class="btn btn-pink float-end">Ajouter</button></a></h2>
 		</div>
 	</div>
-	<table class="table table-condensed table-hover">
+	<table class="table table-sm table-hover">
 		<thead>
-			<td>Nom</td>
-			<td>Lien</td>
-			<td>Actions</td>
+            <tr>
+                <th>Nom</th>
+                <th>Lien</th>
+                <th>Actions</th>
+            </tr>
 		</thead>
 		<tbody>
 			@foreach($links as $link)
@@ -20,9 +22,9 @@
 					<td>{{ $link->linkName }}</td>
 					<td>{{ $link->link }}</td>
 					<td>
-						<a href="{{ route('admin.link.edit', $link->id) }}"><button class="btn label label-warning">Editer</button></a>
+						<a href="{{ route('admin.link.edit', $link->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
 						{{ Aire::open()->route('admin.link.destroy', $link->id)->delete() }}
-						    {{ Aire::submit('Supprimer')->addClass('label-danger label eraser') }}
+						    {{ Aire::submit('Supprimer')->addClass('btn-sm btn-danger eraser') }}
 						{{ Aire::close() }}
 					</td>
 				</tr>

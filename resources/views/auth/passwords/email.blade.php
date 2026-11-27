@@ -63,7 +63,7 @@
                 {{ Aire::open()->route('password.email') }}
                 @csrf
                 {{ Aire::email('email', 'Email')->required() }}
-                {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+                {{ Aire::submit('Envoyer')->addClass('float-end btn-pink') }}
                 {{ Aire::close() }}
             </div>
             {{--</div>--}}

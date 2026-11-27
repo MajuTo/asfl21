@@ -4,6 +4,6 @@
         {{ Aire::bind($activity) }}
         {{ Aire::input('activityName', 'Nom')->placeholder("Nom de l'activité...")->required() }}
         {{ Aire::textarea('activityDesc', 'Description')->placeholder("Description de l'activité...")->required() }}
-        {{ Aire::submit('Enregistrer')->addClass('pull-right btn-pink') }}
+        {{ Aire::submit('Enregistrer')->addClass('float-end btn-pink') }}
     {{ Aire::close() }}
 @endsection

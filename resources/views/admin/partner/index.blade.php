@@ -5,15 +5,17 @@
 			<h2>Gestion des partenaires</h2>
 		</div>
 		<div class="col-sm-6">
-			<h2><a href="{{ route('admin.partner.create') }}" ><button class="btn btn-pink pull-right">Ajouter</button></a></h2>
+			<h2><a href="{{ route('admin.partner.create') }}" ><button class="btn btn-pink float-end">Ajouter</button></a></h2>
 		</div>
 	</div>
-	<table class="table table-condensed table-hover">
+	<table class="table table-sm table-hover">
 		<thead>
-			<td>Nom</td>
-			<td>Logo</td>
-			<td>Contact</td>
-			<td>Actions</td>
+			<tr>
+                <th>Nom</th>
+                <th>Logo</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
 		</thead>
 		<tbody>
 			@foreach($partners as $partner)
@@ -22,10 +24,10 @@
 					<td>@if($partner->logo) <img src="{{ asset($partner->logo) }}" alt="Logo de {{ $partner->partnerName }}" class="admin_logo_index"> @endif</td>
 					<td>{{ $partner->contact }}</td>
 					<td>
-						<a href="{{ route('admin.partner.edit', $partner->id) }}"><button class="btn label label-warning">Editer</button></a>
+						<a href="{{ route('admin.partner.edit', $partner->id) }}"><button class="btn btn-sm btn-warning">Editer</button></a>
 						{{ Aire::open()->route('admin.partner.destroy', $partner->id)->delete()->addClass('inline-display') }}
 						    {{ Aire::bind($partner) }}
-						    {{ Aire::submit('Supprimer')->addClass('label-danger label eraser') }}
+						    {{ Aire::submit('Supprimer')->addClass('btn-sm btn-danger eraser') }}
 						{{ Aire::close() }}
 					</td>
 				</tr>

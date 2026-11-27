@@ -7,11 +7,10 @@
 
 <!-- GOOGLE MAP API -->
 <script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key={!! env('GOOGLE_MAPS_API_KEY') !!}">
+    src="https://maps.googleapis.com/maps/api/js?key={{ config('geocoder.key') }}">
 </script>
 
 <!-- CSS -->
-<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/new-design.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/leaflet/leaflet.css') }}">

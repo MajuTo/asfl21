@@ -4,13 +4,13 @@
 @endsection
 @section('auth.content')
     <div class="overflow-auto">
-        <a href="{{ route('password.request') }}" class="pull-right">Mot de passe oublié?</a>
+        <a href="{{ route('password.request') }}" class="float-end">Mot de passe oublié?</a>
     </div>
     <div>
         {{ Aire::open()->route('login')->post() }}
             {{ Aire::input('username', 'Identifiant') }}
             {{ Aire::password('password', 'Mot de passe') }}
-            {{ Aire::submit('Envoyer')->addClass('pull-right btn-pink') }}
+            {{ Aire::submit('Envoyer')->addClass('float-end btn-pink') }}
         {{ Aire::close() }}
     </div>
 @endsection
