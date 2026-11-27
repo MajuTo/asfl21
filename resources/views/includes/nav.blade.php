@@ -2,11 +2,11 @@
     $route = Route::currentRouteName() ?? '';
     $isActive = fn (bool $cond) => $cond ? 'active' : '';
 @endphp
-<nav class="navbar navbar-expand-lg" id="main-nav">
+<nav class="navbar navbar-expand-lg mb-3" id="main-nav">
     <div class="container-fluid px-0">
         <a href="{{ route('home') }}" class="d-flex align-items-center text-decoration-none">
             <img src="{{ asset('/assets/img/logo.png') }}" alt="logo" class="logo">
-            <span class="navbar-brand">Association des Sages Femmes Libérales <br> de Côte d'Or</span>
+            <span class="navbar-brand text-center">Association des Sages Femmes Libérales <br> de Côte d'Or</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"

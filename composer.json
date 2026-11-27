@@ -22,7 +22,8 @@
         "mews/captcha": "^3.4",
         "nesbot/carbon": "^2.25",
         "spatie/geocoder": "^3.6",
-        "spatie/laravel-honeypot": "^4.5"
+        "spatie/laravel-honeypot": "^4.5",
+        "symfony/html-sanitizer": "^6.4"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

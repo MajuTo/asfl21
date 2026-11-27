@@ -193,10 +193,10 @@ input[type=checkbox] {
 
 #main-nav .navbar-brand {
     font-family: 'Handlee', sans-serif;
-    color: #333;
+    color: #777;
     margin-bottom: 0;
     padding-left: 0;
-    font-size: .8em;
+    font-size: 1em;
     white-space: normal;
 }
 
@@ -248,6 +248,17 @@ input[type=checkbox] {
 
 .nav-pills {
     --bs-nav-pills-link-active-bg: #B5003A;
+    --bs-nav-link-color: #B5003A;
+    --bs-nav-link-hover-color: #B5003A;
+}
+
+.nav-pills .nav-link {
+    transition: background-color .15s ease-in-out, color .15s ease-in-out;
+}
+
+.nav-pills .nav-link:not(.active):hover,
+.nav-pills .nav-link:not(.active):focus-visible {
+    background-color: rgba(227, 85, 130, .25);
 }
 
 .nav-tabs .nav-link {
@@ -569,10 +580,13 @@ td > form {
     overflow-x: hidden;
 }
 
-.activity-td-selected,
-.sf-tr-selected {
+/* Bootstrap 5.3 colore les cellules de .table via ses variables (--bs-table-*),
+   avec un sélecteur plus spécifique : on passe donc par ces variables. */
+.table > tbody > tr > td.activity-td-selected,
+.table > tbody > tr > td.sf-tr-selected {
+    --bs-table-bg-state: #E35582;
+    --bs-table-color-state: #fff;
     color: #fff;
-    background-color: #E35582;
 }
 
 .sf-hov > tbody > tr > td:hover {

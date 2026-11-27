@@ -7,7 +7,9 @@ use App\Partner;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -61,7 +63,7 @@ class PartnerController extends Controller
     {
         $rules = array(
             'partnerName'  => 'required|unique:partners',
-            'logo_file' => 'image'
+            'logo_file' => 'nullable|file|mimes:jpg,jpeg,png,gif,webp|max:2048'
         );
 
         $validation = validator()->make(request()->all(), $rules);
@@ -76,10 +78,7 @@ class PartnerController extends Controller
         $file = request()->file('logo_file');
 
         if ($file && $file->isValid()){
-            $ext = $file->getClientOriginalExtension();
-            $filename = str_replace(' ', '',$partner->partnerName . '.' . $ext);
-            $file->move($this->logo_path, $filename);
-            $partner->logo = $this->logo_path . $filename;
+            $partner->logo = $this->storeLogo($file, $partner->partnerName);
         }
 
         //Sauvegarde
@@ -133,7 +132,7 @@ class PartnerController extends Controller
     {
         $rules = array(
             'partnerName'  => 'required|unique:partners,partnerName,'.$id,
-            'logo_file' => 'image'
+            'logo_file' => 'nullable|file|mimes:jpg,jpeg,png,gif,webp|max:2048'
         );
 
         $validation = validator()->make(request()->all(), $rules);
@@ -155,10 +154,7 @@ class PartnerController extends Controller
             if($partner->logo){
                 File::delete($partner->logo);
             }
-            $ext = $file->getClientOriginalExtension();
-            $filename = str_replace(' ', '',$partner->partnerName . '.' . $ext);
-            $file->move($this->logo_path, $filename);
-            $partner->logo = $this->logo_path . $filename;
+            $partner->logo = $this->storeLogo($file, request('partnerName', $partner->partnerName));
         }
 
         //Sauvegarde
@@ -187,6 +183,20 @@ class PartnerController extends Controller
         Alert::add("alert-success", "Le partenaire a bien été supprimé");
 
         return redirect()->route('admin.partner.index');
+    }
+
+    /**
+     * Enregistre le logo sous un nom généré côté serveur.
+     * L'extension est déduite du contenu réel du fichier (jamais du nom envoyé par le client),
+     * ce qui empêche de déposer un .svg/.html/.php déguisé en image dans public/.
+     */
+    private function storeLogo(UploadedFile $file, string $partnerName): string
+    {
+        $ext = $file->guessExtension() ?: 'png';
+        $filename = Str::slug($partnerName) . '-' . Str::random(8) . '.' . $ext;
+        $file->move($this->logo_path, $filename);
+
+        return $this->logo_path . $filename;
     }
 
 }

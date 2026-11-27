@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Casts\RichTextHtml;
 use App\Notifications\InscriptionEmail;
 use App\Notifications\ResetPassword;
 use App\Notifications\VerifyEmail;
@@ -29,6 +30,13 @@ class User extends Authenticatable implements CanResetPassword, MustVerifyEmail
      * @var array
      */
     protected $fillable = ['name', 'firstname', 'username', 'password', 'email', 'hideEmail', 'loggedOnce', 'mobile', 'hideMobile', 'description', 'group_id', 'active'];
+
+    /**
+     * HTML saisi dans l'éditeur riche : nettoyé contre les failles XSS.
+     */
+    protected $casts = [
+        'description' => RichTextHtml::class,
+    ];
 
     /**
      * The attributes that should be hidden for arrays.

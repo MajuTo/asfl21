@@ -244,62 +244,90 @@
 
             let infowindow = new google.maps.InfoWindow();
 
-            @foreach ($sagesfemmes as $sf)
-            @foreach ($sf->addresses as $address)
+            @php
+                $mapPoints = [];
+                foreach ($sagesfemmes as $sf) {
+                    foreach ($sf->addresses as $address) {
+                        if ($address->lat === null || $address->lng === null) {
+                            continue;
+                        }
+                        $mapPoints[] = [
+                            'id' => $sf->id . '_' . $address->id,
+                            'lat' => (float) $address->lat,
+                            'lng' => (float) $address->lng,
+                            'name' => Str::title($sf->firstname) . ' ' . Str::upper($sf->name),
+                            'activities' => $sf->activities->pluck('activityName')->values(),
+                            'address' => $address->address,
+                            'city' => trim($address->zipCode . ' ' . $address->city),
+                            'phone' => ($address->phone && !$address->hidePhone) ? $address->phone : null,
+                            'fax' => ($address->fax && !$address->hideFax) ? $address->fax : null,
+                            'url' => route('user.show', [$sf->id, strtoupper($sf->name) . '-' . ucfirst($sf->firstname)]),
+                        ];
+                    }
+                }
+            @endphp
+            const mapPoints = @json($mapPoints);
 
-            @if ($address->lat != null and $address->lng != null)
+            // Construit le contenu de la bulle avec textContent : aucune donnée n'est interprétée comme du HTML
+            const el = (tag, text, className) => {
+                const node = document.createElement(tag);
+                if (text) node.textContent = text;
+                if (className) node.className = className;
+                return node;
+            };
 
-            let marker{{ $sf->id }}_{{$address->id}} = new google.maps.Marker({
-                position: new google.maps.LatLng( {{ $address->lat }}, {{ $address->lng }}),
-                id: {{$sf->id}} + '_' + {{$address->id}},
-                map: map,
-                title: '{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}',
-                optimized: false
+            const buildInfoContent = point => {
+                const root = el('div', null, 'container-fluid');
+                const row = el('div', null, 'row');
+                row.appendChild(el('h3', point.name));
+
+                const left = el('div', null, 'col-6');
+                left.appendChild(el('h4', 'Activités'));
+                const ul = el('ul');
+                point.activities.forEach(a => ul.appendChild(el('li', a)));
+                left.appendChild(ul);
+
+                const right = el('div', null, 'col-6 text-end');
+                right.appendChild(el('h4', 'Adresse'));
+                const p = el('p');
+                [point.address, point.city,
+                    point.phone ? 'tel: ' + point.phone : null,
+                    point.fax ? 'fax: ' + point.fax : null]
+                    .filter(Boolean)
+                    .forEach((line, i) => {
+                        if (i) p.appendChild(document.createElement('br'));
+                        p.appendChild(document.createTextNode(line));
+                    });
+                right.appendChild(p);
+
+                const contact = el('p', 'Contact : ');
+                const link = el('a', point.name);
+                link.href = point.url;
+                link.target = '_blank';
+                link.rel = 'noopener';
+                contact.appendChild(link);
+                right.appendChild(contact);
+
+                row.append(left, right);
+                root.appendChild(row);
+                return root;
+            };
+
+            mapPoints.forEach(point => {
+                const m = new google.maps.Marker({
+                    position: new google.maps.LatLng(point.lat, point.lng),
+                    id: point.id,
+                    map: map,
+                    title: point.name,
+                    optimized: false
+                });
+                markers.push(m);
+
+                google.maps.event.addListener(m, 'click', () => {
+                    infowindow.setContent(buildInfoContent(point));
+                    infowindow.open(map, m);
+                });
             });
-            markers.push(marker{{ $sf->id }}_{{$address->id}});
-
-            let contentString{{ $sf->id }}_{{$address->id}} =
-                '<div class="container-fluid">'+
-                '<div class="row">'+
-                '<h3>{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</h3>'+
-                '<div class="col-6 col-sm-6 col-md-6 col-lg-6">'+
-                '<h4>Activités</h4>'+
-                '<ul>'+
-                @foreach($sf->activities as $activity)
-                    '<li>{{{ $activity->activityName }}}</li>'+
-                @endforeach
-                    '</ul>'+
-                '</div>'+
-                '<div class="col-6 col-sm-6 col-md-6 col-lg-6">'+
-                '<div class="text-end">'+
-                '<h4>Adresse</h4>'+
-                '<p>{{{ $address->address }}}</br>'+
-                '{{{ $address->zipCode }}} {{{ $address->city }}}</br>'+
-                @if($address->phone && !$address->hidePhone)
-                    'tel: {{{ $address->phone }}}<br />'+
-                @endif
-                    @if($address->fax && !$address->hideFax)
-                    'fax: {{{ $address->fax }}}'+
-                @endif
-                    "<p>Contact: <a href=\"{{ route('user.show', [$sf->id, strtoupper($sf->name) . '_' . ucfirst($sf->firstname)]) }}\" target=\"_blank\">"+
-                '{{ Str::title($sf->firstname) }} {{ Str::upper($sf->name) }}</a> '+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
-                '</div>';
-
-
-
-
-            google.maps.event.addListener(marker{{ $sf->id }}_{{$address->id}}, 'click', function() {
-                infowindow.setContent(contentString{{ $sf->id }}_{{$address->id}});
-                infowindow.open(map,marker{{ $sf->id }}_{{$address->id}});
-            });
-
-            @endif
-            @endforeach
-            @endforeach
         }
 
         function codeAddress() {

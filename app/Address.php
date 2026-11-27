@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Casts\RichTextHtml;
 use App\Helpers\Alert;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,13 @@ class Address extends Model
 {
     public $timestamps    = false;
     protected $fillable	  = ['address', 'zipCode', 'phone', 'city', 'name', 'description', 'hidePhone', 'fax', 'hideFax', 'user_id'];
+
+    /**
+     * HTML saisi dans l'éditeur riche : nettoyé contre les failles XSS.
+     */
+    protected $casts = [
+        'description' => RichTextHtml::class,
+    ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

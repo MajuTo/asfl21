@@ -15,7 +15,7 @@
     <body>
     Vous avez reçu un message de la part de {{ $inputs['name'] }} depuis le site ASFL21.
     <p>
-        {{ nl2br($inputs['message']) }}
+        {!! nl2br(e($inputs['message'])) !!}
     </p>
 
     </body>

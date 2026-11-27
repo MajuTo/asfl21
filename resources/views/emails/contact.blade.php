@@ -15,6 +15,6 @@
     <body>
         Bonjour, {{ $inputs['name']}} vous a contacté depuis le site internet.
 
-        <p>{{ nl2br($inputs['message']) }}</p>
+        <p>{!! nl2br(e($inputs['message'])) !!}</p>
     </body>
 </html>
